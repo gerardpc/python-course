@@ -821,9 +821,9 @@ the first element at index 0. (See the official python.org list docs.)
 
 ```python
 colors = ['red', 'blue', 'green']
-print(colors[0])    ## red
-print(colors[2])    ## green
-print(len(colors))  ## 3
+print(colors[0])    # red
+print(colors[2])    # green
+print(len(colors))  # 3
 ```
 
 !!!note
@@ -834,7 +834,15 @@ Assignment with an `=` on lists **does not make a copy**. Instead, assignment ma
 point to the same one list in memory.
 
 ```python
-b = colors   ## Does not copy the list
+b = colors   # Does not copy the list, just reuses it!
+```
+
+This means that if we now change `b`, we will also be changing the contents of the list `colors`.
+To make a _different_ (bud identical) copy of a list, that can be modified without affecting the 
+original list, wee need to call the `copy()` method
+
+```python
+b = colors.copy()   # b is now a proper copy of colors
 ```
 
 The "empty list" is just an empty pair of brackets `[ ]`. The '`+`' works to append two lists, 
@@ -851,7 +859,7 @@ squares = [1, 4, 9, 16]
 sum = 0
 for num in squares:
     sum += num
-print(sum)  ## 30
+print(sum)  # 30
 ```
 
 !!!note
@@ -889,7 +897,7 @@ not including** the last number. The combination of the for-loop and the **range
 a traditional numeric for loop:
 
 ```python
-## print the numbers from 0 through 99
+# print the numbers from 0 through 99
 for i in range(100):
     print(i)
 ```
@@ -897,11 +905,20 @@ for i in range(100):
 ### While Loop
 
 Python also has the standard while-loop. The above for/in loops solves the common case of iterating over 
-every element in a list, but the while loop gives you total control over the index numbers. 
+every element in a list, but the while loop gives you total control over the index numbers.
+
+Its syntaxis is quite simple:
+
+```python
+while "some boolean condition":
+    # block of code that gets executed in each iteration
+    ...
+```
+
 Here's a while loop which accesses every 3rd element in a list:
 
 ```python
-## Access every 3rd element in a list
+# Access every 3rd element in a list
 i = 0
 while i < len(a):
     print(a[i])
@@ -928,6 +945,13 @@ while i < len(a):
 ```
 
 ##  Data structures
+
+Python has some built-in data structures that are very convenient to use. 
+
+* **Lists**: an ordered collection of elements
+* **Dictionaries**: a collection of elements, indexed by keys
+* **Sets**: a collection of elements with no order, indexes or repeated elements
+* **Tuples**: an ordered collection of elements that, unlike lists, cannot be modified
 
 ### Lists
 
@@ -1217,12 +1241,17 @@ For example, `len()` returns the length of the argument passed to it:
 4
 ```
 
-These functions are part of the **Python Standard Library**, a collection of modules accessible to a Python program 
+These functions are part of the **Python Standard Library**, a collection of modules accessible to Python programs
 that require no installation of external code. The Python standard library can be used to 
-simplify the programming process, removing the need to rewrite commonly used commands.
-They can be used by calling `import package_name` at the beginning of a script.
+simplify the programming process, removing the need to reinvent the wheel and rewrite commonly used commands.
 
-We'll see a couple of important Python modules in the next sections.
+Most functions from the standard library can be used by calling `import package_name` at the beginning of a script,
+where `package_name` is the name of the precise library that we want to use. We'll see a couple of important 
+Python modules in the next sections.
+
+!!!note
+    Not all functions need to be imported to be used. `print()`, `type()` or `len()` are so general
+    that we can use them without the need to import anything.
 
 ### The math library
 
@@ -1239,7 +1268,7 @@ Using it is just a matter of importing the module:
 >>> import math
 ```
 You can import the Python math module using the above command. After importing, you can use it straightaway.
-For instance, imagine that we want to use the cosine function, $f(x) = cos(x)$. Then we would do
+For instance, imagine that we want to use the cosine function, $f(x) = \cos(x)$. Then we would do
 
 ```python
 x = 3.14
@@ -1329,7 +1358,6 @@ the full $[x, y]$ interval and may include both endpoints:
 
 !!!note
     If we wanted to simulate a dice, we could run `random.randint(1, 6)`.
-la la la 
 
 ### Custom function definitions
 
@@ -1529,6 +1557,23 @@ before, outer_string = It was many and many a year ago
 got It was many and many a year ago
 set to In a kingdom by the sea
 after, outer_string = It was many and many a year ago
+```
+
+### Lambda functions
+
+**Lambda functions** are small anonymous functions. They work as normal python functions, but are
+defined within a single line and a little bit differently, as:
+
+```python
+lambda arguments : expression 
+```
+
+A lambda function can take any number of arguments, but can only have one expression. For instance,
+a function that adds 10 to an argument a, and returns the result would be written as:
+
+```python
+x = lambda a : a + 10
+print(x(5)) 
 ```
 
 ## Python programs
