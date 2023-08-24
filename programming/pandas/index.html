@@ -1,0 +1,1164 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../python/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Pandas - Course notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pandas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Course notes" class="md-header__button md-logo" aria-label="Course notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Course notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pandas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Course notes" class="md-nav__button md-logo" aria-label="Course notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Course notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Python & Data Science
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python & Data Science" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python & Data Science
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Pandas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Pandas
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pandas-vs-excel" class="md-nav__link">
+    Pandas vs. Excel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-objects-series-and-dataframes" class="md-nav__link">
+    Basic objects: Series and Dataframes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#series-creation" class="md-nav__link">
+    Series creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-creation" class="md-nav__link">
+    Dataframe creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readingwriting-dataframes" class="md-nav__link">
+    Reading/writing dataframes
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading/writing dataframes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-from-a-csv" class="md-nav__link">
+    Reading from a CSV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-to-a-csv" class="md-nav__link">
+    Saving to a CSV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-dataframes" class="md-nav__link">
+    Viewing DataFrames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-in-a-dataframe" class="md-nav__link">
+    Accessing data in a DataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing data in a DataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-in-one-ore-more-columns" class="md-nav__link">
+    Accessing data in one ore more columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slicing" class="md-nav__link">
+    Slicing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-rows-and-columns-at-the-same-time" class="md-nav__link">
+    Selecting rows and columns at the same time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-from-its-location-on-the-dataframe" class="md-nav__link">
+    Accessing data from its location on the DataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing data from its location on the DataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-selectors" class="md-nav__link">
+    Column selectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row-selectors" class="md-nav__link">
+    Row selectors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-new-values-on-a-dataframe" class="md-nav__link">
+    Setting new values on a DataFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-on-dataframes" class="md-nav__link">
+    Operations on DataFrames
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations on DataFrames">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-statistics-apply-etc" class="md-nav__link">
+    Basic statistics, apply, etc.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    Group by
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joins-and-merges" class="md-nav__link">
+    Joins and merges
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pandas-vs-excel" class="md-nav__link">
+    Pandas vs. Excel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-objects-series-and-dataframes" class="md-nav__link">
+    Basic objects: Series and Dataframes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#series-creation" class="md-nav__link">
+    Series creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-creation" class="md-nav__link">
+    Dataframe creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readingwriting-dataframes" class="md-nav__link">
+    Reading/writing dataframes
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading/writing dataframes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-from-a-csv" class="md-nav__link">
+    Reading from a CSV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-to-a-csv" class="md-nav__link">
+    Saving to a CSV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-dataframes" class="md-nav__link">
+    Viewing DataFrames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-in-a-dataframe" class="md-nav__link">
+    Accessing data in a DataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing data in a DataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-in-one-ore-more-columns" class="md-nav__link">
+    Accessing data in one ore more columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slicing" class="md-nav__link">
+    Slicing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-rows-and-columns-at-the-same-time" class="md-nav__link">
+    Selecting rows and columns at the same time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-data-from-its-location-on-the-dataframe" class="md-nav__link">
+    Accessing data from its location on the DataFrame
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing data from its location on the DataFrame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-selectors" class="md-nav__link">
+    Column selectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row-selectors" class="md-nav__link">
+    Row selectors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-new-values-on-a-dataframe" class="md-nav__link">
+    Setting new values on a DataFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-on-dataframes" class="md-nav__link">
+    Operations on DataFrames
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations on DataFrames">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-statistics-apply-etc" class="md-nav__link">
+    Basic statistics, apply, etc.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    Group by
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joins-and-merges" class="md-nav__link">
+    Joins and merges
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pandas">Pandas<a class="headerlink" href="#pandas" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Pandas is a high-level data manipulation tool built with the Numpy package. Its key data structure is called the 
+DataFrame, which allow us to store and manipulate tabular data (we can think of the rows as different "observations" 
+and the columns as the variables).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intuitively, pandas DataFrames can be thought of as a way to hold Excel spreadsheets data in a
+Python object.</p>
+</div>
+<p>Since Pandas <strong>is not</strong> part of the standard Python library, we will need to install it first in the virtual 
+environment, for instance with <code>pip</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</code></pre></div>
+<p>Once we have it installed, to use it in the code will need to import it with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">pandas</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Code here</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">...</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Often, pandas is renamed to <code>pd</code> in the import, as:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
+This is of course not mandatory, but very common.    </p>
+</div>
+<p>After importing the package, we can start using its most important object, the DataFrame. 
+There are several ways to create a DataFrame, for example:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Brazil&quot;</span><span class="p">,</span> <span class="s2">&quot;Russia&quot;</span><span class="p">,</span> <span class="s2">&quot;India&quot;</span><span class="p">,</span> <span class="s2">&quot;China&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">],</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>       <span class="s2">&quot;capital&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Brasilia&quot;</span><span class="p">,</span> <span class="s2">&quot;Moscow&quot;</span><span class="p">,</span> <span class="s2">&quot;New Dehli&quot;</span><span class="p">,</span> <span class="s2">&quot;Beijing&quot;</span><span class="p">,</span> <span class="s2">&quot;Pretoria&quot;</span><span class="p">],</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>       <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.516</span><span class="p">,</span> <span class="mf">17.10</span><span class="p">,</span> <span class="mf">3.286</span><span class="p">,</span> <span class="mf">9.597</span><span class="p">,</span> <span class="mf">1.221</span><span class="p">],</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>       <span class="s2">&quot;population&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">200.4</span><span class="p">,</span> <span class="mf">143.5</span><span class="p">,</span> <span class="mi">1252</span><span class="p">,</span> <span class="mi">1357</span><span class="p">,</span> <span class="mf">52.98</span><span class="p">]</span> <span class="p">}</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">brics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">brics</span><span class="p">)</span>
+</code></pre></div>
+which outputs
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>     area    capital       country  population
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>0   8.516   Brasilia        Brazil      200.40
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>1  17.100     Moscow        Russia      143.50
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>2   3.286  New Dehli         India     1252.00
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>3   9.597    Beijing         China     1357.00
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>4   1.221   Pretoria  South Africa       52.98
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want a nice, complete introduction and walkthrough to Pandas, it is recommended
+to check the official documentation's own <a href="https://pandas.pydata.org/docs/user_guide/10min.html">guide</a>.
+The notes in this page are not comprehensive.</p>
+</div>
+<h3 id="pandas-vs-excel">Pandas vs. Excel<a class="headerlink" href="#pandas-vs-excel" title="Permanent link">&para;</a></h3>
+<p>Tasks such as data cleaning, data normalization, visualization, and statistical analysis can be performed on 
+both Excel and Pandas. That being said, Pandas has some major benefits over Excel:</p>
+<ul>
+<li>Limitation by size: Excel can handle around 1 million rows, while Python can handle millions and millions of rows 
+(the limitation is on PC computing power and memory).</li>
+<li>Complex data transformation: Memory-intensive computations in Excel can crash a workbook. 
+Python can handle complex computations without major problems.</li>
+<li>Automation: Excel was not designed to automate tasks. You can create a macro or use VBA to simplify some tasks, 
+but Python is a general programming language (meaning we can program almost anything).</li>
+</ul>
+<h3 id="basic-objects-series-and-dataframes">Basic objects: Series and Dataframes<a class="headerlink" href="#basic-objects-series-and-dataframes" title="Permanent link">&para;</a></h3>
+<p>Fundamentally, Pandas has two main objects that we will be using: </p>
+<ul>
+<li><strong>Pandas Series</strong> are one-dimensional labeled arrays capable of holding any data 
+type (integers, strings, floating point numbers, Python objects, etc.). We can think of a Pandas Series
+as a single "column" of a table.</li>
+<li><strong>Pandas Dataframes</strong> are 2-dimensional labeled data structures with columns of potentially different 
+types. We can think of it like a spreadsheet or SQL table, or a dict of Series objects. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In general we will only be using Pandas Dataframes, which are the most commonly used pandas object.
+However, since Pandas Dataframes are a collection of Pandas Series, Series will appear often as the
+result of using some of the methods of Dataframes.</p>
+</div>
+<h3 id="series-creation">Series creation<a class="headerlink" href="#series-creation" title="Permanent link">&para;</a></h3>
+<p>In a Series object, the axis labels are collectively referred to as the <strong>index</strong>. The basic method 
+to create a Series is to call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+</code></pre></div>
+<p>Here, data can be many different things, for example:</p>
+<ul>
+<li>A Python dict or list</li>
+<li>A scalar value</li>
+<li>A numpy array</li>
+</ul>
+<p>If <code>data</code> is a numpy array, index must be the same length as data. If no index is passed, 
+one will be created having values <code>[0, ..., len(data) - 1]</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">])</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">s</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> 
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">a</span>    <span class="mf">0.469112</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">b</span>   <span class="o">-</span><span class="mf">0.282863</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">c</span>   <span class="o">-</span><span class="mf">1.509059</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">d</span>   <span class="o">-</span><span class="mf">1.135632</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">e</span>    <span class="mf">1.212112</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="n">s</span><span class="o">.</span><span class="n">index</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">Index</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> 
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="mi">0</span>   <span class="o">-</span><span class="mf">0.173215</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="mi">1</span>    <span class="mf">0.119209</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="mi">2</span>   <span class="o">-</span><span class="mf">1.044236</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="mi">3</span>   <span class="o">-</span><span class="mf">0.861849</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="mi">4</span>   <span class="o">-</span><span class="mf">2.104569</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</code></pre></div>
+<h3 id="dataframe-creation">Dataframe creation<a class="headerlink" href="#dataframe-creation" title="Permanent link">&para;</a></h3>
+<p>DataFrames are, in practice, a dictionary of columns. That's why <strong>column labels must be unique</strong>. 
+Each column corresponds to a <code>Series</code>, and different columns can be of different type. Rows are 
+identified by an index, shared by all the columns (and may be non-unique). </p>
+<p>To instantiate a DataFrame we may use different kinds of input, such as:</p>
+<ul>
+<li>
+<p>A <code>dict</code> of 1D objects: Numpy arrays, lists, dicts, or Series. In any case, the arrays must all be the same length. 
+If an index is passed, it must also be the same length as the arrays. If no index is passed, the result will be 
+<code>range(n)</code>, where <code>n</code> is the array length:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span> <span class="s2">&quot;two&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]}</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">Out</span><span class="p">[</span><span class="mi">46</span><span class="p">]:</span> 
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   <span class="n">one</span>  <span class="n">two</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="mi">0</span>  <span class="mf">1.0</span>  <span class="mf">4.0</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="mi">1</span>  <span class="mf">2.0</span>  <span class="mf">3.0</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="mi">2</span>  <span class="mf">3.0</span>  <span class="mf">2.0</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="mi">3</span>  <span class="mf">4.0</span>  <span class="mf">1.0</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">Out</span><span class="p">[</span><span class="mi">47</span><span class="p">]:</span> 
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>   <span class="n">one</span>  <span class="n">two</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="n">a</span>  <span class="mf">1.0</span>  <span class="mf">4.0</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">b</span>  <span class="mf">2.0</span>  <span class="mf">3.0</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="n">c</span>  <span class="mf">3.0</span>  <span class="mf">2.0</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="n">d</span>  <span class="mf">4.0</span>  <span class="mf">1.0</span>
+</code></pre></div>
+</li>
+<li>
+<p>From a list of dicts (where each dict has the same keys, which correspond to the DataFrame-to-be columns):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">53</span><span class="p">]:</span> <span class="n">data2</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">In</span> <span class="p">[</span><span class="mi">54</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">Out</span><span class="p">[</span><span class="mi">54</span><span class="p">]:</span> 
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>   <span class="n">a</span>   <span class="n">b</span>     <span class="n">c</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="mi">0</span>  <span class="mi">1</span>   <span class="mi">2</span>   <span class="n">NaN</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="mi">1</span>  <span class="mi">5</span>  <span class="mi">10</span>  <span class="mf">20.0</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">In</span> <span class="p">[</span><span class="mi">55</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">])</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">Out</span><span class="p">[</span><span class="mi">55</span><span class="p">]:</span> 
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="n">a</span>   <span class="n">b</span>     <span class="n">c</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">first</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="n">NaN</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">second</span>  <span class="mi">5</span>  <span class="mi">10</span>  <span class="mf">20.0</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">In</span> <span class="p">[</span><span class="mi">56</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">Out</span><span class="p">[</span><span class="mi">56</span><span class="p">]:</span> 
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>   <span class="n">a</span>   <span class="n">b</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="mi">0</span>  <span class="mi">1</span>   <span class="mi">2</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="mi">1</span>  <span class="mi">5</span>  <span class="mi">10</span>
+</code></pre></div>
+</li>
+<li>
+<p>Tables from a <code>.csv</code> file or Excel file (e.g., <code>.xlsx</code>)</p>
+</li>
+<li>A single Pandas Series</li>
+<li>2-D numpy.ndarray</li>
+</ul>
+<p>In any case, the DataFrame construction always follows the same syntax:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># suppose &quot;a&quot; is a Python object type that can be converted to a DataFrame</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">a</span> <span class="o">=</span> <span class="o">...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># DataFrame object creation</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although Series are 1D, nothing prevents use from converting a Pandas Series into a Pandas DataFrame.
+This is often very convenient since DataFrames and Series do not have the same methods available.</p>
+</div>
+<h3 id="readingwriting-dataframes">Reading/writing dataframes<a class="headerlink" href="#readingwriting-dataframes" title="Permanent link">&para;</a></h3>
+<p>Dataframes are very useful, but how can we transfer tabular information between different Python sessions?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that information stored in Python objects disappears once the current execution is finished.</p>
+</div>
+<p>The most common way to achieve this is to save the tables in files. These files can be reused in future executions,
+or transferred through the internet (this is mostly how we download datasets from the internet).</p>
+<p>A simple way to store big data sets is to use <code>.csv</code> files (comma separated files). CSV files contain
+plain text and is a well known format that can be read by everyone (including Pandas).</p>
+<h4 id="reading-from-a-csv">Reading from a CSV<a class="headerlink" href="#reading-from-a-csv" title="Permanent link">&para;</a></h4>
+<p>Reading from a CSV is as easy as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span> 
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Output</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>     <span class="n">Duration</span>  <span class="n">Pulse</span>  <span class="n">Maxpulse</span>  <span class="n">Calories</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="mi">0</span>          <span class="mi">60</span>    <span class="mi">110</span>       <span class="mi">130</span>     <span class="mf">409.1</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="mi">1</span>          <span class="mi">60</span>    <span class="mi">117</span>       <span class="mi">145</span>     <span class="mf">479.0</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="mi">2</span>          <span class="mi">60</span>    <span class="mi">103</span>       <span class="mi">135</span>     <span class="mf">340.0</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="mi">3</span>          <span class="mi">45</span>    <span class="mi">109</span>       <span class="mi">175</span>     <span class="mf">282.4</span>
+</code></pre></div>
+<p>If the file has a header, or uses different characters (instead of commas), the pandas documentation has
+several examples on how to use the <code>.read_csv()</code> method.</p>
+<h4 id="saving-to-a-csv">Saving to a CSV<a class="headerlink" href="#saving-to-a-csv" title="Permanent link">&para;</a></h4>
+<p>Saving an already existing DataFrame <code>df</code> into a <code>.csv</code> can be accomplished with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;file_name.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>If you want to export without the index, simply add index=False;</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;file_name.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>If you get a <code>UnicodeEncodeError</code>, simply add encoding='utf-8':</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;file_name.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="viewing-dataframes">Viewing DataFrames<a class="headerlink" href="#viewing-dataframes" title="Permanent link">&para;</a></h3>
+<p>To view the contents of a DataFrame, we can use one of several options:</p>
+<ul>
+<li>Using the <code>print(some_dataframe)</code> function</li>
+<li>To view the top of a dataframe, use <code>DataFrame.head()</code></li>
+<li>To view the bottom of a dataframe, use <code>DataFrame.tail()</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> 
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>                   <span class="n">A</span>         <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>  <span class="mf">0.469112</span> <span class="o">-</span><span class="mf">0.282863</span> <span class="o">-</span><span class="mf">1.509059</span> <span class="o">-</span><span class="mf">1.135632</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>  <span class="mf">1.212112</span> <span class="o">-</span><span class="mf">0.173215</span>  <span class="mf">0.119209</span> <span class="o">-</span><span class="mf">1.044236</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span> <span class="o">-</span><span class="mf">0.861849</span> <span class="o">-</span><span class="mf">2.104569</span> <span class="o">-</span><span class="mf">0.494929</span>  <span class="mf">1.071804</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span>  <span class="mf">0.721555</span> <span class="o">-</span><span class="mf">0.706771</span> <span class="o">-</span><span class="mf">1.039575</span>  <span class="mf">0.271860</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span> <span class="o">-</span><span class="mf">0.424972</span>  <span class="mf">0.567020</span>  <span class="mf">0.276232</span> <span class="o">-</span><span class="mf">1.087401</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> 
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>                   <span class="n">A</span>         <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span>  <span class="mf">0.721555</span> <span class="o">-</span><span class="mf">0.706771</span> <span class="o">-</span><span class="mf">1.039575</span>  <span class="mf">0.271860</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span> <span class="o">-</span><span class="mf">0.424972</span>  <span class="mf">0.567020</span>  <span class="mf">0.276232</span> <span class="o">-</span><span class="mf">1.087401</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="mi">2013</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">06</span> <span class="o">-</span><span class="mf">0.673690</span>  <span class="mf">0.113648</span> <span class="o">-</span><span class="mf">1.478427</span>  <span class="mf">0.524988</span>
+</code></pre></div>
+<p>We can also explore the data with an IDE such as PyCharm, or we can export the DataFrame to a <code>.csv</code> file 
+and open it with a spreadsheet editor.</p>
+<h3 id="accessing-data-in-a-dataframe">Accessing data in a DataFrame<a class="headerlink" href="#accessing-data-in-a-dataframe" title="Permanent link">&para;</a></h3>
+<p>There are 3 options to access the data of a pandas object:</p>
+<ul>
+<li><code>[]</code>, the "standard getter" which is highly overloaded</li>
+<li><code>.loc[]</code>, label based selector</li>
+<li><code>.iloc[],</code> integer location based selector</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>[]</code> operator is highly overloaded and its use is discouraged. Use <code>.loc[]</code> and <code>.iloc[]</code> whenever possible.</p>
+</div>
+<h4 id="accessing-data-in-one-ore-more-columns">Accessing data in one ore more columns<a class="headerlink" href="#accessing-data-in-one-ore-more-columns" title="Permanent link">&para;</a></h4>
+<p>We can either use the standard getter <code>[]</code> or <code>.loc[]</code>.</p>
+<p>With the standard getter it works like this (the return type is another DataFrame):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">my_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  <span class="p">{</span><span class="s2">&quot;colA&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="mf">4.5</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">]},</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="p">[[</span><span class="mf">4.5</span><span class="p">]]</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>     <span class="mf">4.5</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">a</span>  <span class="n">Alice</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">b</span>    <span class="n">Eve</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">b</span>    <span class="n">Bob</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="p">[[</span><span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;colA&quot;</span><span class="p">]]</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>     <span class="mf">4.5</span>  <span class="n">colA</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="n">a</span>  <span class="n">Alice</span>    <span class="mi">10</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">b</span>    <span class="n">Eve</span>    <span class="mi">20</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="n">b</span>    <span class="n">Bob</span>    <span class="mi">30</span>
+</code></pre></div>
+<p>To select columns with the <code>.loc[]</code> operator we use the syntax <code>my_dataframe.loc[:, col_selector]</code>. 
+The <code>:</code> indicates that we want to select all rows (more on that later), and <code>col_selector</code> should be a
+list of the columns that we want to select:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">my_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  <span class="p">{</span><span class="s2">&quot;colA&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="mf">4.5</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">]},</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">]]</span>  <span class="c1"># returns a DataFrame</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>     <span class="mf">4.5</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">a</span>  <span class="n">Alice</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">b</span>    <span class="n">Eve</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">b</span>    <span class="n">Bob</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">c</span>    <span class="n">Charlie</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;colA&quot;</span><span class="p">]]</span>  <span class="c1"># returns a DataFrame</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>     <span class="mf">4.5</span>  <span class="n">colA</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="n">a</span>  <span class="n">Alice</span>     <span class="mi">10</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">b</span>    <span class="n">Eve</span>     <span class="mi">20</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="n">b</span>    <span class="n">Bob</span>     <span class="mi">30</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="n">c</span>    <span class="n">Charlie</span> <span class="mi">40</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In both examples we could have used a column name, instead of a list of column names, 
+as a selector. In this case, the return type, instead of a DataFrame, would be a Pandas
+Series. In general, <strong>try to avoid working with Series whenever possible</strong> and only use
+methods that return DataFrames.</p>
+</div>
+<h4 id="slicing">Slicing<a class="headerlink" href="#slicing" title="Permanent link">&para;</a></h4>
+<p>Slices act on row index, and are a way to access data from row X to row Y following the same 
+logic as explained before: a slice <code>[1:3]</code> will return all members from 1 to 3, except for the last one
+(i.e., 3 will be excluded). The return is a DataFrame:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">my_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  <span class="p">{</span><span class="s2">&quot;colA&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="mf">4.5</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">]},</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>   <span class="n">colA</span>  <span class="mf">4.5</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="n">b</span>    <span class="mi">20</span>  <span class="n">Eve</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">b</span>    <span class="mi">30</span>  <span class="n">Bob</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="p">[:</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>   <span class="n">colA</span>    <span class="mf">4.5</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="n">a</span>    <span class="mi">10</span>  <span class="n">Alice</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="n">b</span>    <span class="mi">20</span>    <span class="n">Eve</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="n">b</span>    <span class="mi">30</span>    <span class="n">Bob</span>
+</code></pre></div>
+<h4 id="selecting-rows-and-columns-at-the-same-time">Selecting rows and columns at the same time<a class="headerlink" href="#selecting-rows-and-columns-at-the-same-time" title="Permanent link">&para;</a></h4>
+<p>To select rows with the <code>.loc[]</code> operator we use the syntax <code>my_dataframe.loc[row_selector, :]</code>. 
+The <code>:</code> indicates that we want to select all columns (but we could also put in here any list of columns
+we want).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>my_dataframe.loc[row_selector, :]</code> can also be written as <code>my_dataframe.loc[row_selector]</code>, without the
+<code>:</code>. However, the first version is more explicit, and so its use is recommended.</p>
+</div>
+<p>We can select rows based on row name, row subset (by using a list, as with columns), a slice or, interestingly,
+based on boolean conditions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">my_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  <span class="p">{</span><span class="s2">&quot;colA&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="mf">4.5</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">]},</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="p">)</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="p">:]</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>   <span class="n">colA</span>      <span class="mf">4.5</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">c</span>    <span class="mi">40</span>  <span class="n">Charlie</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="n">a</span>    <span class="mi">10</span>    <span class="n">Alice</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>   <span class="n">colA</span>      <span class="mf">4.5</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="mi">3</span>    <span class="mi">20</span>      <span class="n">Eve</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="mi">1</span>    <span class="mi">30</span>      <span class="n">Bob</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="mi">2</span>    <span class="mi">40</span>  <span class="n">Charlie</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">my_dataframe</span><span class="p">[</span><span class="s2">&quot;colA&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>       <span class="mf">4.5</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="n">c</span>  <span class="n">Charlie</span> 
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the last example we have used a simple "greater than" boolean condition to select data in the DataFrame,
+but we can make this boolean condition as sophisticated or complex as we want, for example
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]),</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+</div>
+<h4 id="accessing-data-from-its-location-on-the-dataframe">Accessing data from its location on the DataFrame<a class="headerlink" href="#accessing-data-from-its-location-on-the-dataframe" title="Permanent link">&para;</a></h4>
+<p>The <code>.iloc[]</code> operator works the same as <code>.loc[]</code>, but on integer location of rows and also columns. 
+The syntax is the same, <code>my_dataframe[row_selector, column_selector]</code> and you can use <code>:</code> to indicate all rows or columns.</p>
+<h5 id="column-selectors">Column selectors<a class="headerlink" href="#column-selectors" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Selecting a single column (<code>my_dataframe.iloc[:, 1]</code>) always returns a Series.</li>
+<li>Selecting a list of columns (<code>my_dataframe.iloc[:, [1]]</code>) always returns a DataFrame.</li>
+</ul>
+<h5 id="row-selectors">Row selectors<a class="headerlink" href="#row-selectors" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Selecting a single integer position (<code>my_dataframe.iloc[1, :]</code>) always returns a Series.</li>
+<li>Selecting with a list of integer positions (<code>my_dataframe.iloc[[1, 5], :]</code>) always returns a DataFrame.</li>
+<li>Selecting with a slice of integer positions (<code>my_dataframe.iloc[1:4, :]</code>) always returns a DataFrame. 
+Recall that the upper limit <strong>is excluded</strong>.</li>
+<li>Selecting with a list of boolean indexes (<code>my_dataframe.iloc[1:4, :]</code>) always returns a DataFrame</li>
+</ul>
+<h3 id="setting-new-values-on-a-dataframe">Setting new values on a DataFrame<a class="headerlink" href="#setting-new-values-on-a-dataframe" title="Permanent link">&para;</a></h3>
+<p>We can use the same methods that have been shown to access data <em>to set</em> new values to the DataFrame.
+We just need to put the dataframe cell selection on the <strong>left side</strong> of a Python assignment, for example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># this assigns the value 10 to all cells in the column &quot;D&quot;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;D&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># this assigns the value 0 to all cells with negative values</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<p>We can use this to fill cells without values:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pandas primarily uses the value <code>np.nan</code> to represent missing data. Missing data is by default 
+not included in computations</p>
+</div>
+<h3 id="operations-on-dataframes">Operations on DataFrames<a class="headerlink" href="#operations-on-dataframes" title="Permanent link">&para;</a></h3>
+<h4 id="basic-statistics-apply-etc">Basic statistics, apply, etc.<a class="headerlink" href="#basic-statistics-apply-etc" title="Permanent link">&para;</a></h4>
+<h4 id="group-by">Group by<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h4>
+<h4 id="joins-and-merges">Joins and merges<a class="headerlink" href="#joins-and-merges" title="Permanent link">&para;</a></h4>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
