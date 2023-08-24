@@ -1,0 +1,61 @@
+site_name: Course notes
+theme:
+  # appearance
+  name: material
+  features:
+    - navigation.instant
+    - content.code.copy
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - attr_list
+  # note boxes
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # highlight code syntax
+  - pymdownx.highlight:
+        anchor_linenums: true
+  # footnotes
+  - footnotes
+  # for mathjax
+  - pymdownx.arithmatex:
+        generic: true
+  # support for image alignment, etc.
+  - md_in_html
+  # permalinks to page sections
+  - toc:
+      permalink: true
+  # icons + emojis
+  - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+# for mathjax
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+# table of contents
+nav:
+  - 'index.md'
+  - 'Python & Data Science':
+#    - 'programming/course_intro.md'
+    - 'programming/python.md'
+    - 'programming/pandas.md'
+#    - 'programming/matplotlib.md'
+#    - 'programming/sql.md'
+#    - 'programming/pyspark.md'

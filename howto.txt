@@ -1,0 +1,4 @@
+1. install mkdocs-material
+pip install mkdocs-material
+2. Serve web
+mkdocs serve
