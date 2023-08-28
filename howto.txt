@@ -9,4 +9,6 @@ mkdocs serve
 # Publishing website
 
 1. Read https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-2. Follow https://squidfunk.github.io/mkdocs-material/publishing-your-site/ "with MkDocs"
+2. Follow https://squidfunk.github.io/mkdocs-material/publishing-your-site/ "with MkDocs". Basically use:
+
+mkdocs gh-deploy --force

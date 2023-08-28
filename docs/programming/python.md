@@ -2103,6 +2103,38 @@ myobjectx.function()
 
 The above would print out the message `This is a message inside the class.`
 
+#### The meaning of `self`
+
+The built-in `self` is used by a class to refer to a specific instantiation of the class.
+This is easier seen with an example. Consider this class:
+
+```python
+class Dog:
+    def set_name(name):
+        dog_name = name
+```
+
+and now compare it to:
+
+```python
+class Dog:
+    def set_name(self, name):
+        self.dog_name = name
+```
+
+The idea of the function `set_name` is clear: we want to give a name to our object of the class `Dog`.
+So, what's the difference between both cases? In the first case, we are defining `dog_name` inside of the 
+function `set_name`, but when we leave the function this "inside" variable disappears. Hence, the function
+has no effect.
+
+!!!note
+    Actually, the first function would not work for reasons a bit more obscure, but that doesn't matter
+    for now. See [this](https://stackoverflow.com/questions/23944657/typeerror-method-takes-1-positional-argument-but-2-were-given-but-i-only-pa) 
+    if you're interested in reading more aaa.
+
+What we want to do is _access the particular dog instance_, and set a name to that instance. This is the 
+purpose of `self`: it means "our current instance".
+
 #### `init()` function
 
 The `__init__()` function is a special function that is called when the class is being instantiated. 
@@ -2169,6 +2201,16 @@ print(some_dog.race)
 35
 beagle
 ```
+
+In this example, `Dog` and `Cat` _inherit_ from the class `Animal`. This means that all
+`Animal` methods and attributes are also available to `Dog` and `Cat` as if they were defined
+inside their definitions. 
+
+!!!note
+    In the previous code snippet you might notice the use of the `super()` function.
+    `super()` is a built-in function returns a proxy that allows us to access methods of the base class.
+    We use it to refer to the base class: in the previous example, we are using it to call the `Animal.__init__`
+    function from the `Dog` and `Cat` `__init__` functions.
 
 ## Package distribution
 
