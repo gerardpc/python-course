@@ -1,0 +1,1242 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../control_flow/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Introduction to Python - Python and data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python and data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python and data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction to Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Introduction to Python
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#language-introduction" class="md-nav__link">
+    Language Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-variables-and-types" class="md-nav__link">
+    Basic variables and types
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic variables and types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numbers" class="md-nav__link">
+    Numbers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-python-functions" class="md-nav__link">
+    Basic Python functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Python functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length" class="md-nav__link">
+    Length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-output" class="md-nav__link">
+    Python Output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-input" class="md-nav__link">
+    Python input
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-python-operators" class="md-nav__link">
+    Basic Python operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Python operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-arithmetic-operators" class="md-nav__link">
+    Python Arithmetic Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assignment-operators" class="md-nav__link">
+    Assignment operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-comparison-operators" class="md-nav__link">
+    Python Comparison Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-logical-operators" class="md-nav__link">
+    Python Logical Operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control_flow/" class="md-nav__link">
+        Control flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_structures/" class="md-nav__link">
+        Data structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_programs/" class="md-nav__link">
+        Python programs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io_exceptions/" class="md-nav__link">
+        IO, files and exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        Classes and objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_packages/" class="md-nav__link">
+        Python packages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Data libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data libraries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Data libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
+        Pandas
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#language-introduction" class="md-nav__link">
+    Language Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-variables-and-types" class="md-nav__link">
+    Basic variables and types
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic variables and types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numbers" class="md-nav__link">
+    Numbers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-python-functions" class="md-nav__link">
+    Basic Python functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Python functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length" class="md-nav__link">
+    Length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-output" class="md-nav__link">
+    Python Output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-input" class="md-nav__link">
+    Python input
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-python-operators" class="md-nav__link">
+    Basic Python operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Python operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-arithmetic-operators" class="md-nav__link">
+    Python Arithmetic Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assignment-operators" class="md-nav__link">
+    Assignment operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-comparison-operators" class="md-nav__link">
+    Python Comparison Operators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-logical-operators" class="md-nav__link">
+    Python Logical Operators
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduction-to-python">Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permanent link">&para;</a></h1>
+<h2 id="language-introduction">Language Introduction<a class="headerlink" href="#language-introduction" title="Permanent link">&para;</a></h2>
+<p>Python is an interpreted language. It uses <strong>variables</strong> to store information: 
+whether information is a number, text or a list of names, it will always be saved in a variable. 
+Information in variables can later be processed, or kept as is. </p>
+<p>When we declare variables in Python, we are not forced to tell the interpreter of what sort they 
+will be; Python will infer it at runtime. This gives the programmer some flexibility, but also 
+the possibility of making mistakes.</p>
+<p>An excellent way to see how Python code works is to run the Python interpreter and type code 
+right into it. If you ever have a question like, "What happens if I do this or that?" just 
+typing it into the Python interpreter is a fast and likely the best way to see what happens. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">$</span> <span class="n">python3</span>        <span class="c1">## Run the Python interpreter</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Python</span> <span class="mf">3.</span><span class="n">X</span><span class="o">.</span><span class="n">X</span> <span class="p">(</span><span class="n">XXX</span><span class="p">,</span> <span class="n">XXX</span> <span class="n">XX</span> <span class="n">XXXX</span><span class="p">,</span> <span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">)</span> <span class="p">[</span><span class="n">XXX</span><span class="p">]</span> <span class="n">on</span> <span class="n">XXX</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">6</span>       <span class="c1">## set a variable in this interpreter session</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>           <span class="c1">## entering an expression prints its value</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="mi">6</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">2</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="mi">8</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;hi&#39;</span>    <span class="c1">## &#39;a&#39; can hold a string just as well</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s1">&#39;hi&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>      <span class="c1">## call the len() function on a string</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="mi">2</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1">## try something that doesn&#39;t work</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  <span class="n">File</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> 
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span> <span class="n">only</span> <span class="n">concatenate</span> <span class="nb">str</span> <span class="p">(</span><span class="ow">not</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span> <span class="n">to</span> <span class="nb">str</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>  <span class="c1">## probably what you really wanted</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s1">&#39;hi2&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span>         <span class="c1">## try something else that doesn&#39;t work</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>  <span class="n">File</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> 
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;foo&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="o">&gt;&gt;&gt;</span> <span class="o">^</span><span class="n">D</span>          <span class="c1">## type CTRL-d to exit (CTRL-z in Windows/DOS terminal)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't understand everything that is happening in the previous code snippet, 
+don't worry! We'll see it on the next sessions.</p>
+</div>
+<p>As you can see above, it's easy to experiment with variables and operators. 
+Also, the interpreter throws, or "raises" in Python parlance, a runtime error if the 
+code tries to read a variable that has not been assigned a value. Like other programming languages, 
+Python is case sensitive so "<code>a</code>" and "<code>A</code>" are different variables. The end of a line marks the end 
+of a statement, so Python does not require a semicolon at the end of each statement. 
+Comments begin with a <code>#</code> and extend to the end of the line.</p>
+<h2 id="basic-variables-and-types">Basic variables and types<a class="headerlink" href="#basic-variables-and-types" title="Permanent link">&para;</a></h2>
+<h3 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h3>
+<p>The interpreter acts as a simple calculator: you can type an expression at it and it will write the value. 
+Expression syntax is straightforward: the operators +, -, * and / can be used to perform arithmetic; 
+parentheses (()) can be used for grouping. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="mi">4</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="mi">20</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">(</span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="mf">5.0</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="mi">8</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># division always returns a floating point number</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="mf">1.6</span>
+</code></pre></div>
+<p>The <strong>integer</strong> numbers (e.g. 2, 4, 20) have type <code>int</code>, the ones with a <strong>fractional part</strong> 
+(e.g. 5.0, 1.6) have type <code>float</code>. Finally, <strong>boolean</strong> numbers have type <code>bool</code> and represent
+logical values of <code>True</code> or <code>False</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Booleans can't be operated as normal numbers, with additions or powers. Rather, they should
+be used in logical expressions such as "do this if this and that, or do that if this and that".
+We'll see more about it in another section.</p>
+</div>
+<p>Division (/) always returns a float. To do floor division and get an integer result you can 
+use the // operator; to calculate the remainder you can use %:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="mi">17</span> <span class="o">/</span> <span class="mi">3</span>  <span class="c1"># classic division returns a float</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="mf">5.666666666666667</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="mi">17</span> <span class="o">//</span> <span class="mi">3</span>  <span class="c1"># floor division discards the fractional part</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="mi">5</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="mi">17</span> <span class="o">%</span> <span class="mi">3</span>  <span class="c1"># the % operator returns the remainder of the division</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="mi">2</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="mi">5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># floored quotient * divisor + remainder</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="mi">17</span>
+</code></pre></div></p>
+<p>With Python, it is possible to use the ** operator to calculate powers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># 5 squared</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="mi">25</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span>  <span class="c1"># 2 to the power of 7</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="mi">128</span>
+</code></pre></div>
+<p>The equal sign <code>=</code> is used to assign a value to a variable. Afterwards, no result is displayed 
+before the next interactive prompt:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">width</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">height</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">9</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="mi">900</span>
+</code></pre></div></p>
+<p>If a variable is not “defined” (assigned a value), trying to use it will give you an error:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">n</span>  <span class="c1"># try to access an undefined variable</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;n&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</code></pre></div>
+<p>There is full support for floating point; operators with mixed type operands convert the integer operand 
+to floating point:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="mi">4</span> <span class="o">*</span> <span class="mf">3.75</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="mf">14.0</span>
+</code></pre></div>
+In interactive mode, the last printed expression is assigned to the variable _. This means that when you are using 
+Python as a desk calculator, it is somewhat easier to continue calculations, for example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">tax</span> <span class="o">=</span> <span class="mf">12.5</span> <span class="o">/</span> <span class="mi">100</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">price</span> <span class="o">=</span> <span class="mf">100.50</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">price</span> <span class="o">*</span> <span class="n">tax</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="mf">12.5625</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">price</span> <span class="o">+</span> <span class="n">_</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="mf">113.0625</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="nb">round</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="mf">113.06</span>
+</code></pre></div></p>
+<p>This variable should be treated as read-only by the user. Don’t explicitly assign a value to it — you would 
+create an independent local variable with the same name masking the built-in variable with its magic behavior.</p>
+<h3 id="text">Text<a class="headerlink" href="#text" title="Permanent link">&para;</a></h3>
+<p>Python can manipulate text (represented by type <code>str</code>, so-called “strings”) as well as numbers. 
+This includes characters “!”, words “rabbit”, names “Paris”, sentences “Got your back.”, etc. “Yay! :)”. 
+They can be enclosed in single quotes ('...') or double quotes ("...") with the same result.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s1">&#39;spam eggs&#39;</span>  <span class="c1"># single quotes</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s1">&#39;spam eggs&#39;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s2">&quot;Paris rabbit got your back :)! Yay!&quot;</span>  <span class="c1"># double quotes</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s1">&#39;Paris rabbit got your back :)! Yay!&#39;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s1">&#39;1975&#39;</span>  <span class="c1"># digits and numerals enclosed in quotes are also strings</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s1">&#39;1975&#39;</span>
+</code></pre></div></p>
+<p>We should always use double quotes <code>"..."</code> as quotation marks (since they allo the use of <code>'</code> inside):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s2">&quot;doesn&#39;t need to&quot;</span>  <span class="c1"># ...use double quotes instead</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">&quot;doesn&#39;t need to&quot;</span>
+</code></pre></div></p>
+<p>In the Python shell, the string definition and output string can look different. The print() 
+function produces a more readable output, by omitting the enclosing quotes and by 
+printing escaped and special characters:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;First line.</span><span class="se">\n</span><span class="s1">Second line.&#39;</span>  <span class="c1"># \n means newline</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">s</span>  <span class="c1"># without print(), special characters are included in the string</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s1">&#39;First line.</span><span class="se">\n</span><span class="s1">Second line.&#39;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># with print(), special characters are interpreted, so \n produces new line</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">First</span> <span class="n">line</span><span class="o">.</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="n">Second</span> <span class="n">line</span><span class="o">.</span>
+</code></pre></div></p>
+<p>If you don’t want characters prefaced by \ to be interpreted as special characters, you can use raw 
+strings by adding an r before the first quote:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;C:\some</span><span class="se">\n</span><span class="s1">ame&#39;</span><span class="p">)</span>  <span class="c1"># here \n means newline!</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">C</span><span class="p">:</span>\<span class="n">some</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">ame</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">C</span><span class="p">:</span>\<span class="n">some</span>\<span class="n">name</span>
+</code></pre></div>
+<p><strong>String literals</strong> can span multiple lines. One way is using triple-quotes: <code>"""..."""</code>. 
+End of lines are automatically included in the string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="s2">Usage: thingy [OPTIONS]</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s2">     -h                        Display this usage message</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s2">     -H hostname               Hostname to connect to</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>produces the following output (note that the initial newline is not included):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Usage</span><span class="p">:</span> <span class="n">thingy</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>     <span class="o">-</span><span class="n">h</span>                        <span class="n">Display</span> <span class="n">this</span> <span class="n">usage</span> <span class="n">message</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>     <span class="o">-</span><span class="n">H</span> <span class="n">hostname</span>               <span class="n">Hostname</span> <span class="n">to</span> <span class="n">connect</span> <span class="n">to</span>
+</code></pre></div>
+<p>Strings can be concatenated (glued together) with the + operator, and repeated with *:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">&gt;&gt;&gt;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># 3 times &#39;un&#39;, followed by &#39;ium&#39;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="mi">3</span> <span class="o">*</span> <span class="s1">&#39;un&#39;</span> <span class="o">+</span> <span class="s1">&#39;ium&#39;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="s1">&#39;unununium&#39;</span>
+</code></pre></div>
+<h2 id="basic-python-functions">Basic Python functions<a class="headerlink" href="#basic-python-functions" title="Permanent link">&para;</a></h2>
+<p>We can find the complete set of Python built-in functions <a href="https://docs.python.org/3/library/functions.html">here</a>.
+In this section we will only describe the most common and basic:</p>
+<h3 id="type">Type<a class="headerlink" href="#type" title="Permanent link">&para;</a></h3>
+<p>The <code>type()</code> function is mostly used for debugging purposes. If a single argument <code>type(obj)</code> is passed, 
+it returns the type of the given object. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># Output: &lt;class &#39;int&#39;&gt;</span>
+</code></pre></div>
+<h3 id="length">Length<a class="headerlink" href="#length" title="Permanent link">&para;</a></h3>
+<p>The <code>len()</code> function returns the length of a data structure passed to it. We'll see more about it in coming
+sessions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;qux&#39;</span><span class="p">]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="mi">4</span>
+</code></pre></div>
+<h3 id="python-output">Python Output<a class="headerlink" href="#python-output" title="Permanent link">&para;</a></h3>
+<p>In Python, we can simply use the <code>print()</code> function to print output on the "standard output". For example,
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python is powerful&#39;</span><span class="p">)</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1"># Output: Python is powerful</span>
+</code></pre></div>
+Here, the <code>print()</code> function displays the string enclosed inside the single quotation.
+In the above code, the <code>print()</code> function is taking a single parameter (the actual syntax of 
+the print function accepts as much as 5 parameters, but if we really need them we can google it).</p>
+<p>We can also use the <code>print()</code> function to display the values of Python variables. We can do it
+in several ways, but the most convenient is the use of the <code>f-string</code>:
+1. Prefix the string that we want to print with the letter <code>f</code>, as in <code>print(f"some text here")</code>. 
+2. Now, imagine that we have defined a variable before, as in
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">dog_name</span> <span class="o">=</span> <span class="s2">&quot;Ruff&quot;</span>
+</code></pre></div>
+3. To use this variable with <code>print()</code> in an f-string we just need to call it like
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;My dog name is </span><span class="si">{</span><span class="n">dog_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># Output: My dog name is Ruff</span>
+</code></pre></div>
+4. We can insert as many variables as we like in an f-string:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">age</span> <span class="o">=</span> <span class="mi">15</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">hair_color</span> <span class="o">=</span> <span class="n">purple</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Amy&quot;</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;My name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, I&#39;m </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> and have </span><span class="si">{</span><span class="n">hair_color</span><span class="si">}</span><span class="s2"> hair.&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># Output: My name is Amy, I&#39;m 15 and have purple hair.</span>
+</code></pre></div></p>
+<p>We can also join two strings together inside the <code>print()</code> statement. For example,
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This class is &#39;</span> <span class="o">+</span> <span class="s1">&#39;awesome.&#39;</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="c1"># Output: This class is awesome.</span>
+</code></pre></div></p>
+<p>The <code>print()</code> function normally prints out one or more python items followed by a newline
+(but the ending character, which by default is <code>\n</code>, can be changed.)</p>
+<h3 id="python-input">Python input<a class="headerlink" href="#python-input" title="Permanent link">&para;</a></h3>
+<p>While programming, we might want to take the input from the user. In Python, we can use the <code>input()</code> function:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</code></pre></div>
+Here, <code>prompt</code> is the string we wish to display on the screen and is optional.</p>
+<p>An example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># using input() to take user input</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter a number: &#39;</span><span class="p">)</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;You Entered:&#39;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data type of num:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+</code></pre></div>
+<strong>Output</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Output</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="n">Enter</span> <span class="n">a</span> <span class="n">number</span><span class="p">:</span> <span class="mi">10</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">You</span> <span class="n">Entered</span><span class="p">:</span> <span class="mi">10</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="n">Data</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">num</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">str</span><span class="s1">&#39;&gt;</span>
+</code></pre></div>
+In the above example, we have used the <code>input()</code> function to take input from the user 
+and stored the user input in the num variable.</p>
+<p>It is important to note that the entered value 10 is a <code>string</code>, not a <code>number</code>. So, type(num) 
+returns <class 'str'>. If we want to convert the string to a number, we should do it explicitly,
+like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your age: &quot;</span><span class="p">)</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="basic-python-operators">Basic Python operators<a class="headerlink" href="#basic-python-operators" title="Permanent link">&para;</a></h2>
+<h3 id="python-arithmetic-operators">Python Arithmetic Operators<a class="headerlink" href="#python-arithmetic-operators" title="Permanent link">&para;</a></h3>
+<p>Arithmetic operators are used to perform mathematical operations like addition, subtraction, 
+multiplication, etc. For example,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">7</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># addition</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Sum: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># subtraction</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Subtraction: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>   
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># multiplication</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Multiplication: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>  
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="c1"># division</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Division: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span> 
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="c1"># floor division</span>
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Floor Division: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">//</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>
+<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="c1"># modulo</span>
+<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Modulo: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>  
+<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>
+<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="c1"># a to the power b</span>
+<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Power: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>   
+</code></pre></div>
+<p><strong>Output</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">Sum</span><span class="p">:</span> <span class="mi">9</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">Subtraction</span><span class="p">:</span> <span class="mi">5</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">Multiplication</span><span class="p">:</span> <span class="mi">14</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">Division</span><span class="p">:</span> <span class="mf">3.5</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">Floor</span> <span class="n">Division</span><span class="p">:</span> <span class="mi">3</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="n">Modulo</span><span class="p">:</span> <span class="mi">1</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="n">Power</span><span class="p">:</span> <span class="mi">49</span>
+</code></pre></div></p>
+<h3 id="assignment-operators">Assignment operators<a class="headerlink" href="#assignment-operators" title="Permanent link">&para;</a></h3>
+<p>Assignment operators are used to assign values to variables. For example,</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># assign 5 to x </span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div>
+Here, <code>=</code> is an assignment operator that assigns 5 to x. Some extra examples:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># assign 10 to a</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># assign 5 to b</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span> 
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="c1"># assign the sum of a and b to a</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="n">a</span> <span class="o">+=</span> <span class="n">b</span>      <span class="c1"># a = a + b</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="c1"># Output: 15</span>
+</code></pre></div></p>
+<h3 id="python-comparison-operators">Python Comparison Operators<a class="headerlink" href="#python-comparison-operators" title="Permanent link">&para;</a></h3>
+<p>Comparison operators compare two values/variables and return a boolean result: <code>True</code> or <code>False</code>. 
+For example,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="c1"># equal to operator</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a == b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="c1"># not equal to operator</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a != b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="c1"># greater than operator</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a &gt; b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="c1"># less than operator</span>
+<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a &lt; b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a>
+<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a><span class="c1"># greater than or equal to operator</span>
+<a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a &gt;= b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a>
+<a id="__codelineno-30-20" name="__codelineno-30-20" href="#__codelineno-30-20"></a><span class="c1"># less than or equal to operator</span>
+<a id="__codelineno-30-21" name="__codelineno-30-21" href="#__codelineno-30-21"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a &lt;= b =&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="python-logical-operators">Python Logical Operators<a class="headerlink" href="#python-logical-operators" title="Permanent link">&para;</a></h3>
+<p>Logical operators are used to check whether an expression is <code>True</code> or <code>False</code>. 
+They are used in decision-making. For example,
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># logical AND</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nb">print</span><span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span><span class="p">)</span>     <span class="c1"># True</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nb">print</span><span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">)</span>    <span class="c1"># False</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="c1"># logical OR</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="nb">print</span><span class="p">(</span><span class="kc">True</span> <span class="ow">or</span> <span class="kc">False</span><span class="p">)</span>     <span class="c1"># True</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="c1"># logical NOT</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="nb">print</span><span class="p">(</span><span class="ow">not</span> <span class="kc">True</span><span class="p">)</span>          <span class="c1"># False</span>
+</code></pre></div>
+Python also offers some special types of operators, like the identity operator and the membership operator. 
+In Python, <code>is</code> and <code>is not</code> are used to check if two values are located on the same part of the memory:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">x1</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">y1</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="n">x2</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="n">y2</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="n">x3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="n">y3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">x1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">y1</span><span class="p">)</span>  <span class="c1"># prints False</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span> <span class="ow">is</span> <span class="n">y2</span><span class="p">)</span>  <span class="c1"># prints True</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">x3</span> <span class="ow">is</span> <span class="n">y3</span><span class="p">)</span>  <span class="c1"># prints False</span>
+</code></pre></div>
+<code>in</code> and <code>not in</code> are the membership operators. They are used to test whether a value or 
+variable is found in a sequence (string, list, tuple, set and dictionary):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Hello world&#39;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="c1"># check if &#39;H&#39; is present in x string</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;H&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># prints True</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="c1"># check if &#39;hello&#39; is present in x string</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># prints True</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="c1"># check if &#39;1&#39; key is present in y</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># prints True</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="c1"># check if &#39;a&#39; key is present in y</span>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># prints False</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

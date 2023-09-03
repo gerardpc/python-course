@@ -1,0 +1,981 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../control_flow/">
+      
+      
+        <link rel="next" href="../functions/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Data structures - Python and data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-structures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python and data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data structures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python and data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_introduction/" class="md-nav__link">
+        Introduction to Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control_flow/" class="md-nav__link">
+        Control flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Data structures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Data structures
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-structures_1" class="md-nav__link">
+    Data structures
+  </a>
+  
+    <nav class="md-nav" aria-label="Data structures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    Lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-methods" class="md-nav__link">
+    List methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-up-a-list" class="md-nav__link">
+    Building up a list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-slices" class="md-nav__link">
+    List Slices
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    Dictionaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iterating-over-dictionaries" class="md-nav__link">
+    Iterating over dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-important-methods" class="md-nav__link">
+    Dict important methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sets-and-tuples" class="md-nav__link">
+    Sets and tuples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_programs/" class="md-nav__link">
+        Python programs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io_exceptions/" class="md-nav__link">
+        IO, files and exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        Classes and objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_packages/" class="md-nav__link">
+        Python packages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Data libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data libraries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Data libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
+        Pandas
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-structures_1" class="md-nav__link">
+    Data structures
+  </a>
+  
+    <nav class="md-nav" aria-label="Data structures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lists" class="md-nav__link">
+    Lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-methods" class="md-nav__link">
+    List methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-up-a-list" class="md-nav__link">
+    Building up a list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-slices" class="md-nav__link">
+    List Slices
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    Dictionaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iterating-over-dictionaries" class="md-nav__link">
+    Iterating over dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-important-methods" class="md-nav__link">
+    Dict important methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sets-and-tuples" class="md-nav__link">
+    Sets and tuples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-structures">Data structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h1>
+<h2 id="data-structures_1">Data structures<a class="headerlink" href="#data-structures_1" title="Permanent link">&para;</a></h2>
+<p>Python has some built-in data structures that are very convenient to use. </p>
+<ul>
+<li><strong>Lists</strong>: an ordered collection of elements</li>
+<li><strong>Dictionaries</strong>: a collection of elements, indexed by keys</li>
+<li><strong>Sets</strong>: a collection of elements with no order, indexes or repeated elements</li>
+<li><strong>Tuples</strong>: an ordered collection of elements that, unlike lists, cannot be modified</li>
+</ul>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<p>We have seen an introduction to lists in the previous loops section. We will see a few other details here:</p>
+<h4 id="list-methods">List methods<a class="headerlink" href="#list-methods" title="Permanent link">&para;</a></h4>
+<p>Here are some common list methods.</p>
+<ul>
+<li><code>list.append(elem)</code> -- adds a single element to the end of the list. Common error: does not return the new list, just modifies the original.</li>
+<li><code>list.insert(index, elem)</code> -- inserts the element at the given index, shifting elements to the right.</li>
+<li><code>list.extend(list2)</code> adds the elements in list2 to the end of the list. Using + or += on a list is similar to using extend().</li>
+<li><code>list.index(elem)</code> -- searches for the given element from the start of the list and returns its index. Throws a ValueError if the element does not appear (use "in" to check without a ValueError).</li>
+<li><code>list.remove(elem)</code> -- searches for the first instance of the given element and removes it (throws ValueError if not present)</li>
+<li><code>list.sort()</code> -- sorts the list in place (does not return it). (The sorted() function shown later is preferred.)</li>
+<li><code>list.reverse()</code> -- reverses the list in place (does not return it)</li>
+<li><code>list.pop(index)</code> -- removes and returns the element at the given index. Returns the rightmost element if index is omitted (roughly the opposite of append()).</li>
+</ul>
+<p>Notice that these are <em>methods</em> on a list object, while <code>len()</code> is a function that takes the list 
+(or string or whatever) as an argument.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;larry&#39;</span><span class="p">,</span> <span class="s1">&#39;curly&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;shemp&#39;</span><span class="p">)</span>         <span class="c1">## append elem at end</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;xxx&#39;</span><span class="p">)</span>        <span class="c1">## insert elem at index 0</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">list</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;yyy&#39;</span><span class="p">,</span> <span class="s1">&#39;zzz&#39;</span><span class="p">])</span>  <span class="c1">## add list of elems at end</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>  <span class="c1">## [&#39;xxx&#39;, &#39;larry&#39;, &#39;curly&#39;, &#39;moe&#39;, &#39;shemp&#39;, &#39;yyy&#39;, &#39;zzz&#39;]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;curly&#39;</span><span class="p">))</span>    <span class="c1">## 2</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;curly&#39;</span><span class="p">)</span>         <span class="c1">## search and remove that element</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                  <span class="c1">## removes and returns &#39;larry&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>  <span class="c1">## [&#39;xxx&#39;, &#39;moe&#39;, &#39;shemp&#39;, &#39;yyy&#39;, &#39;zzz&#39;]</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Common error</strong>: note that the above methods do not <em>return</em> the modified list, they just 
+modify the original list.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>   <span class="c1">## NO, does not work, append() returns None</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">## Correct pattern:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>  <span class="c1">## [1, 2, 3, 4]</span>
+</code></pre></div>
+<h4 id="building-up-a-list">Building up a list<a class="headerlink" href="#building-up-a-list" title="Permanent link">&para;</a></h4>
+<p>One common pattern is to start a list as the empty list [], then use append() or extend() to add elements to it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c1">## Start as the empty list</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>   <span class="c1">## Use append() to add elements</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="list-slices">List Slices<a class="headerlink" href="#list-slices" title="Permanent link">&para;</a></h4>
+<p>Slices work on lists just as with strings, and can also be used to change sub-parts of the list.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1">## [&#39;b&#39;, &#39;c&#39;]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span>    <span class="c1">## replace [&#39;a&#39;, &#39;b&#39;] with [&#39;z&#39;]</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>         <span class="c1">## [&#39;z&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+</code></pre></div>
+<h3 id="dictionaries">Dictionaries<a class="headerlink" href="#dictionaries" title="Permanent link">&para;</a></h3>
+<p>Python provides another composite data type called a dictionary, which is similar to a list in that it is a 
+collection of objects.</p>
+<p>Dictionaries and lists share the following characteristics:</p>
+<ul>
+<li>Both are mutable.</li>
+<li>Both are dynamic. They can grow and shrink as needed.</li>
+<li>Both can be nested. A list can contain another list. A dictionary can contain another dictionary. 
+A dictionary can also contain a list, and vice versa.</li>
+</ul>
+<p>Dictionaries differ from lists primarily in how elements are accessed:</p>
+<ul>
+<li>List elements are accessed by their position in the list, via indexing. </li>
+<li>Dictionary elements are accessed via keys.</li>
+</ul>
+<p>Defining a Dictionary</p>
+<p>A dictionary consists of a collection of key-value pairs. Each key-value pair maps the key to its associated value.
+You can define a dictionary by enclosing a comma-separated list of key-value pairs in curly braces (<code>{}</code>). A colon 
+(<code>:</code>) separates each key from its associated value:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>      <span class="o">.</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      <span class="o">.</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>      <span class="o">.</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</code></pre></div>
+For example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">football_teams</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;bilbao&quot;</span><span class="p">:</span> <span class="s2">&quot;athletic&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="s2">&quot;barcelona&quot;</span><span class="p">:</span> <span class="s2">&quot;barça&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="s2">&quot;madrid&quot;</span><span class="p">:</span> <span class="s2">&quot;real madrid&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;munich&quot;</span><span class="p">:</span> <span class="s2">&quot;bayern&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;paris&quot;</span><span class="p">:</span> <span class="s2">&quot;psg&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>Of course, dictionary elements must be accessible somehow. If you don’t get them by index, then how do you get them?
+A value is retrieved from a dictionary by specifying its corresponding key in square brackets (<code>[]</code>):</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">football_teams</span><span class="p">[</span><span class="s1">&#39;bilbao&#39;</span><span class="p">]</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s1">&#39;athletic&#39;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">football_teams</span><span class="p">[</span><span class="s1">&#39;paris&#39;</span><span class="p">]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s1">&#39;psg&#39;</span>
+</code></pre></div>
+If you refer to a key that is not in the dictionary, Python raises an exception:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">football_teams</span><span class="p">[</span><span class="s1">&#39;toronto&#39;</span><span class="p">]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;Toronto&#39;</span>
+</code></pre></div></p>
+<p>Defining a dictionary using curly braces and a list of key-value pairs, as shown above, is fine 
+if you know all the keys and values in advance. But what if you want to build a dictionary on the fly?</p>
+<p>You can start by creating an empty dictionary, which is specified by empty curly braces. Then you can 
+add new keys and values one at a time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">dict</span><span class="s1">&#39;&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Joe&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;lname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Fonebone&#39;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">51</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;spouse&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Edna&#39;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ralph&#39;</span><span class="p">,</span> <span class="s1">&#39;Betty&#39;</span><span class="p">,</span> <span class="s1">&#39;Joey&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">person</span><span class="p">[</span><span class="s1">&#39;pets&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="s1">&#39;Fido&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="s1">&#39;Sox&#39;</span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In dictionaries, a given key can appear in <strong>only once</strong>. 
+Duplicate keys are not allowed. A dictionary maps each key to a corresponding value, 
+so it doesn’t make sense to map a particular key more than once. </p>
+</div>
+<h4 id="iterating-over-dictionaries">Iterating over dictionaries<a class="headerlink" href="#iterating-over-dictionaries" title="Permanent link">&para;</a></h4>
+<p>When you’re working with dictionaries, it’s likely that you’ll want to work with both the keys 
+and the values. One of the most useful ways to iterate through a dictionary in Python is by 
+using <code>.items()</code>, which is a method that returns a new view of the dictionary’s items:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;fruit&#39;</span><span class="p">:</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;pet&#39;</span><span class="p">:</span> <span class="s1">&#39;dog&#39;</span><span class="p">}</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">d_items</span> <span class="o">=</span> <span class="n">a_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">d_items</span>  <span class="c1"># Here d_items is a view of items</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">dict_items</span><span class="p">([(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fruit&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;pet&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">)])</span>
+</code></pre></div>
+<p>To iterate through the keys and values of the dictionary, we will just need to "unpack" the elements of 
+the dict like so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">a_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">color</span> <span class="o">-&gt;</span> <span class="n">blue</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">fruit</span> <span class="o">-&gt;</span> <span class="n">apple</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">pet</span> <span class="o">-&gt;</span> <span class="n">dog</span>
+</code></pre></div>
+<h4 id="dict-important-methods">Dict important methods<a class="headerlink" href="#dict-important-methods" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>clear()</code> Removes all the elements from the dictionary</li>
+<li><code>copy()</code>  Returns a copy of the dictionary</li>
+<li><code>fromkeys()</code>  Returns a dictionary with the specified keys and value</li>
+<li><code>get()</code>   Returns the value of the specified key</li>
+<li><code>items()</code> Returns a list containing a tuple for each key value pair</li>
+<li><code>keys()</code>  Returns a list containing the dictionary's keys</li>
+<li><code>pop()</code>   Removes the element with the specified key</li>
+<li><code>popitem()</code>   Removes the last inserted key-value pair</li>
+<li><code>setdefault()</code>    Returns the value of the specified key. If the key does not exist: insert the key, with the specified value</li>
+<li><code>update()</code>    Updates the dictionary with the specified key-value pairs</li>
+<li><code>values()</code>    Returns a list of all the values in the dictionary</li>
+</ul>
+<h3 id="sets-and-tuples">Sets and tuples<a class="headerlink" href="#sets-and-tuples" title="Permanent link">&para;</a></h3>
+<p><strong>Sets</strong> and <strong>tuples</strong> are the last of Python main data structures. </p>
+<p>In Python, we create <strong>sets</strong> by placing all the elements inside curly braces {}, separated by comma.</p>
+<p>A set can have any number of items and they may be of different types (integer, float, tuple, string etc.). 
+But a set cannot have mutable elements like lists, sets or dictionaries as its elements.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># create a set of integer type</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">student_id</span> <span class="o">=</span> <span class="p">{</span><span class="mi">112</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">115</span><span class="p">}</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Student ID:&#39;</span><span class="p">,</span> <span class="n">student_id</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># create a set of string type</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">vowel_letters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">}</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vowel Letters:&#39;</span><span class="p">,</span> <span class="n">vowel_letters</span><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># create a set of mixed data types</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">mixed_set</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Bye&#39;</span><span class="p">}</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Set of mixed data types:&#39;</span><span class="p">,</span> <span class="n">mixed_set</span><span class="p">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="c1"># Output</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="n">Student</span> <span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="mi">112</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">118</span><span class="p">}</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="n">Vowel</span> <span class="n">Letters</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">}</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="n">Set</span> <span class="n">of</span> <span class="n">mixed</span> <span class="n">data</span> <span class="n">types</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Bye&#39;</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">}</span>
+</code></pre></div>
+<p>Sets cannot have duplicate elements. Let's see what will happen if we try to include duplicate items in a set:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>   
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</code></pre></div></p>
+<p>A tuple is created by placing all the items (elements) inside parentheses (), separated by commas. 
+A tuple can have any number of items and they may be of different types (integer, float, list, string, etc.).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Different types of tuples</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># Empty tuple</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">()</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Tuple having integers</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1"># tuple with mixed datatypes</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="c1"># nested tuple</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;mouse&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="c1"># Output</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="p">()</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="p">(</span><span class="s1">&#39;mouse&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When defining a tuple, parentheses are optional (although it is good practice to use them)</p>
+</div>
+<p>Like lists, tuples allow slicing and indexing. However, unlike lists, tuples are <strong>immutable</strong>: once 
+defined, they cannot be changed.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

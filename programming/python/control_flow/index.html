@@ -1,0 +1,1106 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../python_introduction/">
+      
+      
+        <link rel="next" href="../data_structures/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Control flow - Python and data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#control-flow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python and data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Control flow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python and data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_introduction/" class="md-nav__link">
+        Introduction to Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Control flow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Control flow
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-statements" class="md-nav__link">
+    Conditional statements
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ifelse-statements" class="md-nav__link">
+    if/else statements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-case" class="md-nav__link">
+    Match case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-methods" class="md-nav__link">
+    String Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    Loops
+  </a>
+  
+    <nav class="md-nav" aria-label="Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-lists" class="md-nav__link">
+    Python lists
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    For loop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    While Loop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_structures/" class="md-nav__link">
+        Data structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_programs/" class="md-nav__link">
+        Python programs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io_exceptions/" class="md-nav__link">
+        IO, files and exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        Classes and objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_packages/" class="md-nav__link">
+        Python packages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Data libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data libraries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Data libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
+        Pandas
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-statements" class="md-nav__link">
+    Conditional statements
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ifelse-statements" class="md-nav__link">
+    if/else statements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-case" class="md-nav__link">
+    Match case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-methods" class="md-nav__link">
+    String Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    Loops
+  </a>
+  
+    <nav class="md-nav" aria-label="Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-lists" class="md-nav__link">
+    Python lists
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    For loop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    Range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    While Loop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="control-flow">Control flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h1>
+<h2 id="conditional-statements">Conditional statements<a class="headerlink" href="#conditional-statements" title="Permanent link">&para;</a></h2>
+<p>Python uses boolean logic to evaluate conditions. For example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># prints out True</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># prints out False</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># prints out True</span>
+</code></pre></div></p>
+<h3 id="ifelse-statements">if/else statements<a class="headerlink" href="#ifelse-statements" title="Permanent link">&para;</a></h3>
+<p>Conditional statements are used to control the flow of the program with <code>if</code>/<code>else</code> statements. 
+We use the <code>if</code> statement to run a block code only when a certain condition is met.</p>
+<p>For example, assigning grades (A, B, C) based on marks obtained by a student.</p>
+<div class="highlight"><pre><span></span><code>if the percentage is above 90, assign grade A
+if the percentage is above 75, assign grade B
+if the percentage is above 65, assign grade C
+</code></pre></div>
+<p>In Python, there are three forms of the if...else statement.</p>
+<div class="highlight"><pre><span></span><code>if statement
+if...else statement
+if...elif...else statement
+</code></pre></div>
+<p>The syntax of if statement in Python is:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="c1"># body of if statement</span>
+</code></pre></div>
+The <code>if</code> statement evaluates <code>condition</code>.</p>
+<div class="highlight"><pre><span></span><code>If condition is evaluated to True, the code inside the body of if is executed.
+If condition is evaluated to False, the code inside the body of if is skipped.
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">number</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># check if number is greater than 0</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number is positive.&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The if statement is easy&#39;</span><span class="p">)</span>
+</code></pre></div>
+<strong>Output</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Number</span> <span class="ow">is</span> <span class="n">positive</span><span class="o">.</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">The</span> <span class="k">if</span> <span class="n">statement</span> <span class="ow">is</span> <span class="n">easy</span>
+</code></pre></div>
+An <code>if</code> statement can have an optional <code>else</code> clause.</p>
+<p>The syntax of<code>if...else</code> statement is:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="c1"># block of code if condition is True</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># block of code if condition is False</span>
+</code></pre></div>
+The <code>if...else</code> statement is used to execute a block of code among two alternatives.</p>
+<p>However, if we need to make a choice between more than two alternatives, we can use
+the <code>if...elif...else</code> statement.</p>
+<p>The syntax of the if...elif...else statement is:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="c1"># code block 1</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">elif</span> <span class="n">condition2</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="c1"># code block 2</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">else</span><span class="p">:</span> 
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="c1"># code block 3</span>
+</code></pre></div></p>
+<p>We can also use an <code>if</code> statement inside of an <code>if</code> statement. This is known as a nested if statement:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">number</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># outer if statement</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="c1"># inner if statement</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number is very big!&#39;</span><span class="p">)</span>    
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="c1"># inner else statement</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number is positive&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">elif</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number is zero.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># outer else statement</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number is negative&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c1"># Output: Number is positive</span>
+</code></pre></div></p>
+<p>Any value can be used as an "if-test". The "zero" values all count as false: <code>None</code>, <code>0</code>, empty string, 
+empty list, empty dictionary. Each block of if/else statements starts with a <code>:</code> and the statements are 
+grouped by their indentation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span> <span class="n">time_hour</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">time_hour</span> <span class="o">&lt;=</span> <span class="mi">24</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suggesting a drink option...&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">if</span> <span class="n">mood</span> <span class="o">==</span> <span class="s1">&#39;sleepy&#39;</span> <span class="ow">and</span> <span class="n">time_hour</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coffee&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">elif</span> <span class="n">mood</span> <span class="o">==</span> <span class="s1">&#39;thirsty&#39;</span> <span class="ow">or</span> <span class="n">time_hour</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lemonade&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;water&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="match-case">Match case<a class="headerlink" href="#match-case" title="Permanent link">&para;</a></h3>
+<p>Python 3.10 offers a simple and effective way to test multiple values and perform conditional 
+actions: the match-case statement. In case you’re familiar with C++, it works similarly to the switch case.</p>
+<p>For our example, let’s say you’re building a program to check a computer’s processor. 
+Based on the result, the program will let the gamer know if their processor is compatible 
+with a certain video game. Here’s how our program would look:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># First, ask the player about their CPU</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cpu_model</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter your CPU model: &quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># The match statement evaluates the variable&#39;s value</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">match</span> <span class="n">cpu_model</span><span class="p">:</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="k">case</span> <span class="s2">&quot;celeron&quot;</span><span class="p">:</span> <span class="c1"># We test for different values and print different messages</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Forget about it and play Minesweeper instead...&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">case</span> <span class="s2">&quot;core i3&quot;</span><span class="p">:</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Good luck with that ;)&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="k">case</span> <span class="s2">&quot;core i5&quot;</span><span class="p">:</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Yeah, you should be fine.&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="k">case</span> <span class="s2">&quot;core i7&quot;</span><span class="p">:</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Have fun!&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="k">case</span> <span class="s2">&quot;core i9&quot;</span><span class="p">:</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Our team designed nice loading screens… Too bad you won&#39;t see them...&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span> <span class="c1"># the underscore character is used as a catch-all.</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Is that even a thing?&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The above code checks a few possible values for the cpuModel variable. 
+If the CPU model the user enters doesn’t match our expected options, the final 
+case statement prints an error message. Here’s a possible output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Please</span> <span class="n">enter</span> <span class="n">your</span> <span class="n">CPU</span> <span class="n">model</span><span class="p">:</span> <span class="n">core</span> <span class="n">i9</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">Our</span> <span class="n">teams</span> <span class="n">designed</span> <span class="n">nice</span> <span class="n">loading</span> <span class="n">screens</span><span class="o">...</span> <span class="n">Too</span> <span class="n">bad</span> <span class="n">you</span> <span class="n">won</span><span class="s1">&#39;t see them...</span>
+</code></pre></div></p>
+<ul>
+<li>Types of programs, stages in programming and expressions.</li>
+<li>Using conditional statements to satisfy program specifications</li>
+</ul>
+<h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
+<p>Python has a built-in string class named <code>str</code> with many handy features. String literals can be 
+enclosed by either double or single quotes. Backslash escapes work the usual way within both 
+single and double quoted literals -- e.g. <code>\n</code> <code>\'</code> <code>\"</code>. A double quoted string literal can 
+contain single quotes without any fuss (e.g. <code>"I didn't do it"</code>) and likewise single quoted string 
+can contain double quotes. </p>
+<p>String literals inside triple quotes, """ or ''', can span multiple lines of text.
+Python strings are "immutable", which means they cannot be changed after they are created.
+Since strings can't be changed, we construct <em>new</em> strings as we go to represent computed values. 
+So for example the expression (<code>'hello'</code> + <code>'there'</code>) takes in the 2 strings <code>'hello'</code> and <code>'there'</code> and 
+builds a new string <code>'hellothere'</code>.</p>
+<p>Characters in a string can be accessed using the bracket <code>[ ]</code> syntax. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Like other languages, Python uses <strong>zero-based indexing</strong>, so if <code>s</code> is <code>'hello'</code> <code>s[1]</code> is <code>'e'</code>. 
+If the index is out of bounds for the string, Python raises an error. </p>
+</div>
+<p>The handy "slice" syntax (below) also works to extract any substring from a string. 
+The <code>len(string)</code> function returns the length of a string. The <code>[ ]</code> syntax and the <code>len()</code> 
+function actually work on any sequence type -- strings, lists, etc. 
+Python tries to make its operations work consistently across different types. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python newbie gotcha: don't use "<code>len</code>" as a variable name to avoid blocking out the <code>len()</code> function. </p>
+</div>
+<p>The <code>+</code> operator can concatenate two strings. Notice in the code below that variables are not pre-declared -- 
+just assign to them and go.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;hi&#39;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>          <span class="c1">## i</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>        <span class="c1">## 2</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s1">&#39; there&#39;</span><span class="p">)</span>  <span class="c1">## hi there</span>
+</code></pre></div>
+<p>The '<code>+</code>' symbol does not automatically convert numbers or other types to string form. The <code>str()</code> function 
+converts values to a string form so they can be combined with other strings.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1">##text = &#39;The value of pi is &#39; + pi      ## NO, does not work</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;The value of pi is &#39;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>  <span class="c1">## yes</span>
+</code></pre></div>
+<p>A "raw" string literal is prefixed by an '<code>r</code>' and passes all the chars through without special treatment of 
+backslashes, so <code>r'x\nx'</code> evaluates to the length-4 string <code>'x\nx'</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">raw</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;this\t\n and that&#39;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># this\t\n and that</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">multi</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;It was the best of times.</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s2">It was the worst of times.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># It was the best of times.</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1">#   It was the worst of times.</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="string-methods">String Methods<a class="headerlink" href="#string-methods" title="Permanent link">&para;</a></h3>
+<p>Here are some of the most common string methods. A method is like a function, but it runs 
+"on" an object. If the variable <code>s</code> is a string, then the code <code>s.lower()</code> runs the <code>lower()</code> method on 
+that string object and returns the result (this idea is one of the basic ideas that make up 
+<strong>Object Oriented Programming</strong>, OOP). Here are some of the most common string methods:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">--</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">lowercase</span> <span class="ow">or</span> <span class="n">uppercase</span> <span class="n">version</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">--</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">string</span> <span class="k">with</span> <span class="n">whitespace</span> <span class="n">removed</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">end</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">s</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span><span class="o">/</span><span class="n">s</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span><span class="o">/</span><span class="n">s</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span><span class="o">...</span> <span class="o">--</span> <span class="n">tests</span> <span class="k">if</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">string</span> <span class="n">chars</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">various</span> <span class="n">character</span> <span class="n">classes</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">),</span> <span class="n">s</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">)</span> <span class="o">--</span> <span class="n">tests</span> <span class="k">if</span> <span class="n">the</span> <span class="n">string</span> <span class="n">starts</span> <span class="ow">or</span> <span class="n">ends</span> <span class="k">with</span> <span class="n">the</span> <span class="n">given</span> <span class="n">other</span> <span class="n">string</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">)</span> <span class="o">--</span> <span class="n">searches</span> <span class="k">for</span> <span class="n">the</span> <span class="n">given</span> <span class="n">other</span> <span class="n">string</span> <span class="p">(</span><span class="ow">not</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span><span class="p">)</span> <span class="n">within</span> <span class="n">s</span><span class="p">,</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">first</span> <span class="n">index</span> <span class="n">where</span> <span class="n">it</span> <span class="n">begins</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span> <span class="o">--</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">string</span> <span class="n">where</span> <span class="nb">all</span> <span class="n">occurrences</span> <span class="n">of</span> <span class="s1">&#39;old&#39;</span> <span class="n">have</span> <span class="n">been</span> <span class="n">replaced</span> <span class="n">by</span> <span class="s1">&#39;new&#39;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;delim&#39;</span><span class="p">)</span> <span class="o">--</span> <span class="n">returns</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">substrings</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">given</span> <span class="n">delimiter</span><span class="o">.</span> <span class="n">The</span> <span class="n">delimiter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span><span class="p">,</span> <span class="n">it</span><span class="s1">&#39;s just text. &#39;</span><span class="n">aaa</span><span class="p">,</span><span class="n">bbb</span><span class="p">,</span><span class="n">ccc</span><span class="s1">&#39;.split(&#39;</span><span class="p">,</span><span class="s1">&#39;) -&gt; [&#39;</span><span class="n">aaa</span><span class="s1">&#39;, &#39;</span><span class="n">bbb</span><span class="s1">&#39;, &#39;</span><span class="n">ccc</span><span class="s1">&#39;]. As a convenient special case s.split() (with no arguments) splits on all whitespace chars.</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">s</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">--</span> <span class="n">opposite</span> <span class="n">of</span> <span class="n">split</span><span class="p">(),</span> <span class="n">joins</span> <span class="n">the</span> <span class="n">elements</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">given</span> <span class="nb">list</span> <span class="n">together</span> <span class="n">using</span> <span class="n">the</span> <span class="n">string</span> <span class="k">as</span> <span class="n">the</span> <span class="n">delimiter</span><span class="o">.</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="s1">&#39;---&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;aaa&#39;</span><span class="p">,</span> <span class="s1">&#39;bbb&#39;</span><span class="p">,</span> <span class="s1">&#39;ccc&#39;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">aaa</span><span class="o">---</span><span class="n">bbb</span><span class="o">---</span><span class="n">ccc</span>
+</code></pre></div>
+<p>A google search for "python str" should lead you to the official python.org string methods which lists all the <code>str</code> methods.</p>
+<p>The "slice" syntax is a handy way to refer to sub-parts of sequences -- typically strings and lists. 
+The slice <code>s[start:end]</code> is the elements beginning at start and extending up to but not including end. 
+Suppose we have <code>s = "Hello"</code>:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;ell&#39;</span> <span class="o">--</span> <span class="n">chars</span> <span class="n">starting</span> <span class="n">at</span> <span class="n">index</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">extending</span> <span class="n">up</span> <span class="n">to</span> <span class="n">but</span> <span class="ow">not</span> <span class="n">including</span> <span class="n">index</span> <span class="mi">4</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="ow">is</span> <span class="s1">&#39;ello&#39;</span> <span class="o">--</span> <span class="n">omitting</span> <span class="n">either</span> <span class="n">index</span> <span class="n">defaults</span> <span class="n">to</span> <span class="n">the</span> <span class="n">start</span> <span class="ow">or</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">s</span><span class="p">[:]</span> <span class="ow">is</span> <span class="s1">&#39;Hello&#39;</span> <span class="o">--</span> <span class="n">omitting</span> <span class="n">both</span> <span class="n">always</span> <span class="n">gives</span> <span class="n">us</span> <span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">thing</span> <span class="p">(</span><span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">pythonic</span> <span class="n">way</span> <span class="n">to</span> <span class="n">copy</span> <span class="n">a</span> <span class="n">sequence</span> <span class="n">like</span> <span class="n">a</span> <span class="n">string</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;ello&#39;</span> <span class="o">--</span> <span class="n">an</span> <span class="n">index</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">too</span> <span class="n">big</span> <span class="ow">is</span> <span class="n">truncated</span> <span class="n">down</span> <span class="n">to</span> <span class="n">the</span> <span class="n">string</span> <span class="n">length</span>
+</code></pre></div>
+The standard zero-based index numbers give easy access to chars near the start of the string. 
+As an alternative, Python uses negative numbers to give easy access to the chars at the end of 
+the string: <code>s[-1]</code> is the last char <code>'o'</code>, <code>s[-2]</code> is <code>'l'</code> the next-to-last char, and so on. 
+Negative index numbers count back from the end of the string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;o&#39;</span> <span class="o">--</span> <span class="n">last</span> <span class="n">char</span> <span class="p">(</span><span class="mi">1</span><span class="n">st</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">end</span><span class="p">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;e&#39;</span> <span class="o">--</span> <span class="mi">4</span><span class="n">th</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">end</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;He&#39;</span> <span class="o">--</span> <span class="n">going</span> <span class="n">up</span> <span class="n">to</span> <span class="n">but</span> <span class="ow">not</span> <span class="n">including</span> <span class="n">the</span> <span class="n">last</span> <span class="mi">3</span> <span class="n">chars</span><span class="o">.</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="ow">is</span> <span class="s1">&#39;llo&#39;</span> <span class="o">--</span> <span class="n">starting</span> <span class="k">with</span> <span class="n">the</span> <span class="mi">3</span><span class="n">rd</span> <span class="n">char</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">end</span> <span class="ow">and</span> <span class="n">extending</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span><span class="o">.</span> 
+</code></pre></div>
+<p>It is a neat thing of slices that for any index n, <code>s[:n] + s[n:] == s</code>. This works 
+even for n negative or out of bounds. </p>
+<p>One neat thing python can do is automatically convert objects into a string suitable for printing. 
+Two built-in ways to do this are formatted string literals, also called "<code>f-strings</code>", and invoking <code>str.format()</code>.</p>
+<p>You'll often see formatted string literals used in situations like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">value</span> <span class="o">=</span> <span class="mf">2.791514</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;approximate value = </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># approximate value = 2.79</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">car</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tires&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;doors&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;car = </span><span class="si">{</span><span class="n">car</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># car = {&#39;tires&#39;: 4, &#39;doors&#39;: 2}</span>
+</code></pre></div>
+<p>A formatted literal string is prefixed with <code>'f'</code> (like the <code>'r'</code> prefix used for raw strings). Any 
+text outside of curly braces <code>'{}'</code> is printed out directly. Expressions contained in <code>'{}'</code> are are 
+printed out using the format specification described in the format spec. There are lots of neat things 
+you can do with the formatting including truncation and conversion to scientific notation and left/right/center alignment.</p>
+<p><code>f-strings</code> are very useful when you'd like to print out a table of objects and would like the columns 
+representing different object attributes to be aligned like</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">address_book</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;N.X.&#39;</span><span class="p">,</span> <span class="s1">&#39;addr&#39;</span><span class="p">:</span><span class="s1">&#39;15 Jones St&#39;</span><span class="p">,</span> <span class="s1">&#39;bonus&#39;</span><span class="p">:</span> <span class="mi">70</span><span class="p">},</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;J.P.&#39;</span><span class="p">,</span> <span class="s1">&#39;addr&#39;</span><span class="p">:</span><span class="s1">&#39;1005 5th St&#39;</span><span class="p">,</span> <span class="s1">&#39;bonus&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">},</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;A.A.&#39;</span><span class="p">,</span> <span class="s1">&#39;addr&#39;</span><span class="p">:</span><span class="s1">&#39;200001 Bdwy&#39;</span><span class="p">,</span> <span class="s1">&#39;bonus&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},]</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">address_book</span><span class="p">:</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">8</span><span class="si">}</span><span class="s1"> || </span><span class="si">{</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;addr&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">20</span><span class="si">}</span><span class="s1"> || </span><span class="si">{</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;bonus&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">&gt;5</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="c1"># N.X.     || 15 Jones St          ||    70</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="c1"># J.P.     || 1005 5th St          ||   400</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1"># A.A.     || 200001 Bdwy          ||     5</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We'll see about the <code>for</code> loop in the next section!</p>
+</div>
+<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
+<h3 id="python-lists">Python lists<a class="headerlink" href="#python-lists" title="Permanent link">&para;</a></h3>
+<p>Python has a built-in ordered list type named "<code>list</code>". Lists are written within square brackets <code>[ ]</code>. 
+Lists work similarly to strings -- use the <code>len()</code> function and square brackets <code>[ ]</code> to access data, with 
+the first element at index 0. (See the official python.org list docs.)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># red</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>    <span class="c1"># green</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>  <span class="c1"># 3</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can put any sort of variable you want inside a list! Numbers, strings or other (more exotic)
+objects will work.</p>
+</div>
+<p>Assignment with an <code>=</code> on lists <strong>does not make a copy</strong>. Instead, assignment makes the two variables 
+point to the same one list in memory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">b</span> <span class="o">=</span> <span class="n">colors</span>   <span class="c1"># Does not copy the list, just reuses it!</span>
+</code></pre></div>
+<p>This means that if we now change <code>b</code>, we will also be changing the contents of the list <code>colors</code>.
+To make a <em>different</em> (bud identical) copy of a list, that can be modified without affecting the 
+original list, wee need to call the <code>copy()</code> method</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">b</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>   <span class="c1"># b is now a proper copy of colors</span>
+</code></pre></div>
+<p>The "empty list" is just an empty pair of brackets <code>[ ]</code>. The '<code>+</code>' works to append two lists, 
+so <code>[1, 2] + [3, 4]</code> yields <code>[1, 2, 3, 4]</code> (this is just like <code>+</code> with strings).</p>
+<h3 id="for-loop">For loop<a class="headerlink" href="#for-loop" title="Permanent link">&para;</a></h3>
+<p>Python's <em>for</em> and <em>in</em> constructs are extremely useful, and the first use of them we'll see is 
+with lists. The <code>for</code> construct -- <code>for var in list</code> -- is an easy way to look at each element 
+in a list (or other collection). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">squares</span><span class="p">:</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">num</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>  <span class="c1"># 30</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Do not</strong> add or remove items from the list during iterations! It will give you plenty of headaches.</p>
+</div>
+<p>If you know what sort of thing is in the list, use a variable name in the loop that captures that 
+information (such as "num", or "name", or "url") to improve readability. </p>
+<p>The <em>in</em> construct on its own is an easy way to test if an element appears in a list or another collection:
+<code>value in collection</code> tests if the value is in the collection, returning <code>True</code>/<code>False</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;larry&#39;</span><span class="p">,</span> <span class="s1">&#39;curly&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">if</span> <span class="s1">&#39;curly&#39;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;yay&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>The for/in constructs are very commonly used in Python code and work on data types other than list, 
+so you should just memorize their syntax. You may have habits from other languages where you start 
+manually iterating over a collection, where in Python you should just use for/in.</p>
+<p>You can also use for/in to work on a string. The string acts like a list of its chars, so </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span> 
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+</code></pre></div>
+<p>prints all the chars in a string.</p>
+<h3 id="range">Range<a class="headerlink" href="#range" title="Permanent link">&para;</a></h3>
+<p>The <code>range(n)</code> function yields the numbers 0, 1, ... n-1, and <code>range(a, b)</code> returns a, a+1, ... b-1 -- up to <strong>but 
+not including</strong> the last number. The combination of the for-loop and the <strong>range()</strong> function allow you to build 
+a traditional numeric for loop:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># print the numbers from 0 through 99</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="while-loop">While Loop<a class="headerlink" href="#while-loop" title="Permanent link">&para;</a></h3>
+<p>Python also has the standard while-loop. The above for/in loops solves the common case of iterating over 
+every element in a list, but the while loop gives you total control over the index numbers.</p>
+<p>Its syntaxis is quite simple:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">while</span> <span class="s2">&quot;some boolean condition&quot;</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="c1"># block of code that gets executed in each iteration</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="o">...</span>
+</code></pre></div>
+<p>Here's a while loop which accesses every 3rd element in a list:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Access every 3rd element in a list</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span>
+</code></pre></div>
+<p>As in other languages, we have the <code>break</code> and <code>continue</code> statements:</p>
+<ul>
+<li><code>break</code> finishes the while loop</li>
+<li><code>continue</code> moves on to the next iteration</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>        <span class="k">break</span> <span class="c1"># finish while loop</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>    <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;i is 2!&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>        <span class="k">continue</span> <span class="c1"># go back to the beginning of the while loop</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>    
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
