@@ -4,8 +4,8 @@
 
 This site contains notes for the following courses:
 
-* PROGRAMMING FOR DATA MANAGEMENT & ANALYSIS
-* PYTHON FOR DATA ANALYSIS 1 & 2
+* **PROGRAMMING FOR DATA MANAGEMENT & ANALYSIS**
+* **PYTHON FOR DATA ANALYSIS 1 & 2**
 
 taught by Gerard Conangla Planes.
 

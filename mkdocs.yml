@@ -1,4 +1,4 @@
-site_name: Course notes
+site_name: Python and data science
 theme:
   # appearance
   name: material
@@ -52,10 +52,18 @@ extra_css:
 # table of contents
 nav:
   - 'index.md'
-  - 'Python & Data Science':
-#    - 'programming/course_intro.md'
-    - 'programming/python.md'
-    - 'programming/pandas.md'
+  - 'Python':
+    - 'programming/python/python_introduction.md'
+    - 'programming/python/control_flow.md'
+    - 'programming/python/data_structures.md'
+    - 'programming/python/functions.md'
+    - 'programming/python/python_programs.md'
+    - 'programming/python/io_exceptions.md'
+    - 'programming/python/classes.md'
+    - 'programming/python/python_packages.md'
+  - 'Data libraries':
+    - 'programming/python_libraries/pandas.md'
 #    - 'programming/matplotlib.md'
-#    - 'programming/sql.md'
 #    - 'programming/pyspark.md'
+  - 'SQL':
+    - 'programming/sql.md'
