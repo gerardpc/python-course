@@ -846,7 +846,7 @@ To solve this error, use the try block just before the line, which involves the 
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">contents</span> <span class="o">=</span> <span class="n">f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Sorry, the file &quot;</span><span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;does not exist.&quot;</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="c1"># Sorry, the file John.txt does not exist.</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="c1"># Sorry, the file some_nonexistent_file.txt does not exist.</span>
 </code></pre></div>
 <p>Now the code works correctly. This is known as <em>catching</em> the exception.</p>
 <h4 id="try-except-structure">Try-except structure<a class="headerlink" href="#try-except-structure" title="Permanent link">&para;</a></h4>
