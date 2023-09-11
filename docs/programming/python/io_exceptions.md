@@ -186,7 +186,7 @@ Since Python cannot read a file that does not exist, it raises an exception:
 Traceback (most recent call last):
   File “C:\Users\ADMIN\PycharmProject\pythonProject\main.py”, line 2, in <module>
  with open(filename) as f_obj:
-FileNotFoundError: [Errno 2] No such file or directory: ‘john.txt’
+FileNotFoundError: [Errno 2] No such file or directory: ‘some_nonexistent_file.txt’
 ```
 
 This is the `FileNotFoundError` exception. In this example, the `open()` function creates the error. 
@@ -199,14 +199,14 @@ try:
         contents = f_obj.read()
 except FileNotFoundError:
     msg = "Sorry, the file "+ filename + "does not exist."
-    print(msg) # Sorry, the file John.txt does not exist.
+    print(msg) # Sorry, the file some_nonexistent_file.txt does not exist.
 ```
 
 Now the code works correctly. This is known as _catching_ the exception.
 
 #### Try-except structure
 
-The full exception handling in Pythong has this structure:
+The full exception handling in Python has this structure:
 
 ```python
 try:

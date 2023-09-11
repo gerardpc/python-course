@@ -128,17 +128,17 @@ cpu_model = input("Please enter your CPU model: ")
 # The match statement evaluates the variable's value
 match cpu_model:
     case "celeron": # We test for different values and print different messages
-            print ("Forget about it and play Minesweeper instead...")
+        print ("Forget about it and play Minesweeper instead...")
     case "core i3":
-            print ("Good luck with that ;)")
+        print ("Good luck with that ;)")
     case "core i5":
-            print ("Yeah, you should be fine.")
+        print ("Yeah, you should be fine.")
     case "core i7":
-            print ("Have fun!")
+        print ("Have fun!")
     case "core i9":
-            print ("Our team designed nice loading screens… Too bad you won't see them...")
+        print ("Our team designed nice loading screens… Too bad you won't see them...")
     case _: # the underscore character is used as a catch-all.
-            print ("Is that even a thing?")
+        print ("Is that even a thing?")
 ```
 
 The above code checks a few possible values for the cpuModel variable. 
