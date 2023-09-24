@@ -8,7 +8,7 @@ There are benefits down the road for making things easier to understand, debug, 
 basically it is just a way to make code easy to understand and develop.
 
 This might sound very abstract, but in practice it is not: everything is an object in Python! 
-```int`, `dict`, `list`... etc. are all different types of objects.
+`int`, `dict`, `list`... etc. are all different types of objects.
 
 To be more precise, `int`, `dict`, `list`... are known as **classes**, and objects are particular instances
 of such classes. In the next example: 
