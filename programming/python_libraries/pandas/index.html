@@ -573,16 +573,64 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#operations-on-dataframes" class="md-nav__link">
-    Operations on DataFrames
+  <a href="#working-with-dataframes" class="md-nav__link">
+    Working with DataFrames
   </a>
   
-    <nav class="md-nav" aria-label="Operations on DataFrames">
+    <nav class="md-nav" aria-label="Working with DataFrames">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-statistics-apply-etc" class="md-nav__link">
-    Basic statistics, apply, etc.
+  <a href="#common-tasks" class="md-nav__link">
+    Common tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Common tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-duplicates" class="md-nav__link">
+    Removing duplicates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-index" class="md-nav__link">
+    Resetting the index
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renaming-columns" class="md-nav__link">
+    Renaming columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    Sorting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-statistics" class="md-nav__link">
+    Basic statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-custom-functions" class="md-nav__link">
+    Applying custom functions
   </a>
   
 </li>
@@ -840,16 +888,64 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#operations-on-dataframes" class="md-nav__link">
-    Operations on DataFrames
+  <a href="#working-with-dataframes" class="md-nav__link">
+    Working with DataFrames
   </a>
   
-    <nav class="md-nav" aria-label="Operations on DataFrames">
+    <nav class="md-nav" aria-label="Working with DataFrames">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-statistics-apply-etc" class="md-nav__link">
-    Basic statistics, apply, etc.
+  <a href="#common-tasks" class="md-nav__link">
+    Common tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Common tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-duplicates" class="md-nav__link">
+    Removing duplicates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-the-index" class="md-nav__link">
+    Resetting the index
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renaming-columns" class="md-nav__link">
+    Renaming columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    Sorting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-statistics" class="md-nav__link">
+    Basic statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-custom-functions" class="md-nav__link">
+    Applying custom functions
   </a>
   
 </li>
@@ -1077,7 +1173,7 @@ If an index is passed, it must also be the same length as the arrays. If no inde
 </code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Although Series are 1D, nothing prevents use from converting a Pandas Series into a Pandas DataFrame.
+<p>Although Series are 1D, nothing prevents us from converting a Pandas Series into a Pandas DataFrame.
 This is often very convenient since DataFrames and Series do not have the same methods available.</p>
 </div>
 <h3 id="readingwriting-dataframes">Reading/writing dataframes<a class="headerlink" href="#readingwriting-dataframes" title="Permanent link">&para;</a></h3>
@@ -1108,6 +1204,12 @@ plain text and is a well known format that can be read by everyone (including Pa
 </code></pre></div>
 <p>If the file has a header, or uses different characters (instead of commas), the pandas documentation has
 several examples on how to use the <code>.read_csv()</code> method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the previous example, the <code>to_string()</code> method is not really necessary. This method is used
+to make sure that we are printing the whole DataFrame (otherwise, if it has many columns and rows, 
+pandas might shorten it when we try to print).</p>
+</div>
 <h4 id="saving-to-a-csv">Saving to a CSV<a class="headerlink" href="#saving-to-a-csv" title="Permanent link">&para;</a></h4>
 <p>Saving an already existing DataFrame <code>df</code> into a <code>.csv</code> can be accomplished with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;file_name.csv&#39;</span><span class="p">)</span>
@@ -1218,9 +1320,9 @@ logic as explained before: a slice <code>[1:3]</code> will return all members fr
 <a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="n">b</span>    <span class="mi">30</span>    <span class="n">Bob</span>
 </code></pre></div>
 <h4 id="selecting-rows-and-columns-at-the-same-time">Selecting rows and columns at the same time<a class="headerlink" href="#selecting-rows-and-columns-at-the-same-time" title="Permanent link">&para;</a></h4>
-<p>To select rows with the <code>.loc[]</code> operator we use the syntax <code>my_dataframe.loc[row_selector, :]</code>. 
-The <code>:</code> indicates that we want to select all columns (but we could also put in here any list of columns
-we want).</p>
+<p>To select rows with the <code>.loc[]</code> operator we use the syntax <code>my_dataframe.loc[row_selector, column_selector]</code>. 
+As before, <code>column_selector</code> can be <code>:</code>, which indicates that we want to select all columns (but we could also 
+put in here any list of columns we want).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>my_dataframe.loc[row_selector, :]</code> can also be written as <code>my_dataframe.loc[row_selector]</code>, without the
@@ -1289,8 +1391,89 @@ We just need to put the dataframe cell selection on the <strong>left side</stron
 <p>Pandas primarily uses the value <code>np.nan</code> to represent missing data. Missing data is by default 
 not included in computations</p>
 </div>
-<h3 id="operations-on-dataframes">Operations on DataFrames<a class="headerlink" href="#operations-on-dataframes" title="Permanent link">&para;</a></h3>
-<h4 id="basic-statistics-apply-etc">Basic statistics, apply, etc.<a class="headerlink" href="#basic-statistics-apply-etc" title="Permanent link">&para;</a></h4>
+<h3 id="working-with-dataframes">Working with DataFrames<a class="headerlink" href="#working-with-dataframes" title="Permanent link">&para;</a></h3>
+<p>This section describes very common methods or tasks that you will be performing with pandas DataFrames.
+Before we start, however, one word of caution: DataFrames are <strong>objects</strong>, that derive from the 
+<code>pandas.DataFrame</code> class. As objects, they have a lot of available methods that have been implemented
+for the class, and we may think that when we call one of this methods, the original DataFrame might be
+modified (since, after all, methods can change the attributes of the class). However, in pandas <strong>this
+is not the case</strong>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, in pandas, dataframe operations return a copy of the dataframe and <em>leave the original 
+dataframe</em> data intact.</p>
+</div>
+<p>Let's see this with an example. Assume we have the following dataframe <code>df</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># Output</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+</code></pre></div>
+If we sort it by <code>col1</code> and then print <code>df</code> again, the result <strong>will not change</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+</code></pre></div>
+This is because these methods do not change the internal state (i.e., its attributes) of the <code>df</code> instance.
+Hence, if we want to use the output of this method, we will need to save the <code>return</code> output of this methods
+to another variable (or chain it):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_df</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can make this functions modify the original dataframe with the optional parameter <code>inplace=True</code> (<code>False</code>
+is the default). However, in general its use is discouraged.</p>
+</div>
+<h4 id="common-tasks">Common tasks<a class="headerlink" href="#common-tasks" title="Permanent link">&para;</a></h4>
+<h5 id="removing-duplicates">Removing duplicates<a class="headerlink" href="#removing-duplicates" title="Permanent link">&para;</a></h5>
+<p>Pandas <code>drop_duplicates()</code> method helps in removing duplicates from Pandas Dataframes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TeamA&quot;</span><span class="p">,</span> <span class="s2">&quot;TeamB&quot;</span><span class="p">,</span> <span class="s2">&quot;TeamB&quot;</span><span class="p">,</span> <span class="s2">&quot;TeamC&quot;</span><span class="p">,</span> <span class="s2">&quot;TeamA&quot;</span><span class="p">],</span> 
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> 
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span> 
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="p">}</span> 
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> 
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="c1"># Output</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>       <span class="n">A</span>       <span class="n">B</span>      <span class="n">C</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="mi">0</span>    <span class="n">TeamA</span>    <span class="mi">50</span>    <span class="kc">True</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="mi">1</span>    <span class="n">TeamB</span>    <span class="mi">40</span>    <span class="kc">False</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="mi">3</span>    <span class="n">TeamC</span>    <span class="mi">30</span>    <span class="kc">False</span>
+</code></pre></div>
+<h5 id="resetting-the-index">Resetting the index<a class="headerlink" href="#resetting-the-index" title="Permanent link">&para;</a></h5>
+<h5 id="renaming-columns">Renaming columns<a class="headerlink" href="#renaming-columns" title="Permanent link">&para;</a></h5>
+<h5 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h5>
+<h4 id="basic-statistics">Basic statistics<a class="headerlink" href="#basic-statistics" title="Permanent link">&para;</a></h4>
+<h4 id="applying-custom-functions">Applying custom functions<a class="headerlink" href="#applying-custom-functions" title="Permanent link">&para;</a></h4>
 <h4 id="group-by">Group by<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h4>
 <h4 id="joins-and-merges">Joins and merges<a class="headerlink" href="#joins-and-merges" title="Permanent link">&para;</a></h4>
 
