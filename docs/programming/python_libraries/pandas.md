@@ -792,6 +792,79 @@ acting as glue. This can be done in different ways:
   (usually we don't use the right merge for anything, since we can perform a left merge with the two tables in 
   the opposite order).
 
+These are some examples on how to use the `merge()` function:
+
+```python
+import pandas as pd
+
+#create DataFrame
+df1 = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+                    'points': [18, 22, 19, 14, 14, 11, 20, 28]})
+
+df2 = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'G', 'H'],
+                    'assists': [4, 9, 14, 13, 10, 8]})
+
+#view DataFrames
+print(df1)
+
+  team  points
+0    A      18
+1    B      22
+2    C      19
+3    D      14
+4    E      14
+5    F      11
+6    G      20
+7    H      28
+
+print(df2)
+
+  team  assists
+0    A        4
+1    B        9
+2    C       14
+3    D       13
+4    G       10
+5    H        8
+
+
+df1.merge(df2, on='team', how='inner')
+
+# Output
+  team  points  assists
+0    A      18        4
+1    B      22        9
+2    C      19       14
+3    D      14       13
+4    G      20       10
+5    H      28        8
+
+df1.merge(df2, on='team', how='outer')
+
+# Output
+  team  points  assists
+0    A      18      4.0
+1    B      22      9.0
+2    C      19     14.0
+3    D      14     13.0
+4    E      14      NaN
+5    F      11      NaN
+6    G      20     10.0
+7    H      28      8.0
+
+df1.merge(df2, on='team', how='left')
+
+# Output
+  team  points  assists
+0    A      18      4.0
+1    B      22      9.0
+2    C      19     14.0
+3    D      14     13.0
+4    E      14      NaN
+5    F      11      NaN
+6    G      20     10.0
+7    H      28      8.0
+```
 
 #### Concatenating DataFrames
 
