@@ -801,8 +801,8 @@ import pandas as pd
 df1 = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
                     'points': [18, 22, 19, 14, 14, 11, 20, 28]})
 
-df2 = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'G', 'H'],
-                    'assists': [4, 9, 14, 13, 10, 8]})
+df2 = pd.DataFrame({'team': ['A', 'B', 'C', 'D', 'G', 'H', 'Z'],
+                    'assists': [4, 9, 14, 13, 10, 8, 15]})
 
 #view DataFrames
 print(df1)
@@ -826,10 +826,35 @@ print(df2)
 3    D       13
 4    G       10
 5    H        8
+6    Z       15
 
+
+df1.merge(df2, on='team', how='outer')
+# Output
+  team  points  assists
+0    A    18.0      4.0
+1    B    22.0      9.0
+2    C    19.0     14.0
+3    D    14.0     13.0
+4    E    14.0      NaN
+5    F    11.0      NaN
+6    G    20.0     10.0
+7    H    28.0      8.0
+8    Z     NaN     15.0
+
+df1.merge(df2, on='team', how='left')
+# Output
+  team  points  assists
+0    A      18      4.0
+1    B      22      9.0
+2    C      19     14.0
+3    D      14     13.0
+4    E      14      NaN
+5    F      11      NaN
+6    G      20     10.0
+7    H      28      8.0
 
 df1.merge(df2, on='team', how='inner')
-
 # Output
   team  points  assists
 0    A      18        4
@@ -838,32 +863,6 @@ df1.merge(df2, on='team', how='inner')
 3    D      14       13
 4    G      20       10
 5    H      28        8
-
-df1.merge(df2, on='team', how='outer')
-
-# Output
-  team  points  assists
-0    A      18      4.0
-1    B      22      9.0
-2    C      19     14.0
-3    D      14     13.0
-4    E      14      NaN
-5    F      11      NaN
-6    G      20     10.0
-7    H      28      8.0
-
-df1.merge(df2, on='team', how='left')
-
-# Output
-  team  points  assists
-0    A      18      4.0
-1    B      22      9.0
-2    C      19     14.0
-3    D      14     13.0
-4    E      14      NaN
-5    F      11      NaN
-6    G      20     10.0
-7    H      28      8.0
 ```
 
 #### Concatenating DataFrames
