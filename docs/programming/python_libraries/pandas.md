@@ -792,6 +792,9 @@ Going back to the previous dataframe, and using the `sum()` function as an examp
 5  foo    two -2.369447 -0.389401
 ```
 
+The syntax is always the same: `df.groupby(list_of_columns_used_to_classify, as_index=False).some_func()`, where
+`some_func()` is the function that is used to aggregate the columns that are not in `list_of_columns_used_to_classify`.
+
 !!!note
     In the last example the `as_index=False` is important. If we don't use it, then the group by
     will return a dataframe with a "strange" new index, created by the combination of the values
