@@ -203,7 +203,7 @@ df = pd.DataFrame(a)
 ```
 
 !!!note
-    Although Series are 1D, nothing prevents use from converting a Pandas Series into a Pandas DataFrame.
+    Although Series are 1D, nothing prevents us from converting a Pandas Series into a Pandas DataFrame.
     This is often very convenient since DataFrames and Series do not have the same methods available.
 
 ### Reading/writing dataframes
@@ -241,6 +241,11 @@ print(df.to_string())
 
 If the file has a header, or uses different characters (instead of commas), the pandas documentation has
 several examples on how to use the `.read_csv()` method.
+
+!!!note
+    In the previous example, the `to_string()` method is not really necessary. This method is used
+    to make sure that we are printing the whole DataFrame (otherwise, if it has many columns and rows, 
+    pandas might shorten it when we try to print).
 
 #### Saving to a CSV
 
@@ -379,9 +384,9 @@ b    30    Bob
 
 #### Selecting rows and columns at the same time
 
-To select rows with the `.loc[]` operator we use the syntax `my_dataframe.loc[row_selector, :]`. 
-The `:` indicates that we want to select all columns (but we could also put in here any list of columns
-we want).
+To select rows with the `.loc[]` operator we use the syntax `my_dataframe.loc[row_selector, column_selector]`. 
+As before, `column_selector` can be `:`, which indicates that we want to select all columns (but we could also 
+put in here any list of columns we want).
 
 !!!note
     `my_dataframe.loc[row_selector, :]` can also be written as `my_dataframe.loc[row_selector]`, without the
@@ -461,9 +466,103 @@ df.loc[df["a"].isna(), :] = 0
     Pandas primarily uses the value `np.nan` to represent missing data. Missing data is by default 
     not included in computations
 
-### Operations on DataFrames
+### Working with DataFrames
 
-#### Basic statistics, apply, etc.
+This section describes very common methods or tasks that you will be performing with pandas DataFrames.
+Before we start, however, one word of caution: DataFrames are **objects**, that derive from the 
+`pandas.DataFrame` class. As objects, they have a lot of available methods that have been implemented
+for the class, and we may think that when we call one of this methods, the original DataFrame might be
+modified (since, after all, methods can change the attributes of the class). However, in pandas **this
+is not the case**. 
+
+!!!note
+    By default, in pandas, dataframe operations return a copy of the dataframe and _leave the original 
+    dataframe_ data intact.
+
+Let's see this with an example. Assume we have the following dataframe `df`:
+```python
+print(df)
+
+# Output
+  col1  col2  col3 col4
+0    A     2     0    a
+1    A     1     1    B
+2    B     9     9    c
+3  NaN     8     4    D
+4    D     7     2    e
+5    C     4     3    F
+```
+If we sort it by `col1` and then print `df` again, the result **will not change**:
+```python
+df.sort_values(by=['col1'])
+print(df)
+
+# Output
+  col1  col2  col3 col4
+0    A     2     0    a
+1    A     1     1    B
+2    B     9     9    c
+3  NaN     8     4    D
+4    D     7     2    e
+5    C     4     3    F
+```
+This is because these methods do not change the internal state (i.e., its attributes) of the `df` instance.
+Hence, if we want to use the output of this method, we will need to save the `return` output of this methods
+to another variable (or chain it):
+
+```python
+new_df = df.sort_values(by=['col1'])
+print(new_df)
+
+# Output
+  col1  col2  col3 col4
+0    A     2     0    a
+1    A     1     1    B
+2    B     9     9    c
+5    C     4     3    F
+4    D     7     2    e
+3  NaN     8     4    D
+```
+
+!!!note
+    We can make this functions modify the original dataframe with the optional parameter `inplace=True` (`False`
+    is the default). However, in general its use is discouraged.
+
+#### Common tasks
+
+##### Removing duplicates
+
+Pandas `drop_duplicates()` method helps in removing duplicates from Pandas Dataframes.
+
+```python
+import pandas as pd 
+  
+data = { 
+    "A": ["TeamA", "TeamB", "TeamB", "TeamC", "TeamA"], 
+    "B": [50, 40, 40, 30, 50], 
+    "C": [True, False, False, False, True] 
+} 
+  
+df = pd.DataFrame(data) 
+  
+print(df.drop_duplicates())
+
+# Output
+       A       B      C
+0    TeamA    50    True
+1    TeamB    40    False
+3    TeamC    30    False
+```
+
+##### Resetting the index
+
+##### Renaming columns
+
+##### Sorting
+
+#### Basic statistics
+
+#### Applying custom functions
 
 #### Group by
 
