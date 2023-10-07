@@ -624,6 +624,32 @@ Alternatively, we could create a new column using the values from other columns,
 df["new_column"] = df["A"] + df["B"]
 ```
 
+##### Counting unique values
+
+The unique function in pandas is used to find the unique values from a series:
+
+```python
+import pandas as pd
+
+# Creating a dataframe
+df = pd.DataFrame({'Sports': ['Football', 'Cricket', 'Baseball', 'Basketball',
+                'Tennis', 'Table-tennis', 'Archery', 'Swimming', 'Boxing'], 
+                'Player': ["Messi", "Afridi", "Chad", "Johnny", "Federer",
+                 "Yong", "Mark", "Phelps", "Khan"],
+                 'Country': ["Argentina", "Pakistan", "England", "England", "Switzerland",
+                 "China", "China", "USA", "Pakistan" ],
+                 'Rank': [1, 9, 7, 12, 1, 2, 11, 1, 1] })
+
+# Finding unique countries
+print(df["Country"].unique())
+# Finding unique rankings
+print(df["Rank"].unique())
+
+# Output
+['Argentina' 'Pakistan' 'England' 'Switzerland' 'China' 'USA']
+[1, 9, 7, 12, 2, 11]
+```
+
 ##### Pivoting a dataframe
 
 `pandas.melt()` unpivots a DataFrame from wide format to long format:
