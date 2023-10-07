@@ -589,8 +589,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#finding-the-size-of-a-dataframe" class="md-nav__link">
+    Finding the size of a DataFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removing-duplicates" class="md-nav__link">
     Removing duplicates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filling-missing-data" class="md-nav__link">
+    Filling missing data
   </a>
   
 </li>
@@ -612,6 +626,20 @@
           <li class="md-nav__item">
   <a href="#sorting" class="md-nav__link">
     Sorting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-new-columns" class="md-nav__link">
+    Creating new columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pivoting-a-dataframe" class="md-nav__link">
+    Pivoting a dataframe
   </a>
   
 </li>
@@ -645,6 +673,20 @@
           <li class="md-nav__item">
   <a href="#joins-and-merges" class="md-nav__link">
     Joins and merges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatenating-dataframes" class="md-nav__link">
+    Concatenating DataFrames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-types-and-memory-usage" class="md-nav__link">
+    Variable types and memory usage
   </a>
   
 </li>
@@ -904,8 +946,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#finding-the-size-of-a-dataframe" class="md-nav__link">
+    Finding the size of a DataFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removing-duplicates" class="md-nav__link">
     Removing duplicates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filling-missing-data" class="md-nav__link">
+    Filling missing data
   </a>
   
 </li>
@@ -927,6 +983,20 @@
           <li class="md-nav__item">
   <a href="#sorting" class="md-nav__link">
     Sorting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-new-columns" class="md-nav__link">
+    Creating new columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pivoting-a-dataframe" class="md-nav__link">
+    Pivoting a dataframe
   </a>
   
 </li>
@@ -960,6 +1030,20 @@
           <li class="md-nav__item">
   <a href="#joins-and-merges" class="md-nav__link">
     Joins and merges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concatenating-dataframes" class="md-nav__link">
+    Concatenating DataFrames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-types-and-memory-usage" class="md-nav__link">
+    Variable types and memory usage
   </a>
   
 </li>
@@ -1383,14 +1467,6 @@ We just need to put the dataframe cell selection on the <strong>left side</stron
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># this assigns the value 0 to all cells with negative values</span>
 <a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div>
-<p>We can use this to fill cells without values:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Pandas primarily uses the value <code>np.nan</code> to represent missing data. Missing data is by default 
-not included in computations</p>
-</div>
 <h3 id="working-with-dataframes">Working with DataFrames<a class="headerlink" href="#working-with-dataframes" title="Permanent link">&para;</a></h3>
 <p>This section describes very common methods or tasks that you will be performing with pandas DataFrames.
 Before we start, however, one word of caution: DataFrames are <strong>objects</strong>, that derive from the 
@@ -1404,44 +1480,48 @@ is not the case</strong>. </p>
 dataframe</em> data intact.</p>
 </div>
 <p>Let's see this with an example. Assume we have the following dataframe <code>df</code>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># Output</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Output</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
 </code></pre></div>
 If we sort it by <code>col1</code> and then print <code>df</code> again, the result <strong>will not change</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+</code></pre></div>
+This is because these methods do not change the internal state (i.e., its attributes) of the <code>df</code> instance.
+Hence, if we want to use the output of this method, we will need to save the <code>return</code> output of this methods
+to another variable (or chain it):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_df</span><span class="p">)</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># Output</span>
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
 <a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
 <a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
 <a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
-<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
 <a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
-<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
 </code></pre></div>
-This is because these methods do not change the internal state (i.e., its attributes) of the <code>df</code> instance.
-Hence, if we want to use the output of this method, we will need to save the <code>return</code> output of this methods
-to another variable (or chain it):</p>
+<p>Hence, if we want to "update" the DataFrame after a change, we will need to assign the output of the method
+to the original variable, like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">])</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_df</span><span class="p">)</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Output</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
-<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1449,6 +1529,15 @@ to another variable (or chain it):</p>
 is the default). However, in general its use is discouraged.</p>
 </div>
 <h4 id="common-tasks">Common tasks<a class="headerlink" href="#common-tasks" title="Permanent link">&para;</a></h4>
+<h5 id="finding-the-size-of-a-dataframe">Finding the size of a DataFrame<a class="headerlink" href="#finding-the-size-of-a-dataframe" title="Permanent link">&para;</a></h5>
+<ul>
+<li>To display the number of rows, columns, etc.: <code>df.info()</code></li>
+<li>To get the number of rows and columns: <code>df.shape</code></li>
+<li>To get the number of rows: <code>len(df)</code></li>
+<li>To get the number of columns: <code>len(df.columns)</code></li>
+</ul>
+<p>We also have access to an attribute <code>df.empty</code>, of <code>bool</code> type, which returns <code>True</code> if the
+DataFrame is empty and <code>False</code> otherwise.</p>
 <h5 id="removing-duplicates">Removing duplicates<a class="headerlink" href="#removing-duplicates" title="Permanent link">&para;</a></h5>
 <p>Pandas <code>drop_duplicates()</code> method helps in removing duplicates from Pandas Dataframes.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
@@ -1469,13 +1558,260 @@ is the default). However, in general its use is discouraged.</p>
 <a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="mi">1</span>    <span class="n">TeamB</span>    <span class="mi">40</span>    <span class="kc">False</span>
 <a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="mi">3</span>    <span class="n">TeamC</span>    <span class="mi">30</span>    <span class="kc">False</span>
 </code></pre></div>
+<h5 id="filling-missing-data">Filling missing data<a class="headerlink" href="#filling-missing-data" title="Permanent link">&para;</a></h5>
+<p>We can use the <code>.isna()</code> method to detect (and fill, if we need to) cells without values:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>.isnull()</code> method is an alias for the <code>.isna()</code> method, so both are exactly the same.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pandas primarily uses the value <code>np.nan</code> to represent missing data. Missing data is by default 
+not included in computations.</p>
+</div>
 <h5 id="resetting-the-index">Resetting the index<a class="headerlink" href="#resetting-the-index" title="Permanent link">&para;</a></h5>
+<p>After dropping and filtering the rows of a DataFrame, the original index values for each row remain. 
+If we want to re-create the index, dropping the original values, we can do it with
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">DataFrame</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></p>
 <h5 id="renaming-columns">Renaming columns<a class="headerlink" href="#renaming-columns" title="Permanent link">&para;</a></h5>
+<p>To rename specific columns of a DataFrame, we may use the <code>df.rename()</code> method:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;oldName1&#39;</span><span class="p">:</span> <span class="s1">&#39;newName1&#39;</span><span class="p">,</span> <span class="s1">&#39;oldName2&#39;</span><span class="p">:</span> <span class="s1">&#39;newName2&#39;</span><span class="p">})</span>
+</code></pre></div>
+Only the columns in the dictionary passed as input will be renamed.</p>
 <h5 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h5>
+<p>We can sort a DataFrame by the values of one or multiple columns, like so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>  <span class="n">col1</span>  <span class="n">col2</span>  <span class="n">col3</span> <span class="n">col4</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="mi">1</span>    <span class="n">A</span>     <span class="mi">1</span>     <span class="mi">1</span>    <span class="n">B</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="mi">0</span>    <span class="n">A</span>     <span class="mi">2</span>     <span class="mi">0</span>    <span class="n">a</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="mi">2</span>    <span class="n">B</span>     <span class="mi">9</span>     <span class="mi">9</span>    <span class="n">c</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="mi">5</span>    <span class="n">C</span>     <span class="mi">4</span>     <span class="mi">3</span>    <span class="n">F</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="mi">4</span>    <span class="n">D</span>     <span class="mi">7</span>     <span class="mi">2</span>    <span class="n">e</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="mi">3</span>  <span class="n">NaN</span>     <span class="mi">8</span>     <span class="mi">4</span>    <span class="n">D</span>
+</code></pre></div>
+<h5 id="creating-new-columns">Creating new columns<a class="headerlink" href="#creating-new-columns" title="Permanent link">&para;</a></h5>
+<p>There are several ways to create a new column, but the most common one follow this syntax:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_column_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+</code></pre></div>
+and on the <code>...</code> we can put whatever we want. For example, if we have a list <code>my_list</code> with the same
+length as the DataFrame has rows, we could do:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_column_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_list</span>
+</code></pre></div>
+Alternatively, we could create a new column using the values from other columns, for example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;new_column&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+<h5 id="pivoting-a-dataframe">Pivoting a dataframe<a class="headerlink" href="#pivoting-a-dataframe" title="Permanent link">&para;</a></h5>
+<p><code>pandas.melt()</code> unpivots a DataFrame from wide format to long format:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;c&#39;</span><span class="p">},</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="o">...</span>                    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="o">...</span>                    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">}})</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>   <span class="n">A</span>  <span class="n">B</span>  <span class="n">C</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="mi">0</span>  <span class="n">a</span>  <span class="mi">1</span>  <span class="mi">2</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="mi">1</span>  <span class="n">b</span>  <span class="mi">3</span>  <span class="mi">4</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="mi">2</span>  <span class="n">c</span>  <span class="mi">5</span>  <span class="mi">6</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>   <span class="n">A</span> <span class="n">variable</span>  <span class="n">value</span>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="mi">0</span>  <span class="n">a</span>        <span class="n">B</span>      <span class="mi">1</span>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="mi">1</span>  <span class="n">b</span>        <span class="n">B</span>      <span class="mi">3</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="mi">2</span>  <span class="n">c</span>        <span class="n">B</span>      <span class="mi">5</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="mi">3</span>  <span class="n">a</span>        <span class="n">C</span>      <span class="mi">2</span>
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="mi">4</span>  <span class="n">b</span>        <span class="n">C</span>      <span class="mi">4</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="mi">5</span>  <span class="n">c</span>        <span class="n">C</span>      <span class="mi">6</span>
+</code></pre></div>
 <h4 id="basic-statistics">Basic statistics<a class="headerlink" href="#basic-statistics" title="Permanent link">&para;</a></h4>
+<p>There are many statistical operations already implemented in pandas. We can use them by selecting
+a subset of the DataFrame (e.g., a few columns) and then calling these methods. Some of the most 
+important are:</p>
+<ul>
+<li>The mean: <code>some_df.mean()</code></li>
+<li>The median: <code>some_df.median()</code></li>
+<li>The standard deviation: <code>some_df.std()</code></li>
+<li>The min and max: <code>.min()</code> and <code>.max()</code></li>
+<li>The number of records for each category in a column:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> 
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">Pclass</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="mi">3</span>    <span class="mi">491</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="mi">1</span>    <span class="mi">216</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="mi">2</span>    <span class="mi">184</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="n">Name</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</code></pre></div></li>
+</ul>
+<p>There is also a helpful <code>.describe()</code> method that gives you several of these at the same time.</p>
 <h4 id="applying-custom-functions">Applying custom functions<a class="headerlink" href="#applying-custom-functions" title="Permanent link">&para;</a></h4>
+<p>The pandas DataFrame <code>apply()</code> function is used to apply a function along an axis of the DataFrame.
+This function that we apply can be an external or a custom defined function. It works like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="c1"># Output</span>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>   <span class="n">A</span>   <span class="n">B</span>
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">10</span>
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">20</span>
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a>
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>   <span class="n">A</span>    <span class="n">B</span>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">100</span>
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="mi">1</span>  <span class="mi">4</span>  <span class="mi">400</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We don't need to apply the function to the whole dataframe. We can slice it and only apply
+the function to a subset of the columns.</p>
+</div>
+<p>If you look at the above example, our <code>square()</code> function is very simple. We can easily convert it 
+into a <strong>lambda</strong> function:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+The output will remain the same as in the last example.</p>
 <h4 id="group-by">Group by<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h4>
+<p>The <code>groupby()</code> method is used for grouping the data according to the categories and applying a 
+function to aggregate them categories. This is easier seen with an example. Suppose that 
+we have the following dataframe:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">87</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>   <span class="o">....</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>   <span class="o">....</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>   <span class="o">....</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">],</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>   <span class="o">....</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>   <span class="o">....</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>   <span class="o">....</span><span class="p">:</span>     <span class="p">}</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>   <span class="o">....</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>   <span class="o">....</span><span class="p">:</span> 
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="n">In</span> <span class="p">[</span><span class="mi">88</span><span class="p">]:</span> <span class="n">df</span>
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="n">Out</span><span class="p">[</span><span class="mi">88</span><span class="p">]:</span> 
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="mi">0</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">1.346061</span> <span class="o">-</span><span class="mf">1.577585</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="mi">1</span>  <span class="n">bar</span>    <span class="n">one</span>  <span class="mf">1.511763</span>  <span class="mf">0.396823</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="mi">2</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">1.627081</span> <span class="o">-</span><span class="mf">0.105381</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="mi">3</span>  <span class="n">bar</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.990582</span> <span class="o">-</span><span class="mf">0.532532</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="mi">4</span>  <span class="n">foo</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.441652</span>  <span class="mf">1.453749</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="mi">5</span>  <span class="n">bar</span>    <span class="n">two</span>  <span class="mf">1.211526</span>  <span class="mf">1.208843</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="mi">6</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">0.268520</span> <span class="o">-</span><span class="mf">0.080952</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="mi">7</span>  <span class="n">foo</span>  <span class="n">three</span>  <span class="mf">0.024580</span> <span class="o">-</span><span class="mf">0.264610</span>
+</code></pre></div>
+<p>We can ask ourselves what happens if we combine the data from all the columns that share
+values in the columns <code>A</code> and <code>B</code> (e.g., all the columns that have <code>foo</code> in column <code>A</code> and <code>bar</code> in 
+column <code>B</code>). </p>
+<p>For this we need what's known as an aggregating function. This function gives an answer to the following
+question: assume that I found all the rows that share values in <code>A</code> and <code>B</code> and, somehow, I want to group
+together the values in all the remaining columns. How do I do that? Do I calculate the mean of those values?
+The sum? The minimum?</p>
+<p>With Python's <code>groupby()</code> function we may use any aggregating function we want: the important thing to understand
+is that this function will be applied to the set defined by all rows where <code>A</code> and <code>B</code> are shared.</p>
+<p>Going back to the previous dataframe, and using the <code>sum()</code> function as an example, we could use it as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="mi">0</span>  <span class="n">bar</span>    <span class="n">one</span>  <span class="mf">1.467065</span>  <span class="mf">1.366273</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="mi">1</span>  <span class="n">bar</span>  <span class="n">three</span>  <span class="mf">1.994611</span>  <span class="mf">1.425282</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="mi">2</span>  <span class="n">bar</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.487412</span> <span class="o">-</span><span class="mf">0.627660</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="mi">3</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">1.910821</span> <span class="o">-</span><span class="mf">0.091346</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="mi">4</span>  <span class="n">foo</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.449329</span>  <span class="mf">0.213259</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="mi">5</span>  <span class="n">foo</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">2.369447</span> <span class="o">-</span><span class="mf">0.389401</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the last example the <code>as_index=False</code> is important. If we don't use it, then the group by
+will return a dataframe with a "strange" new index, created by the combination of the values
+of <code>A</code> and <code>B</code>.</p>
+</div>
 <h4 id="joins-and-merges">Joins and merges<a class="headerlink" href="#joins-and-merges" title="Permanent link">&para;</a></h4>
+<p>Pandas provides a single function, <code>merge()</code>, as the equivalent of standard SQL database join operations, 
+but in this case between DataFrames.</p>
+<p>Before getting into the details of how to use <code>merge()</code>, you should first understand the various forms of joins.
+The idea of a merge (or <em>join</em>, as is known in SQL) is that we have two tables, and we stitch them together
+on the basis of two columns (one from the first table, another from the second table) having the same value.
+The resulting merged table will be the first table <em>glued</em> with the second table, with the shared column
+acting as glue. This can be done in different ways:</p>
+<ul>
+<li><strong>inner merge</strong>: the resulting merged table will contain all the rows from the original tables that found a 
+    match in the other table, but all rows (from either table) that find no match are discarded.</li>
+<li><strong>outer merge</strong>: the opposite of the previous case: every row from either table will appear in the merged table,
+    and if for some of them there is no match, we will get null values on the columns coming from the other table.</li>
+<li><strong>left merge</strong>: this is an intermediate case between the inner and the outer merge. It behaves like the inner 
+  merge, but we also keep the rows from the first ("left") table that have no matches.    </li>
+<li><strong>right merge</strong>: like the left merge, but the table on the second table is <em>acting</em> as if it was the left table
+  (usually we don't use the right merge for anything, since we can perform a left merge with the two tables in 
+  the opposite order).</li>
+</ul>
+<h4 id="concatenating-dataframes">Concatenating DataFrames<a class="headerlink" href="#concatenating-dataframes" title="Permanent link">&para;</a></h4>
+<p>If we have 2 or more DataFrames which share <em>exactly</em> the same columns, we can
+concatenate them like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A2&quot;</span><span class="p">,</span> <span class="s2">&quot;A3&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B0&quot;</span><span class="p">,</span> <span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D0&quot;</span><span class="p">,</span> <span class="s2">&quot;D1&quot;</span><span class="p">,</span> <span class="s2">&quot;D2&quot;</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>   <span class="o">...</span><span class="p">:</span> 
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A4&quot;</span><span class="p">,</span> <span class="s2">&quot;A5&quot;</span><span class="p">,</span> <span class="s2">&quot;A6&quot;</span><span class="p">,</span> <span class="s2">&quot;A7&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B6&quot;</span><span class="p">,</span> <span class="s2">&quot;B7&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C4&quot;</span><span class="p">,</span> <span class="s2">&quot;C5&quot;</span><span class="p">,</span> <span class="s2">&quot;C6&quot;</span><span class="p">,</span> <span class="s2">&quot;C7&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D4&quot;</span><span class="p">,</span> <span class="s2">&quot;D5&quot;</span><span class="p">,</span> <span class="s2">&quot;D6&quot;</span><span class="p">,</span> <span class="s2">&quot;D7&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a>   <span class="o">...</span><span class="p">:</span> 
+<a id="__codelineno-39-22" name="__codelineno-39-22" href="#__codelineno-39-22"></a>
+<a id="__codelineno-39-23" name="__codelineno-39-23" href="#__codelineno-39-23"></a><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-39-25" name="__codelineno-39-25" href="#__codelineno-39-25"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A8&quot;</span><span class="p">,</span> <span class="s2">&quot;A9&quot;</span><span class="p">,</span> <span class="s2">&quot;A10&quot;</span><span class="p">,</span> <span class="s2">&quot;A11&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-26" name="__codelineno-39-26" href="#__codelineno-39-26"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B9&quot;</span><span class="p">,</span> <span class="s2">&quot;B10&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-27" name="__codelineno-39-27" href="#__codelineno-39-27"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C8&quot;</span><span class="p">,</span> <span class="s2">&quot;C9&quot;</span><span class="p">,</span> <span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C11&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-28" name="__codelineno-39-28" href="#__codelineno-39-28"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D8&quot;</span><span class="p">,</span> <span class="s2">&quot;D9&quot;</span><span class="p">,</span> <span class="s2">&quot;D10&quot;</span><span class="p">,</span> <span class="s2">&quot;D11&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-29" name="__codelineno-39-29" href="#__codelineno-39-29"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-39-30" name="__codelineno-39-30" href="#__codelineno-39-30"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<a id="__codelineno-39-31" name="__codelineno-39-31" href="#__codelineno-39-31"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-39-32" name="__codelineno-39-32" href="#__codelineno-39-32"></a>   <span class="o">...</span><span class="p">:</span> 
+<a id="__codelineno-39-33" name="__codelineno-39-33" href="#__codelineno-39-33"></a>
+<a id="__codelineno-39-34" name="__codelineno-39-34" href="#__codelineno-39-34"></a><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
+<a id="__codelineno-39-35" name="__codelineno-39-35" href="#__codelineno-39-35"></a>
+<a id="__codelineno-39-36" name="__codelineno-39-36" href="#__codelineno-39-36"></a><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="variable-types-and-memory-usage">Variable types and memory usage<a class="headerlink" href="#variable-types-and-memory-usage" title="Permanent link">&para;</a></h4>
+<p>A pandas DataFrame can have columns of different types. To find out what these are, we may
+use <code>df.dtypes</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="c1"># Output</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="nb">float</span>              <span class="n">float64</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="nb">int</span>                  <span class="n">int64</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="n">datetime</span>    <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="n">string</span>              <span class="nb">object</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For very large datasets, make sure that you are not using more bits than you need in
+the columns. You can transform the variable types, for example <code>int64</code> to <code>int16</code>, anytime.</p>
+</div>
+<p>To actually learn how much RAM memory (in Bytes) we are using for a particular DataFrame, we
+may use the <code>df.memory_usage(deep=True)</code> function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="p">(</span><span class="n">lists</span> <span class="n">each</span> <span class="n">column</span><span class="s1">&#39;s full memory usage)</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="mi">462432</span>
+</code></pre></div>
 
 
 
