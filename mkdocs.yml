@@ -67,4 +67,4 @@ nav:
     - 'programming/python_libraries/matplotlib.md'
 #    - 'programming/pyspark.md'
   - 'SQL':
-#    - 'programming/sql/sql.md'
+    - 'programming/sql/sql.md'
