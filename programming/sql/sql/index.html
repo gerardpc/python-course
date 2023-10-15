@@ -9,13 +9,15 @@
       
       
       
+        <link rel="prev" href="../../python_libraries/matplotlib/">
+      
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
     
     
       
-        <title>Sql - Python and data science</title>
+        <title>SQL - Python and data science</title>
       
     
     
@@ -68,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sql" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sql
+              SQL
             
           </span>
         </div>
@@ -440,18 +447,20 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
-        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="true">
           SQL
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -467,11 +476,141 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../sql.md" class="md-nav__link">
-        None
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SQL
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-database-engines" class="md-nav__link">
+    SQL DataBase engines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-language" class="md-nav__link">
+    SQL language
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL language">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-queries" class="md-nav__link">
+    Select queries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-clauses" class="md-nav__link">
+    Where clauses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joins" class="md-nav__link">
+    Joins
+  </a>
+  
+    <nav class="md-nav" aria-label="Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-constraints" class="md-nav__link">
+    Table constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-data" class="md-nav__link">
+    MANIPULATING DATA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    Group by
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-management" class="md-nav__link">
+    Table management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-sql-databases-from-python-programs" class="md-nav__link">
+    Connecting to SQL Databases from Python programs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readinginsert-to-a-sql-database-with-pandas" class="md-nav__link">
+    Reading/insert to a SQL database with Pandas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -500,6 +639,112 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-database-engines" class="md-nav__link">
+    SQL DataBase engines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-language" class="md-nav__link">
+    SQL language
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL language">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-queries" class="md-nav__link">
+    Select queries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-clauses" class="md-nav__link">
+    Where clauses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joins" class="md-nav__link">
+    Joins
+  </a>
+  
+    <nav class="md-nav" aria-label="Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-constraints" class="md-nav__link">
+    Table constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-data" class="md-nav__link">
+    MANIPULATING DATA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" class="md-nav__link">
+    Group by
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-management" class="md-nav__link">
+    Table management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-sql-databases-from-python-programs" class="md-nav__link">
+    Connecting to SQL Databases from Python programs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readinginsert-to-a-sql-database-with-pandas" class="md-nav__link">
+    Reading/insert to a SQL database with Pandas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -515,7 +760,227 @@
 
 
 
-
+<h1 id="sql">SQL<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h2 id="sql-database-engines">SQL DataBase engines<a class="headerlink" href="#sql-database-engines" title="Permanent link">&para;</a></h2>
+<h2 id="sql-language">SQL language<a class="headerlink" href="#sql-language" title="Permanent link">&para;</a></h2>
+<h3 id="select-queries">Select queries<a class="headerlink" href="#select-queries" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although it is common practice to put SQL reserved words in capital letters,
+in general it is not necessary.</p>
+</div>
+<p>Query data in columns c1, c2 from a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="p">;</span>
+</code></pre></div>
+Query all rows and columns from a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="p">;</span>
+</code></pre></div>
+Create aliases for tables/columns:
+Query all rows and columns from a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">CustomerID</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">CustomerName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customer</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span>
+</code></pre></div>
+Access data from various tables:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">o</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CustomerName</span><span class="w"> </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+</code></pre></div>
+Access data from various tables:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">Address</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PostalCode</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Country</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span><span class="p">;</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The table we query from does not need to be an existing table: it can be any form of 
+derived table, created by another <code>SELECT ...</code> statement. Typical ways to create this
+<em>new</em> tables to query from are Common Table Expressions (CTEs) and subqueries (just another
+<code>SELECT</code> statement between parentheses.</p>
+</div>
+<h3 id="where-clauses">Where clauses<a class="headerlink" href="#where-clauses" title="Permanent link">&para;</a></h3>
+<p>Query data and filter rows with a condition
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">some_condition</span><span class="p">;</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>some_condition</code> can be of type <code>=</code> (e.g. <code>A = 3</code>), different <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, etc. 
+Conditions can be chained by <code>AND</code> and <code>OR</code> operators. They can also be of the type <code>in a set</code>, e.g.:
+<code>IN (value1, value2, ...);</code>, or equivalently in a derived table, <code>IN (SELECT ...)</code>.</p>
+</div>
+<p>Query distinct rows from a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Sort the result set in ascending or descending order
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">ASC</span><span class="w"> </span><span class="p">[</span><span class="k">DESC</span><span class="p">];</span>
+</code></pre></div></p>
+<p>Skip offset of rows and return the next n rows
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="k">offset</span><span class="p">;</span>
+</code></pre></div></p>
+<p>COUNT/AGGREGATES
+Group rows using an aggregate function
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">aggregate</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Aggregate functions are, essentially, COUNT. You can’t use COUNT without telling by which 
+GROUP BY the rows should be aggregated (basically every other column that is not counted). E.g.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">etl_origin_id</span><span class="p">,</span><span class="w"> </span><span class="n">creator</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">etl_fragrances</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">etl_origin_id</span><span class="p">,</span><span class="w"> </span><span class="n">creator</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Inside a COUNT parentheses you can put a DISTINCT/ALL to count different appearances or all of them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
+(* is a special expression that is not evaluated, it simply returns the number of rows.)</p>
+</div>
+<p>There are two additional modifiers for the expression: ALL and DISTINCT. 
+These determine whether duplicates are discarded. Since ALL is the default, your example is the same 
+as count(ALL 1), which means that duplicates are retained. Since the expression "1" evaluates to non-null 
+for every row, and since you are not removing duplicates, COUNT(1) should always return the same number as COUNT(*).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Difference between HAVING and WHERE: 
+* HAVING is used to check conditions after the aggregation takes place. 
+* WHERE: is used to check conditions before the aggregation takes place.</p>
+</div>
+<p>This code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">select</span><span class="w"> </span><span class="n">City</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">From</span><span class="w"> </span><span class="n">Address</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">Where</span><span class="w"> </span><span class="k">State</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">Group</span><span class="w"> </span><span class="k">By</span><span class="w"> </span><span class="n">City</span>
+</code></pre></div>
+Gives you a table of all cities in MA and the number of addresses in each city. This code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">select</span><span class="w"> </span><span class="n">City</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">From</span><span class="w"> </span><span class="n">Address</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">Where</span><span class="w"> </span><span class="k">State</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">Group</span><span class="w"> </span><span class="k">By</span><span class="w"> </span><span class="n">City</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">Having</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span>
+</code></pre></div></p>
+<p>Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.</p>
+<p>The CASE statement goes through conditions as and <code>if/elif</code> statement, and returns a column. E.g.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Quantity</span><span class="p">,</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">CASE</span><span class="w"> </span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;The quantity is greater than 30&#39;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;The quantity is 30&#39;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;The quantity is under 30&#39;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">QuantityText</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">;</span>
+</code></pre></div></p>
+<p>TABLE JOINS</p>
+<h3 id="joins">Joins<a class="headerlink" href="#joins" title="Permanent link">&para;</a></h3>
+<p>A join “sews” together 2 tables, based on some condition (e.g. equality of a row):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
+</code></pre></div></p>
+<p>Joins can be of type:</p>
+<ul>
+<li>INNER (intersection of values)</li>
+<li>LEFT (Intersection + unpaired from left table)</li>
+<li>RIGHT (same with right table) or </li>
+<li>FULL OUTER (both).</li>
+</ul>
+<p>Combine rows from two queries
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">UNION</span><span class="w"> </span><span class="p">[</span><span class="k">ALL</span><span class="p">]</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</code></pre></div>
+Return the intersection of two queries
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">INTERSECT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</code></pre></div>
+Subtract a result set from another result set
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">MINUS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</code></pre></div></p>
+<p>MANIPULATING TABLES</p>
+<p>Create a new table:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">     </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">     </span><span class="n">price</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">);</span>
+</code></pre></div>
+Delete the table from the database
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+</code></pre></div>
+Add a new column to the table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">column</span><span class="p">;</span>
+</code></pre></div>
+Drop column c from the table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">c</span><span class="p">;</span>
+</code></pre></div></p>
+<h4 id="table-constraints">Table constraints<a class="headerlink" href="#table-constraints" title="Permanent link">&para;</a></h4>
+<p>Constraints: rules for the data in a table. The following constraints are commonly used in SQL:
+* NOT NULL - Ensures that a column cannot have a NULL value
+* UNIQUE - Ensures that all values in a column are different
+* PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+* FOREIGN KEY - Prevents actions that would destroy links between tables
+* CHECK - Ensures that the values in a column satisfies a specific condition
+* DEFAULT - Sets a default value for a column if no value is specified
+* CREATE INDEX - Used to create and retrieve data from the database very quickly</p>
+<p>Add a constraint
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+</code></pre></div>
+Drop a constraint
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+</code></pre></div>
+Rename a table from t1 to t2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</code></pre></div>
+Rename column c1 to c2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="p">;</span>
+</code></pre></div>
+Remove all data in a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+</code></pre></div></p>
+<h4 id="manipulating-data">MANIPULATING DATA<a class="headerlink" href="#manipulating-data" title="Permanent link">&para;</a></h4>
+<p>Insert one row into a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">column_list</span><span class="p">)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">VALUES</span><span class="p">(</span><span class="n">value_list</span><span class="p">);</span>
+</code></pre></div>
+Insert multiple rows into a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">column_list</span><span class="p">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">value_list</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">       </span><span class="p">(</span><span class="n">value_list</span><span class="p">),</span><span class="w"> </span><span class="err">…</span><span class="p">;</span>
+</code></pre></div>
+Insert rows from t2 into t1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">column_list</span><span class="p">)</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">column_list</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>INSERT operations on a table without any indices are fast because the new row can simply be 
+appended to the end of the table. It is an O(1) operation. Conversely, INSERT/UPDATE/DELETE 
+statements with indices are no longer simple. These operations render all indexes out-of-date, 
+and as such need to be reconstructed.</p>
+<p>The situation is reversed with SELECT statements: SELECT operations containing only non-key 
+fields in the WHERE clause on the same table will require a full table scan, an O(n) operation. 
+With indices, however, this operation becomes O(log(n)). </p>
+</div>
+<p>Update new value in the column c1 for all rows
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">SET</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_value</span><span class="p">;</span>
+</code></pre></div>
+Update values in the column c1, c2 that match the condition
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">SET</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_value</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">        </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_value</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
+</code></pre></div>
+Delete all data in a table
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">Delete</span><span class="w"> </span><span class="n">subset</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">table</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
+</code></pre></div></p>
+<p>MISSING
+WITH, TIES, USING, partition by, TOP, computed, window function, coalesce a outer join, LIKE, LOCATE, With, exemples https://ploomber.io/blog/sql/ , union, returning</p>
+<h3 id="group-by">Group by<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h3>
+<h3 id="table-management">Table management<a class="headerlink" href="#table-management" title="Permanent link">&para;</a></h3>
+<h3 id="connecting-to-sql-databases-from-python-programs">Connecting to SQL Databases from Python programs<a class="headerlink" href="#connecting-to-sql-databases-from-python-programs" title="Permanent link">&para;</a></h3>
+<h3 id="readinginsert-to-a-sql-database-with-pandas">Reading/insert to a SQL database with Pandas<a class="headerlink" href="#readinginsert-to-a-sql-database-with-pandas" title="Permanent link">&para;</a></h3>
 
 
 
