@@ -88,20 +88,12 @@ Reading example:
 
 ```python
 with open('dog_breeds.txt', 'r') as file:
-    # Read & print the entire file
-    print(file.read())
-
-# Output
-Pug
-Jack Russell Terrier
-English Springer Spaniel
-German Shepherd
-Staffordshire Bull Terrier
-Cavalier King Charles Spaniel
-Golden Retriever
-West Highland White Terrier
-Boxer
-Border Terrier
+    # Option 1: Read entire file all at once
+    my_str = file.read()
+    # Option 2: read line by line
+    str_list = []
+    for line in file:
+        str_list.append(line)
 ```
 
 Writing example:
@@ -112,7 +104,7 @@ with open('dog_breeds_reversed.txt', 'w') as file:
         file.write(line)
 ```
 
-Appending example:
+Appending to end of a file example:
 ```python
 with open("test.txt", "a") as file:
     file.write("appended text")
