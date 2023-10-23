@@ -19,7 +19,7 @@
     
     
       
-        <title>IO, files and exceptions - Python and data science</title>
+        <title>Exceptions - Python and data science</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#io-files-and-exceptions" class="md-skip">
+        <a href="#exceptions" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IO, files and exceptions
+              Exceptions
             
           </span>
         </div>
@@ -324,6 +324,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../io.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -336,12 +350,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          IO, files and exceptions
+          Exceptions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        IO, files and exceptions
+        Exceptions
       </a>
       
         
@@ -358,40 +372,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#io-and-files" class="md-nav__link">
-    IO and files
-  </a>
-  
-    <nav class="md-nav" aria-label="IO and files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-paths" class="md-nav__link">
-    File paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opening-and-closing-a-file-in-python" class="md-nav__link">
-    Opening and Closing a File in Python
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#basic-exception-handling" class="md-nav__link">
@@ -630,40 +610,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#io-and-files" class="md-nav__link">
-    IO and files
-  </a>
-  
-    <nav class="md-nav" aria-label="IO and files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-paths" class="md-nav__link">
-    File paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opening-and-closing-a-file-in-python" class="md-nav__link">
-    Opening and Closing a File in Python
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#basic-exception-handling" class="md-nav__link">
     Basic exception handling
   </a>
@@ -720,101 +666,7 @@
 
 
 
-<h1 id="io-files-and-exceptions">IO, files and exceptions<a class="headerlink" href="#io-files-and-exceptions" title="Permanent link">&para;</a></h1>
-<h2 id="io-and-files">IO and files<a class="headerlink" href="#io-and-files" title="Permanent link">&para;</a></h2>
-<h3 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h3>
-<p>One of the most common tasks that you can do with Python is reading and writing files. 
-Whether it’s writing to a simple text file, reading a complicated server log, or even analyzing raw 
-byte data, all of these situations require reading or writing a file.</p>
-<p>Before we can go into how to work with files in Python, it’s important to understand what exactly a 
-file is and how modern operating systems handle some of their aspects.</p>
-<p>At its core, a file is a contiguous set of bytes used to store data. This data is organized 
-in a specific format and can be anything as simple as a text file or as complicated as a 
-program executable. In the end, these byte files are then translated into binary 1 and 0 for 
-easier processing by the computer.</p>
-<p>Files on most modern file systems are composed of three main parts:</p>
-<ul>
-<li><strong>Header</strong>: metadata about the contents of the file (file name, size, type, and so on)</li>
-<li><strong>Data</strong>: contents of the file as written by the creator or editor</li>
-<li><strong>End of file (EOF)</strong>: special character that indicates the end of the file</li>
-</ul>
-<p>What this data represents depends on the format specification used, which is typically represented by an extension.</p>
-<h3 id="file-paths">File paths<a class="headerlink" href="#file-paths" title="Permanent link">&para;</a></h3>
-<p>When you access a file on an operating system, a file path is required. The file path is a string 
-that represents the location of a file. It’s broken up into three major parts:</p>
-<ul>
-<li><strong>Folder Path</strong>: the file folder location on the file system where subsequent folders are separated 
-  by a forward slash / (Unix) or backslash \ (Windows)</li>
-<li><strong>File Name</strong>: the actual name of the file</li>
-<li><strong>Extension</strong>: the end of the file path pre-pended with a period (.) used to indicate the file type</li>
-</ul>
-<p>Here’s a quick example. Let’s say you have a file located within a file structure like this:</p>
-<div class="highlight"><pre><span></span><code>/
-│
-├── path/
-|   │
-│   ├── to/
-│   │   └── cats.gif
-│   │
-│   └── dog_breeds.txt
-|
-└── animals.csv
-</code></pre></div>
-<p>Let’s say you wanted to access the cats.gif file, and your current location was in the same folder as path. 
-In order to access the file, you need to go through the path folder and then the to folder, finally 
-arriving at the <code>cats.gif</code> file. The Folder Path is <code>path/to/</code>. The File Name is cats. The File 
-Extension is <code>.gif</code>. So the full path is <code>path/to/cats.gif</code>.</p>
-<h3 id="opening-and-closing-a-file-in-python">Opening and Closing a File in Python<a class="headerlink" href="#opening-and-closing-a-file-in-python" title="Permanent link">&para;</a></h3>
-<p>When you want to work with a file, the first thing to do is to open it. This is done by invoking 
-the <code>open()</code> built-in function. <code>open()</code> has a single required argument that is the path to the file. 
-<code>open()</code> has a single return, the file object. Once we are done with the file, we need to close it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dog_breeds.txt&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># do something with file</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div>
-<p>It’s important to remember that it’s your responsibility to close the file! This is why it's always
-recommended to use the <code>with</code> statement when dealing with files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dog_breeds.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="c1"># Further file processing goes here</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="o">...</span>
-</code></pre></div>
-<p>When the <code>with</code> statement is finished, everything goes back to normal (and we don't need to remember
-to close anything). </p>
-<p>When opening a file, we are (directly or indirectly) using one of the different modes provided by Python.
-The most commonly used modes are the following:</p>
-<ul>
-<li><code>r</code>: Open for reading (default mode if nothing is specified)</li>
-<li><code>w</code>: Open for writing, truncating (overwriting) the file first</li>
-<li><code>a</code>: Open for writing, appending to the end of the file</li>
-<li><code>rb</code> or <code>wb</code>: Open in binary mode (read/write using byte data)</li>
-</ul>
-<p>Reading example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dog_breeds.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1"># Read &amp; print the entire file</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Output</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">Pug</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">Jack</span> <span class="n">Russell</span> <span class="n">Terrier</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">English</span> <span class="n">Springer</span> <span class="n">Spaniel</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">German</span> <span class="n">Shepherd</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">Staffordshire</span> <span class="n">Bull</span> <span class="n">Terrier</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">Cavalier</span> <span class="n">King</span> <span class="n">Charles</span> <span class="n">Spaniel</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">Golden</span> <span class="n">Retriever</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">West</span> <span class="n">Highland</span> <span class="n">White</span> <span class="n">Terrier</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">Boxer</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">Border</span> <span class="n">Terrier</span>
-</code></pre></div>
-<p>Writing example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dog_breeds_reversed.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># Write the dog breeds to the file in reversed order</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div></p>
-<p>Appending example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;appended text&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+<h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <h2 id="basic-exception-handling">Basic exception handling<a class="headerlink" href="#basic-exception-handling" title="Permanent link">&para;</a></h2>
 <p><strong>Exceptions</strong> are a way to keep Python errors under control, once a program is running. 
 Exceptions errors arise when <em>correct</em> Python programs (i.e., syntactically correct code) produce an error.</p>
@@ -824,13 +676,13 @@ stop executing and show a trace-back, which is sometimes hard for a user to unde
 <h4 id="example-1">Example 1<a class="headerlink" href="#example-1" title="Permanent link">&para;</a></h4>
 <p>Let's run a program that divides a number by zero. We know (or we should) that you cannot divide by zero,
 but let’s see what Python does:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 When we run the above code, Python gives the following traceback:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>File<span class="w"> </span>“C:<span class="se">\U</span>sers<span class="se">\A</span>DMIN<span class="se">\P</span>ycharmProject<span class="se">\p</span>ythonProject<span class="se">\m</span>ain.py”,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w"> </span>print<span class="o">(</span><span class="m">6</span>/0<span class="o">)</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ZeroDivisionError:<span class="w"> </span>division<span class="w"> </span>by<span class="w"> </span>zero
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>File<span class="w"> </span>“C:<span class="se">\U</span>sers<span class="se">\A</span>DMIN<span class="se">\P</span>ycharmProject<span class="se">\p</span>ythonProject<span class="se">\m</span>ain.py”,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w"> </span>print<span class="o">(</span><span class="m">6</span>/0<span class="o">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>ZeroDivisionError:<span class="w"> </span>division<span class="w"> </span>by<span class="w"> </span>zero
 </code></pre></div>
 Since Python cannot divide a number by zero, it reports an error in the trace-back as <code>ZeroDivisionError</code>, 
 which is an exception object, and then the execution <strong>stops</strong>. 
@@ -843,54 +695,54 @@ if you haven't yet. You can even define your own exceptions.</p>
 <p>If you think an error might occur in your code, use the try-except block to control the exception 
 that may be raised.</p>
 <p>To handle the <code>ZeroDivisionError</code> exception, use a try-except block like this:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can’t divide by zero!&quot;</span><span class="p">)</span> <span class="c1"># You can’t divide by zero!</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can’t divide by zero!&quot;</span><span class="p">)</span> <span class="c1"># You can’t divide by zero!</span>
 </code></pre></div>
 When you runt it, you will see the following output:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">You</span> <span class="n">can</span><span class="err">’</span><span class="n">t</span> <span class="n">divide</span> <span class="n">by</span> <span class="n">zero</span><span class="err">!</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">You</span> <span class="n">can</span><span class="err">’</span><span class="n">t</span> <span class="n">divide</span> <span class="n">by</span> <span class="n">zero</span><span class="err">!</span>
 </code></pre></div></p>
 <h4 id="example-2">Example 2<a class="headerlink" href="#example-2" title="Permanent link">&para;</a></h4>
 <p>Errors arise often when working with files that are missing. Python may fail to retrieve a file, if 
 you have written the wrong spelling of the filename, or the file does not exist.</p>
 <p>We handle this situation like before: by making use of the try-except block. For example, imagine the program 
 below tries to read a file that doesn't exist on your computer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some_nonexistent_file.txt&#39;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">contents</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some_nonexistent_file.txt&#39;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">contents</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div>
 <p>Since Python cannot read a file that does not exist, it raises an exception:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>File<span class="w"> </span>“C:<span class="se">\U</span>sers<span class="se">\A</span>DMIN<span class="se">\P</span>ycharmProject<span class="se">\p</span>ythonProject<span class="se">\m</span>ain.py”,<span class="w"> </span>line<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w"> </span>with<span class="w"> </span>open<span class="o">(</span>filename<span class="o">)</span><span class="w"> </span>as<span class="w"> </span>f_obj:
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>FileNotFoundError:<span class="w"> </span><span class="o">[</span>Errno<span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory:<span class="w"> </span>‘some_nonexistent_file.txt’
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>File<span class="w"> </span>“C:<span class="se">\U</span>sers<span class="se">\A</span>DMIN<span class="se">\P</span>ycharmProject<span class="se">\p</span>ythonProject<span class="se">\m</span>ain.py”,<span class="w"> </span>line<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w"> </span>with<span class="w"> </span>open<span class="o">(</span>filename<span class="o">)</span><span class="w"> </span>as<span class="w"> </span>f_obj:
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>FileNotFoundError:<span class="w"> </span><span class="o">[</span>Errno<span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory:<span class="w"> </span>‘some_nonexistent_file.txt’
 </code></pre></div>
 <p>This is the <code>FileNotFoundError</code> exception. In this example, the <code>open()</code> function creates the error. 
 To solve this error, use the try block just before the line, which involves the <code>open()</code> function:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some_nonexistent_file.txt&#39;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="n">contents</span> <span class="o">=</span> <span class="n">f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Sorry, the file &quot;</span><span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;does not exist.&quot;</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="c1"># Sorry, the file some_nonexistent_file.txt does not exist.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some_nonexistent_file.txt&#39;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">contents</span> <span class="o">=</span> <span class="n">f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Sorry, the file &quot;</span><span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;does not exist.&quot;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="c1"># Sorry, the file some_nonexistent_file.txt does not exist.</span>
 </code></pre></div>
 <p>Now the code works correctly. This is known as <em>catching</em> the exception.</p>
 <h4 id="try-except-structure">Try-except structure<a class="headerlink" href="#try-except-structure" title="Permanent link">&para;</a></h4>
 <p>The full exception handling in Python has this structure:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>   <span class="c1"># Some Code.... </span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">except</span><span class="p">:</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>   <span class="c1"># optional block</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>   <span class="c1"># Handling of exception (if required)</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>   <span class="c1"># execute if no exception</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="k">finally</span><span class="p">:</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>  <span class="c1"># Some code .....(always executed)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>   <span class="c1"># Some Code.... </span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   <span class="c1"># optional block</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>   <span class="c1"># Handling of exception (if required)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>   <span class="c1"># execute if no exception</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>  <span class="c1"># Some code .....(always executed)</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -900,10 +752,10 @@ Otherwise, we could be having a different error in the code (that we have not fo
 and we wouldn't notice!</p>
 </div>
 <p>However, in practice we often only use it like this:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="c1"># some code</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">except</span> <span class="n">SomeException</span><span class="p">:</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="c1"># what to do when the exception is raised</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="c1"># some code</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">except</span> <span class="n">SomeException</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="c1"># what to do when the exception is raised</span>
 </code></pre></div></p>
 <h4 id="how-to-manually-raise-an-exception-in-python">How to manually raise an exception in Python<a class="headerlink" href="#how-to-manually-raise-an-exception-in-python" title="Permanent link">&para;</a></h4>
 <p>How do we raise an exception in Python so that it can later be caught via an except block?
@@ -911,7 +763,7 @@ We should always use the most specific Exception constructor that semantically f
 <p>Some common rules:</p>
 <ul>
 <li>Be specific in your message, e.g.:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A very specific bad thing happened.&#39;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A very specific bad thing happened.&#39;</span><span class="p">)</span>
 </code></pre></div></li>
 <li>Don't raise generic exceptions: avoid raising a generic Exception. To catch it, you'll have to 
 catch all other more specific exceptions that subclass it.</li>
