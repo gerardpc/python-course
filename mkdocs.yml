@@ -63,8 +63,8 @@ nav:
     - 'programming/python/classes.md'
     - 'programming/python/python_packages.md'
   - 'Data libraries':
-    - 'programming/python_libraries/pandas.md'
     - 'programming/python_libraries/numpy.md'
+    - 'programming/python_libraries/pandas.md'
     - 'programming/python_libraries/matplotlib.md'
 #    - 'programming/pyspark.md'
   - 'SQL':

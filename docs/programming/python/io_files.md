@@ -151,7 +151,7 @@ example JSON file looks like this:
 }
 ```
 
-To load the data from a `.json` file, we use the following code structure:
+To **load** (read) the data from a `.json` file, we use the following code structure:
 
 ```python
 import json
@@ -161,13 +161,13 @@ with open("strings.json", "r") as file:
     print(d)
 ```
 In this example, the `strings.json` file is loaded into a variable `d` of type `dict`. If, on the contrary,
-we want to _write_ a new JSON file from a dictionary variable we already have, we would use:
+we want to **_write_** a new JSON file from a dictionary variable we already have, we would use:
 ```python
 import json
 
 my_dict = ...
 
-with open("out_file.json") as file:
+with open("out_file.json", "w") as file:
     json.dump(my_dict, file)
 ```
 Bear in mind, however, that the structure of a JSON file is included on its use of curly brackets, in contrast
@@ -179,7 +179,7 @@ import json
 
 my_dict = ...
 
-with open("out_file.json") as file:
+with open("out_file.json", "w") as file:
     json.dump(my_dict, file, indent=4)
 ```
 
