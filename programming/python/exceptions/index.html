@@ -327,7 +327,7 @@
   
     <li class="md-nav__item">
       <a href="../io_files/" class="md-nav__link">
-        IO, files and exceptions
+        Input, output and files
       </a>
     </li>
   
@@ -679,10 +679,10 @@ but let’s see what Python does:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 When we run the above code, Python gives the following traceback:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>File<span class="w"> </span>“C:<span class="se">\U</span>sers<span class="se">\A</span>DMIN<span class="se">\P</span>ycharmProject<span class="se">\p</span>ythonProject<span class="se">\m</span>ain.py”,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w"> </span>print<span class="o">(</span><span class="m">6</span>/0<span class="o">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>ZeroDivisionError:<span class="w"> </span>division<span class="w"> </span>by<span class="w"> </span>zero
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Traceback (most recent call last):
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  File “C:\Users\ADMIN\PycharmProject\pythonProject\main.py”, line 1, in &lt;module&gt;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> print(6/0)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>ZeroDivisionError: division by zero
 </code></pre></div>
 Since Python cannot divide a number by zero, it reports an error in the trace-back as <code>ZeroDivisionError</code>, 
 which is an exception object, and then the execution <strong>stops</strong>. 
