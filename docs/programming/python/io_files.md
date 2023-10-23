@@ -151,6 +151,8 @@ example JSON file looks like this:
 }
 ```
 
+### JSON file to Python
+
 To **load** (read) the data from a `.json` file, we use the following code structure:
 
 ```python
@@ -185,6 +187,9 @@ with open("out_file.json", "w") as file:
 
 !!!note
     The `json` package is included with the standard Python installation, we don't need to install it.
+
+
+### JSON string to Python
 
 The `json` package also has functions to serialize a Python object into a JSON string, and also to perform
 the inverse operation and deserialize a JSON string into a Python dictionary:
