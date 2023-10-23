@@ -1,6 +1,6 @@
-# IO, files and exceptions
+# Input, output and files
 
-## IO and files
+## Text files
 
 ### Introduction 
 
@@ -121,7 +121,7 @@ with open("test.txt", "a") as file:
 !!!note
     To read a binary file, in contrast to a text file, we would use `open("filename", "b")`
 
-### Reading and writing JSON files
+## Reading and writing JSON files
 
 To load the data from a `.json` file, we use the following code structure:
 

@@ -18,7 +18,7 @@ print(6/0)
 ```
 When we run the above code, Python gives the following traceback:
 
-```bash
+```
 Traceback (most recent call last):
   File “C:\Users\ADMIN\PycharmProject\pythonProject\main.py”, line 1, in <module>
  print(6/0)
