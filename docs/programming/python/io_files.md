@@ -115,6 +115,42 @@ with open("test.txt", "a") as file:
 
 ## Reading and writing JSON files
 
+**JSON** is an open standard file format and data interchange format that uses human-readable text 
+to store and transmit data objects, consisting of attribute–value pairs and arrays (or other serializable values). 
+It is a common data exchange format on the internet, including that of web applications with servers. An 
+example JSON file looks like this:
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Smith",
+  "is_alive": true,
+  "age": 27,
+  "address": {
+    "street_address": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postal_code": "10021-3100"
+  },
+  "phone_numbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ],
+  "children": [
+    "Catherine",
+    "Thomas",
+    "Trevor"
+  ],
+  "spouse": null
+}
+```
+
 To load the data from a `.json` file, we use the following code structure:
 
 ```python
