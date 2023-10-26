@@ -938,6 +938,43 @@ In [4]: frames = [df1, df2, df3]
 In [5]: result = pd.concat(frames)
 ```
 
+#### Melt: from untidy to tidy data
+
+The `melt()` function is used to transform or reshape data in a dataframe, transforming it from 
+wide format to long format:
+
+```python
+import pandas as pd
+
+df = pd.DataFrame(
+    {
+        "first": ["John", "Mary"],
+        "last": ["Doe", "Bo"],
+        "job": ["Nurse", "Economist"],
+        "height": [5.5, 6.0],
+        "weight": [130, 150],
+    }
+)
+print("\n Unmelted: ")
+print(df)
+print("\n Melted: ")
+print(df.melt(id_vars=["first", "last"], var_name="quantity", value_vars=["height", "weight"]))
+
+# Output
+Unmelted: 
+   first  last  job         height  weight
+0  John   Doe   Nurse       5.5     130
+1  Mary   Bo    Economist   6.0     150
+
+Melted: 
+      first     last    quantity   value
+0     John      Doe     height     5.5
+1     Mary      Bo      height     6.0
+2     John      Doe     weight     130.0
+3     Mary      Bo      weight     150.0
+```
+
+
 #### Variable types and memory usage
 
 A pandas DataFrame can have columns of different types. To find out what these are, we may
