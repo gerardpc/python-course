@@ -744,27 +744,30 @@ function to aggregate them categories. This is easier seen with an example. Supp
 we have the following dataframe:
 
 ```python
-In [87]: df = pd.DataFrame(
-   ....:     {
-   ....:         "A": ["foo", "bar", "foo", "bar", "foo", "bar", "foo", "foo"],
-   ....:         "B": ["one", "one", "two", "three", "two", "two", "one", "three"],
-   ....:         "C": np.random.randn(8),
-   ....:         "D": np.random.randn(8),
-   ....:     }
-   ....: )
-   ....: 
+import pandas as pd
+import numpy as np
 
-In [88]: df
-Out[88]: 
+df = pd.DataFrame(
+    {
+     "A": ["foo", "bar", "foo", "bar", "foo", "bar", "foo", "foo"],
+     "B": ["one", "one", "two", "three", "two", "two", "one", "three"],
+     "C": np.random.randn(8),
+     "D": np.random.randn(8),
+    }
+)
+     
+print(df)
+
+# Output
      A      B         C         D
-0  foo    one  1.346061 -1.577585
-1  bar    one  1.511763  0.396823
-2  foo    two  1.627081 -0.105381
-3  bar  three -0.990582 -0.532532
-4  foo    two -0.441652  1.453749
-5  bar    two  1.211526  1.208843
-6  foo    one  0.268520 -0.080952
-7  foo  three  0.024580 -0.264610
+0  foo    one  0.845112  2.525473
+1  bar    one -0.485309  0.067261
+2  foo    two  1.106288  0.205404
+3  bar  three -0.958754  0.923104
+4  foo    two  2.033509 -0.436023
+5  bar    two -0.945948  0.869062
+6  foo    one -0.288766 -1.497993
+7  foo  three  0.344638 -0.786353
 ```
 
 We can ask ourselves what happens if we combine the data from all the columns that share
@@ -782,14 +785,16 @@ is that this function will be applied to the set defined by all rows where `A` a
 Going back to the previous dataframe, and using the `sum()` function as an example, we could use it as:
 
 ```python
->>> df.groupby(["A", "B"], as_index=False).sum()
+df.groupby(["A", "B"], as_index=False).sum()
+
+# Output
      A      B         C         D
-0  bar    one  1.467065  1.366273
-1  bar  three  1.994611  1.425282
-2  bar    two -0.487412 -0.627660
-3  foo    one  1.910821 -0.091346
-4  foo  three -0.449329  0.213259
-5  foo    two -2.369447 -0.389401
+0  bar    one -0.485309  0.067261
+1  bar  three -0.958754  0.923104
+2  bar    two -0.945948  0.869062
+3  foo    one  0.556346  1.027480
+4  foo  three  0.344638 -0.786353
+5  foo    two  3.139796 -0.230619
 ```
 
 The syntax is always the same: `df.groupby(list_of_columns_used_to_classify, as_index=False).some_func()`, where
