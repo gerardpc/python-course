@@ -960,10 +960,16 @@ df = pd.DataFrame(
         "weight": [130, 150],
     }
 )
+melt_df = df.melt(
+    id_vars=["first", "last"], 
+    var_name="quantity", 
+    value_vars=["height", "weight"]
+)
+
 print("\n Unmelted: ")
 print(df)
 print("\n Melted: ")
-print(df.melt(id_vars=["first", "last"], var_name="quantity", value_vars=["height", "weight"]))
+print(melt_df)
 
 # Output
 Unmelted: 
