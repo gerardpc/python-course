@@ -86,6 +86,37 @@ example, or we can use the hexadecimal code of the color:
 ax.plot(x, y, color='#eeefff')
 ```
 
+## Minimal working example
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Create data for plotting. Any pair of 1D data can be used here,
+# for example two columns of a Pandas DataFrame.
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2 * np.pi * t)
+
+# Create figure and axes
+fig, ax = plt.subplots()
+
+# Plot data
+ax.plot(t, s)
+
+# Customize plot
+ax.set(xlabel='time (s)', ylabel='voltage (mV)',
+       title='About as simple as it gets, folks')
+
+# add a grid and legend
+ax.grid()
+ax.legend()
+
+# save as file and show window with plot
+fig.savefig("test.png")
+plt.show()
+```
+
+
 ## Other options
 
 ### Legends
@@ -152,8 +183,8 @@ ax.grid()
 ```
 
 <figure markdown>
-  ![Image title](https://matplotlib.org/stable/_images/sphx_glr_subplots_demo_005.png){ width="500" }
-  <figcaption>4 subplots in a single figure.</figcaption>
+  ![Image title](https://matplotlib.org/stable/_images/sphx_glr_simple_plot_001.png){ width="500" }
+  <figcaption>Sample figure with a grid.</figcaption>
 </figure>
 
 ### Show figure
