@@ -675,8 +675,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pivoting-a-dataframe" class="md-nav__link">
-    Pivoting a dataframe
+  <a href="#pivoting-a-dataframe-with-melt-untidy-to-tidy-data" class="md-nav__link">
+    Pivoting a dataframe with melt: untidy to tidy data
   </a>
   
 </li>
@@ -717,13 +717,6 @@
           <li class="md-nav__item">
   <a href="#concatenating-dataframes" class="md-nav__link">
     Concatenating DataFrames
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#melt-from-untidy-to-tidy-data" class="md-nav__link">
-    Melt: from untidy to tidy data
   </a>
   
 </li>
@@ -1060,8 +1053,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pivoting-a-dataframe" class="md-nav__link">
-    Pivoting a dataframe
+  <a href="#pivoting-a-dataframe-with-melt-untidy-to-tidy-data" class="md-nav__link">
+    Pivoting a dataframe with melt: untidy to tidy data
   </a>
   
 </li>
@@ -1102,13 +1095,6 @@
           <li class="md-nav__item">
   <a href="#concatenating-dataframes" class="md-nav__link">
     Concatenating DataFrames
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#melt-from-untidy-to-tidy-data" class="md-nav__link">
-    Melt: from untidy to tidy data
   </a>
   
 </li>
@@ -1697,8 +1683,11 @@ Alternatively, we could create a new column using the values from other columns,
 <a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="p">[</span><span class="s1">&#39;Argentina&#39;</span> <span class="s1">&#39;Pakistan&#39;</span> <span class="s1">&#39;England&#39;</span> <span class="s1">&#39;Switzerland&#39;</span> <span class="s1">&#39;China&#39;</span> <span class="s1">&#39;USA&#39;</span><span class="p">]</span>
 <a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
 </code></pre></div>
-<h5 id="pivoting-a-dataframe">Pivoting a dataframe<a class="headerlink" href="#pivoting-a-dataframe" title="Permanent link">&para;</a></h5>
-<p><code>pandas.melt()</code> unpivots a DataFrame from wide format to long format:</p>
+<h5 id="pivoting-a-dataframe-with-melt-untidy-to-tidy-data">Pivoting a dataframe with melt: untidy to tidy data<a class="headerlink" href="#pivoting-a-dataframe-with-melt-untidy-to-tidy-data" title="Permanent link">&para;</a></h5>
+<p>The <code>pandas.melt()</code> function is used to transform or reshape data in a dataframe, transforming it from 
+wide format to long format (this is sometimes called pivoting). 
+The function takes a set of columns and converts it into a single column.</p>
+<p><strong>Example 1</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;c&#39;</span><span class="p">},</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="o">...</span>                    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">...</span>                    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">}})</span>
@@ -1718,6 +1707,42 @@ Alternatively, we could create a new column using the values from other columns,
 <a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="mi">4</span>  <span class="n">b</span>        <span class="n">C</span>      <span class="mi">4</span>
 <a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="mi">5</span>  <span class="n">c</span>        <span class="n">C</span>      <span class="mi">6</span>
 </code></pre></div>
+<p><strong>Example 2</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>    <span class="p">{</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>        <span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Mary&quot;</span><span class="p">],</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>        <span class="s2">&quot;last&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Bo&quot;</span><span class="p">],</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>        <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Nurse&quot;</span><span class="p">,</span> <span class="s2">&quot;Economist&quot;</span><span class="p">],</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>        <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>    <span class="p">}</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="p">)</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="n">melt_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;last&quot;</span><span class="p">],</span> 
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>    <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> 
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a>    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="p">)</span>
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Unmelted: &quot;</span><span class="p">)</span>
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Melted: &quot;</span><span class="p">)</span>
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">melt_df</span><span class="p">)</span>
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a>
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="c1"># Output</span>
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a><span class="n">Unmelted</span><span class="p">:</span> 
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a>   <span class="n">first</span>  <span class="n">last</span>  <span class="n">job</span>         <span class="n">height</span>  <span class="n">weight</span>
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="mi">0</span>  <span class="n">John</span>   <span class="n">Doe</span>   <span class="n">Nurse</span>       <span class="mf">5.5</span>     <span class="mi">130</span>
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="mi">1</span>  <span class="n">Mary</span>   <span class="n">Bo</span>    <span class="n">Economist</span>   <span class="mf">6.0</span>     <span class="mi">150</span>
+<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a>
+<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a><span class="n">Melted</span><span class="p">:</span> 
+<a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a>      <span class="n">first</span>     <span class="n">last</span>    <span class="n">quantity</span>   <span class="n">value</span>
+<a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a><span class="mi">0</span>     <span class="n">John</span>      <span class="n">Doe</span>     <span class="n">height</span>     <span class="mf">5.5</span>
+<a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a><span class="mi">1</span>     <span class="n">Mary</span>      <span class="n">Bo</span>      <span class="n">height</span>     <span class="mf">6.0</span>
+<a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a><span class="mi">2</span>     <span class="n">John</span>      <span class="n">Doe</span>     <span class="n">weight</span>     <span class="mf">130.0</span>
+<a id="__codelineno-35-34" name="__codelineno-35-34" href="#__codelineno-35-34"></a><span class="mi">3</span>     <span class="n">Mary</span>      <span class="n">Bo</span>      <span class="n">weight</span>     <span class="mf">150.0</span>
+</code></pre></div>
 <h4 id="basic-statistics">Basic statistics<a class="headerlink" href="#basic-statistics" title="Permanent link">&para;</a></h4>
 <p>There are many statistical operations already implemented in pandas. We can use them by selecting
 a subset of the DataFrame (e.g., a few columns) and then calling these methods. Some of the most 
@@ -1728,38 +1753,38 @@ important are:</p>
 <li>The standard deviation: <code>some_df.std()</code></li>
 <li>The min and max: <code>.min()</code> and <code>.max()</code></li>
 <li>The number of records for each category in a column:
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> 
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">Pclass</span>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="mi">3</span>    <span class="mi">491</span>
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="mi">1</span>    <span class="mi">216</span>
-<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="mi">2</span>    <span class="mi">184</span>
-<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="n">Name</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> 
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">Pclass</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="mi">3</span>    <span class="mi">491</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="mi">1</span>    <span class="mi">216</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="mi">2</span>    <span class="mi">184</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="n">Name</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
 </code></pre></div></li>
 </ul>
 <p>There is also a helpful <code>.describe()</code> method that gives you several of these at the same time.</p>
 <h4 id="applying-custom-functions">Applying custom functions<a class="headerlink" href="#applying-custom-functions" title="Permanent link">&para;</a></h4>
 <p>The pandas DataFrame <code>apply()</code> function is used to apply a function along an axis of the DataFrame.
 This function that we apply can be an external or a custom defined function. It works like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
-<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>
-<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
-<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>
-<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
-<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>
-<a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a><span class="c1"># Output</span>
-<a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>   <span class="n">A</span>   <span class="n">B</span>
-<a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">10</span>
-<a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">20</span>
-<a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>
-<a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>   <span class="n">A</span>    <span class="n">B</span>
-<a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">100</span>
-<a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a><span class="mi">1</span>  <span class="mi">4</span>  <span class="mi">400</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]})</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="c1"># Output</span>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>   <span class="n">A</span>   <span class="n">B</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">10</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">20</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a>
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a>   <span class="n">A</span>    <span class="n">B</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">100</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="mi">1</span>  <span class="mi">4</span>  <span class="mi">400</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1768,37 +1793,37 @@ the function to a subset of the columns.</p>
 </div>
 <p>If you look at the above example, our <code>square()</code> function is very simple. We can easily convert it 
 into a <strong>lambda</strong> function:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 The output will remain the same as in the last example.</p>
 <h4 id="group-by">Group by<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h4>
 <p>The <code>groupby()</code> method is used for grouping the data according to the categories and applying a 
 function to aggregate them categories. This is easier seen with an example. Suppose that 
 we have the following dataframe:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
-<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    <span class="p">{</span>
-<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>     <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span>
-<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>     <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">],</span>
-<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>     <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>     <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
-<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>    <span class="p">}</span>
-<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="p">)</span>
-<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>
-<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a>
-<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="c1"># Output</span>
-<a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
-<a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a><span class="mi">0</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">0.845112</span>  <span class="mf">2.525473</span>
-<a id="__codelineno-38-18" name="__codelineno-38-18" href="#__codelineno-38-18"></a><span class="mi">1</span>  <span class="n">bar</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.485309</span>  <span class="mf">0.067261</span>
-<a id="__codelineno-38-19" name="__codelineno-38-19" href="#__codelineno-38-19"></a><span class="mi">2</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">1.106288</span>  <span class="mf">0.205404</span>
-<a id="__codelineno-38-20" name="__codelineno-38-20" href="#__codelineno-38-20"></a><span class="mi">3</span>  <span class="n">bar</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.958754</span>  <span class="mf">0.923104</span>
-<a id="__codelineno-38-21" name="__codelineno-38-21" href="#__codelineno-38-21"></a><span class="mi">4</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">2.033509</span> <span class="o">-</span><span class="mf">0.436023</span>
-<a id="__codelineno-38-22" name="__codelineno-38-22" href="#__codelineno-38-22"></a><span class="mi">5</span>  <span class="n">bar</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.945948</span>  <span class="mf">0.869062</span>
-<a id="__codelineno-38-23" name="__codelineno-38-23" href="#__codelineno-38-23"></a><span class="mi">6</span>  <span class="n">foo</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.288766</span> <span class="o">-</span><span class="mf">1.497993</span>
-<a id="__codelineno-38-24" name="__codelineno-38-24" href="#__codelineno-38-24"></a><span class="mi">7</span>  <span class="n">foo</span>  <span class="n">three</span>  <span class="mf">0.344638</span> <span class="o">-</span><span class="mf">0.786353</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>    <span class="p">{</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>     <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>     <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">],</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>     <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>     <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>    <span class="p">}</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="p">)</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="c1"># Output</span>
+<a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a><span class="mi">0</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">0.845112</span>  <span class="mf">2.525473</span>
+<a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a><span class="mi">1</span>  <span class="n">bar</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.485309</span>  <span class="mf">0.067261</span>
+<a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a><span class="mi">2</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">1.106288</span>  <span class="mf">0.205404</span>
+<a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a><span class="mi">3</span>  <span class="n">bar</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.958754</span>  <span class="mf">0.923104</span>
+<a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a><span class="mi">4</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">2.033509</span> <span class="o">-</span><span class="mf">0.436023</span>
+<a id="__codelineno-39-22" name="__codelineno-39-22" href="#__codelineno-39-22"></a><span class="mi">5</span>  <span class="n">bar</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.945948</span>  <span class="mf">0.869062</span>
+<a id="__codelineno-39-23" name="__codelineno-39-23" href="#__codelineno-39-23"></a><span class="mi">6</span>  <span class="n">foo</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.288766</span> <span class="o">-</span><span class="mf">1.497993</span>
+<a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a><span class="mi">7</span>  <span class="n">foo</span>  <span class="n">three</span>  <span class="mf">0.344638</span> <span class="o">-</span><span class="mf">0.786353</span>
 </code></pre></div>
 <p>We can ask ourselves what happens if we combine the data from all the columns that share
 values in the columns <code>A</code> and <code>B</code> (e.g., all the columns that have <code>foo</code> in column <code>A</code> and <code>bar</code> in 
@@ -1810,16 +1835,16 @@ The sum? The minimum?</p>
 <p>With Python's <code>groupby()</code> function we may use any aggregating function we want: the important thing to understand
 is that this function will be applied to the set defined by all rows where <code>A</code> and <code>B</code> are shared.</p>
 <p>Going back to the previous dataframe, and using the <code>sum()</code> function as an example, we could use it as:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="c1"># Output</span>
-<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
-<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="mi">0</span>  <span class="n">bar</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.485309</span>  <span class="mf">0.067261</span>
-<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="mi">1</span>  <span class="n">bar</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.958754</span>  <span class="mf">0.923104</span>
-<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="mi">2</span>  <span class="n">bar</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.945948</span>  <span class="mf">0.869062</span>
-<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="mi">3</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">0.556346</span>  <span class="mf">1.027480</span>
-<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="mi">4</span>  <span class="n">foo</span>  <span class="n">three</span>  <span class="mf">0.344638</span> <span class="o">-</span><span class="mf">0.786353</span>
-<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="mi">5</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">3.139796</span> <span class="o">-</span><span class="mf">0.230619</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="c1"># Output</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>     <span class="n">A</span>      <span class="n">B</span>         <span class="n">C</span>         <span class="n">D</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="mi">0</span>  <span class="n">bar</span>    <span class="n">one</span> <span class="o">-</span><span class="mf">0.485309</span>  <span class="mf">0.067261</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="mi">1</span>  <span class="n">bar</span>  <span class="n">three</span> <span class="o">-</span><span class="mf">0.958754</span>  <span class="mf">0.923104</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="mi">2</span>  <span class="n">bar</span>    <span class="n">two</span> <span class="o">-</span><span class="mf">0.945948</span>  <span class="mf">0.869062</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="mi">3</span>  <span class="n">foo</span>    <span class="n">one</span>  <span class="mf">0.556346</span>  <span class="mf">1.027480</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="mi">4</span>  <span class="n">foo</span>  <span class="n">three</span>  <span class="mf">0.344638</span> <span class="o">-</span><span class="mf">0.786353</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="mi">5</span>  <span class="n">foo</span>    <span class="n">two</span>  <span class="mf">3.139796</span> <span class="o">-</span><span class="mf">0.230619</span>
 </code></pre></div>
 <p>The syntax is always the same: <code>df.groupby(list_of_columns_used_to_classify, as_index=False).some_func()</code>, where
 <code>some_func()</code> is the function that is used to aggregate the columns that are not in <code>list_of_columns_used_to_classify</code>.</p>
@@ -1849,152 +1874,114 @@ acting as glue. This can be done in different ways:</p>
   the opposite order).</li>
 </ul>
 <p>These are some examples on how to use the <code>merge()</code> function:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="c1">#create DataFrame</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>                    <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">28</span><span class="p">]})</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">],</span>
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>                    <span class="s1">&#39;assists&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">]})</span>
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="c1">#view DataFrames</span>
-<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
-<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>
-<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>  <span class="n">team</span>  <span class="n">points</span>
-<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>
-<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>
-<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>
-<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>
-<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="mi">4</span>    <span class="n">E</span>      <span class="mi">14</span>
-<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="mi">5</span>    <span class="n">F</span>      <span class="mi">11</span>
-<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="mi">6</span>    <span class="n">G</span>      <span class="mi">20</span>
-<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a><span class="mi">7</span>    <span class="n">H</span>      <span class="mi">28</span>
-<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a>
-<a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
-<a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a>
-<a id="__codelineno-40-25" name="__codelineno-40-25" href="#__codelineno-40-25"></a>  <span class="n">team</span>  <span class="n">assists</span>
-<a id="__codelineno-40-26" name="__codelineno-40-26" href="#__codelineno-40-26"></a><span class="mi">0</span>    <span class="n">A</span>        <span class="mi">4</span>
-<a id="__codelineno-40-27" name="__codelineno-40-27" href="#__codelineno-40-27"></a><span class="mi">1</span>    <span class="n">B</span>        <span class="mi">9</span>
-<a id="__codelineno-40-28" name="__codelineno-40-28" href="#__codelineno-40-28"></a><span class="mi">2</span>    <span class="n">C</span>       <span class="mi">14</span>
-<a id="__codelineno-40-29" name="__codelineno-40-29" href="#__codelineno-40-29"></a><span class="mi">3</span>    <span class="n">D</span>       <span class="mi">13</span>
-<a id="__codelineno-40-30" name="__codelineno-40-30" href="#__codelineno-40-30"></a><span class="mi">4</span>    <span class="n">G</span>       <span class="mi">10</span>
-<a id="__codelineno-40-31" name="__codelineno-40-31" href="#__codelineno-40-31"></a><span class="mi">5</span>    <span class="n">H</span>        <span class="mi">8</span>
-<a id="__codelineno-40-32" name="__codelineno-40-32" href="#__codelineno-40-32"></a><span class="mi">6</span>    <span class="n">Z</span>       <span class="mi">15</span>
-<a id="__codelineno-40-33" name="__codelineno-40-33" href="#__codelineno-40-33"></a>
-<a id="__codelineno-40-34" name="__codelineno-40-34" href="#__codelineno-40-34"></a>
-<a id="__codelineno-40-35" name="__codelineno-40-35" href="#__codelineno-40-35"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
-<a id="__codelineno-40-36" name="__codelineno-40-36" href="#__codelineno-40-36"></a><span class="c1"># Output</span>
-<a id="__codelineno-40-37" name="__codelineno-40-37" href="#__codelineno-40-37"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
-<a id="__codelineno-40-38" name="__codelineno-40-38" href="#__codelineno-40-38"></a><span class="mi">0</span>    <span class="n">A</span>    <span class="mf">18.0</span>      <span class="mf">4.0</span>
-<a id="__codelineno-40-39" name="__codelineno-40-39" href="#__codelineno-40-39"></a><span class="mi">1</span>    <span class="n">B</span>    <span class="mf">22.0</span>      <span class="mf">9.0</span>
-<a id="__codelineno-40-40" name="__codelineno-40-40" href="#__codelineno-40-40"></a><span class="mi">2</span>    <span class="n">C</span>    <span class="mf">19.0</span>     <span class="mf">14.0</span>
-<a id="__codelineno-40-41" name="__codelineno-40-41" href="#__codelineno-40-41"></a><span class="mi">3</span>    <span class="n">D</span>    <span class="mf">14.0</span>     <span class="mf">13.0</span>
-<a id="__codelineno-40-42" name="__codelineno-40-42" href="#__codelineno-40-42"></a><span class="mi">4</span>    <span class="n">E</span>    <span class="mf">14.0</span>      <span class="n">NaN</span>
-<a id="__codelineno-40-43" name="__codelineno-40-43" href="#__codelineno-40-43"></a><span class="mi">5</span>    <span class="n">F</span>    <span class="mf">11.0</span>      <span class="n">NaN</span>
-<a id="__codelineno-40-44" name="__codelineno-40-44" href="#__codelineno-40-44"></a><span class="mi">6</span>    <span class="n">G</span>    <span class="mf">20.0</span>     <span class="mf">10.0</span>
-<a id="__codelineno-40-45" name="__codelineno-40-45" href="#__codelineno-40-45"></a><span class="mi">7</span>    <span class="n">H</span>    <span class="mf">28.0</span>      <span class="mf">8.0</span>
-<a id="__codelineno-40-46" name="__codelineno-40-46" href="#__codelineno-40-46"></a><span class="mi">8</span>    <span class="n">Z</span>     <span class="n">NaN</span>     <span class="mf">15.0</span>
-<a id="__codelineno-40-47" name="__codelineno-40-47" href="#__codelineno-40-47"></a>
-<a id="__codelineno-40-48" name="__codelineno-40-48" href="#__codelineno-40-48"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<a id="__codelineno-40-49" name="__codelineno-40-49" href="#__codelineno-40-49"></a><span class="c1"># Output</span>
-<a id="__codelineno-40-50" name="__codelineno-40-50" href="#__codelineno-40-50"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
-<a id="__codelineno-40-51" name="__codelineno-40-51" href="#__codelineno-40-51"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>      <span class="mf">4.0</span>
-<a id="__codelineno-40-52" name="__codelineno-40-52" href="#__codelineno-40-52"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>      <span class="mf">9.0</span>
-<a id="__codelineno-40-53" name="__codelineno-40-53" href="#__codelineno-40-53"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>     <span class="mf">14.0</span>
-<a id="__codelineno-40-54" name="__codelineno-40-54" href="#__codelineno-40-54"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>     <span class="mf">13.0</span>
-<a id="__codelineno-40-55" name="__codelineno-40-55" href="#__codelineno-40-55"></a><span class="mi">4</span>    <span class="n">E</span>      <span class="mi">14</span>      <span class="n">NaN</span>
-<a id="__codelineno-40-56" name="__codelineno-40-56" href="#__codelineno-40-56"></a><span class="mi">5</span>    <span class="n">F</span>      <span class="mi">11</span>      <span class="n">NaN</span>
-<a id="__codelineno-40-57" name="__codelineno-40-57" href="#__codelineno-40-57"></a><span class="mi">6</span>    <span class="n">G</span>      <span class="mi">20</span>     <span class="mf">10.0</span>
-<a id="__codelineno-40-58" name="__codelineno-40-58" href="#__codelineno-40-58"></a><span class="mi">7</span>    <span class="n">H</span>      <span class="mi">28</span>      <span class="mf">8.0</span>
-<a id="__codelineno-40-59" name="__codelineno-40-59" href="#__codelineno-40-59"></a>
-<a id="__codelineno-40-60" name="__codelineno-40-60" href="#__codelineno-40-60"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
-<a id="__codelineno-40-61" name="__codelineno-40-61" href="#__codelineno-40-61"></a><span class="c1"># Output</span>
-<a id="__codelineno-40-62" name="__codelineno-40-62" href="#__codelineno-40-62"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
-<a id="__codelineno-40-63" name="__codelineno-40-63" href="#__codelineno-40-63"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>        <span class="mi">4</span>
-<a id="__codelineno-40-64" name="__codelineno-40-64" href="#__codelineno-40-64"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>        <span class="mi">9</span>
-<a id="__codelineno-40-65" name="__codelineno-40-65" href="#__codelineno-40-65"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>       <span class="mi">14</span>
-<a id="__codelineno-40-66" name="__codelineno-40-66" href="#__codelineno-40-66"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>       <span class="mi">13</span>
-<a id="__codelineno-40-67" name="__codelineno-40-67" href="#__codelineno-40-67"></a><span class="mi">4</span>    <span class="n">G</span>      <span class="mi">20</span>       <span class="mi">10</span>
-<a id="__codelineno-40-68" name="__codelineno-40-68" href="#__codelineno-40-68"></a><span class="mi">5</span>    <span class="n">H</span>      <span class="mi">28</span>        <span class="mi">8</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="c1">#create DataFrame</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>                    <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">28</span><span class="p">]})</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">],</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>                    <span class="s1">&#39;assists&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">]})</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="c1">#view DataFrames</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>  <span class="n">team</span>  <span class="n">points</span>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="mi">4</span>    <span class="n">E</span>      <span class="mi">14</span>
+<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="mi">5</span>    <span class="n">F</span>      <span class="mi">11</span>
+<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a><span class="mi">6</span>    <span class="n">G</span>      <span class="mi">20</span>
+<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="mi">7</span>    <span class="n">H</span>      <span class="mi">28</span>
+<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a>
+<a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a>
+<a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a>  <span class="n">team</span>  <span class="n">assists</span>
+<a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a><span class="mi">0</span>    <span class="n">A</span>        <span class="mi">4</span>
+<a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a><span class="mi">1</span>    <span class="n">B</span>        <span class="mi">9</span>
+<a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a><span class="mi">2</span>    <span class="n">C</span>       <span class="mi">14</span>
+<a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a><span class="mi">3</span>    <span class="n">D</span>       <span class="mi">13</span>
+<a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a><span class="mi">4</span>    <span class="n">G</span>       <span class="mi">10</span>
+<a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a><span class="mi">5</span>    <span class="n">H</span>        <span class="mi">8</span>
+<a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a><span class="mi">6</span>    <span class="n">Z</span>       <span class="mi">15</span>
+<a id="__codelineno-41-33" name="__codelineno-41-33" href="#__codelineno-41-33"></a>
+<a id="__codelineno-41-34" name="__codelineno-41-34" href="#__codelineno-41-34"></a>
+<a id="__codelineno-41-35" name="__codelineno-41-35" href="#__codelineno-41-35"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<a id="__codelineno-41-36" name="__codelineno-41-36" href="#__codelineno-41-36"></a><span class="c1"># Output</span>
+<a id="__codelineno-41-37" name="__codelineno-41-37" href="#__codelineno-41-37"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
+<a id="__codelineno-41-38" name="__codelineno-41-38" href="#__codelineno-41-38"></a><span class="mi">0</span>    <span class="n">A</span>    <span class="mf">18.0</span>      <span class="mf">4.0</span>
+<a id="__codelineno-41-39" name="__codelineno-41-39" href="#__codelineno-41-39"></a><span class="mi">1</span>    <span class="n">B</span>    <span class="mf">22.0</span>      <span class="mf">9.0</span>
+<a id="__codelineno-41-40" name="__codelineno-41-40" href="#__codelineno-41-40"></a><span class="mi">2</span>    <span class="n">C</span>    <span class="mf">19.0</span>     <span class="mf">14.0</span>
+<a id="__codelineno-41-41" name="__codelineno-41-41" href="#__codelineno-41-41"></a><span class="mi">3</span>    <span class="n">D</span>    <span class="mf">14.0</span>     <span class="mf">13.0</span>
+<a id="__codelineno-41-42" name="__codelineno-41-42" href="#__codelineno-41-42"></a><span class="mi">4</span>    <span class="n">E</span>    <span class="mf">14.0</span>      <span class="n">NaN</span>
+<a id="__codelineno-41-43" name="__codelineno-41-43" href="#__codelineno-41-43"></a><span class="mi">5</span>    <span class="n">F</span>    <span class="mf">11.0</span>      <span class="n">NaN</span>
+<a id="__codelineno-41-44" name="__codelineno-41-44" href="#__codelineno-41-44"></a><span class="mi">6</span>    <span class="n">G</span>    <span class="mf">20.0</span>     <span class="mf">10.0</span>
+<a id="__codelineno-41-45" name="__codelineno-41-45" href="#__codelineno-41-45"></a><span class="mi">7</span>    <span class="n">H</span>    <span class="mf">28.0</span>      <span class="mf">8.0</span>
+<a id="__codelineno-41-46" name="__codelineno-41-46" href="#__codelineno-41-46"></a><span class="mi">8</span>    <span class="n">Z</span>     <span class="n">NaN</span>     <span class="mf">15.0</span>
+<a id="__codelineno-41-47" name="__codelineno-41-47" href="#__codelineno-41-47"></a>
+<a id="__codelineno-41-48" name="__codelineno-41-48" href="#__codelineno-41-48"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<a id="__codelineno-41-49" name="__codelineno-41-49" href="#__codelineno-41-49"></a><span class="c1"># Output</span>
+<a id="__codelineno-41-50" name="__codelineno-41-50" href="#__codelineno-41-50"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
+<a id="__codelineno-41-51" name="__codelineno-41-51" href="#__codelineno-41-51"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>      <span class="mf">4.0</span>
+<a id="__codelineno-41-52" name="__codelineno-41-52" href="#__codelineno-41-52"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>      <span class="mf">9.0</span>
+<a id="__codelineno-41-53" name="__codelineno-41-53" href="#__codelineno-41-53"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>     <span class="mf">14.0</span>
+<a id="__codelineno-41-54" name="__codelineno-41-54" href="#__codelineno-41-54"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>     <span class="mf">13.0</span>
+<a id="__codelineno-41-55" name="__codelineno-41-55" href="#__codelineno-41-55"></a><span class="mi">4</span>    <span class="n">E</span>      <span class="mi">14</span>      <span class="n">NaN</span>
+<a id="__codelineno-41-56" name="__codelineno-41-56" href="#__codelineno-41-56"></a><span class="mi">5</span>    <span class="n">F</span>      <span class="mi">11</span>      <span class="n">NaN</span>
+<a id="__codelineno-41-57" name="__codelineno-41-57" href="#__codelineno-41-57"></a><span class="mi">6</span>    <span class="n">G</span>      <span class="mi">20</span>     <span class="mf">10.0</span>
+<a id="__codelineno-41-58" name="__codelineno-41-58" href="#__codelineno-41-58"></a><span class="mi">7</span>    <span class="n">H</span>      <span class="mi">28</span>      <span class="mf">8.0</span>
+<a id="__codelineno-41-59" name="__codelineno-41-59" href="#__codelineno-41-59"></a>
+<a id="__codelineno-41-60" name="__codelineno-41-60" href="#__codelineno-41-60"></a><span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<a id="__codelineno-41-61" name="__codelineno-41-61" href="#__codelineno-41-61"></a><span class="c1"># Output</span>
+<a id="__codelineno-41-62" name="__codelineno-41-62" href="#__codelineno-41-62"></a>  <span class="n">team</span>  <span class="n">points</span>  <span class="n">assists</span>
+<a id="__codelineno-41-63" name="__codelineno-41-63" href="#__codelineno-41-63"></a><span class="mi">0</span>    <span class="n">A</span>      <span class="mi">18</span>        <span class="mi">4</span>
+<a id="__codelineno-41-64" name="__codelineno-41-64" href="#__codelineno-41-64"></a><span class="mi">1</span>    <span class="n">B</span>      <span class="mi">22</span>        <span class="mi">9</span>
+<a id="__codelineno-41-65" name="__codelineno-41-65" href="#__codelineno-41-65"></a><span class="mi">2</span>    <span class="n">C</span>      <span class="mi">19</span>       <span class="mi">14</span>
+<a id="__codelineno-41-66" name="__codelineno-41-66" href="#__codelineno-41-66"></a><span class="mi">3</span>    <span class="n">D</span>      <span class="mi">14</span>       <span class="mi">13</span>
+<a id="__codelineno-41-67" name="__codelineno-41-67" href="#__codelineno-41-67"></a><span class="mi">4</span>    <span class="n">G</span>      <span class="mi">20</span>       <span class="mi">10</span>
+<a id="__codelineno-41-68" name="__codelineno-41-68" href="#__codelineno-41-68"></a><span class="mi">5</span>    <span class="n">H</span>      <span class="mi">28</span>        <span class="mi">8</span>
 </code></pre></div>
 <h4 id="concatenating-dataframes">Concatenating DataFrames<a class="headerlink" href="#concatenating-dataframes" title="Permanent link">&para;</a></h4>
 <p>If we have 2 or more DataFrames which share <em>exactly</em> the same columns, we can
 concatenate them like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A2&quot;</span><span class="p">,</span> <span class="s2">&quot;A3&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B0&quot;</span><span class="p">,</span> <span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D0&quot;</span><span class="p">,</span> <span class="s2">&quot;D1&quot;</span><span class="p">,</span> <span class="s2">&quot;D2&quot;</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
-<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
-<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>   <span class="o">...</span><span class="p">:</span> 
-<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a>
-<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
-<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A4&quot;</span><span class="p">,</span> <span class="s2">&quot;A5&quot;</span><span class="p">,</span> <span class="s2">&quot;A6&quot;</span><span class="p">,</span> <span class="s2">&quot;A7&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B6&quot;</span><span class="p">,</span> <span class="s2">&quot;B7&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C4&quot;</span><span class="p">,</span> <span class="s2">&quot;C5&quot;</span><span class="p">,</span> <span class="s2">&quot;C6&quot;</span><span class="p">,</span> <span class="s2">&quot;C7&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D4&quot;</span><span class="p">,</span> <span class="s2">&quot;D5&quot;</span><span class="p">,</span> <span class="s2">&quot;D6&quot;</span><span class="p">,</span> <span class="s2">&quot;D7&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
-<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
-<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a>   <span class="o">...</span><span class="p">:</span> 
-<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a>
-<a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
-<a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A8&quot;</span><span class="p">,</span> <span class="s2">&quot;A9&quot;</span><span class="p">,</span> <span class="s2">&quot;A10&quot;</span><span class="p">,</span> <span class="s2">&quot;A11&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B9&quot;</span><span class="p">,</span> <span class="s2">&quot;B10&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C8&quot;</span><span class="p">,</span> <span class="s2">&quot;C9&quot;</span><span class="p">,</span> <span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C11&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D8&quot;</span><span class="p">,</span> <span class="s2">&quot;D9&quot;</span><span class="p">,</span> <span class="s2">&quot;D10&quot;</span><span class="p">,</span> <span class="s2">&quot;D11&quot;</span><span class="p">],</span>
-<a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
-<a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
-<a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
-<a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a>   <span class="o">...</span><span class="p">:</span> 
-<a id="__codelineno-41-33" name="__codelineno-41-33" href="#__codelineno-41-33"></a>
-<a id="__codelineno-41-34" name="__codelineno-41-34" href="#__codelineno-41-34"></a><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
-<a id="__codelineno-41-35" name="__codelineno-41-35" href="#__codelineno-41-35"></a>
-<a id="__codelineno-41-36" name="__codelineno-41-36" href="#__codelineno-41-36"></a><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="melt-from-untidy-to-tidy-data">Melt: from untidy to tidy data<a class="headerlink" href="#melt-from-untidy-to-tidy-data" title="Permanent link">&para;</a></h4>
-<p>The <code>melt()</code> function is used to transform or reshape data in a dataframe, transforming it from 
-wide format to long format:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>    <span class="p">{</span>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>        <span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Mary&quot;</span><span class="p">],</span>
-<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>        <span class="s2">&quot;last&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Bo&quot;</span><span class="p">],</span>
-<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>        <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Nurse&quot;</span><span class="p">,</span> <span class="s2">&quot;Economist&quot;</span><span class="p">],</span>
-<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>        <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
-<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
-<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>    <span class="p">}</span>
-<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="p">)</span>
-<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="n">melt_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
-<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a>    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;last&quot;</span><span class="p">],</span> 
-<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>    <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> 
-<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">]</span>
-<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="p">)</span>
-<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>
-<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Unmelted: &quot;</span><span class="p">)</span>
-<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Melted: &quot;</span><span class="p">)</span>
-<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">melt_df</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A2&quot;</span><span class="p">,</span> <span class="s2">&quot;A3&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B0&quot;</span><span class="p">,</span> <span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D0&quot;</span><span class="p">,</span> <span class="s2">&quot;D1&quot;</span><span class="p">,</span> <span class="s2">&quot;D2&quot;</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>   <span class="o">...</span><span class="p">:</span> 
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a>
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A4&quot;</span><span class="p">,</span> <span class="s2">&quot;A5&quot;</span><span class="p">,</span> <span class="s2">&quot;A6&quot;</span><span class="p">,</span> <span class="s2">&quot;A7&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B6&quot;</span><span class="p">,</span> <span class="s2">&quot;B7&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C4&quot;</span><span class="p">,</span> <span class="s2">&quot;C5&quot;</span><span class="p">,</span> <span class="s2">&quot;C6&quot;</span><span class="p">,</span> <span class="s2">&quot;C7&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D4&quot;</span><span class="p">,</span> <span class="s2">&quot;D5&quot;</span><span class="p">,</span> <span class="s2">&quot;D6&quot;</span><span class="p">,</span> <span class="s2">&quot;D7&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a>   <span class="o">...</span><span class="p">:</span> 
 <a id="__codelineno-42-22" name="__codelineno-42-22" href="#__codelineno-42-22"></a>
-<a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a><span class="c1"># Output</span>
-<a id="__codelineno-42-24" name="__codelineno-42-24" href="#__codelineno-42-24"></a><span class="n">Unmelted</span><span class="p">:</span> 
-<a id="__codelineno-42-25" name="__codelineno-42-25" href="#__codelineno-42-25"></a>   <span class="n">first</span>  <span class="n">last</span>  <span class="n">job</span>         <span class="n">height</span>  <span class="n">weight</span>
-<a id="__codelineno-42-26" name="__codelineno-42-26" href="#__codelineno-42-26"></a><span class="mi">0</span>  <span class="n">John</span>   <span class="n">Doe</span>   <span class="n">Nurse</span>       <span class="mf">5.5</span>     <span class="mi">130</span>
-<a id="__codelineno-42-27" name="__codelineno-42-27" href="#__codelineno-42-27"></a><span class="mi">1</span>  <span class="n">Mary</span>   <span class="n">Bo</span>    <span class="n">Economist</span>   <span class="mf">6.0</span>     <span class="mi">150</span>
-<a id="__codelineno-42-28" name="__codelineno-42-28" href="#__codelineno-42-28"></a>
-<a id="__codelineno-42-29" name="__codelineno-42-29" href="#__codelineno-42-29"></a><span class="n">Melted</span><span class="p">:</span> 
-<a id="__codelineno-42-30" name="__codelineno-42-30" href="#__codelineno-42-30"></a>      <span class="n">first</span>     <span class="n">last</span>    <span class="n">quantity</span>   <span class="n">value</span>
-<a id="__codelineno-42-31" name="__codelineno-42-31" href="#__codelineno-42-31"></a><span class="mi">0</span>     <span class="n">John</span>      <span class="n">Doe</span>     <span class="n">height</span>     <span class="mf">5.5</span>
-<a id="__codelineno-42-32" name="__codelineno-42-32" href="#__codelineno-42-32"></a><span class="mi">1</span>     <span class="n">Mary</span>      <span class="n">Bo</span>      <span class="n">height</span>     <span class="mf">6.0</span>
-<a id="__codelineno-42-33" name="__codelineno-42-33" href="#__codelineno-42-33"></a><span class="mi">2</span>     <span class="n">John</span>      <span class="n">Doe</span>     <span class="n">weight</span>     <span class="mf">130.0</span>
-<a id="__codelineno-42-34" name="__codelineno-42-34" href="#__codelineno-42-34"></a><span class="mi">3</span>     <span class="n">Mary</span>      <span class="n">Bo</span>      <span class="n">weight</span>     <span class="mf">150.0</span>
+<a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<a id="__codelineno-42-24" name="__codelineno-42-24" href="#__codelineno-42-24"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">{</span>
+<a id="__codelineno-42-25" name="__codelineno-42-25" href="#__codelineno-42-25"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A8&quot;</span><span class="p">,</span> <span class="s2">&quot;A9&quot;</span><span class="p">,</span> <span class="s2">&quot;A10&quot;</span><span class="p">,</span> <span class="s2">&quot;A11&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-26" name="__codelineno-42-26" href="#__codelineno-42-26"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B9&quot;</span><span class="p">,</span> <span class="s2">&quot;B10&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-27" name="__codelineno-42-27" href="#__codelineno-42-27"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C8&quot;</span><span class="p">,</span> <span class="s2">&quot;C9&quot;</span><span class="p">,</span> <span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C11&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-28" name="__codelineno-42-28" href="#__codelineno-42-28"></a>   <span class="o">...</span><span class="p">:</span>         <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D8&quot;</span><span class="p">,</span> <span class="s2">&quot;D9&quot;</span><span class="p">,</span> <span class="s2">&quot;D10&quot;</span><span class="p">,</span> <span class="s2">&quot;D11&quot;</span><span class="p">],</span>
+<a id="__codelineno-42-29" name="__codelineno-42-29" href="#__codelineno-42-29"></a>   <span class="o">...</span><span class="p">:</span>     <span class="p">},</span>
+<a id="__codelineno-42-30" name="__codelineno-42-30" href="#__codelineno-42-30"></a>   <span class="o">...</span><span class="p">:</span>     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<a id="__codelineno-42-31" name="__codelineno-42-31" href="#__codelineno-42-31"></a>   <span class="o">...</span><span class="p">:</span> <span class="p">)</span>
+<a id="__codelineno-42-32" name="__codelineno-42-32" href="#__codelineno-42-32"></a>   <span class="o">...</span><span class="p">:</span> 
+<a id="__codelineno-42-33" name="__codelineno-42-33" href="#__codelineno-42-33"></a>
+<a id="__codelineno-42-34" name="__codelineno-42-34" href="#__codelineno-42-34"></a><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">]</span>
+<a id="__codelineno-42-35" name="__codelineno-42-35" href="#__codelineno-42-35"></a>
+<a id="__codelineno-42-36" name="__codelineno-42-36" href="#__codelineno-42-36"></a><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="variable-types-and-memory-usage">Variable types and memory usage<a class="headerlink" href="#variable-types-and-memory-usage" title="Permanent link">&para;</a></h4>
 <p>A pandas DataFrame can have columns of different types. To find out what these are, we may
