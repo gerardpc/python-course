@@ -70,7 +70,7 @@ axs[1, 1].set_title('Axis [1, 1]')
 Among other parameters, `.subplots()` have two parameters to specify the grid size. nrows and ncols are used 
 to point out the number of rows and columns we need respectively.
 
-### .plot() parameters
+## .plot() parameters
 
 The `.plot()` method has a lot of parameters that can be used to customize the plot. For example, we can change the
 color, width and the line style of the plot:
@@ -84,6 +84,22 @@ example, or we can use the hexadecimal code of the color:
 
 ```python
 ax.plot(x, y, color='#eeefff')
+```
+
+## Show figure
+
+Once the plot is ready, we can show the figure with the `show` method:
+```python
+plt.show()
+```
+This will open a new window with the figure. 
+
+## Save figure
+
+Finally, we can also save the figure as a file (e.g., a png or an svg file) with the `savefig` method:
+
+```python
+fig.savefig('co2_levels.png')
 ```
 
 ## Minimal working example
@@ -116,8 +132,7 @@ fig.savefig("test.png")
 plt.show()
 ```
 
-
-## Other options
+## Other options to customize the plot
 
 ### Legends
 
@@ -186,21 +201,3 @@ ax.grid()
   ![Image title](https://matplotlib.org/stable/_images/sphx_glr_simple_plot_001.png){ width="500" }
   <figcaption>Sample figure with a grid.</figcaption>
 </figure>
-
-### Show figure
-
-We can show the figure with the `show` method:
-
-```python
-plt.show()
-```
-
-This will open a new window with the figure. 
-
-### Save figure
-
-Finally, we can save the figure with the `savefig` method:
-
-```python
-fig.savefig('co2_levels.png')
-```
