@@ -2,7 +2,35 @@
 
 ## Introduction
 
+SQL (Structured Query Language) is a programming language used to communicate with data stored in a 
+relational database management system. SQL syntax is similar to the English language, which makes it 
+relatively easy to write, read, and interpret.
+
+SQL is used to perform tasks such as:
+* Create new databases
+* Create new tables in a database
+* Insert records in a database
+* Update records in a database
+* Delete records from a database
+* Retrieve data from a database
+
+In this section we will cover the basics of SQL, and how to connect to a SQL database from Python.
+The most important operation that we will perform is the `SELECT` statement, which is used to
+read data from a database. We will also cover the `INSERT` (create new data), `UPDATE` (update existing registries)
+and `DELETE` statements, which are used to modify data in a database.
+
 ## SQL DataBase engines 
+
+There are many different SQL database engines, but the most common are:
+
+* SQLite
+* MySQL
+* PostgreSQL
+* Microsoft SQL Server
+* Oracle SQL
+
+They all share a common SQL syntax, but each has its own unique set of features and capabilities. Once
+we get familiar with SQL, it is relatively easy to switch between different database engines.
 
 ## SQL language
 
