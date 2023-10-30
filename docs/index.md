@@ -28,5 +28,5 @@ but there might be some gaps and typos. I will include more chapters in the note
 
 ## Detecting errors in the notes
 
-If you find any error, please write me at [gconangla@faculty.ie.edu](gconangla@faculty.ie.edu) and I will try to
-fix it as fast as I can.
+If you find any error, please write me at [gconangla@faculty.ie.edu](mailto:gconangla@faculty.ie.edu)
+and I will try to fix it as fast as I can.
