@@ -245,7 +245,7 @@ print(np.hstack((a,b)))
  [0. 0. 8. 2.]]
 ```
 
-### Linear algebra
+## Linear algebra
 
 NumPy provides the `linalg` package to perform linear algebra operations. To compute the inverse of a matrix:
 
@@ -273,7 +273,7 @@ print(v)
  [ 0.56576746 -0.90937671]]
 ```
 
-### Random numbers
+## Random numbers
 
 NumPy has powerful random number generating capabilities. It uses a particular algorithm called the Mersenne Twister
 to generate pseudorandom numbers. The `random` module provides tools for making random selections. For example,

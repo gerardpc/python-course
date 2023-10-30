@@ -91,8 +91,19 @@ ax.plot(x, y, color='#eeefff')
 To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
 
 ```python
-ax.hist(climate_change['co2'], bins=50)
+fig, axs = plt.subplots(1, 2)
+
+n_bins = 20
+
+axs[0].hist(dist1, bins=n_bins)
+axs[1].hist(dist2, bins=n_bins)
 ```
+
+<figure markdown>
+  ![Image title](https://matplotlib.org/stable/_images/sphx_glr_hist_001.png){ width="500" }
+  <figcaption>A double histogram example.</figcaption>
+</figure>
+
 
 ## Show figure
 
