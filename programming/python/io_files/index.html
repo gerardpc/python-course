@@ -904,6 +904,11 @@ the inverse operation and deserialize a JSON string into a Python dictionary:</p
 <a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
 </code></pre></div></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can first read a JSON file into a string, and then use <code>json.loads()</code> to convert it into a Python dictionary.
+The result is the same as using <code>json.load()</code> to read the file directly into a dictionary.</p>
+</div>
 
 
 
