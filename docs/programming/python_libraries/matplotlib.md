@@ -86,6 +86,14 @@ example, or we can use the hexadecimal code of the color:
 ax.plot(x, y, color='#eeefff')
 ```
 
+## Creating a histogram
+
+To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
+
+```python
+ax.hist(climate_change['co2'], bins=50)
+```
+
 ## Show figure
 
 Once the plot is ready, we can show the figure with the `show` method:

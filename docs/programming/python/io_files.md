@@ -232,3 +232,7 @@ the inverse operation and deserialize a JSON string into a Python dictionary:
     # parse data:  
     res = json.loads(data)  
     ```
+  
+!!!note
+    We can first read a JSON file into a string, and then use `json.loads()` to convert it into a Python dictionary.
+    The result is the same as using `json.load()` to read the file directly into a dictionary.
