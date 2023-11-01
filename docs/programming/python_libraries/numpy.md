@@ -200,6 +200,21 @@ print(a[2:5])
 [ 8 27 64]
 ```
 
+We can use logical operators to select elements from an array:
+
+```python
+b = np.arange(12).reshape(3, 4)
+print(b)
+# Output:
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+
+print(b[b > 4])
+# Output:
+[ 5  6  7  8  9 10 11]
+```
+
 Multidimensional arrays can have one index per axis. These indices are given in a tuple separated by commas:
 
 ```python
