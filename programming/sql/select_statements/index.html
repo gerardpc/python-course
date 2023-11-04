@@ -594,25 +594,31 @@
     GROUP BY and aggregate functions
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="GROUP BY and aggregate functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#having" class="md-nav__link">
     HAVING
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#case" class="md-nav__link">
-    CASE
+  <a href="#case-statements" class="md-nav__link">
+    CASE statements
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#table-joins" class="md-nav__link">
-    Table joins
+    Table JOINs
   </a>
   
 </li>
@@ -620,6 +626,20 @@
         <li class="md-nav__item">
   <a href="#combine-rows-from-two-queries" class="md-nav__link">
     Combine rows from two queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subqueries" class="md-nav__link">
+    Subqueries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    Common Table Expressions (CTEs)
   </a>
   
 </li>
@@ -760,25 +780,31 @@
     GROUP BY and aggregate functions
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="GROUP BY and aggregate functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#having" class="md-nav__link">
     HAVING
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#case" class="md-nav__link">
-    CASE
+  <a href="#case-statements" class="md-nav__link">
+    CASE statements
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#table-joins" class="md-nav__link">
-    Table joins
+    Table JOINs
   </a>
   
 </li>
@@ -786,6 +812,20 @@
         <li class="md-nav__item">
   <a href="#combine-rows-from-two-queries" class="md-nav__link">
     Combine rows from two queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subqueries" class="md-nav__link">
+    Subqueries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    Common Table Expressions (CTEs)
   </a>
   
 </li>
@@ -906,7 +946,7 @@ number of rows in each group:
 <p>The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
 (* is a special expression that is not evaluated, it simply returns the number of rows.)</p>
 </div>
-<h2 id="having">HAVING<a class="headerlink" href="#having" title="Permanent link">&para;</a></h2>
+<h3 id="having">HAVING<a class="headerlink" href="#having" title="Permanent link">&para;</a></h3>
 <p>HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
 GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.</p>
 <div class="admonition note">
@@ -930,7 +970,7 @@ Gives you a table of all cities in MA and the number of addresses in each city. 
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">Having</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span>
 </code></pre></div></p>
 <p>Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.</p>
-<h2 id="case">CASE<a class="headerlink" href="#case" title="Permanent link">&para;</a></h2>
+<h2 id="case-statements">CASE statements<a class="headerlink" href="#case-statements" title="Permanent link">&para;</a></h2>
 <p>The CASE statement goes through conditions as and <code>if/elif</code> statement, and returns a column:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Quantity</span><span class="p">,</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">CASE</span><span class="w"> </span>
@@ -940,7 +980,7 @@ Gives you a table of all cities in MA and the number of addresses in each city. 
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">QuantityText</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="table-joins">Table joins<a class="headerlink" href="#table-joins" title="Permanent link">&para;</a></h2>
+<h2 id="table-joins">Table JOINs<a class="headerlink" href="#table-joins" title="Permanent link">&para;</a></h2>
 <p>A join <em>stitches</em> together 2 tables, based on some condition (e.g. equality of a row).
 We use the <code>JOIN</code> when we want to query data from multiple tables at once. The basic syntax is:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span>
@@ -990,6 +1030,48 @@ Subtract a result set from another result set:
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">MINUS</span><span class="w"> </span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div></p>
+<h2 id="subqueries">Subqueries<a class="headerlink" href="#subqueries" title="Permanent link">&para;</a></h2>
+<p>A subquery is a SELECT query nested inside another query. We can use subqueries to query data from
+multiple tables, or to query data from the same table using different conditions. For example,
+we can use a subquery to find the name of the customer who made the most recent order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">CustomerName</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">FROM</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="n">Customers</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">WHERE</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">            </span><span class="n">CustomerID</span><span class="w"> </span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">        </span><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">            </span><span class="n">Orders</span><span class="w"> </span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">        </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">            </span><span class="n">OrderDate</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">        </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">    </span><span class="p">);</span>
+</code></pre></div>
+<h2 id="common-table-expressions-ctes">Common Table Expressions (CTEs)<a class="headerlink" href="#common-table-expressions-ctes" title="Permanent link">&para;</a></h2>
+<p>A Common Table Expression (CTE) is a temporary result set that we can reference within another query.
+It is similar to a subquery, but it is more readable (because it has a name), and hence it is easier to 
+maintain. </p>
+<p>CTEs always start with the <code>WITH</code> keyword, followed by the name of the CTE, and the query that defines it.
+For example, we can use a CTE to find the name of the customer who made the most
+recent order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">WITH</span><span class="w"> </span><span class="n">last_order</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">        </span><span class="n">CustomerID</span><span class="w"> </span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">        </span><span class="n">Orders</span><span class="w"> </span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">        </span><span class="n">OrderDate</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="p">)</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span><span class="n">CustomerName</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="k">FROM</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">    </span><span class="n">Customers</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="k">WHERE</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">    </span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">last_order</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">;</span>
+</code></pre></div>
 
 
 
