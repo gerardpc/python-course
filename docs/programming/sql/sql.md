@@ -33,6 +33,18 @@ There are many different SQL database engines, but the most common are:
 They all share a common SQL syntax, but each has its own unique set of features and capabilities. Once
 we get familiar with SQL, it is relatively easy to switch between different database engines.
 
+## Connecting to a SQL database
+
+In order to connect to an already existing SQL database, we have several options:
+
+* Use a GUI (Graphical User Interface) such as [DBeaver](https://dbeaver.io/).
+* Connect to the DB from PyCharm (see [here](https://www.jetbrains.com/help/pycharm/connecting-to-a-database.html)). 
+* Use a general Python package such as [SQLAlchemy](https://www.sqlalchemy.org/), that works
+  with many different SQL engines.
+* Use a specific Python package for the SQL engine that we are using. For example, 
+  [mysql.connector](https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html) 
+  for MySQL, or [psycopg2](https://www.psycopg.org/docs/usage.html) for PostgreSQL.
+
 ## SQL language
 
 ### Select queries
