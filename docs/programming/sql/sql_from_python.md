@@ -115,3 +115,44 @@ with SessionLocal() as session:
 
     The `index` argument is used to specify whether to include the index of the dataframe as a 
     column or not.
+
+### Working snippet
+
+After installing sqlalchemy and saving a SQLite database called `hr` in the same folder as the
+Python script, we can use the following code to read all the rows from the `employees` table:
+
+```python
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+import pandas as pd
+
+DB_URI = "sqlite:///hr"
+
+engine = create_engine(DB_URI, pool_pre_ping=True)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+)
+
+query = "SELECT * FROM employees"
+
+with SessionLocal() as session:
+    df = pd.read_sql_query(text(query), session.connection())
+
+print(df.head())
+```
+
+!!!note
+    The previous code should run "as is" if the `hr` database is in the same folder as the Python.
+
+```python
+# Output:
+   employee_id first_name last_name  ... manager_id department_id Avg_Salary
+0          100     Steven      King  ...          0            90       None
+1          101      Neena   Kochhar  ...        100            90       None
+2          102        Lex   De Haan  ...        100            90       None
+3          103  Alexander    Hunold  ...        102            60       None
+4          104      Bruce     Ernst  ...        103            60       None
+```
