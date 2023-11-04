@@ -12,7 +12,7 @@
         <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../modification_statements/">
+        <link rel="next" href="../window_functions/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
@@ -659,6 +659,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../window_functions/" class="md-nav__link">
+        Window functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../modification_statements/" class="md-nav__link">
         Data modification statements
       </a>
@@ -946,6 +960,15 @@ number of rows in each group:
 <p>The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
 (* is a special expression that is not evaluated, it simply returns the number of rows.)</p>
 </div>
+<p>Usual aggregate functions are:</p>
+<ul>
+<li><code>COUNT</code> (count the number of rows)</li>
+<li><code>SUM</code> (sum of all values in a column)</li>
+<li><code>AVG</code> (average of all values in a column)</li>
+<li><code>MIN</code> (minimum value in a column)</li>
+<li><code>MAX</code> (maximum value in a column)</li>
+<li><code>STDDEV</code> (standard deviation of all values in a column)</li>
+</ul>
 <h3 id="having">HAVING<a class="headerlink" href="#having" title="Permanent link">&para;</a></h3>
 <p>HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
 GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.</p>
