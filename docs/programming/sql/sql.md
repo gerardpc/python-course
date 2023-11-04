@@ -47,22 +47,42 @@ In order to connect to an already existing SQL database, we have several options
 
 ## SQL language
 
-### Select queries
+### Introduction
+
+SQL is a declarative language, which means that we tell the database what we want to do, and the database
+engine figures out how to do it. This is different from imperative languages such as Python, where we
+tell the computer exactly what to do, step by step.
+
+SQL is built over queries, which are statements that we send to the database engine. The most common
+query is the `SELECT` statement, which is used to read data from a database. 
+
+### SELECT statement
 
 !!!note
     Although it is common practice to put SQL reserved words in capital letters,
-    in general it is not necessary.
+    in general it is not necessary. For example, `SELECT` and `select` are equivalent.
 
-Query data in columns c1, c2 from a table
+The `SELECT` statement is used to read data from a database. The basic syntax is:
 ```sql
 SELECT 
     c1, c2 
 FROM some_table;
 ```
-Query all rows and columns from a table
+This query will return columns `c1`, `c2` from the table `some_table`. 
+We can also use the `*` to query all rows from a table
 ```sql
 SELECT * FROM some_table;
 ```
+
+!!!note
+    The select statement from SQL is similar to panda's `.loc` function. 
+    For example, to write the previous query in pandas we would do:
+    ```python
+    df.loc[:, ['c1', 'c2']]
+    ```
+
+#### Aliases
+
 Create aliases for tables/columns:
 Query all rows and columns from a table
 ```sql
