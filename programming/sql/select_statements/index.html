@@ -590,8 +590,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#group-by-and-aggregates" class="md-nav__link">
-    GROUP BY and AGGREGATES
+  <a href="#group-by-and-aggregate-functions" class="md-nav__link">
+    GROUP BY and aggregate functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    HAVING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    CASE
   </a>
   
 </li>
@@ -599,6 +613,13 @@
         <li class="md-nav__item">
   <a href="#table-joins" class="md-nav__link">
     Table joins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combine-rows-from-two-queries" class="md-nav__link">
+    Combine rows from two queries
   </a>
   
 </li>
@@ -647,7 +668,7 @@
   
     <li class="md-nav__item">
       <a href="../sql_from_python/" class="md-nav__link">
-        Sql from python
+        SQL from Python
       </a>
     </li>
   
@@ -735,8 +756,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#group-by-and-aggregates" class="md-nav__link">
-    GROUP BY and AGGREGATES
+  <a href="#group-by-and-aggregate-functions" class="md-nav__link">
+    GROUP BY and aggregate functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#having" class="md-nav__link">
+    HAVING
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    CASE
   </a>
   
 </li>
@@ -744,6 +779,13 @@
         <li class="md-nav__item">
   <a href="#table-joins" class="md-nav__link">
     Table joins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combine-rows-from-two-queries" class="md-nav__link">
+    Combine rows from two queries
   </a>
   
 </li>
@@ -765,17 +807,17 @@
 
 
 <h1 id="select-statement">SELECT statement<a class="headerlink" href="#select-statement" title="Permanent link">&para;</a></h1>
+<p>The <code>SELECT</code> statement is used to read data from a database. The basic syntax is:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="p">;</span>
+</code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Although it is common practice to put SQL reserved words in capital letters,
 in general it is not necessary. For example, <code>SELECT</code> and <code>select</code> are equivalent.</p>
 </div>
-<p>The <code>SELECT</code> statement is used to read data from a database. The basic syntax is:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="p">;</span>
-</code></pre></div>
-This query will return columns <code>c1</code>, <code>c2</code> from the table <code>some_table</code>. 
+<p>The last query will return columns <code>c1</code>, <code>c2</code> from the table <code>some_table</code>. 
 We can also use the <code>*</code> to query all rows from a table
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="p">;</span>
 </code></pre></div></p>
@@ -802,7 +844,13 @@ distinguish between them:</p>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
 </code></pre></div>
-<p>We will see more about <code>JOIN</code> statements later. We can also use aliases to define new columns:
+<p>We will see more about <code>JOIN</code> statements later. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can use break lines in SQL queries to make them more readable, but this is not necessary.
+With breaklines or not, the query will be executed in the same way.</p>
+</div>
+<p>We can also use aliases to define new columns:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">Address</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PostalCode</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Country</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span>
@@ -825,7 +873,7 @@ only a subset of the rows. We can do this using the <code>WHERE</code> clause:</
 <p class="admonition-title">Note</p>
 <p><code>some_condition</code> can be of type <code>=</code> (e.g. <code>A = 3</code>), different <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, etc. 
 Conditions can be chained by <code>AND</code> and <code>OR</code> operators. They can also be of the type <code>in a set</code>, e.g.:
-<code>IN (value1, value2, ...);</code>, or equivalently in a derived table, <code>IN (SELECT ...)</code>.</p>
+<code>IN (value1, value2, ...);</code>, or equivalently in a derived table with one column, <code>IN (SELECT ...)</code>.</p>
 </div>
 <h2 id="other-operators">Other operators<a class="headerlink" href="#other-operators" title="Permanent link">&para;</a></h2>
 <h3 id="distinct">DISTINCT<a class="headerlink" href="#distinct" title="Permanent link">&para;</a></h3>
@@ -843,31 +891,32 @@ Conditions can be chained by <code>AND</code> and <code>OR</code> operators. The
 To skip offset of rows and return the next n rows, we can use the <code>OFFSET</code> clause:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="k">offset</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="group-by-and-aggregates">GROUP BY and AGGREGATES<a class="headerlink" href="#group-by-and-aggregates" title="Permanent link">&para;</a></h2>
-<p>Group rows using an aggregate function
+<h2 id="group-by-and-aggregate-functions">GROUP BY and aggregate functions<a class="headerlink" href="#group-by-and-aggregate-functions" title="Permanent link">&para;</a></h2>
+<p>Like in pandas, we can group unique values of one or more columns and apply an aggregate function to them</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">aggregate</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
+</code></pre></div>
+<p>Aggregate functions are, essentially, functions that take a set of values and return a single value.
+We apply the aggregate function to each column that is not grouped by. For example, we can count the
+number of rows in each group:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">creator</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">fragrances</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">creator</span><span class="p">;</span>
 </code></pre></div></p>
-<p>Aggregate functions are, essentially, COUNT. You can’t use COUNT without telling by which 
-GROUP BY the rows should be aggregated (basically every other column that is not counted). E.g.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">etl_origin_id</span><span class="p">,</span><span class="w"> </span><span class="n">creator</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">etl_fragrances</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">etl_origin_id</span><span class="p">,</span><span class="w"> </span><span class="n">creator</span><span class="p">;</span>
-</code></pre></div></p>
-<p>Inside a COUNT parentheses you can put a DISTINCT/ALL to count different appearances or all of them.</p>
+<p>Inside the <code>COUNT</code> parentheses you can put a DISTINCT to count different appearances or all of them.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
 (* is a special expression that is not evaluated, it simply returns the number of rows.)</p>
 </div>
-<p>There are two additional modifiers for the expression: ALL and DISTINCT. 
-These determine whether duplicates are discarded. Since ALL is the default, your example is the same 
-as count(ALL 1), which means that duplicates are retained. Since the expression "1" evaluates to non-null 
-for every row, and since you are not removing duplicates, COUNT(1) should always return the same number as COUNT(*).</p>
+<h2 id="having">HAVING<a class="headerlink" href="#having" title="Permanent link">&para;</a></h2>
+<p>HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
+GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Difference between HAVING and WHERE: 
 * HAVING is used to check conditions after the aggregation takes place. 
-* WHERE: is used to check conditions before the aggregation takes place.</p>
+* WHERE is used to check conditions before the aggregation takes place.
+Hence, usually WHERE is faster than HAVING.</p>
 </div>
-<p>This code:
+<p>For example, this code:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">select</span><span class="w"> </span><span class="n">City</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">From</span><span class="w"> </span><span class="n">Address</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">Where</span><span class="w"> </span><span class="k">State</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span>
@@ -881,7 +930,8 @@ Gives you a table of all cities in MA and the number of addresses in each city. 
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">Having</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span>
 </code></pre></div></p>
 <p>Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.</p>
-<p>The CASE statement goes through conditions as and <code>if/elif</code> statement, and returns a column. E.g.
+<h2 id="case">CASE<a class="headerlink" href="#case" title="Permanent link">&para;</a></h2>
+<p>The CASE statement goes through conditions as and <code>if/elif</code> statement, and returns a column:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Quantity</span><span class="p">,</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">CASE</span><span class="w"> </span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;The quantity is greater than 30&#39;</span>
@@ -889,44 +939,56 @@ Gives you a table of all cities in MA and the number of addresses in each city. 
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;The quantity is under 30&#39;</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">QuantityText</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="p">;</span>
-</code></pre></div></p>
-<p>TABLE JOINS</p>
+</code></pre></div>
 <h2 id="table-joins">Table joins<a class="headerlink" href="#table-joins" title="Permanent link">&para;</a></h2>
-<p>A join “sews” together 2 tables, based on some condition (e.g. equality of a row):
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
-</code></pre></div></p>
-<p>Joins can be of type:</p>
+<p>A join <em>stitches</em> together 2 tables, based on some condition (e.g. equality of a row).
+We use the <code>JOIN</code> when we want to query data from multiple tables at once. The basic syntax is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">t1</span><span class="w"> </span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="n">t2</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">ON</span><span class="w"> </span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="n">condition</span><span class="p">;</span>
+</code></pre></div>
+<p>For example, we can join the <code>Customers</code> and <code>Orders</code> tables to get the name of the customer
+who made each order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="n">Orders</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="n">Customers</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">ON</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The SQL Join is the equivalent of the <code>merge</code> function in pandas.</p>
+</div>
+<p>Joins can be of several different types:</p>
 <ul>
 <li>INNER (intersection of values)</li>
 <li>LEFT (Intersection + unpaired from left table)</li>
-<li>RIGHT (same with right table) or </li>
+<li>RIGHT (same but with right table) </li>
 <li>FULL OUTER (both).</li>
 </ul>
-<p>Combine rows from two queries
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">UNION</span><span class="w"> </span><span class="p">[</span><span class="k">ALL</span><span class="p">]</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<h2 id="combine-rows-from-two-queries">Combine rows from two queries<a class="headerlink" href="#combine-rows-from-two-queries" title="Permanent link">&para;</a></h2>
+<p>UNION ALL is used to combine the result from multiple SELECT statements into a single result set.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
-Return the intersection of two queries
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">INTERSECT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+<p>We can also find the intersection of two queries, or subtract one from the other. Intersection:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">INTERSECT</span><span class="w"> </span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div>
-Subtract a result set from another result set
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">MINUS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-</code></pre></div></p>
-<p>MANIPULATING TABLES</p>
-<p>Create a new table:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">     </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">     </span><span class="n">price</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">);</span>
-</code></pre></div>
-Delete the table from the database
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-</code></pre></div>
-Add a new column to the table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">column</span><span class="p">;</span>
-</code></pre></div>
-Drop column c from the table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">c</span><span class="p">;</span>
+Subtract a result set from another result set:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">MINUS</span><span class="w"> </span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div></p>
 
 
