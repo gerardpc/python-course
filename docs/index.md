@@ -10,11 +10,13 @@ This site contains notes for the following courses:
     * Matplotlib
     * SQL
     * PySpark
+  
 * **PYTHON FOR DATA ANALYSIS 1**, sections:
     * All Python sections (except for "Python packages")
     * NumPy
     * Pandas
     * Matplotlib
+  
 * **PYTHON FOR DATA ANALYSIS 2** 
 
 taught by Gerard Conangla Planes.

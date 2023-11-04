@@ -7,6 +7,7 @@ relational database management system. SQL syntax is similar to the English lang
 relatively easy to write, read, and interpret.
 
 SQL is used to perform tasks such as:
+
 * Create new databases
 * Create new tables in a database
 * Insert records in a database
