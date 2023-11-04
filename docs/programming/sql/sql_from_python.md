@@ -1,3 +1,5 @@
-### Connecting to SQL Databases from Python programs
+# SQL from Python
 
-### Reading/insert to a SQL database with Pandas
+## Connecting to SQL Databases with SQLAlchemy
+
+## Reading/insert to a SQL database with Pandas

@@ -1,16 +1,17 @@
 # SELECT statement
 
-!!!note
-    Although it is common practice to put SQL reserved words in capital letters,
-    in general it is not necessary. For example, `SELECT` and `select` are equivalent.
-
 The `SELECT` statement is used to read data from a database. The basic syntax is:
 ```sql
 SELECT 
     c1, c2 
 FROM some_table;
 ```
-This query will return columns `c1`, `c2` from the table `some_table`. 
+
+!!!note
+    Although it is common practice to put SQL reserved words in capital letters,
+    in general it is not necessary. For example, `SELECT` and `select` are equivalent.
+
+The last query will return columns `c1`, `c2` from the table `some_table`. 
 We can also use the `*` to query all rows from a table
 ```sql
 SELECT * FROM some_table;
@@ -46,7 +47,13 @@ FROM table1 AS t1
 INNER JOIN table2 AS t2 ON t1.id = t2.id;
 ```
 
-We will see more about `JOIN` statements later. We can also use aliases to define new columns:
+We will see more about `JOIN` statements later. 
+
+!!!note
+    We can use break lines in SQL queries to make them more readable, but this is not necessary.
+    With breaklines or not, the query will be executed in the same way.
+
+We can also use aliases to define new columns:
 ```sql
 SELECT 
     CustomerName, 
@@ -75,7 +82,7 @@ In the last example, `some_condition` is a boolean expression that evaluates to 
 !!!note
     `some_condition` can be of type `=` (e.g. `A = 3`), different `!=`, `>`, `<`, etc. 
     Conditions can be chained by `AND` and `OR` operators. They can also be of the type `in a set`, e.g.:
-    `IN (value1, value2, ...);`, or equivalently in a derived table, `IN (SELECT ...)`.
+    `IN (value1, value2, ...);`, or equivalently in a derived table with one column, `IN (SELECT ...)`.
 
 ## Other operators 
 
@@ -108,36 +115,39 @@ To skip offset of rows and return the next n rows, we can use the `OFFSET` claus
 SELECT c1, c2 FROM t ORDER BY c1 LIMIT n OFFSET offset;
 ```
 
-## GROUP BY and AGGREGATES
+## GROUP BY and aggregate functions
 
-Group rows using an aggregate function
+Like in pandas, we can group unique values of one or more columns and apply an aggregate function to them
+
 ```sql
 SELECT c1, aggregate(c2) FROM t GROUP BY c1;
 ```
 
-Aggregate functions are, essentially, COUNT. You can’t use COUNT without telling by which 
-GROUP BY the rows should be aggregated (basically every other column that is not counted). E.g.
+Aggregate functions are, essentially, functions that take a set of values and return a single value.
+We apply the aggregate function to each column that is not grouped by. For example, we can count the
+number of rows in each group:
 ```sql
-SELECT etl_origin_id, creator, count(*) from etl_fragrances group by etl_origin_id, creator;
+SELECT creator, count(*) from fragrances group by creator;
 ```
 
-Inside a COUNT parentheses you can put a DISTINCT/ALL to count different appearances or all of them.
+Inside the `COUNT` parentheses you can put a DISTINCT to count different appearances or all of them.
 
 !!!note 
     The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
     (* is a special expression that is not evaluated, it simply returns the number of rows.)
 
-There are two additional modifiers for the expression: ALL and DISTINCT. 
-These determine whether duplicates are discarded. Since ALL is the default, your example is the same 
-as count(ALL 1), which means that duplicates are retained. Since the expression "1" evaluates to non-null 
-for every row, and since you are not removing duplicates, COUNT(1) should always return the same number as COUNT(*).
+## HAVING
+
+HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
+GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.
 
 !!!note
     Difference between HAVING and WHERE: 
     * HAVING is used to check conditions after the aggregation takes place. 
-    * WHERE: is used to check conditions before the aggregation takes place.
+    * WHERE is used to check conditions before the aggregation takes place.
+    Hence, usually WHERE is faster than HAVING.
 
-This code:
+For example, this code:
 ```sql
 select City, COUNT(*)
 From Address
@@ -155,7 +165,10 @@ Having COUNT(*)>5
 
 Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.
 
-The CASE statement goes through conditions as and `if/elif` statement, and returns a column. E.g.
+## CASE
+
+The CASE statement goes through conditions as and `if/elif` statement, and returns a column:
+
 ```sql
 SELECT OrderID, Quantity,
 CASE 
@@ -166,55 +179,67 @@ END AS QuantityText
 FROM OrderDetails;
 ```
 
-TABLE JOINS
-
-
 ## Table joins
 
-A join “sews” together 2 tables, based on some condition (e.g. equality of a row):
+A join _stitches_ together 2 tables, based on some condition (e.g. equality of a row).
+We use the `JOIN` when we want to query data from multiple tables at once. The basic syntax is:
+
 ```sql
-SELECT c1, c2 FROM t1 INNER JOIN t2 ON condition;
+SELECT 
+    c1, c2 
+FROM 
+    t1 
+INNER JOIN 
+    t2
+ON 
+    condition;
 ```
- 
-Joins can be of type:
+
+For example, we can join the `Customers` and `Orders` tables to get the name of the customer
+who made each order:
+
+```sql
+SELECT 
+    Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM 
+    Orders
+INNER JOIN
+    Customers
+ON
+    Orders.CustomerID = Customers.CustomerID;
+```
+
+!!!note
+    The SQL Join is the equivalent of the `merge` function in pandas.
+
+Joins can be of several different types:
 
 * INNER (intersection of values)
 * LEFT (Intersection + unpaired from left table)
-* RIGHT (same with right table) or 
+* RIGHT (same but with right table) 
 * FULL OUTER (both).
 
-Combine rows from two queries
+## Combine rows from two queries
+
+UNION ALL is used to combine the result from multiple SELECT statements into a single result set.
+
 ```sql
-SELECT c1, c2 FROM t1 UNION [ALL] SELECT c1, c2 FROM t2;
-```
-Return the intersection of two queries
-```sql
-SELECT c1, c2 FROM t1 INTERSECT SELECT c1, c2 FROM t2;
-```
-Subtract a result set from another result set
-```sql
-SELECT c1, c2 FROM t1 MINUS SELECT c1, c2 FROM t2;
+SELECT c1, c2 FROM t1 
+UNION ALL
+SELECT c1, c2 FROM t2;
 ```
 
-MANIPULATING TABLES
+We can also find the intersection of two queries, or subtract one from the other. Intersection:
 
-Create a new table:
 ```sql
-CREATE TABLE t (
-     id INT PRIMARY KEY,
-     name VARCHAR NOT NULL,
-     price INT DEFAULT 0
-);
+SELECT c1, c2 FROM t1 
+INTERSECT 
+SELECT c1, c2 FROM t2;
 ```
-Delete the table from the database
+Subtract a result set from another result set:
 ```sql
-DROP TABLE t;
+SELECT c1, c2 FROM t1 
+MINUS 
+SELECT c1, c2 FROM t2;
 ```
-Add a new column to the table
-```sql
-ALTER TABLE t ADD column;
-```
-Drop column c from the table
-```sql
-ALTER TABLE t DROP COLUMN c;
-```
+

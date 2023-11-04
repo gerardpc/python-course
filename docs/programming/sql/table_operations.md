@@ -30,4 +30,28 @@ Remove all data in a table
 TRUNCATE TABLE t;
 ```
 
+MANIPULATING TABLES
+
+Create a new table:
+```sql
+CREATE TABLE t (
+     id INT PRIMARY KEY,
+     name VARCHAR NOT NULL,
+     price INT DEFAULT 0
+);
+```
+Delete the table from the database
+```sql
+DROP TABLE t;
+```
+Add a new column to the table
+```sql
+ALTER TABLE t ADD column;
+```
+Drop column c from the table
+```sql
+ALTER TABLE t DROP COLUMN c;
+```
+
+
 ### Table management
