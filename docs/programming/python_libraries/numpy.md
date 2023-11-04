@@ -40,6 +40,17 @@ import numpy as np
 The ndarray is a multidimensional array of elements of the same type, usually of numbers either integers or floats.
 The number of dimensions and items in an array is defined by its shape, which is a tuple of N non-negative integers.
 
+!!!note
+    Numpy arrays may look similar to Python lists, but they are actually very different. For example, unlike lists,
+    numpy arrays have a fixed size at creation time, and the elements of an array must be of the same type. Hence,
+    there are no type-checks when iterating through the elements of an array, which makes iteration through an array
+    much faster than through a list. 
+
+    Another important difference is that operations between arrays are **vectorized**, which means that they are
+    performed on all the elements of the arrays "at the same time", which makes them much faster than operations
+    between lists (which require `for` loops). The price to pay is that you can't use the `append` or `extend`
+    methods of lists to change the size of an array. Instead, you need to create a new array with the desired size.
+
 ### Creating Arrays
 
 There are several ways to create numpy arrays. The most common way is to create an array from a Python list,
