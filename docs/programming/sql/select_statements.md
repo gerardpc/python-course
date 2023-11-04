@@ -136,7 +136,7 @@ Inside the `COUNT` parentheses you can put a DISTINCT to count different appeara
     The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
     (* is a special expression that is not evaluated, it simply returns the number of rows.)
 
-## HAVING
+### HAVING
 
 HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
 GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.
@@ -165,7 +165,7 @@ Having COUNT(*)>5
 
 Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.
 
-## CASE
+## CASE statements
 
 The CASE statement goes through conditions as and `if/elif` statement, and returns a column:
 
@@ -179,7 +179,7 @@ END AS QuantityText
 FROM OrderDetails;
 ```
 
-## Table joins
+## Table JOINs
 
 A join _stitches_ together 2 tables, based on some condition (e.g. equality of a row).
 We use the `JOIN` when we want to query data from multiple tables at once. The basic syntax is:
@@ -243,3 +243,53 @@ MINUS
 SELECT c1, c2 FROM t2;
 ```
 
+## Subqueries
+
+A subquery is a SELECT query nested inside another query. We can use subqueries to query data from
+multiple tables, or to query data from the same table using different conditions. For example,
+we can use a subquery to find the name of the customer who made the most recent order:
+
+```sql
+SELECT 
+    CustomerName
+FROM
+    Customers
+WHERE
+    CustomerID = (
+        SELECT 
+            CustomerID 
+        FROM 
+            Orders 
+        ORDER BY 
+            OrderDate DESC 
+        LIMIT 1
+    );
+```
+
+## Common Table Expressions (CTEs)
+
+A Common Table Expression (CTE) is a temporary result set that we can reference within another query.
+It is similar to a subquery, but it is more readable (because it has a name), and hence it is easier to 
+maintain. 
+
+CTEs always start with the `WITH` keyword, followed by the name of the CTE, and the query that defines it.
+For example, we can use a CTE to find the name of the customer who made the most
+recent order:
+
+```sql
+WITH last_order AS (
+    SELECT 
+        CustomerID 
+    FROM 
+        Orders 
+    ORDER BY 
+        OrderDate DESC 
+    LIMIT 1
+)
+SELECT 
+    CustomerName
+FROM
+    Customers
+WHERE
+    CustomerID = last_order.CustomerID;
+```

@@ -314,7 +314,7 @@ print(np.random.rand())
 To pick a random number from a normal distribution:
 
 ```python
-print(np.random.randn())
+print(np.random.normal(loc=0.0, scale=1.0))
 # Output:
 -0.72487283708301885
 ```
