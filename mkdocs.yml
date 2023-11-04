@@ -70,6 +70,7 @@ nav:
   - 'SQL':
     - 'programming/sql/introduction.md'
     - 'programming/sql/select_statements.md'
+    - 'programming/sql/window_functions.md'
     - 'programming/sql/modification_statements.md'
     - 'programming/sql/table_operations.md'
     - 'programming/sql/sql_from_python.md'
