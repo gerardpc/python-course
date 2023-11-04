@@ -8,7 +8,7 @@ This site contains notes for the following courses:
     * All Python sections (except for "Python packages" and JSON files)
     * Pandas
     * Matplotlib
-    * SQL
+    * SQL (except for "Window functions")
     * PySpark
   
 * **PYTHON FOR DATA ANALYSIS 1**, sections:

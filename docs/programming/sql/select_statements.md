@@ -136,6 +136,15 @@ Inside the `COUNT` parentheses you can put a DISTINCT to count different appeara
     The COUNT function returns the number of rows for which the expression evaluates to a non-null value. 
     (* is a special expression that is not evaluated, it simply returns the number of rows.)
 
+Usual aggregate functions are:
+
+* `COUNT` (count the number of rows)
+* `SUM` (sum of all values in a column)
+* `AVG` (average of all values in a column)
+* `MIN` (minimum value in a column)
+* `MAX` (maximum value in a column)
+* `STDDEV` (standard deviation of all values in a column)
+
 ### HAVING
 
 HAVING is used to filter records that work on summarized GROUP BY results. HAVING is typically used with a 
