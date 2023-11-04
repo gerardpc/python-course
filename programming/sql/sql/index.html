@@ -540,6 +540,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#connecting-to-a-sql-database" class="md-nav__link">
+    Connecting to a SQL database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sql-language" class="md-nav__link">
     SQL language
   </a>
@@ -677,6 +684,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#connecting-to-a-sql-database" class="md-nav__link">
+    Connecting to a SQL database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sql-language" class="md-nav__link">
     SQL language
   </a>
@@ -803,6 +817,17 @@ and <code>DELETE</code> statements, which are used to modify data in a database.
 </ul>
 <p>They all share a common SQL syntax, but each has its own unique set of features and capabilities. Once
 we get familiar with SQL, it is relatively easy to switch between different database engines.</p>
+<h2 id="connecting-to-a-sql-database">Connecting to a SQL database<a class="headerlink" href="#connecting-to-a-sql-database" title="Permanent link">&para;</a></h2>
+<p>In order to connect to an already existing SQL database, we have several options:</p>
+<ul>
+<li>Use a GUI (Graphical User Interface) such as <a href="https://dbeaver.io/">DBeaver</a>.</li>
+<li>Connect to the DB from PyCharm (see <a href="https://www.jetbrains.com/help/pycharm/connecting-to-a-database.html">here</a>). </li>
+<li>Use a general Python package such as <a href="https://www.sqlalchemy.org/">SQLAlchemy</a>, that works
+  with many different SQL engines.</li>
+<li>Use a specific Python package for the SQL engine that we are using. For example, 
+  <a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html">mysql.connector</a> 
+  for MySQL, or <a href="https://www.psycopg.org/docs/usage.html">psycopg2</a> for PostgreSQL.</li>
+</ul>
 <h2 id="sql-language">SQL language<a class="headerlink" href="#sql-language" title="Permanent link">&para;</a></h2>
 <h3 id="select-queries">Select queries<a class="headerlink" href="#select-queries" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
