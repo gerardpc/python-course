@@ -1,21 +1,33 @@
 # Data modification statements
 
-Insert one row into a table
+Data modification statements are used to modify data in a database, in contrast to data query statements,
+which are used to read data from a database and do not modify the data. 
+
+## INSERT
+
+INSERT statements are used to add new rows to a table. The syntax is as follows, to insert one row into a table:
+
 ```sql
-INSERT INTO t(column_list)
-VALUES(value_list);
+INSERT INTO table_name (column_list)
+VALUES (value_list);
 ```
-Insert multiple rows into a table
+To insert multiple rows into a table, we can use the following syntax:
+
 ```sql
-INSERT INTO t(column_list)
-VALUES (value_list), 
-       (value_list), …;
+INSERT INTO table_name (column_list)
+VALUES (value_list_1),
+        (value_list_2),
+        (value_list_3),
+        ...
+        (value_list_n);
 ```
-Insert rows from t2 into t1
+
+We can also insert rows into a table from another table, using the following syntax:
+
 ```sql
-INSERT INTO t1(column_list)
+INSERT INTO table_name (column_list)
 SELECT column_list
-FROM t2;
+FROM table_name;
 ```
 
 !!!note
@@ -29,25 +41,24 @@ FROM t2;
     With indices, however, this operation becomes O(log(n)). 
 
 
-Update new value in the column c1 for all rows
+## UPDATE
+
+UPDATE statements are used to modify existing rows in a table. The syntax is as follows:
+
 ```sql
-UPDATE t
-SET c1 = new_value;
-```
-Update values in the column c1, c2 that match the condition
-```sql
-UPDATE t
-SET c1 = new_value, 
-        c2 = new_value
-WHERE condition;
-```
-Delete all data in a table
-```sql
-DELETE FROM t;
-Delete subset of rows in a table
-DELETE FROM t
+UPDATE table_name
+SET column_1 = value_1,
+    column_2 = value_2,
+    ...
+    column_n = value_n
 WHERE condition;
 ```
 
-MISSING
-WITH, TIES, USING, partition by, TOP, computed, window function, coalesce a outer join, LIKE, LOCATE, With, exemples https://ploomber.io/blog/sql/ , union, returning
+## DELETE
+
+DELETE statements are used to delete rows from a table. The syntax is as follows:
+
+```sql
+DELETE FROM table_name
+WHERE condition;
+```

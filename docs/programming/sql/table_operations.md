@@ -1,38 +1,12 @@
-#### Table constraints
+# Table operations
 
-Constraints: rules for the data in a table. The following constraints are commonly used in SQL:
-* NOT NULL - Ensures that a column cannot have a NULL value
-* UNIQUE - Ensures that all values in a column are different
-* PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-* FOREIGN KEY - Prevents actions that would destroy links between tables
-* CHECK - Ensures that the values in a column satisfies a specific condition
-* DEFAULT - Sets a default value for a column if no value is specified
-* CREATE INDEX - Used to create and retrieve data from the database very quickly
+Beyond the basic CRUD (create, read, update, delete) operations, there are a number of other operations 
+that can be performed on tables.
 
-Add a constraint
-```sql
-ALTER TABLE t ADD constraint;
-```
-Drop a constraint
-```sql
-ALTER TABLE t DROP constraint;
-```
-Rename a table from t1 to t2
-```sql
-ALTER TABLE t1 RENAME TO t2;
-```
-Rename column c1 to c2
-```sql
-ALTER TABLE t1 RENAME c1 TO c2 ;
-```
-Remove all data in a table
-```sql
-TRUNCATE TABLE t;
-```
+## Creating a table
 
-MANIPULATING TABLES
+To create a new table in a database, we use the `CREATE TABLE` statement. The syntax is as follows:
 
-Create a new table:
 ```sql
 CREATE TABLE t (
      id INT PRIMARY KEY,
@@ -40,18 +14,78 @@ CREATE TABLE t (
      price INT DEFAULT 0
 );
 ```
-Delete the table from the database
+As seen in the example, we need to specify the name of the table, and a list of columns, each with a 
+name and a data type. We can also specify constraints on the columns, the most important being the
+primary key. The primary key is a column (or a combination of columns) that uniquely identifies each row.
+Hence, it cannot contain NULL values, and it cannot contain duplicate values.
+
+In the example, we have specified that the `id` column is the primary key. We have also specified that
+the `name` column cannot contain NULL values, and that the `price` column has a default value of 0.
+
+## Deleting a table
+
+Similarly, to delete a table from a database, we use the `DROP TABLE` statement. The syntax is as follows:
+
 ```sql
 DROP TABLE t;
 ```
-Add a new column to the table
+
+## Altering a table
+
+There are a number of operations that can be performed on a table after it has been created. These
+operations are performed using the `ALTER TABLE` statement. 
+
+* Add a new column to the table:
+    ```sql
+    ALTER TABLE t ADD column;
+    ```
+* Drop column `c` from the table
+    ```sql
+    ALTER TABLE t DROP COLUMN c;
+    ```
+
+* Rename a table from `t1` to `t2`
+    ```sql
+    ALTER TABLE t1 RENAME TO t2;
+    ``` 
+
+* Rename column c1 to c2
+    ```sql
+    ALTER TABLE t1 RENAME c1 TO c2 ;
+    ```
+  
+* Remove all data from a table (but keep the table structure):
+    ```sql
+    TRUNCATE TABLE t;
+    ```
+
+### Table constraints
+
+Table constraints are rules that are enforced on data columns on a table. These are used to limit the
+type of data that can go into a table. The following constraints are commonly used in SQL:
+
+* `NOT NULL` - Ensures that a column cannot have a NULL value
+* `UNIQUE` - Ensures that all values in a column are different
+* `PRIMARY KEY` - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+* `FOREIGN KEY` - Uniquely identifies a row/record in another table
+* `DEFAULT` - Sets a default value for a column if no value is specified
+* `CREATE INDEX` - Used to create and retrieve data from the database very quickly
+
+!!!note
+    Table indexes are used to speed up the retrieval of data from a table. Usually, the data in a 
+    table is stored in an unordered manner. When we create an index, the database stores the data in
+    a sorted manner, which makes it much faster to retrieve data from the table. However, this comes
+    at the cost of slower insertions, updates and deletions, since the database has to maintain the
+    sorted order of the data. Hence, we should only create indexes on columns that we frequently use
+    to retrieve data from the table.
+
+To add a constraint on a table, we also use the `ALTER TABLE` statement. The syntax is as follows:
 ```sql
-ALTER TABLE t ADD column;
-```
-Drop column c from the table
-```sql
-ALTER TABLE t DROP COLUMN c;
+ALTER TABLE t ADD constraint;
 ```
 
+To drop a constraint we use the following syntax:
+```sql
+ALTER TABLE t DROP constraint;
+```
 
-### Table management

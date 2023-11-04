@@ -84,6 +84,13 @@ In the last example, `some_condition` is a boolean expression that evaluates to 
     Conditions can be chained by `AND` and `OR` operators. They can also be of the type `in a set`, e.g.:
     `IN (value1, value2, ...);`, or equivalently in a derived table with one column, `IN (SELECT ...)`.
 
+!!!note
+    To match a string, we can use the `LIKE` operator, which allows us to use wildcards such as `%` and `_`.
+    For example, to match all strings that start with `a` and end with `b`, we can use the following condition:
+    ```sql
+    WHERE c1 LIKE 'a%b';
+    ```
+
 ## Other operators 
 
 ### DISTINCT
@@ -295,10 +302,44 @@ WITH last_order AS (
         OrderDate DESC 
     LIMIT 1
 )
+
 SELECT 
     CustomerName
 FROM
     Customers
 WHERE
     CustomerID = last_order.CustomerID;
+```
+
+We can define multiple CTEs in the same query, and we can also use CTEs to query data from multiple tables:
+    
+```sql
+WITH 
+    last_order AS (
+        SELECT 
+            CustomerID 
+        FROM 
+            Orders 
+        ORDER BY 
+            OrderDate DESC 
+        LIMIT 1
+    ),
+    customer AS (
+        SELECT 
+            CustomerName
+        FROM
+            Customers
+        WHERE
+            CustomerID = last_order.CustomerID
+    )
+
+SELECT
+    customer.CustomerName,
+    Orders.OrderDate
+FROM
+    Orders
+INNER JOIN
+    customer
+ON
+    Orders.CustomerID = customer.CustomerID;
 ```
