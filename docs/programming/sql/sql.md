@@ -81,66 +81,83 @@ SELECT * FROM some_table;
     df.loc[:, ['c1', 'c2']]
     ```
 
-#### Aliases
+### Aliases
 
-Create aliases for tables/columns:
-Query all rows and columns from a table
+Sometimes we want to rename the columns that we are querying. We can do this using aliases for tables and columns:
+
 ```sql
 SELECT 
     CustomerID AS ID, 
     CustomerName AS Customer
-FROM some_table
+FROM some_table AS t;
 ```
-Access data from various tables:
+
+This is particularly useful when we are accessing data from multiple tables, and we want to avoid
+ambiguities. For example, if we have two tables with a column called `id`, we can use aliases to
+distinguish between them:
+
 ```sql
 SELECT 
-    o.OrderID, 
-    c.CustomerName 
-FROM 
-    Customers AS c, 
-    Orders AS o;
+    t1.id AS id1, 
+    t2.id AS id2
+FROM table1 AS t1
+INNER JOIN table2 AS t2 ON t1.id = t2.id;
 ```
-Access data from various tables:
+
+We will see more about `JOIN` statements later. We can also use aliases to define new columns:
 ```sql
 SELECT 
     CustomerName, 
     Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address 
 FROM Customers;
 ```
+
 !!!note
     The table we query from does not need to be an existing table: it can be any form of 
     derived table, created by another `SELECT ...` statement. Typical ways to create this
     _new_ tables to query from are Common Table Expressions (CTEs) and subqueries (just another
-    `SELECT` statement between parentheses.
+    `SELECT` statement between parentheses). We will see more about this later.
 
 
-### Where clauses
+### WHERE clauses
 
-Query data and filter rows with a condition
+So far we have seen how to query all rows from a table. However, in most cases we want to query
+only a subset of the rows. We can do this using the `WHERE` clause:
+
 ```sql
-SELECT c1, c2 FROM t WHERE some_condition;
+SELECT c1, c2 FROM table_1 as t WHERE some_condition;
 ```
+
+In the last example, `some_condition` is a boolean expression that evaluates to `True` or `False`.
+
 !!!note
     `some_condition` can be of type `=` (e.g. `A = 3`), different `!=`, `>`, `<`, etc. 
     Conditions can be chained by `AND` and `OR` operators. They can also be of the type `in a set`, e.g.:
     `IN (value1, value2, ...);`, or equivalently in a derived table, `IN (SELECT ...)`.
 
-Query distinct rows from a table
+### DISTINCT and ORDER BY
+
+Distinct rows from a table can be queried using the `DISTINCT` keyword:
+
 ```sql
-SELECT DISTINCT c1 FROM t WHERE condition;
+SELECT DISTINCT c1, c2 FROM t WHERE some_condition;
 ```
 
-Sort the result set in ascending or descending order
+We can also sort the result set in ascending or descending order using the `ORDER BY` clause:
+
 ```sql
-SELECT c1, c2 FROM t ORDER BY c1 ASC [DESC];
+SELECT c1, c2 FROM t ORDER BY c1 ASC [or DESC];
 ```
+
+### LIMIT and OFFSET
 
 Skip offset of rows and return the next n rows
 ```sql
 SELECT c1, c2 FROM t ORDER BY c1 LIMIT n OFFSET offset;
 ```
 
-COUNT/AGGREGATES
+### GROUP BY and AGGREGATES
+
 Group rows using an aggregate function
 ```sql
 SELECT c1, aggregate(c2) FROM t GROUP BY c1;
