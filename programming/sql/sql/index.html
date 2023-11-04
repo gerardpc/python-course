@@ -566,8 +566,7 @@
     SELECT statement
   </a>
   
-    <nav class="md-nav" aria-label="SELECT statement">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#aliases" class="md-nav__link">
@@ -576,14 +575,30 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#where-clauses" class="md-nav__link">
+    WHERE clauses
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#where-clauses" class="md-nav__link">
-    Where clauses
+  <a href="#distinct-and-order-by" class="md-nav__link">
+    DISTINCT and ORDER BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-and-offset" class="md-nav__link">
+    LIMIT and OFFSET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by-and-aggregates" class="md-nav__link">
+    GROUP BY and AGGREGATES
   </a>
   
 </li>
@@ -730,8 +745,7 @@
     SELECT statement
   </a>
   
-    <nav class="md-nav" aria-label="SELECT statement">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#aliases" class="md-nav__link">
@@ -740,14 +754,30 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#where-clauses" class="md-nav__link">
+    WHERE clauses
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#where-clauses" class="md-nav__link">
-    Where clauses
+  <a href="#distinct-and-order-by" class="md-nav__link">
+    DISTINCT and ORDER BY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-and-offset" class="md-nav__link">
+    LIMIT and OFFSET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by-and-aggregates" class="md-nav__link">
+    GROUP BY and AGGREGATES
   </a>
   
 </li>
@@ -897,23 +927,23 @@ For example, to write the previous query in pandas we would do:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">]]</span>
 </code></pre></div></p>
 </div>
-<h4 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h4>
-<p>Create aliases for tables/columns:
-Query all rows and columns from a table
+<h3 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h3>
+<p>Sometimes we want to rename the columns that we are querying. We can do this using aliases for tables and columns:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">CustomerID</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">CustomerName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customer</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">some_table</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
 </code></pre></div>
-Access data from various tables:
+<p>This is particularly useful when we are accessing data from multiple tables, and we want to avoid
+ambiguities. For example, if we have two tables with a column called <code>id</code>, we can use aliases to
+distinguish between them:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">o</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CustomerName</span><span class="w"> </span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">FROM</span><span class="w"> </span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span><span class="p">,</span><span class="w"> </span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id1</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id2</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t1</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
 </code></pre></div>
-Access data from various tables:
+<p>We will see more about <code>JOIN</code> statements later. We can also use aliases to define new columns:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">Address</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PostalCode</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">City</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;, &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Country</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span>
@@ -924,29 +954,33 @@ Access data from various tables:
 <p>The table we query from does not need to be an existing table: it can be any form of 
 derived table, created by another <code>SELECT ...</code> statement. Typical ways to create this
 <em>new</em> tables to query from are Common Table Expressions (CTEs) and subqueries (just another
-<code>SELECT</code> statement between parentheses.</p>
+<code>SELECT</code> statement between parentheses). We will see more about this later.</p>
 </div>
-<h3 id="where-clauses">Where clauses<a class="headerlink" href="#where-clauses" title="Permanent link">&para;</a></h3>
-<p>Query data and filter rows with a condition
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">some_condition</span><span class="p">;</span>
-</code></pre></div></p>
+<h3 id="where-clauses">WHERE clauses<a class="headerlink" href="#where-clauses" title="Permanent link">&para;</a></h3>
+<p>So far we have seen how to query all rows from a table. However, in most cases we want to query
+only a subset of the rows. We can do this using the <code>WHERE</code> clause:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table_1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">some_condition</span><span class="p">;</span>
+</code></pre></div>
+<p>In the last example, <code>some_condition</code> is a boolean expression that evaluates to <code>True</code> or <code>False</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>some_condition</code> can be of type <code>=</code> (e.g. <code>A = 3</code>), different <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, etc. 
 Conditions can be chained by <code>AND</code> and <code>OR</code> operators. They can also be of the type <code>in a set</code>, e.g.:
 <code>IN (value1, value2, ...);</code>, or equivalently in a derived table, <code>IN (SELECT ...)</code>.</p>
 </div>
-<p>Query distinct rows from a table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
-</code></pre></div></p>
-<p>Sort the result set in ascending or descending order
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">ASC</span><span class="w"> </span><span class="p">[</span><span class="k">DESC</span><span class="p">];</span>
-</code></pre></div></p>
+<h3 id="distinct-and-order-by">DISTINCT and ORDER BY<a class="headerlink" href="#distinct-and-order-by" title="Permanent link">&para;</a></h3>
+<p>Distinct rows from a table can be queried using the <code>DISTINCT</code> keyword:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">some_condition</span><span class="p">;</span>
+</code></pre></div>
+<p>We can also sort the result set in ascending or descending order using the <code>ORDER BY</code> clause:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">ASC</span><span class="w"> </span><span class="p">[</span><span class="k">or</span><span class="w"> </span><span class="k">DESC</span><span class="p">];</span>
+</code></pre></div>
+<h3 id="limit-and-offset">LIMIT and OFFSET<a class="headerlink" href="#limit-and-offset" title="Permanent link">&para;</a></h3>
 <p>Skip offset of rows and return the next n rows
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="k">offset</span><span class="p">;</span>
 </code></pre></div></p>
-<p>COUNT/AGGREGATES
-Group rows using an aggregate function
+<h3 id="group-by-and-aggregates">GROUP BY and AGGREGATES<a class="headerlink" href="#group-by-and-aggregates" title="Permanent link">&para;</a></h3>
+<p>Group rows using an aggregate function
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">aggregate</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Aggregate functions are, essentially, COUNT. You can’t use COUNT without telling by which 
