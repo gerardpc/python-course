@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#table-constraints" class="md-skip">
+        <a href="#table-operations" class="md-skip">
           Skip to content
         </a>
       
@@ -556,6 +556,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Table operations
@@ -572,6 +574,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -580,16 +584,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-constraints" class="md-nav__link">
-    Table constraints
+  <a href="#creating-a-table" class="md-nav__link">
+    Creating a table
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#table-management" class="md-nav__link">
-    Table management
+  <a href="#deleting-a-table" class="md-nav__link">
+    Deleting a table
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altering-a-table" class="md-nav__link">
+    Altering a table
+  </a>
+  
+    <nav class="md-nav" aria-label="Altering a table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-constraints" class="md-nav__link">
+    Table constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -639,6 +663,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -647,16 +673,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-constraints" class="md-nav__link">
-    Table constraints
+  <a href="#creating-a-table" class="md-nav__link">
+    Creating a table
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#table-management" class="md-nav__link">
-    Table management
+  <a href="#deleting-a-table" class="md-nav__link">
+    Deleting a table
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altering-a-table" class="md-nav__link">
+    Altering a table
+  </a>
+  
+    <nav class="md-nav" aria-label="Altering a table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-constraints" class="md-nav__link">
+    Table constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -676,50 +722,81 @@
 
 
 
-  <h1>Table operations</h1>
-
-<h4 id="table-constraints">Table constraints<a class="headerlink" href="#table-constraints" title="Permanent link">&para;</a></h4>
-<p>Constraints: rules for the data in a table. The following constraints are commonly used in SQL:
-* NOT NULL - Ensures that a column cannot have a NULL value
-* UNIQUE - Ensures that all values in a column are different
-* PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-* FOREIGN KEY - Prevents actions that would destroy links between tables
-* CHECK - Ensures that the values in a column satisfies a specific condition
-* DEFAULT - Sets a default value for a column if no value is specified
-* CREATE INDEX - Used to create and retrieve data from the database very quickly</p>
-<p>Add a constraint
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+<h1 id="table-operations">Table operations<a class="headerlink" href="#table-operations" title="Permanent link">&para;</a></h1>
+<p>Beyond the basic CRUD (create, read, update, delete) operations, there are a number of other operations 
+that can be performed on tables.</p>
+<h2 id="creating-a-table">Creating a table<a class="headerlink" href="#creating-a-table" title="Permanent link">&para;</a></h2>
+<p>To create a new table in a database, we use the <code>CREATE TABLE</code> statement. The syntax is as follows:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">     </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">     </span><span class="n">price</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">);</span>
 </code></pre></div>
-Drop a constraint
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+As seen in the example, we need to specify the name of the table, and a list of columns, each with a 
+name and a data type. We can also specify constraints on the columns, the most important being the
+primary key. The primary key is a column (or a combination of columns) that uniquely identifies each row.
+Hence, it cannot contain NULL values, and it cannot contain duplicate values.</p>
+<p>In the example, we have specified that the <code>id</code> column is the primary key. We have also specified that
+the <code>name</code> column cannot contain NULL values, and that the <code>price</code> column has a default value of 0.</p>
+<h2 id="deleting-a-table">Deleting a table<a class="headerlink" href="#deleting-a-table" title="Permanent link">&para;</a></h2>
+<p>Similarly, to delete a table from a database, we use the <code>DROP TABLE</code> statement. The syntax is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
 </code></pre></div>
-Rename a table from t1 to t2
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
-</code></pre></div>
-Rename column c1 to c2
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="p">;</span>
-</code></pre></div>
-Remove all data in a table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<h2 id="altering-a-table">Altering a table<a class="headerlink" href="#altering-a-table" title="Permanent link">&para;</a></h2>
+<p>There are a number of operations that can be performed on a table after it has been created. These
+operations are performed using the <code>ALTER TABLE</code> statement. </p>
+<ul>
+<li>Add a new column to the table:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">column</span><span class="p">;</span>
+</code></pre></div></li>
+<li>
+<p>Drop column <code>c</code> from the table
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">c</span><span class="p">;</span>
 </code></pre></div></p>
-<p>MANIPULATING TABLES</p>
-<p>Create a new table:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">     </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">     </span><span class="n">price</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">);</span>
-</code></pre></div>
-Delete the table from the database
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
-</code></pre></div>
-Add a new column to the table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">column</span><span class="p">;</span>
-</code></pre></div>
-Drop column c from the table
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">c</span><span class="p">;</span>
+</li>
+<li>
+<p>Rename a table from <code>t1</code> to <code>t2</code>
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
 </code></pre></div></p>
-<h3 id="table-management">Table management<a class="headerlink" href="#table-management" title="Permanent link">&para;</a></h3>
+</li>
+<li>
+<p>Rename column c1 to c2
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Remove all data from a table (but keep the table structure):
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="table-constraints">Table constraints<a class="headerlink" href="#table-constraints" title="Permanent link">&para;</a></h3>
+<p>Table constraints are rules that are enforced on data columns on a table. These are used to limit the
+type of data that can go into a table. The following constraints are commonly used in SQL:</p>
+<ul>
+<li><code>NOT NULL</code> - Ensures that a column cannot have a NULL value</li>
+<li><code>UNIQUE</code> - Ensures that all values in a column are different</li>
+<li><code>PRIMARY KEY</code> - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table</li>
+<li><code>FOREIGN KEY</code> - Uniquely identifies a row/record in another table</li>
+<li><code>DEFAULT</code> - Sets a default value for a column if no value is specified</li>
+<li><code>CREATE INDEX</code> - Used to create and retrieve data from the database very quickly</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Table indexes are used to speed up the retrieval of data from a table. Usually, the data in a 
+table is stored in an unordered manner. When we create an index, the database stores the data in
+a sorted manner, which makes it much faster to retrieve data from the table. However, this comes
+at the cost of slower insertions, updates and deletions, since the database has to maintain the
+sorted order of the data. Hence, we should only create indexes on columns that we frequently use
+to retrieve data from the table.</p>
+</div>
+<p>To add a constraint on a table, we also use the <code>ALTER TABLE</code> statement. The syntax is as follows:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+</code></pre></div></p>
+<p>To drop a constraint we use the following syntax:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+</code></pre></div></p>
 
 
 
