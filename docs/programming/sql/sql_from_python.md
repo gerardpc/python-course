@@ -156,3 +156,38 @@ print(df.head())
 3          103  Alexander    Hunold  ...        102            60       None
 4          104      Bruce     Ernst  ...        103            60       None
 ```
+
+### Executing raw SQL queries
+
+Instead of using pandas to read and write to the database through its `read_sql_query`, we can also execute 
+raw SQL queries (i.e., any valid SQL code we want). We can do so with `session.execute(query)`. For
+example, if we wanted to delete a table from the DB we would do:
+
+```python
+from sqlalchemy import text
+
+
+query = "drop table some_table"
+
+with SessionLocal() as session:
+    session.execute(text(query))
+```
+
+!!!note
+    The `text` function is used to convert a string into a SQLAlchemy `TextClause` object, which
+    is the type of object that `session.execute` expects as the first argument.
+
+We can still convert the results of the query into a pandas dataframe with `pd.DataFrame(results)`,
+where `results` is the result of the query. For example, to read all the rows from a table called `employees`,
+we can use the following code:
+
+```python
+from sqlalchemy import text
+
+
+query = "select * from employees"
+
+with SessionLocal() as session:
+    df = pd.DataFrame(session.execute(text(query)))
+    print(df)
+```

@@ -267,6 +267,38 @@ If you get a `UnicodeEncodeError`, simply add encoding='utf-8':
 df.to_csv('file_name.csv', encoding='utf-8')
 ```
 
+#### Converting a dataframe to a dictionary
+
+We can convert a dataframe to a dictionary with the `.to_dict()` method. This method has several
+options, but the most common one is to convert the dataframe to a dictionary of lists, where the keys
+are the column names and the values are the values of each column:
+
+```python
+import pandas as pd
+
+df = pd.DataFrame(
+    {
+        "first": ["John", "Mary"],
+        "last": ["Doe", "Bo"],
+        "job": ["Nurse", "Economist"],
+        "height": [5.5, 6.0],
+        "weight": [130, 150],
+    }
+)
+
+print(df.to_dict())
+# Output
+{'first': {0: 'John', 1: 'Mary'}, 
+ 'last': {0: 'Doe', 1: 'Bo'}, 
+ 'job': {0: 'Nurse', 1: 'Economist'}, 
+ 'height': {0: 5.5, 1: 6.0}, 
+ 'weight': {0: 130, 1: 150}
+ }
+```
+
+There are other options, such as converting the dataframe to a dictionary of lists (`orient="list"`), or
+to a list of dictionaries (`orient="records"`).
+
 ### Viewing DataFrames
 
 To view the contents of a DataFrame, we can use one of several options:
