@@ -15,7 +15,7 @@
     
     
       
-        <title>PySpark - Python and data science</title>
+        <title>Other operations - Python and data science</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pyspark" class="md-skip">
+        <a href="#to-do" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PySpark
+              Other operations
             
           </span>
         </div>
@@ -411,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../numpy/" class="md-nav__link">
+      <a href="../../python_libraries/numpy/" class="md-nav__link">
         Numpy
       </a>
     </li>
@@ -425,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pandas/" class="md-nav__link">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
         Pandas
       </a>
     </li>
@@ -439,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../matplotlib/" class="md-nav__link">
+      <a href="../../python_libraries/matplotlib/" class="md-nav__link">
         Matplotlib
       </a>
     </li>
@@ -488,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         SQL
       </a>
     </li>
@@ -502,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/select_statements/" class="md-nav__link">
+      <a href="../select_statements/" class="md-nav__link">
         SELECT statement
       </a>
     </li>
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/window_functions/" class="md-nav__link">
+      <a href="../window_functions/" class="md-nav__link">
         Window functions
       </a>
     </li>
@@ -530,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/modification_statements/" class="md-nav__link">
+      <a href="../modification_statements/" class="md-nav__link">
         Data modification statements
       </a>
     </li>
@@ -544,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/table_operations/" class="md-nav__link">
+      <a href="../table_operations/" class="md-nav__link">
         Table operations
       </a>
     </li>
@@ -558,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/sql_from_python/" class="md-nav__link">
+      <a href="../sql_from_python/" class="md-nav__link">
         SQL queries from Python
       </a>
     </li>
@@ -589,8 +589,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -599,36 +597,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
+  <a href="#to-do" class="md-nav__link">
+    TO DO
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pandas-vs-spark" class="md-nav__link">
-    Pandas vs Spark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-accountscomputers" class="md-nav__link">
-    Setting up accounts/computers
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resilient-distributed-dataset-rdds" class="md-nav__link">
-    Resilient Distributed Dataset (RDDs)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rdd-actions-and-keyvalue-datastores" class="md-nav__link">
-    RDD Actions and key/value datastores.
+  <a href="#other-operations" class="md-nav__link">
+    Other operations
   </a>
   
 </li>
@@ -649,30 +626,25 @@
 
 
 
-<h1 id="pyspark">PySpark<a class="headerlink" href="#pyspark" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p><strong>Spark</strong> is a platform for cluster computing. Spark lets you spread data and computations over clusters 
-with multiple nodes (think of each node as a separate computer). Splitting up your data makes it easier 
-to work with very large datasets because each node only works with a small amount of data. This means
-that Spark is a common tool for working with big data (for example, for cleaning it up or transforming
-it into a more usable format).</p>
-<p>As each node works on its own subset of the total data, it also carries out a part of the total 
-calculations required, so that both data processing and computation are performed in parallel over 
-the nodes in the cluster. </p>
-<p><strong>PySpark</strong> is the Python API for Spark. It is a Python library that allows you to interact with Spark
-using Python. </p>
-<h2 id="pandas-vs-spark">Pandas vs Spark<a class="headerlink" href="#pandas-vs-spark" title="Permanent link">&para;</a></h2>
-<p>Spark DataFrames are conceptually equivalent to a Pandas DataFrame. The main difference is that
-Spark DataFrames are immutable, meaning that they cannot be changed after they are created. This
-allows Spark to do more optimization under the hood. </p>
-<p>However, setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
-Hence, we should only use Spark when our data is too big to work with on a single machine. If that is not the case,
-we should use Pandas instead.</p>
-<h2 id="setting-up-accountscomputers">Setting up accounts/computers<a class="headerlink" href="#setting-up-accountscomputers" title="Permanent link">&para;</a></h2>
-<h2 id="resilient-distributed-dataset-rdds">Resilient Distributed Dataset (RDDs)<a class="headerlink" href="#resilient-distributed-dataset-rdds" title="Permanent link">&para;</a></h2>
-<p>The fundamentals of using  and mapping
-Filtering and sorting</p>
-<h2 id="rdd-actions-and-keyvalue-datastores">RDD Actions and key/value datastores.<a class="headerlink" href="#rdd-actions-and-keyvalue-datastores" title="Permanent link">&para;</a></h2>
+  <h1>Other operations</h1>
+
+<h2 id="to-do">TO DO<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h2>
+<p>foreign keys
+indexes
+views
+primary keys and stackoverflow</p>
+<h1 id="other-operations">Other operations<a class="headerlink" href="#other-operations" title="Permanent link">&para;</a></h1>
+<p>To kill a stuck process:</p>
+<p>select pid, 
+       usename, 
+       pg_blocking_pids(pid) as blocked_by, 
+       query as blocked_query
+from pg_stat_activity
+where cardinality(pg_blocking_pids(pid)) &gt; 0;</p>
+<p>select * from pg_catalog.pg_stat_activity where pid = 386423</p>
+<p>SELECT pg_terminate_backend(<pid of the process>)</p>
+<p>Optimitzar queries:</p>
+<p>https://explain.dalibo.com/ i us explain(..) com explica a la web</p>
 
 
 
