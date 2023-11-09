@@ -15,7 +15,7 @@
     
     
       
-        <title>Pyspark - Python and data science</title>
+        <title>PySpark - Python and data science</title>
       
     
     
@@ -68,6 +68,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#pyspark" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pyspark
+              PySpark
             
           </span>
         </div>
@@ -584,6 +589,37 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pandas-vs-spark" class="md-nav__link">
+    Pandas vs Spark
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-accountscomputers" class="md-nav__link">
+    Setting up accounts/computers
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -599,10 +635,27 @@
 
 
 
-<p>SESSION 23 (LIVE IN-PERSON)
-Pyspark (1)
-Limitations of Pandas.
-Introduction to PySpark, including setting up accounts/computers and how to use
+<h1 id="pyspark">PySpark<a class="headerlink" href="#pyspark" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p><strong>Spark</strong> is a platform for cluster computing. Spark lets you spread data and computations over clusters 
+with multiple nodes (think of each node as a separate computer). Splitting up your data makes it easier 
+to work with very large datasets because each node only works with a small amount of data. This means
+that Spark is a common tool for working with big data (for example, for cleaning it up or transforming
+it into a more usable format).</p>
+<p>As each node works on its own subset of the total data, it also carries out a part of the total 
+calculations required, so that both data processing and computation are performed in parallel over 
+the nodes in the cluster. </p>
+<p><strong>PySpark</strong> is the Python API for Spark. It is a Python library that allows you to interact with Spark
+using Python. </p>
+<h2 id="pandas-vs-spark">Pandas vs Spark<a class="headerlink" href="#pandas-vs-spark" title="Permanent link">&para;</a></h2>
+<p>Spark DataFrames are conceptually equivalent to a Pandas DataFrame. The main difference is that
+Spark DataFrames are immutable, meaning that they cannot be changed after they are created. This
+allows Spark to do more optimization under the hood. </p>
+<p>However, setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
+Hence, we should only use Spark when our data is too big to work with on a single machine. If that is not the case,
+we should use Pandas instead.</p>
+<h2 id="setting-up-accountscomputers">Setting up accounts/computers<a class="headerlink" href="#setting-up-accountscomputers" title="Permanent link">&para;</a></h2>
+<p>and how to use
 Python to interact with Spark
 SESSION 24 (LIVE IN-PERSON)
 PySpark (2)
