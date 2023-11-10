@@ -59,39 +59,40 @@ with SessionLocal() as session:
 !!!note
     The session creation code is a bit obscure, but it is always the same, so it can be copied
     into a separate file. For example, we can copy the code above into a file 
-    called `database.py`. Then, we can import the `SessionLocal` class from that file as
-    follows:
+    called `database_session.py` (for example). Then, we can import the `SessionLocal` class 
+    from that file as follows:
 
     ```python
-    from database import SessionLocal
+    from database_session import SessionLocal
     ```    
 
 ## Reading/insert to a SQL database with Pandas
 
-Now that we have a session object, we can use it to read and write to the database, and the easiest
-way to do that is by sending raw SQL queries to pandas. To do that, we need to use the `read_sql_query`
-and `to_sql` functions from pandas.
+Now that we have a session object, we can use it to read and write to the database.
 
 ### Reading from a SQL database
 
-To use `read_sql_query`, we need to provide a SQL query and a session object. For example, to read
-all the rows from a table called `users`, we can use the following code:
+To read data from a SQL database and load it into a pandas DataFrame, we need to provide a SQL query and 
+a session object. For example, to read all the rows from a table called `users`, we can use the following code:
 
 ```python
 from sqlalchemy import text
 import pandas as pd
+from database_session import SessionLocal
 
-query = "SELECT * FROM users"
+
+query = text("SELECT * FROM users")
 
 with SessionLocal() as session:
-    df = pd.read_sql_query(text(query), session.connection())
+    df = pd.DataFrame(session.execute(query))
 ```
 
 This code will return a pandas dataframe with all the rows from the `users` table. 
 
 !!!note
     The `text` function is used to convert a string into a SQLAlchemy `TextClause` object, which
-    is the type of object that `read_sql_query` expects as the first argument.
+    is the type of object that `session.execute` expects as the first argument.
+
 
 ### Inserting into a SQL database
 
@@ -103,6 +104,8 @@ the rows from a dataframe called `df` into a table called `users`, we can use th
 ```python
 from sqlalchemy import text
 import pandas as pd
+from database_session import SessionLocal
+
 
 with SessionLocal() as session:
     df.to_sql("users", session.connection(), if_exists="append", index=False)
@@ -114,7 +117,7 @@ with SessionLocal() as session:
     to replace the table, we could use `if_exists="replace"` instead.
 
     The `index` argument is used to specify whether to include the index of the dataframe as a 
-    column or not.
+    column or not (usually we will not want to do that).
 
 ### Working snippet
 
@@ -136,10 +139,10 @@ SessionLocal = sessionmaker(
     bind=engine,
 )
 
-query = "SELECT * FROM employees"
+query = text("SELECT * FROM employees")
 
 with SessionLocal() as session:
-    df = pd.read_sql_query(text(query), session.connection())
+    df = pd.DataFrame(session.execute(query))
 
 print(df.head())
 ```
@@ -159,35 +162,17 @@ print(df.head())
 
 ### Executing raw SQL queries
 
-Instead of using pandas to read and write to the database through its `read_sql_query`, we can also execute 
-raw SQL queries (i.e., any valid SQL code we want). We can do so with `session.execute(query)`. For
+Not all SQL queries come from or should be inserted into a pandas DataFrame. With SQLAlchemy we can also execute 
+raw SQL queries (i.e., any valid SQL code we want) with the line `session.execute(query)`. For
 example, if we wanted to delete a table from the DB we would do:
 
 ```python
 from sqlalchemy import text
+from database_session import SessionLocal
 
 
-query = "drop table some_table"
-
-with SessionLocal() as session:
-    session.execute(text(query))
-```
-
-!!!note
-    The `text` function is used to convert a string into a SQLAlchemy `TextClause` object, which
-    is the type of object that `session.execute` expects as the first argument.
-
-We can still convert the results of the query into a pandas dataframe with `pd.DataFrame(results)`,
-where `results` is the result of the query. For example, to read all the rows from a table called `employees`,
-we can use the following code:
-
-```python
-from sqlalchemy import text
-
-
-query = "select * from employees"
+query = text("drop table some_table")
 
 with SessionLocal() as session:
-    df = pd.DataFrame(session.execute(text(query)))
-    print(df)
+    session.execute(query)
 ```
