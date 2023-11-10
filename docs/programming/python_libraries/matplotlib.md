@@ -220,3 +220,9 @@ ax.grid()
   ![Image title](https://matplotlib.org/stable/_images/sphx_glr_simple_plot_001.png){ width="500" }
   <figcaption>Sample figure with a grid.</figcaption>
 </figure>
+
+
+## Other types of plots
+
+You can find a list of all the different types of plots that can be created with Matplotlib in the
+[Matplotlib gallery](https://matplotlib.org/3.8.1/plot_types/index.html).
