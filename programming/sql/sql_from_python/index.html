@@ -797,31 +797,31 @@ by calling the class thus defined:</p>
 <p class="admonition-title">Note</p>
 <p>The session creation code is a bit obscure, but it is always the same, so it can be copied
 into a separate file. For example, we can copy the code above into a file 
-called <code>database.py</code>. Then, we can import the <code>SessionLocal</code> class from that file as
-follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="n">SessionLocal</span>
+called <code>database_session.py</code> (for example). Then, we can import the <code>SessionLocal</code> class 
+from that file as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">database_session</span> <span class="kn">import</span> <span class="n">SessionLocal</span>
 </code></pre></div>
 </div>
 <h2 id="readinginsert-to-a-sql-database-with-pandas">Reading/insert to a SQL database with Pandas<a class="headerlink" href="#readinginsert-to-a-sql-database-with-pandas" title="Permanent link">&para;</a></h2>
-<p>Now that we have a session object, we can use it to read and write to the database, and the easiest
-way to do that is by sending raw SQL queries to pandas. To do that, we need to use the <code>read_sql_query</code>
-and <code>to_sql</code> functions from pandas.</p>
+<p>Now that we have a session object, we can use it to read and write to the database.</p>
 <h3 id="reading-from-a-sql-database">Reading from a SQL database<a class="headerlink" href="#reading-from-a-sql-database" title="Permanent link">&para;</a></h3>
-<p>To use <code>read_sql_query</code>, we need to provide a SQL query and a session object. For example, to read
-all the rows from a table called <code>users</code>, we can use the following code:</p>
+<p>To read data from a SQL database and load it into a pandas DataFrame, we need to provide a SQL query and 
+a session object. For example, to read all the rows from a table called <code>users</code>, we can use the following code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM users&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">database_session</span> <span class="kn">import</span> <span class="n">SessionLocal</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">),</span> <span class="n">session</span><span class="o">.</span><span class="n">connection</span><span class="p">())</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">query</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
 </code></pre></div>
 <p>This code will return a pandas dataframe with all the rows from the <code>users</code> table. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>text</code> function is used to convert a string into a SQLAlchemy <code>TextClause</code> object, which
-is the type of object that <code>read_sql_query</code> expects as the first argument.</p>
+is the type of object that <code>session.execute</code> expects as the first argument.</p>
 </div>
 <h3 id="inserting-into-a-sql-database">Inserting into a SQL database<a class="headerlink" href="#inserting-into-a-sql-database" title="Permanent link">&para;</a></h3>
 <p>Pandas' <code>to_sql</code> is a function that allows us to insert data from a pandas dataframe
@@ -830,9 +830,11 @@ To use <code>to_sql</code>, we need to provide a pandas dataframe and a table na
 the rows from a dataframe called <code>df</code> into a table called <code>users</code>, we can use the following code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">connection</span><span class="p">(),</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span> <span class="nn">database_session</span> <span class="kn">import</span> <span class="n">SessionLocal</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">connection</span><span class="p">(),</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -840,7 +842,7 @@ the rows from a dataframe called <code>df</code> into a table called <code>users
 case, we are telling pandas to append the rows from the dataframe to the table. If we wanted
 to replace the table, we could use <code>if_exists="replace"</code> instead.</p>
 <p>The <code>index</code> argument is used to specify whether to include the index of the dataframe as a 
-column or not.</p>
+column or not (usually we will not want to do that).</p>
 </div>
 <h3 id="working-snippet">Working snippet<a class="headerlink" href="#working-snippet" title="Permanent link">&para;</a></h3>
 <p>After installing sqlalchemy and saving a SQLite database called <code>hr</code> in the same folder as the
@@ -859,10 +861,10 @@ Python script, we can use the following code to read all the rows from the <code
 <a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
 <a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">)</span>
 <a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM employees&quot;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">query</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM employees&quot;</span><span class="p">)</span>
 <a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">),</span> <span class="n">session</span><span class="o">.</span><span class="n">connection</span><span class="p">())</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
 <a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
 <a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></div>
@@ -879,33 +881,17 @@ Python script, we can use the following code to read all the rows from the <code
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="mi">4</span>          <span class="mi">104</span>      <span class="n">Bruce</span>     <span class="n">Ernst</span>  <span class="o">...</span>        <span class="mi">103</span>            <span class="mi">60</span>       <span class="kc">None</span>
 </code></pre></div>
 <h3 id="executing-raw-sql-queries">Executing raw SQL queries<a class="headerlink" href="#executing-raw-sql-queries" title="Permanent link">&para;</a></h3>
-<p>Instead of using pandas to read and write to the database through its <code>read_sql_query</code>, we can also execute 
-raw SQL queries (i.e., any valid SQL code we want). We can do so with <code>session.execute(query)</code>. For
+<p>Not all SQL queries come from or should be inserted into a pandas DataFrame. With SQLAlchemy we can also execute 
+raw SQL queries (i.e., any valid SQL code we want) with the line <code>session.execute(query)</code>. For
 example, if we wanted to delete a table from the DB we would do:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span> <span class="nn">database_session</span> <span class="kn">import</span> <span class="n">SessionLocal</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;drop table some_table&quot;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>text</code> function is used to convert a string into a SQLAlchemy <code>TextClause</code> object, which
-is the type of object that <code>session.execute</code> expects as the first argument.</p>
-</div>
-<p>We can still convert the results of the query into a pandas dataframe with <code>pd.DataFrame(results)</code>,
-where <code>results</code> is the result of the query. For example, to read all the rows from a table called <code>employees</code>,
-we can use the following code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select * from employees&quot;</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">)))</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">query</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;drop table some_table&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div>
 
 
