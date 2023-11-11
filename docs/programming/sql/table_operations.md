@@ -77,6 +77,7 @@ type of data that can go into the table. The following constraints are commonly 
 * `NOT NULL` - Ensures that a column cannot have a `NULL` value
 * `UNIQUE` - Ensures that all values in a column are different
 * `PRIMARY KEY` - A combination of `NOT NULL` plus `UNIQUE`. Uniquely identifies each row in a table.
+
     !!!note
         Each table can have only **one** primary key, and although it is not mandatory, it is a very good
         practice to have a primary key in every table. Columns that can potentially be primary keys are known 
@@ -87,6 +88,7 @@ type of data that can go into the table. The following constraints are commonly 
 
 * `FOREIGN KEY` - Foreign keys are used to link two tables together. A foreign key in one table points 
     to a primary key in another table. 
+
     !!!note
         For example, if we have a table called `Orders` that contains information about orders made by 
         customers, we can create a foreign key in the `Orders` table that points to the `CustomerID` 
