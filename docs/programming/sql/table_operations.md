@@ -47,7 +47,7 @@ operations are performed using the `ALTER TABLE` statement.
 
 * Add a new column to the table:
     ```sql
-    ALTER TABLE t ADD column;
+    ALTER TABLE t ADD column_name data_type;
     ```
 * Drop column `c` from the table
     ```sql
