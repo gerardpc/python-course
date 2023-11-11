@@ -159,9 +159,11 @@ GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.
 
 !!!note
     Difference between HAVING and WHERE: 
+
     * HAVING is used to check conditions after the aggregation takes place. 
     * WHERE is used to check conditions before the aggregation takes place.
-    Hence, usually WHERE is faster than HAVING.
+
+    Hence, when we can use it, WHERE is faster than HAVING.
 
 For example, this code:
 ```sql
