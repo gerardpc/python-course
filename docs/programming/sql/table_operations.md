@@ -15,9 +15,19 @@ CREATE TABLE t (
 );
 ```
 As seen in the example, we need to specify the name of the table, and a list of columns, each with a 
-name and a data type. We can also specify constraints on the columns, the most important being the
-primary key. The primary key is a column (or a combination of columns) that uniquely identifies each row.
-Hence, it cannot contain NULL values, and it cannot contain duplicate values.
+name and a data type. Data types can be numeric, character, date/time, etc:
+
+* Numeric data types:
+    * `INT` - Integer
+    * `FLOAT` - Floating point number
+    * `DECIMAL` - Fixed precision number
+    * `BOOLEAN` - Boolean value (True or False)
+* Character data types:
+    * `CHAR(n)` - Fixed length character string
+    * `VARCHAR(n)` - Variable length character string
+
+We can also specify constraints on the columns, the most important being the
+primary key (see the next section for more details on constraints). 
 
 In the example, we have specified that the `id` column is the primary key. We have also specified that
 the `name` column cannot contain NULL values, and that the `price` column has a default value of 0.
@@ -98,7 +108,7 @@ To add a constraint on a table, we also use the `ALTER TABLE` statement. The syn
 ALTER TABLE t ADD constraint;
 ```
 
-### Table constraints example queries
+### Example queries
 
 * To add a primary key constraint on the `id` column of the `t` table, we can use the following
 statement:
