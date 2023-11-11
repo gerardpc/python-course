@@ -613,8 +613,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#table-constraints-example-queries" class="md-nav__link">
-    Table constraints example queries
+  <a href="#example-queries" class="md-nav__link">
+    Example queries
   </a>
   
 </li>
@@ -709,8 +709,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#table-constraints-example-queries" class="md-nav__link">
-    Table constraints example queries
+  <a href="#example-queries" class="md-nav__link">
+    Example queries
   </a>
   
 </li>
@@ -748,9 +748,23 @@ that can be performed on tables.</p>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">);</span>
 </code></pre></div>
 As seen in the example, we need to specify the name of the table, and a list of columns, each with a 
-name and a data type. We can also specify constraints on the columns, the most important being the
-primary key. The primary key is a column (or a combination of columns) that uniquely identifies each row.
-Hence, it cannot contain NULL values, and it cannot contain duplicate values.</p>
+name and a data type. Data types can be numeric, character, date/time, etc:</p>
+<ul>
+<li>Numeric data types:<ul>
+<li><code>INT</code> - Integer</li>
+<li><code>FLOAT</code> - Floating point number</li>
+<li><code>DECIMAL</code> - Fixed precision number</li>
+<li><code>BOOLEAN</code> - Boolean value (True or False)</li>
+</ul>
+</li>
+<li>Character data types:<ul>
+<li><code>CHAR(n)</code> - Fixed length character string</li>
+<li><code>VARCHAR(n)</code> - Variable length character string</li>
+</ul>
+</li>
+</ul>
+<p>We can also specify constraints on the columns, the most important being the
+primary key (see the next section for more details on constraints). </p>
 <p>In the example, we have specified that the <code>id</code> column is the primary key. We have also specified that
 the <code>name</code> column cannot contain NULL values, and that the <code>price</code> column has a default value of 0.</p>
 <h2 id="deleting-a-table">Deleting a table<a class="headerlink" href="#deleting-a-table" title="Permanent link">&para;</a></h2>
@@ -827,7 +841,7 @@ to retrieve data from the table.</p>
 <p>To add a constraint on a table, we also use the <code>ALTER TABLE</code> statement. The syntax is as follows:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
 </code></pre></div></p>
-<h3 id="table-constraints-example-queries">Table constraints example queries<a class="headerlink" href="#table-constraints-example-queries" title="Permanent link">&para;</a></h3>
+<h3 id="example-queries">Example queries<a class="headerlink" href="#example-queries" title="Permanent link">&para;</a></h3>
 <ul>
 <li>To add a primary key constraint on the <code>id</code> column of the <code>t</code> table, we can use the following
 statement:
