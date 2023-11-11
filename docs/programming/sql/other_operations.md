@@ -1,10 +1,5 @@
 ## TO DO
 
-foreign keys
-indexes
-views
-primary keys and stackoverflow
-
 # Other operations
 
 To kill a stuck process:

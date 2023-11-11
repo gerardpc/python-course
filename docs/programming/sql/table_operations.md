@@ -61,13 +61,27 @@ operations are performed using the `ALTER TABLE` statement.
 
 ### Table constraints
 
-Table constraints are rules that are enforced on data columns on a table. These are used to limit the
-type of data that can go into a table. The following constraints are commonly used in SQL:
+Table constraints are rules that are enforced on columns of a table. These are used to limit the
+type of data that can go into the table. The following constraints are commonly used in SQL:
 
-* `NOT NULL` - Ensures that a column cannot have a NULL value
+* `NOT NULL` - Ensures that a column cannot have a `NULL` value
 * `UNIQUE` - Ensures that all values in a column are different
-* `PRIMARY KEY` - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-* `FOREIGN KEY` - Uniquely identifies a row/record in another table
+* `PRIMARY KEY` - A combination of `NOT NULL` plus `UNIQUE`. Uniquely identifies each row in a table.
+    !!!note
+        Each table can have only **one** primary key, and although it is not mandatory, it is a very good
+        practice to have a primary key in every table. Columns that can potentially be primary keys are known 
+        as **candidate keys**; we can choose any candidate key to be the primary key. 
+        
+    !!!note
+        Primary keys can also be "composite", i.e., a combination of columns that uniquely identify each row.
+
+* `FOREIGN KEY` - Foreign keys are used to link two tables together. A foreign key in one table points 
+    to a primary key in another table. 
+    !!!note
+        For example, if we have a table called `Orders` that contains information about orders made by 
+        customers, we can create a foreign key in the `Orders` table that points to the `CustomerID` 
+        column in the `Customers` table. This way, we can easily find the customer who made each order. 
+
 * `DEFAULT` - Sets a default value for a column if no value is specified
 * `CREATE INDEX` - Used to create and retrieve data from the database very quickly
 
