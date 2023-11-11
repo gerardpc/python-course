@@ -612,6 +612,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#table-constraints-example-queries" class="md-nav__link">
+    Table constraints example queries
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -701,6 +708,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#table-constraints-example-queries" class="md-nav__link">
+    Table constraints example queries
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -772,14 +786,33 @@ operations are performed using the <code>ALTER TABLE</code> statement. </p>
 </li>
 </ul>
 <h3 id="table-constraints">Table constraints<a class="headerlink" href="#table-constraints" title="Permanent link">&para;</a></h3>
-<p>Table constraints are rules that are enforced on data columns on a table. These are used to limit the
-type of data that can go into a table. The following constraints are commonly used in SQL:</p>
+<p>Table constraints are rules that are enforced on columns of a table. These are used to limit the
+type of data that can go into the table. The following constraints are commonly used in SQL:</p>
 <ul>
-<li><code>NOT NULL</code> - Ensures that a column cannot have a NULL value</li>
+<li><code>NOT NULL</code> - Ensures that a column cannot have a <code>NULL</code> value</li>
 <li><code>UNIQUE</code> - Ensures that all values in a column are different</li>
-<li><code>PRIMARY KEY</code> - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table</li>
-<li><code>FOREIGN KEY</code> - Uniquely identifies a row/record in another table</li>
-<li><code>DEFAULT</code> - Sets a default value for a column if no value is specified</li>
+<li>
+<p><code>PRIMARY KEY</code> - A combination of <code>NOT NULL</code> plus <code>UNIQUE</code>. Uniquely identifies each row in a table.
+    !!!note
+        Each table can have only <strong>one</strong> primary key, and although it is not mandatory, it is a very good
+        practice to have a primary key in every table. Columns that can potentially be primary keys are known 
+        as <strong>candidate keys</strong>; we can choose any candidate key to be the primary key. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Primary keys can also be "composite", i.e., a combination of columns that uniquely identify each row.</p>
+</div>
+</li>
+<li>
+<p><code>FOREIGN KEY</code> - Foreign keys are used to link two tables together. A foreign key in one table points 
+    to a primary key in another table. 
+    !!!note
+        For example, if we have a table called <code>Orders</code> that contains information about orders made by 
+        customers, we can create a foreign key in the <code>Orders</code> table that points to the <code>CustomerID</code> 
+        column in the <code>Customers</code> table. This way, we can easily find the customer who made each order. </p>
+</li>
+<li>
+<p><code>DEFAULT</code> - Sets a default value for a column if no value is specified</p>
+</li>
 <li><code>CREATE INDEX</code> - Used to create and retrieve data from the database very quickly</li>
 </ul>
 <div class="admonition note">
@@ -794,8 +827,34 @@ to retrieve data from the table.</p>
 <p>To add a constraint on a table, we also use the <code>ALTER TABLE</code> statement. The syntax is as follows:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
 </code></pre></div></p>
+<h3 id="table-constraints-example-queries">Table constraints example queries<a class="headerlink" href="#table-constraints-example-queries" title="Permanent link">&para;</a></h3>
+<ul>
+<li>To add a primary key constraint on the <code>id</code> column of the <code>t</code> table, we can use the following
+statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</code></pre></div></li>
+<li>To add a foreign key constraint on the <code>customer_id</code> column of the <code>orders</code> table, we can use the
+following statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</code></pre></div></li>
+<li>To add a default value of 0 to the <code>price</code> column of the <code>t</code> table, we can use the following statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div></li>
+<li>To add a <code>NOT NULL</code> constraint on the <code>name</code> column of the <code>t</code> table, we can use the following statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</code></pre></div></li>
+<li>To add a <code>UNIQUE</code> constraint on the <code>name</code> column of the <code>t</code> table, we can use the following statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</code></pre></div></li>
+<li>To add an index on the <code>name</code> column of the <code>t</code> table, we can use the following statement:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">name_index</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
 <p>To drop a constraint we use the following syntax:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">constraint</span><span class="p">;</span>
+</code></pre></div>
+For example, to drop the <code>NOT NULL</code> constraint on the <code>name</code> column of the <code>t</code> table, we can use the following statement:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
 </code></pre></div></p>
 
 
