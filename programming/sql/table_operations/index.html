@@ -806,11 +806,13 @@ type of data that can go into the table. The following constraints are commonly 
 <li><code>NOT NULL</code> - Ensures that a column cannot have a <code>NULL</code> value</li>
 <li><code>UNIQUE</code> - Ensures that all values in a column are different</li>
 <li>
-<p><code>PRIMARY KEY</code> - A combination of <code>NOT NULL</code> plus <code>UNIQUE</code>. Uniquely identifies each row in a table.
-    !!!note
-        Each table can have only <strong>one</strong> primary key, and although it is not mandatory, it is a very good
-        practice to have a primary key in every table. Columns that can potentially be primary keys are known 
-        as <strong>candidate keys</strong>; we can choose any candidate key to be the primary key. </p>
+<p><code>PRIMARY KEY</code> - A combination of <code>NOT NULL</code> plus <code>UNIQUE</code>. Uniquely identifies each row in a table.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each table can have only <strong>one</strong> primary key, and although it is not mandatory, it is a very good
+practice to have a primary key in every table. Columns that can potentially be primary keys are known 
+as <strong>candidate keys</strong>; we can choose any candidate key to be the primary key. </p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Primary keys can also be "composite", i.e., a combination of columns that uniquely identify each row.</p>
@@ -818,11 +820,13 @@ type of data that can go into the table. The following constraints are commonly 
 </li>
 <li>
 <p><code>FOREIGN KEY</code> - Foreign keys are used to link two tables together. A foreign key in one table points 
-    to a primary key in another table. 
-    !!!note
-        For example, if we have a table called <code>Orders</code> that contains information about orders made by 
-        customers, we can create a foreign key in the <code>Orders</code> table that points to the <code>CustomerID</code> 
-        column in the <code>Customers</code> table. This way, we can easily find the customer who made each order. </p>
+    to a primary key in another table. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, if we have a table called <code>Orders</code> that contains information about orders made by 
+customers, we can create a foreign key in the <code>Orders</code> table that points to the <code>CustomerID</code> 
+column in the <code>Customers</code> table. This way, we can easily find the customer who made each order. </p>
+</div>
 </li>
 <li>
 <p><code>DEFAULT</code> - Sets a default value for a column if no value is specified</p>
