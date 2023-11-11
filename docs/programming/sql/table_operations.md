@@ -98,8 +98,40 @@ To add a constraint on a table, we also use the `ALTER TABLE` statement. The syn
 ALTER TABLE t ADD constraint;
 ```
 
+### Table constraints example queries
+
+* To add a primary key constraint on the `id` column of the `t` table, we can use the following
+statement:
+    ```sql
+    ALTER TABLE t ADD PRIMARY KEY (id);
+    ```
+* To add a foreign key constraint on the `customer_id` column of the `orders` table, we can use the
+following statement:
+    ```sql
+    ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers(id);
+    ```
+* To add a default value of 0 to the `price` column of the `t` table, we can use the following statement:
+    ```sql
+    ALTER TABLE t ALTER COLUMN price SET DEFAULT 0;
+    ```
+* To add a `NOT NULL` constraint on the `name` column of the `t` table, we can use the following statement:
+    ```sql
+    ALTER TABLE t ALTER COLUMN name SET NOT NULL;
+    ```
+* To add a `UNIQUE` constraint on the `name` column of the `t` table, we can use the following statement:
+    ```sql
+    ALTER TABLE t ADD UNIQUE (name);
+    ```
+* To add an index on the `name` column of the `t` table, we can use the following statement:
+    ```sql
+    CREATE INDEX name_index ON t (name);
+    ```
+
 To drop a constraint we use the following syntax:
 ```sql
 ALTER TABLE t DROP constraint;
 ```
-
+For example, to drop the `NOT NULL` constraint on the `name` column of the `t` table, we can use the following statement:
+```sql
+ALTER TABLE t ALTER COLUMN name DROP NOT NULL;
+```
