@@ -981,10 +981,12 @@ number of rows in each group:
 GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Difference between HAVING and WHERE: 
-* HAVING is used to check conditions after the aggregation takes place. 
-* WHERE is used to check conditions before the aggregation takes place.
-Hence, usually WHERE is faster than HAVING.</p>
+<p>Difference between HAVING and WHERE: </p>
+<ul>
+<li>HAVING is used to check conditions after the aggregation takes place. </li>
+<li>WHERE is used to check conditions before the aggregation takes place.</li>
+</ul>
+<p>Hence, when we can use it, WHERE is faster than HAVING.</p>
 </div>
 <p>For example, this code:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">select</span><span class="w"> </span><span class="n">City</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
