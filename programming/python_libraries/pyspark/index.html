@@ -425,6 +425,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../matplotlib/" class="md-nav__link">
+        Matplotlib
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pandas/" class="md-nav__link">
         Pandas
       </a>
@@ -439,8 +453,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../matplotlib/" class="md-nav__link">
-        Matplotlib
+      <a href="../../pyspark.md" class="md-nav__link">
+        None
       </a>
     </li>
   
@@ -606,30 +620,83 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setting-up-spark" class="md-nav__link">
+    Setting up Spark
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up Spark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    Ubuntu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-1-running-a-jupyter-notebook" class="md-nav__link">
+    Option 1: running a Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-running-pyspark-from-an-ide-eg-pycharm" class="md-nav__link">
+    Option 2: running PySpark from an IDE (e.g. PyCharm)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyspark-dataframes" class="md-nav__link">
+    PySpark DataFrames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pandas-vs-spark" class="md-nav__link">
     Pandas vs Spark
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-accountscomputers" class="md-nav__link">
-    Setting up accounts/computers
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#resilient-distributed-dataset-rdds" class="md-nav__link">
-    Resilient Distributed Dataset (RDDs)
+  <a href="#working-with-pyspark-dataframes" class="md-nav__link">
+    Working with PySpark DataFrames
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with PySpark DataFrames">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-creation" class="md-nav__link">
+    DataFrame Creation
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#rdd-actions-and-keyvalue-datastores" class="md-nav__link">
-    RDD Actions and key/value datastores.
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -653,26 +720,406 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p><strong>Spark</strong> is a platform for cluster computing. Spark lets you spread data and computations over clusters 
 with multiple nodes (think of each node as a separate computer). Splitting up your data makes it easier 
-to work with very large datasets because each node only works with a small amount of data. This means
-that Spark is a common tool for working with big data (for example, for cleaning it up or transforming
+to work with very large datasets because each node only works with a small amount of data. Hence,
+Spark is a common tool for what is informally known as <em>big data</em> (for example, for cleaning it up or transforming
 it into a more usable format).</p>
 <p>As each node works on its own subset of the total data, it also carries out a part of the total 
 calculations required, so that both data processing and computation are performed in parallel over 
 the nodes in the cluster. </p>
-<p><strong>PySpark</strong> is the Python API for Spark. It is a Python library that allows you to interact with Spark
-using Python. </p>
-<h2 id="pandas-vs-spark">Pandas vs Spark<a class="headerlink" href="#pandas-vs-spark" title="Permanent link">&para;</a></h2>
+<p><strong>PySpark</strong> is the Python API for Spark. Having a Python library that allows us to interact with Spark
+using Python means that we can use Python to write code that will run on Spark clusters under the hood,
+without having to learn Scala or Java.</p>
+<h2 id="setting-up-spark">Setting up Spark<a class="headerlink" href="#setting-up-spark" title="Permanent link">&para;</a></h2>
+<p>Setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
+We should only use Spark when our data is too big to work with on a single machine. If that is not the case,
+we should use Pandas instead (or a Pandas alternative, like Polars).</p>
+<h3 id="ubuntu">Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link">&para;</a></h3>
+<p>The easiest way to start using PySpark is with a docker image. We have two options</p>
+<h3 id="option-1-running-a-jupyter-notebook">Option 1: running a Jupyter notebook<a class="headerlink" href="#option-1-running-a-jupyter-notebook" title="Permanent link">&para;</a></h3>
+<p>Get the docker image from <a href="https://hub.docker.com/r/jupyter/pyspark-notebook">here</a> by running:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>jupyter/pyspark-notebook
+</code></pre></div>
+Then run the image with
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>jupyter/pyspark-notebook
+</code></pre></div>
+After this two steps we can already write/run Python code with PySpark (from the notebook).</p>
+<h3 id="option-2-running-pyspark-from-an-ide-eg-pycharm">Option 2: running PySpark from an IDE (e.g. PyCharm)<a class="headerlink" href="#option-2-running-pyspark-from-an-ide-eg-pycharm" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install docker following the instructions <a href="https://docs.docker.com/engine/install/ubuntu/">here</a>.</li>
+<li>Pull the docker image following the instructions <a href="https://hub.docker.com/r/apache/spark-py">here</a>.</li>
+</ol>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>At a high level, every Spark application consists of a driver program that runs the user’s main 
+function and executes various parallel operations on a cluster. The main abstraction Spark provides 
+is a resilient distributed dataset (<strong>RDD</strong>), which is a collection of elements partitioned across the 
+nodes of the cluster that can be operated on in parallel. RDDs are created by starting with a file 
+(Hadoop file system or any other Hadoop-supported file system), or an existing driver program (a Scala collection),
+and transforming it. Users may persist an RDD in memory to be reused across parallel operations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>RDDs automatically recover from node failures.</p>
+</div>
+<h3 id="pyspark-dataframes">PySpark DataFrames<a class="headerlink" href="#pyspark-dataframes" title="Permanent link">&para;</a></h3>
+<p>PySpark's main object is the PySpark DataFrame (which is not the same as a Pandas DataFrame). 
+PySpark DataFrames are implemented on top of RDDs and are lazily evaluated. 
+This means that whenever we create a PySpark DataFrame, nothing happens until we call an action on it:
+Spark does not immediately compute the transformation but plans how to compute later. </p>
+<p>RDD actions are operations that actually return a value to the user program or write a value to storage,
+and actually trigger the computation of a result. They can be:</p>
+<ul>
+<li><code>collect()</code>: return all the elements of the dataset as an array at the driver program. 
+This is usually useful after a filter or other operation that returns a sufficiently small subset of the data.</li>
+<li><code>count()</code>: return the number of elements in the dataset.</li>
+<li><code>first()</code>: return the first element of the dataset.</li>
+<li><code>take(n)</code>: return an array with the first n elements of the dataset.</li>
+<li><code>reduce(func)</code>: aggregate the elements of the dataset using a function func (which takes two arguments 
+and returns one).</li>
+</ul>
+<h3 id="pandas-vs-spark">Pandas vs Spark<a class="headerlink" href="#pandas-vs-spark" title="Permanent link">&para;</a></h3>
 <p>Spark DataFrames are conceptually equivalent to a Pandas DataFrame. The main difference is that
 Spark DataFrames are immutable, meaning that they cannot be changed after they are created. This
-allows Spark to do more optimization under the hood. </p>
-<p>However, setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
-Hence, we should only use Spark when our data is too big to work with on a single machine. If that is not the case,
-we should use Pandas instead.</p>
-<h2 id="setting-up-accountscomputers">Setting up accounts/computers<a class="headerlink" href="#setting-up-accountscomputers" title="Permanent link">&para;</a></h2>
-<h2 id="resilient-distributed-dataset-rdds">Resilient Distributed Dataset (RDDs)<a class="headerlink" href="#resilient-distributed-dataset-rdds" title="Permanent link">&para;</a></h2>
-<p>The fundamentals of using  and mapping
-Filtering and sorting</p>
-<h2 id="rdd-actions-and-keyvalue-datastores">RDD Actions and key/value datastores.<a class="headerlink" href="#rdd-actions-and-keyvalue-datastores" title="Permanent link">&para;</a></h2>
+allows Spark to do more optimization under the hood.</p>
+<h2 id="working-with-pyspark-dataframes">Working with PySpark DataFrames<a class="headerlink" href="#working-with-pyspark-dataframes" title="Permanent link">&para;</a></h2>
+<h3 id="dataframe-creation">DataFrame Creation<a class="headerlink" href="#dataframe-creation" title="Permanent link">&para;</a></h3>
+<p>A PySpark DataFrame can be created via <code>pyspark.sql.SparkSession.createDataFrame</code> typically by passing a list 
+of lists, tuples, dictionaries and pyspark.sql.Rows, a pandas DataFrame and an RDD consisting of such a list. 
+<code>pyspark.sql.SparkSession.createDataFrame</code> takes the schema argument to specify the schema of the DataFrame.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A PySpark schema is a list that defines the name, type, and nullable/non-nullable information for each column
+in a DataFrame.</p>
+</div>
+<p>When the schema is omitted, PySpark infers the corresponding schema by taking a sample from the data.</p>
+<p>Firstly, you can create a PySpark DataFrame from a list of rows</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">Row</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">Row</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;string1&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">e</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">Row</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;string2&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">e</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">Row</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;string3&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">e</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">])</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">df</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">DataFrame</span><span class="p">[</span><span class="n">a</span><span class="p">:</span> <span class="n">bigint</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">double</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">]</span>
+</code></pre></div>
+<p>Create a PySpark DataFrame with an explicit schema.</p>
+<p>df = spark.createDataFrame([
+    (1, 2., 'string1', date(2000, 1, 1), datetime(2000, 1, 1, 12, 0)),
+    (2, 3., 'string2', date(2000, 2, 1), datetime(2000, 1, 2, 12, 0)),
+    (3, 4., 'string3', date(2000, 3, 1), datetime(2000, 1, 3, 12, 0))
+], schema='a long, b double, c string, d date, e timestamp')
+df</p>
+<p>DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]</p>
+<p>Create a PySpark DataFrame from a pandas DataFrame</p>
+<p>pandas_df = pd.DataFrame({
+    'a': [1, 2, 3],
+    'b': [2., 3., 4.],
+    'c': ['string1', 'string2', 'string3'],
+    'd': [date(2000, 1, 1), date(2000, 2, 1), date(2000, 3, 1)],
+    'e': [datetime(2000, 1, 1, 12, 0), datetime(2000, 1, 2, 12, 0), datetime(2000, 1, 3, 12, 0)]
+})
+df = spark.createDataFrame(pandas_df)
+df</p>
+<p>DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]</p>
+<p>The DataFrames created above all have the same results and schema.</p>
+<h1 id="all-dataframes-above-result-same">All DataFrames above result same.<a class="headerlink" href="#all-dataframes-above-result-same" title="Permanent link">&para;</a></h1>
+<p>df.show()
+df.printSchema()</p>
+<p>+---+---+-------+----------+-------------------+
+|  a|  b|      c|         d|                  e|
++---+---+-------+----------+-------------------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
+|  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|
+|  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|
++---+---+-------+----------+-------------------+</p>
+<p>root
+ |-- a: long (nullable = true)
+ |-- b: double (nullable = true)
+ |-- c: string (nullable = true)
+ |-- d: date (nullable = true)
+ |-- e: timestamp (nullable = true)</p>
+<p>Viewing Data</p>
+<p>The top rows of a DataFrame can be displayed using DataFrame.show().</p>
+<p>df.show(1)</p>
+<p>+---+---+-------+----------+-------------------+
+|  a|  b|      c|         d|                  e|
++---+---+-------+----------+-------------------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
++---+---+-------+----------+-------------------+
+only showing top 1 row</p>
+<p>Alternatively, you can enable spark.sql.repl.eagerEval.enabled configuration for the eager evaluation of PySpark DataFrame in notebooks such as Jupyter. The number of rows to show can be controlled via spark.sql.repl.eagerEval.maxNumRows configuration.</p>
+<p>spark.conf.set('spark.sql.repl.eagerEval.enabled', True)
+df</p>
+<p>a   b   c   d   e
+1   2.0 string1 2000-01-01  2000-01-01 12:00:00
+2   3.0 string2 2000-02-01  2000-01-02 12:00:00
+3   4.0 string3 2000-03-01  2000-01-03 12:00:00</p>
+<p>The rows can also be shown vertically. This is useful when rows are too long to show horizontally.</p>
+<p>df.show(1, vertical=True)</p>
+<p>-RECORD 0------------------
+ a   | 1
+ b   | 2.0
+ c   | string1
+ d   | 2000-01-01
+ e   | 2000-01-01 12:00:00
+only showing top 1 row</p>
+<p>You can see the DataFrame’s schema and column names as follows:</p>
+<p>df.columns</p>
+<p>['a', 'b', 'c', 'd', 'e']</p>
+<p>df.printSchema()</p>
+<p>root
+ |-- a: long (nullable = true)
+ |-- b: double (nullable = true)
+ |-- c: string (nullable = true)
+ |-- d: date (nullable = true)
+ |-- e: timestamp (nullable = true)</p>
+<p>Show the summary of the DataFrame</p>
+<p>df.select("a", "b", "c").describe().show()</p>
+<p>+-------+---+---+-------+
+|summary|  a|  b|      c|
++-------+---+---+-------+
+|  count|  3|  3|      3|
+|   mean|2.0|3.0|   null|
+| stddev|1.0|1.0|   null|
+|    min|  1|2.0|string1|
+|    max|  3|4.0|string3|
++-------+---+---+-------+</p>
+<p>DataFrame.collect() collects the distributed data to the driver side as the local data in Python. Note that this can throw an out-of-memory error when the dataset is too large to fit in the driver side because it collects all the data from executors to the driver side.</p>
+<p>df.collect()</p>
+<p>[Row(a=1, b=2.0, c='string1', d=datetime.date(2000, 1, 1), e=datetime.datetime(2000, 1, 1, 12, 0)),
+ Row(a=2, b=3.0, c='string2', d=datetime.date(2000, 2, 1), e=datetime.datetime(2000, 1, 2, 12, 0)),
+ Row(a=3, b=4.0, c='string3', d=datetime.date(2000, 3, 1), e=datetime.datetime(2000, 1, 3, 12, 0))]</p>
+<p>In order to avoid throwing an out-of-memory exception, use DataFrame.take() or DataFrame.tail().</p>
+<p>df.take(1)</p>
+<p>[Row(a=1, b=2.0, c='string1', d=datetime.date(2000, 1, 1), e=datetime.datetime(2000, 1, 1, 12, 0))]</p>
+<p>PySpark DataFrame also provides the conversion back to a pandas DataFrame to leverage pandas API. Note that toPandas also collects all data into the driver side that can easily cause an out-of-memory-error when the data is too large to fit into the driver side.</p>
+<p>df.toPandas()</p>
+<div class="highlight"><pre><span></span><code>a   b   c   d   e
+</code></pre></div>
+<p>0   1   2.0     string1     2000-01-01  2000-01-01 12:00:00
+1   2   3.0     string2     2000-02-01  2000-01-02 12:00:00
+2   3   4.0     string3     2000-03-01  2000-01-03 12:00:00
+Selecting and Accessing Data</p>
+<p>PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger the computation but it returns a Column instance.</p>
+<p>df.a</p>
+<p>Column<b'a'></p>
+<p>In fact, most of column-wise operations return Columns.</p>
+<p>from pyspark.sql import Column
+from pyspark.sql.functions import upper</p>
+<p>type(df.c) == type(upper(df.c)) == type(df.c.isNull())</p>
+<p>True</p>
+<p>These Columns can be used to select the columns from a DataFrame. For example, DataFrame.select() takes the Column instances that returns another DataFrame.</p>
+<p>df.select(df.c).show()</p>
+<p>+-------+
+|      c|
++-------+
+|string1|
+|string2|
+|string3|
++-------+</p>
+<p>Assign new Column instance.</p>
+<p>df.withColumn('upper_c', upper(df.c)).show()</p>
+<p>+---+---+-------+----------+-------------------+-------+
+|  a|  b|      c|         d|                  e|upper_c|
++---+---+-------+----------+-------------------+-------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|STRING1|
+|  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
+|  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
++---+---+-------+----------+-------------------+-------+</p>
+<p>To select a subset of rows, use DataFrame.filter().</p>
+<p>df.filter(df.a == 1).show()</p>
+<p>+---+---+-------+----------+-------------------+
+|  a|  b|      c|         d|                  e|
++---+---+-------+----------+-------------------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
++---+---+-------+----------+-------------------+</p>
+<p>Applying a Function</p>
+<p>PySpark supports various UDFs and APIs to allow users to execute Python native functions. See also the latest Pandas UDFs and Pandas Function APIs. For instance, the example below allows users to directly use the APIs in a pandas Series within Python native function.</p>
+<p>import pandas as pd
+from pyspark.sql.functions import pandas_udf</p>
+<p>@pandas_udf('long')
+def pandas_plus_one(series: pd.Series) -&gt; pd.Series:
+    # Simply plus one by using pandas Series.
+    return series + 1</p>
+<p>df.select(pandas_plus_one(df.a)).show()</p>
+<p>+------------------+
+|pandas_plus_one(a)|
++------------------+
+|                 2|
+|                 3|
+|                 4|
++------------------+</p>
+<p>Another example is DataFrame.mapInPandas which allows users directly use the APIs in a pandas DataFrame without any restrictions such as the result length.</p>
+<p>def pandas_filter_func(iterator):
+    for pandas_df in iterator:
+        yield pandas_df[pandas_df.a == 1]</p>
+<p>df.mapInPandas(pandas_filter_func, schema=df.schema).show()</p>
+<p>+---+---+-------+----------+-------------------+
+|  a|  b|      c|         d|                  e|
++---+---+-------+----------+-------------------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
++---+---+-------+----------+-------------------+</p>
+<p>Grouping Data</p>
+<p>PySpark DataFrame also provides a way of handling grouped data by using the common approach, split-apply-combine strategy. It groups the data by a certain condition applies a function to each group and then combines them back to the DataFrame.</p>
+<p>df = spark.createDataFrame([
+    ['red', 'banana', 1, 10], ['blue', 'banana', 2, 20], ['red', 'carrot', 3, 30],
+    ['blue', 'grape', 4, 40], ['red', 'carrot', 5, 50], ['black', 'carrot', 6, 60],
+    ['red', 'banana', 7, 70], ['red', 'grape', 8, 80]], schema=['color', 'fruit', 'v1', 'v2'])
+df.show()</p>
+<p>+-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+</p>
+<p>Grouping and then applying the avg() function to the resulting groups.</p>
+<p>df.groupby('color').avg().show()</p>
+<p>+-----+-------+-------+
+|color|avg(v1)|avg(v2)|
++-----+-------+-------+
+|  red|    4.8|   48.0|
+|black|    6.0|   60.0|
+| blue|    3.0|   30.0|
++-----+-------+-------+</p>
+<p>You can also apply a Python native function against each group by using pandas API.</p>
+<p>def plus_mean(pandas_df):
+    return pandas_df.assign(v1=pandas_df.v1 - pandas_df.v1.mean())</p>
+<p>df.groupby('color').applyInPandas(plus_mean, schema=df.schema).show()</p>
+<p>+-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana| -3| 10|
+|  red|carrot| -1| 30|
+|  red|carrot|  0| 50|
+|  red|banana|  2| 70|
+|  red| grape|  3| 80|
+|black|carrot|  0| 60|
+| blue|banana| -1| 20|
+| blue| grape|  1| 40|
++-----+------+---+---+</p>
+<p>Co-grouping and applying a function.</p>
+<p>df1 = spark.createDataFrame(
+    [(20000101, 1, 1.0), (20000101, 2, 2.0), (20000102, 1, 3.0), (20000102, 2, 4.0)],
+    ('time', 'id', 'v1'))</p>
+<p>df2 = spark.createDataFrame(
+    [(20000101, 1, 'x'), (20000101, 2, 'y')],
+    ('time', 'id', 'v2'))</p>
+<p>def merge_ordered(l, r):
+    return pd.merge_ordered(l, r)</p>
+<p>df1.groupby('id').cogroup(df2.groupby('id')).applyInPandas(
+    merge_ordered, schema='time int, id int, v1 double, v2 string').show()</p>
+<p>+--------+---+---+---+
+|    time| id| v1| v2|
++--------+---+---+---+
+|20000101|  1|1.0|  x|
+|20000102|  1|3.0|  x|
+|20000101|  2|2.0|  y|
+|20000102|  2|4.0|  y|
++--------+---+---+---+</p>
+<p>Getting Data In/Out</p>
+<p>CSV is straightforward and easy to use. Parquet and ORC are efficient and compact file formats to read and write faster.</p>
+<p>There are many other data sources available in PySpark such as JDBC, text, binaryFile, Avro, etc. See also the latest Spark SQL, DataFrames and Datasets Guide in Apache Spark documentation.
+CSV</p>
+<p>df.write.csv('foo.csv', header=True)
+spark.read.csv('foo.csv', header=True).show()</p>
+<p>+-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+</p>
+<p>Parquet</p>
+<p>df.write.parquet('bar.parquet')
+spark.read.parquet('bar.parquet').show()</p>
+<p>+-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+</p>
+<p>ORC</p>
+<p>df.write.orc('zoo.orc')
+spark.read.orc('zoo.orc').show()</p>
+<p>+-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+</p>
+<p>Working with SQL</p>
+<p>DataFrame and Spark SQL share the same execution engine so they can be interchangeably used seamlessly. For example, you can register the DataFrame as a table and run a SQL easily as below:</p>
+<p>df.createOrReplaceTempView("tableA")
+spark.sql("SELECT count(*) from tableA").show()</p>
+<p>+--------+
+|count(1)|
++--------+
+|       8|
++--------+</p>
+<p>In addition, UDFs can be registered and invoked in SQL out of the box:</p>
+<p>@pandas_udf("integer")
+def add_one(s: pd.Series) -&gt; pd.Series:
+    return s + 1</p>
+<p>spark.udf.register("add_one", add_one)
+spark.sql("SELECT add_one(v1) FROM tableA").show()</p>
+<p>+-----------+
+|add_one(v1)|
++-----------+
+|          2|
+|          3|
+|          4|
+|          5|
+|          6|
+|          7|
+|          8|
+|          9|
++-----------+</p>
+<p>These SQL expressions can directly be mixed and used as PySpark columns.</p>
+<p>from pyspark.sql.functions import expr</p>
+<p>df.selectExpr('add_one(v1)').show()
+df.select(expr('count(*)') &gt; 0).show()</p>
+<p>+-----------+
+|add_one(v1)|
++-----------+
+|          2|
+|          3|
+|          4|
+|          5|
+|          6|
+|          7|
+|          8|
+|          9|
++-----------+</p>
+<p>+--------------+
+|(count(1) &gt; 0)|
++--------------+
+|          true|
++--------------+</p>
 
 
 
