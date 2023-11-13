@@ -66,7 +66,7 @@ nav:
     - 'programming/python_libraries/numpy.md'
     - 'programming/python_libraries/matplotlib.md'
     - 'programming/python_libraries/pandas.md'
-    - 'programming/pyspark.md'
+    - 'programming/python_libraries/pyspark.md'
   - 'SQL':
     - 'programming/sql/introduction.md'
     - 'programming/sql/select_statements.md'
