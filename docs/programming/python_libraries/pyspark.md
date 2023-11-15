@@ -22,11 +22,15 @@ Setting up Spark is considerably more complicated than using Pandas, and it requ
 We should only use Spark when our data is too big to work with on a single machine. If that is not the case,
 we should use Pandas instead (or a Pandas alternative, like Polars).
 
-### Ubuntu
+### Windows and Mac
+
+Follow the course slides to set up PySpark on your computer
+
+### Linux
 
 The easiest way to start using PySpark is with a docker image. We have two options
 
-### Option 1: running a Jupyter notebook
+#### Option 1: running a Jupyter notebook
 
 Get the docker image from [here](https://hub.docker.com/r/jupyter/pyspark-notebook) by running:
 ```bash
@@ -38,7 +42,7 @@ docker run -it --rm -p 8888:8888 jupyter/pyspark-notebook
 ```
 After this two steps we can already write/run Python code with PySpark (from the notebook).
 
-### Option 2: running PySpark from an IDE (e.g. PyCharm)
+#### Option 2: running PySpark from an IDE (e.g. PyCharm)
 
 1. Install docker following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 2. Pull the docker image following the instructions [here](https://hub.docker.com/r/apache/spark-py).
@@ -70,14 +74,18 @@ This is usually useful after a filter or other operation that returns a sufficie
 * `count()`: return the number of elements in the dataset.
 * `first()`: return the first element of the dataset.
 * `take(n)`: return an array with the first n elements of the dataset.
-* `reduce(func)`: aggregate the elements of the dataset using a function func (which takes two arguments 
-and returns one).
+* `reduce(func)`: aggregate the elements of the dataset using a function `func`.
 
 ### Pandas vs Spark
 
-Spark DataFrames are conceptually equivalent to a Pandas DataFrame. The main difference is that
-Spark DataFrames are immutable, meaning that they cannot be changed after they are created. This
-allows Spark to do more optimization under the hood.
+PySpark DataFrames are conceptually equivalent to a Pandas DataFrame. The main difference is that
+PySpark DataFrames are immutable, meaning that they cannot be changed after they are created. 
+
+!!!note
+    Every time we perform an operation on a PySpark Dataframe, we are actually creating a _new_
+    dataframe.
+
+This allows Spark to do more optimization under the hood.
 
 ## Working with PySpark DataFrames
 
@@ -93,8 +101,11 @@ spark = SparkSession.builder.getOrCreate()
 
 ### DataFrame Creation
 
-A PySpark DataFrame can be created via `pyspark.sql.SparkSession.createDataFrame` typically by passing a list 
-of lists, tuples, dictionaries and pyspark.sql.Rows, a pandas DataFrame and an RDD consisting of such a list. 
+A PySpark DataFrame can be created via `pyspark.sql.SparkSession.createDataFrame` by several different ways.
+This is similar to pandas, where we can create a DataFrame with data from different data structures.
+
+For example, we can create a DataFrame by passing a list of lists, tuples, dictionaries or another
+pandas DataFrame, and then an RDD consisting of such a list. 
 `pyspark.sql.SparkSession.createDataFrame` takes the schema argument to specify the schema of the DataFrame.
 
 !!!note
@@ -103,7 +114,7 @@ of lists, tuples, dictionaries and pyspark.sql.Rows, a pandas DataFrame and an R
 
 When the schema is omitted, PySpark infers the corresponding schema by taking a sample from the data.
 
-Firstly, you can create a PySpark DataFrame from a list of rows
+Firstly, we can create a PySpark DataFrame from a list of rows
 
 ```python
 from datetime import datetime, date
@@ -121,7 +132,7 @@ print(df)
 DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
 ```
 
-We have other options to create a PySpark DataFrame:
+Other options to create a PySpark DataFrame:
 
 * Create a PySpark DataFrame with an explicit schema.
 
@@ -262,9 +273,10 @@ out-of-memory-error when the data is too large to fit into the driver side.
 
 ```python
 df.toPandas()
+print(df)
 
 # Output
-	a 	b 	c 	d 	e
+	a 	b 	    c 	        d 	        e
 0 	1 	2.0 	string1 	2000-01-01 	2000-01-01 12:00:00
 1 	2 	3.0 	string2 	2000-02-01 	2000-01-02 12:00:00
 2 	3 	4.0 	string3 	2000-03-01 	2000-01-03 12:00:00
@@ -312,6 +324,7 @@ Assign new Column instance.
 ```python
 df.withColumn('upper_c', upper(df.c)).show()
 
+# Output
 +---+---+-------+----------+-------------------+-------+
 |  a|  b|      c|         d|                  e|upper_c|
 +---+---+-------+----------+-------------------+-------+
@@ -326,6 +339,7 @@ To select a subset of rows, use DataFrame.filter().
 ```python
 df.filter(df.a == 1).show()
 
+# Output
 +---+---+-------+----------+-------------------+
 |  a|  b|      c|         d|                  e|
 +---+---+-------+----------+-------------------+
@@ -348,6 +362,7 @@ def pandas_plus_one(series: pd.Series) -> pd.Series:
 
 df.select(pandas_plus_one(df.a)).show()
 
+# Output
 +------------------+
 |pandas_plus_one(a)|
 +------------------+
@@ -366,6 +381,7 @@ def pandas_filter_func(iterator):
 
 df.mapInPandas(pandas_filter_func, schema=df.schema).show()
 
+# Output
 +---+---+-------+----------+-------------------+
 |  a|  b|      c|         d|                  e|
 +---+---+-------+----------+-------------------+
@@ -384,6 +400,7 @@ df = spark.createDataFrame([
     ['red', 'banana', 7, 70], ['red', 'grape', 8, 80]], schema=['color', 'fruit', 'v1', 'v2'])
 df.show()
 
+# Output
 +-----+------+---+---+
 |color| fruit| v1| v2|
 +-----+------+---+---+
@@ -400,9 +417,10 @@ df.show()
 
 Grouping and then applying the avg() function to the resulting groups.
 
-```
+```python
 df.groupby('color').avg().show()
 
+# Output
 +-----+-------+-------+
 |color|avg(v1)|avg(v2)|
 +-----+-------+-------+
@@ -420,6 +438,7 @@ def plus_mean(pandas_df):
 
 df.groupby('color').applyInPandas(plus_mean, schema=df.schema).show()
 
+# Output
 +-----+------+---+---+
 |color| fruit| v1| v2|
 +-----+------+---+---+
@@ -451,6 +470,7 @@ def merge_ordered(l, r):
 df1.groupby('id').cogroup(df2.groupby('id')).applyInPandas(
     merge_ordered, schema='time int, id int, v1 double, v2 string').show()
 
+# Output
 +--------+---+---+---+
 |    time| id| v1| v2|
 +--------+---+---+---+
@@ -473,6 +493,7 @@ Spark SQL, DataFrames and Datasets Guide in Apache Spark documentation.
 df.write.csv('foo.csv', header=True)
 spark.read.csv('foo.csv', header=True).show()
 
+# Output
 +-----+------+---+---+
 |color| fruit| v1| v2|
 +-----+------+---+---+
@@ -493,6 +514,7 @@ spark.read.csv('foo.csv', header=True).show()
 df.write.parquet('bar.parquet')
 spark.read.parquet('bar.parquet').show()
 
+# Output
 +-----+------+---+---+
 |color| fruit| v1| v2|
 +-----+------+---+---+
@@ -516,6 +538,7 @@ DataFrame and Spark SQL share the same execution engine so they can be interchan
 df.createOrReplaceTempView("tableA")
 spark.sql("SELECT count(*) from tableA").show()
 
+# Output
 +--------+
 |count(1)|
 +--------+
@@ -533,6 +556,7 @@ def add_one(s: pd.Series) -> pd.Series:
 spark.udf.register("add_one", add_one)
 spark.sql("SELECT add_one(v1) FROM tableA").show()
 
+# Output
 +-----------+
 |add_one(v1)|
 +-----------+
@@ -555,6 +579,7 @@ from pyspark.sql.functions import expr
 df.selectExpr('add_one(v1)').show()
 df.select(expr('count(*)') > 0).show()
 
+# Output
 +-----------+
 |add_one(v1)|
 +-----------+
