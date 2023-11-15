@@ -81,6 +81,16 @@ allows Spark to do more optimization under the hood.
 
 ## Working with PySpark DataFrames
 
+### SparkSession
+
+PySpark applications start with initializing SparkSession, which is the entry point of PySpark:
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.getOrCreate()
+```
+
 ### DataFrame Creation
 
 A PySpark DataFrame can be created via `pyspark.sql.SparkSession.createDataFrame` typically by passing a list 
@@ -95,7 +105,6 @@ When the schema is omitted, PySpark infers the corresponding schema by taking a 
 
 Firstly, you can create a PySpark DataFrame from a list of rows
 
-
 ```python
 from datetime import datetime, date
 import pandas as pd
@@ -106,25 +115,31 @@ df = spark.createDataFrame([
     Row(a=2, b=3., c='string2', d=date(2000, 2, 1), e=datetime(2000, 1, 2, 12, 0)),
     Row(a=4, b=5., c='string3', d=date(2000, 3, 1), e=datetime(2000, 1, 3, 12, 0))
 ])
-df
+print(df)
 
+# Output
 DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
 ```
 
+We have other options to create a PySpark DataFrame:
 
-Create a PySpark DataFrame with an explicit schema.
+* Create a PySpark DataFrame with an explicit schema.
 
+```python
 df = spark.createDataFrame([
     (1, 2., 'string1', date(2000, 1, 1), datetime(2000, 1, 1, 12, 0)),
     (2, 3., 'string2', date(2000, 2, 1), datetime(2000, 1, 2, 12, 0)),
     (3, 4., 'string3', date(2000, 3, 1), datetime(2000, 1, 3, 12, 0))
 ], schema='a long, b double, c string, d date, e timestamp')
-df
+print(df)
 
+# Output
 DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
+```
 
-Create a PySpark DataFrame from a pandas DataFrame
+* Create a PySpark DataFrame from a pandas DataFrame
 
+```python
 pandas_df = pd.DataFrame({
     'a': [1, 2, 3],
     'b': [2., 3., 4.],
@@ -133,16 +148,20 @@ pandas_df = pd.DataFrame({
     'e': [datetime(2000, 1, 1, 12, 0), datetime(2000, 1, 2, 12, 0), datetime(2000, 1, 3, 12, 0)]
 })
 df = spark.createDataFrame(pandas_df)
-df
+print(df)
 
+# Output
 DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
+```
 
 The DataFrames created above all have the same results and schema.
 
+```python
 # All DataFrames above result same.
 df.show()
 df.printSchema()
 
+# Output
 +---+---+-------+----------+-------------------+
 |  a|  b|      c|         d|                  e|
 +---+---+-------+----------+-------------------+
@@ -157,61 +176,53 @@ root
  |-- c: string (nullable = true)
  |-- d: date (nullable = true)
  |-- e: timestamp (nullable = true)
+```
 
-Viewing Data
+!!!note
+    To print a dataframe in table format, you can use `df.show()`.
 
-The top rows of a DataFrame can be displayed using DataFrame.show().
+### Viewing Data
 
+The top rows of a DataFrame can be displayed using `DataFrame.show(n)` (where `n` is the number of
+printed rows).
+
+```python
 df.show(1)
 
+# Output
 +---+---+-------+----------+-------------------+
 |  a|  b|      c|         d|                  e|
 +---+---+-------+----------+-------------------+
 |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
 +---+---+-------+----------+-------------------+
-only showing top 1 row
+```
 
-Alternatively, you can enable spark.sql.repl.eagerEval.enabled configuration for the eager evaluation of PySpark DataFrame in notebooks such as Jupyter. The number of rows to show can be controlled via spark.sql.repl.eagerEval.maxNumRows configuration.
+only showing top 1 row. You can see the DataFrame’s schema and column names as follows:
 
-spark.conf.set('spark.sql.repl.eagerEval.enabled', True)
-df
-
-a	b	c	d	e
-1	2.0	string1	2000-01-01	2000-01-01 12:00:00
-2	3.0	string2	2000-02-01	2000-01-02 12:00:00
-3	4.0	string3	2000-03-01	2000-01-03 12:00:00
-
-The rows can also be shown vertically. This is useful when rows are too long to show horizontally.
-
-df.show(1, vertical=True)
-
--RECORD 0------------------
- a   | 1
- b   | 2.0
- c   | string1
- d   | 2000-01-01
- e   | 2000-01-01 12:00:00
-only showing top 1 row
-
-You can see the DataFrame’s schema and column names as follows:
-
+```python
 df.columns
 
+# Output
 ['a', 'b', 'c', 'd', 'e']
+
 
 df.printSchema()
 
+# Output
 root
  |-- a: long (nullable = true)
  |-- b: double (nullable = true)
  |-- c: string (nullable = true)
  |-- d: date (nullable = true)
  |-- e: timestamp (nullable = true)
+```
 
 Show the summary of the DataFrame
 
+```python
 df.select("a", "b", "c").describe().show()
 
+# Output
 +-------+---+---+-------+
 |summary|  a|  b|      c|
 +-------+---+---+-------+
@@ -221,50 +232,73 @@ df.select("a", "b", "c").describe().show()
 |    min|  1|2.0|string1|
 |    max|  3|4.0|string3|
 +-------+---+---+-------+
+```
 
-DataFrame.collect() collects the distributed data to the driver side as the local data in Python. Note that this can throw an out-of-memory error when the dataset is too large to fit in the driver side because it collects all the data from executors to the driver side.
+`DataFrame.collect()` collects the distributed data to the driver side as the local data in Python. 
+Note that this can throw an out-of-memory error when the dataset is too large to fit in the driver side 
+because it collects all the data from executors to the driver side.
 
+```python
 df.collect()
 
+# Output
 [Row(a=1, b=2.0, c='string1', d=datetime.date(2000, 1, 1), e=datetime.datetime(2000, 1, 1, 12, 0)),
  Row(a=2, b=3.0, c='string2', d=datetime.date(2000, 2, 1), e=datetime.datetime(2000, 1, 2, 12, 0)),
  Row(a=3, b=4.0, c='string3', d=datetime.date(2000, 3, 1), e=datetime.datetime(2000, 1, 3, 12, 0))]
+```
 
-In order to avoid throwing an out-of-memory exception, use DataFrame.take() or DataFrame.tail().
+In order to avoid throwing an out-of-memory exception, use `DataFrame.take(n)` or `DataFrame.tail()`.
 
+```python
 df.take(1)
 
+# Output
 [Row(a=1, b=2.0, c='string1', d=datetime.date(2000, 1, 1), e=datetime.datetime(2000, 1, 1, 12, 0))]
+```
 
-PySpark DataFrame also provides the conversion back to a pandas DataFrame to leverage pandas API. Note that toPandas also collects all data into the driver side that can easily cause an out-of-memory-error when the data is too large to fit into the driver side.
+PySpark DataFrame also provides the conversion back to a pandas DataFrame to leverage pandas API. 
+Note that `toPandas` also collects all data into the driver side that can easily cause an 
+out-of-memory-error when the data is too large to fit into the driver side.
 
+```python
 df.toPandas()
 
+# Output
 	a 	b 	c 	d 	e
 0 	1 	2.0 	string1 	2000-01-01 	2000-01-01 12:00:00
 1 	2 	3.0 	string2 	2000-02-01 	2000-01-02 12:00:00
 2 	3 	4.0 	string3 	2000-03-01 	2000-01-03 12:00:00
-Selecting and Accessing Data
+```
 
-PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger the computation but it returns a Column instance.
+### Selecting and Accessing Data
 
+PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger the computation but 
+it returns a Column instance.
+
+```python
 df.a
 
 Column<b'a'>
+```
 
-In fact, most of column-wise operations return Columns.
+In fact, most column-wise operations return Columns.
 
+```python
 from pyspark.sql import Column
 from pyspark.sql.functions import upper
 
 type(df.c) == type(upper(df.c)) == type(df.c.isNull())
 
 True
+```
 
-These Columns can be used to select the columns from a DataFrame. For example, DataFrame.select() takes the Column instances that returns another DataFrame.
+These Columns can be used to select the columns from a DataFrame. For example, `DataFrame.select()` 
+takes the Column instances that returns another DataFrame.
 
+```python
 df.select(df.c).show()
 
+# Output
 +-------+
 |      c|
 +-------+
@@ -272,9 +306,10 @@ df.select(df.c).show()
 |string2|
 |string3|
 +-------+
-
+```
 Assign new Column instance.
 
+```python
 df.withColumn('upper_c', upper(df.c)).show()
 
 +---+---+-------+----------+-------------------+-------+
@@ -284,9 +319,11 @@ df.withColumn('upper_c', upper(df.c)).show()
 |  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
 |  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
 +---+---+-------+----------+-------------------+-------+
+```
 
 To select a subset of rows, use DataFrame.filter().
 
+```python
 df.filter(df.a == 1).show()
 
 +---+---+-------+----------+-------------------+
@@ -294,11 +331,13 @@ df.filter(df.a == 1).show()
 +---+---+-------+----------+-------------------+
 |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
 +---+---+-------+----------+-------------------+
+```
 
-Applying a Function
+### Applying a Function
 
 PySpark supports various UDFs and APIs to allow users to execute Python native functions. See also the latest Pandas UDFs and Pandas Function APIs. For instance, the example below allows users to directly use the APIs in a pandas Series within Python native function.
 
+```python
 import pandas as pd
 from pyspark.sql.functions import pandas_udf
 
@@ -316,9 +355,11 @@ df.select(pandas_plus_one(df.a)).show()
 |                 3|
 |                 4|
 +------------------+
+```
 
 Another example is DataFrame.mapInPandas which allows users directly use the APIs in a pandas DataFrame without any restrictions such as the result length.
 
+```python
 def pandas_filter_func(iterator):
     for pandas_df in iterator:
         yield pandas_df[pandas_df.a == 1]
@@ -330,11 +371,13 @@ df.mapInPandas(pandas_filter_func, schema=df.schema).show()
 +---+---+-------+----------+-------------------+
 |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
 +---+---+-------+----------+-------------------+
+```
 
-Grouping Data
+### Grouping Data
 
 PySpark DataFrame also provides a way of handling grouped data by using the common approach, split-apply-combine strategy. It groups the data by a certain condition applies a function to each group and then combines them back to the DataFrame.
 
+```python
 df = spark.createDataFrame([
     ['red', 'banana', 1, 10], ['blue', 'banana', 2, 20], ['red', 'carrot', 3, 30],
     ['blue', 'grape', 4, 40], ['red', 'carrot', 5, 50], ['black', 'carrot', 6, 60],
@@ -353,9 +396,11 @@ df.show()
 |  red|banana|  7| 70|
 |  red| grape|  8| 80|
 +-----+------+---+---+
+```
 
 Grouping and then applying the avg() function to the resulting groups.
 
+```
 df.groupby('color').avg().show()
 
 +-----+-------+-------+
@@ -365,9 +410,11 @@ df.groupby('color').avg().show()
 |black|    6.0|   60.0|
 | blue|    3.0|   30.0|
 +-----+-------+-------+
+```
 
 You can also apply a Python native function against each group by using pandas API.
 
+```python
 def plus_mean(pandas_df):
     return pandas_df.assign(v1=pandas_df.v1 - pandas_df.v1.mean())
 
@@ -385,9 +432,11 @@ df.groupby('color').applyInPandas(plus_mean, schema=df.schema).show()
 | blue|banana| -1| 20|
 | blue| grape|  1| 40|
 +-----+------+---+---+
+```
 
 Co-grouping and applying a function.
 
+```python
 df1 = spark.createDataFrame(
     [(20000101, 1, 1.0), (20000101, 2, 2.0), (20000102, 1, 3.0), (20000102, 2, 4.0)],
     ('time', 'id', 'v1'))
@@ -410,14 +459,17 @@ df1.groupby('id').cogroup(df2.groupby('id')).applyInPandas(
 |20000101|  2|2.0|  y|
 |20000102|  2|4.0|  y|
 +--------+---+---+---+
+```
 
-Getting Data In/Out
+### Getting Data In/Out
 
 CSV is straightforward and easy to use. Parquet and ORC are efficient and compact file formats to read and write faster.
 
-There are many other data sources available in PySpark such as JDBC, text, binaryFile, Avro, etc. See also the latest Spark SQL, DataFrames and Datasets Guide in Apache Spark documentation.
-CSV
+There are many other data sources available in PySpark such as JDBC, text, binaryFile, Avro, etc. See also the latest 
+Spark SQL, DataFrames and Datasets Guide in Apache Spark documentation.
 
+* CSV
+```python
 df.write.csv('foo.csv', header=True)
 spark.read.csv('foo.csv', header=True).show()
 
@@ -433,9 +485,11 @@ spark.read.csv('foo.csv', header=True).show()
 |  red|banana|  7| 70|
 |  red| grape|  8| 80|
 +-----+------+---+---+
+```
 
-Parquet
+* Parquet
 
+```python
 df.write.parquet('bar.parquet')
 spark.read.parquet('bar.parquet').show()
 
@@ -451,29 +505,14 @@ spark.read.parquet('bar.parquet').show()
 |  red|banana|  7| 70|
 |  red| grape|  8| 80|
 +-----+------+---+---+
+```
 
-ORC
 
-df.write.orc('zoo.orc')
-spark.read.orc('zoo.orc').show()
-
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana|  1| 10|
-| blue|banana|  2| 20|
-|  red|carrot|  3| 30|
-| blue| grape|  4| 40|
-|  red|carrot|  5| 50|
-|black|carrot|  6| 60|
-|  red|banana|  7| 70|
-|  red| grape|  8| 80|
-+-----+------+---+---+
-
-Working with SQL
+### Working with SQL
 
 DataFrame and Spark SQL share the same execution engine so they can be interchangeably used seamlessly. For example, you can register the DataFrame as a table and run a SQL easily as below:
 
+```python
 df.createOrReplaceTempView("tableA")
 spark.sql("SELECT count(*) from tableA").show()
 
@@ -482,9 +521,11 @@ spark.sql("SELECT count(*) from tableA").show()
 +--------+
 |       8|
 +--------+
+```
 
 In addition, UDFs can be registered and invoked in SQL out of the box:
 
+```python
 @pandas_udf("integer")
 def add_one(s: pd.Series) -> pd.Series:
     return s + 1
@@ -504,9 +545,11 @@ spark.sql("SELECT add_one(v1) FROM tableA").show()
 |          8|
 |          9|
 +-----------+
+```
 
 These SQL expressions can directly be mixed and used as PySpark columns.
 
+```python
 from pyspark.sql.functions import expr
 
 df.selectExpr('add_one(v1)').show()
@@ -530,4 +573,4 @@ df.select(expr('count(*)') > 0).show()
 +--------------+
 |          true|
 +--------------+
-
+```
