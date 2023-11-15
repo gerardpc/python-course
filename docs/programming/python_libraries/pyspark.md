@@ -319,7 +319,10 @@ df.select(df.c).show()
 |string3|
 +-------+
 ```
-Assign new Column instance.
+To select seval columns, we would write either `df.select("col_1","col_2").show()` or
+`df.select(df.col_1,df.col_2).show()` (they are equivalent).
+
+* To assign a new column instance:
 
 ```python
 df.withColumn('upper_c', upper(df.c)).show()
@@ -334,7 +337,7 @@ df.withColumn('upper_c', upper(df.c)).show()
 +---+---+-------+----------+-------------------+-------+
 ```
 
-To select a subset of rows, use DataFrame.filter().
+* To select a subset of rows, we use the filter method `DataFrame.filter()`.
 
 ```python
 df.filter(df.a == 1).show()
@@ -349,7 +352,9 @@ df.filter(df.a == 1).show()
 
 ### Applying a Function
 
-PySpark supports various UDFs and APIs to allow users to execute Python native functions. See also the latest Pandas UDFs and Pandas Function APIs. For instance, the example below allows users to directly use the APIs in a pandas Series within Python native function.
+PySpark supports various user defined functions (UDFs) and APIs to allow users to execute Python native functions. 
+See also the latest Pandas UDFs and Pandas Function APIs. For instance, the example below allows users to 
+directly use the APIs in a pandas Series within Python native function.
 
 ```python
 import pandas as pd
@@ -372,7 +377,8 @@ df.select(pandas_plus_one(df.a)).show()
 +------------------+
 ```
 
-Another example is DataFrame.mapInPandas which allows users directly use the APIs in a pandas DataFrame without any restrictions such as the result length.
+Another example is `DataFrame.mapInPandas` which allows users to directly use the APIs in a pandas DataFrame 
+without any restrictions such as the result length.
 
 ```python
 def pandas_filter_func(iterator):
@@ -391,7 +397,8 @@ df.mapInPandas(pandas_filter_func, schema=df.schema).show()
 
 ### Grouping Data
 
-PySpark DataFrame also provides a way of handling grouped data by using the common approach, split-apply-combine strategy. It groups the data by a certain condition applies a function to each group and then combines them back to the DataFrame.
+PySpark DataFrame also provides a way of handling grouped data. It groups the data by a certain 
+condition, applies a function to each group and then combines them back to the DataFrame.
 
 ```python
 df = spark.createDataFrame([
@@ -415,7 +422,7 @@ df.show()
 +-----+------+---+---+
 ```
 
-Grouping and then applying the avg() function to the resulting groups.
+Grouping and then applying the `avg()` function to the resulting groups.
 
 ```python
 df.groupby('color').avg().show()
@@ -453,40 +460,10 @@ df.groupby('color').applyInPandas(plus_mean, schema=df.schema).show()
 +-----+------+---+---+
 ```
 
-Co-grouping and applying a function.
+### Getting data In/Out
 
-```python
-df1 = spark.createDataFrame(
-    [(20000101, 1, 1.0), (20000101, 2, 2.0), (20000102, 1, 3.0), (20000102, 2, 4.0)],
-    ('time', 'id', 'v1'))
-
-df2 = spark.createDataFrame(
-    [(20000101, 1, 'x'), (20000101, 2, 'y')],
-    ('time', 'id', 'v2'))
-
-def merge_ordered(l, r):
-    return pd.merge_ordered(l, r)
-
-df1.groupby('id').cogroup(df2.groupby('id')).applyInPandas(
-    merge_ordered, schema='time int, id int, v1 double, v2 string').show()
-
-# Output
-+--------+---+---+---+
-|    time| id| v1| v2|
-+--------+---+---+---+
-|20000101|  1|1.0|  x|
-|20000102|  1|3.0|  x|
-|20000101|  2|2.0|  y|
-|20000102|  2|4.0|  y|
-+--------+---+---+---+
-```
-
-### Getting Data In/Out
-
-CSV is straightforward and easy to use. Parquet and ORC are efficient and compact file formats to read and write faster.
-
-There are many other data sources available in PySpark such as JDBC, text, binaryFile, Avro, etc. See also the latest 
-Spark SQL, DataFrames and Datasets Guide in Apache Spark documentation.
+CSV files are straightforward and easy to use. Parquet, in contrast, is an efficient and compact file format
+to read and write faster.
 
 * CSV
 ```python
@@ -532,7 +509,8 @@ spark.read.parquet('bar.parquet').show()
 
 ### Working with SQL
 
-DataFrame and Spark SQL share the same execution engine so they can be interchangeably used seamlessly. For example, you can register the DataFrame as a table and run a SQL easily as below:
+An incredibly powerful option of PySpark DataFrames is that they can be queried with SQL.
+For example, you can register a DataFrame as a table and run a SQL query on it easily as below:
 
 ```python
 df.createOrReplaceTempView("tableA")
@@ -546,7 +524,7 @@ spark.sql("SELECT count(*) from tableA").show()
 +--------+
 ```
 
-In addition, UDFs can be registered and invoked in SQL out of the box:
+In addition, functions can be registered and invoked in SQL out of the box:
 
 ```python
 @pandas_udf("integer")
