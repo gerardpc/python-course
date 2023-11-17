@@ -42,10 +42,23 @@ docker run -it --rm -p 8888:8888 jupyter/pyspark-notebook
 ```
 After this two steps we can already write/run Python code with PySpark (from the notebook).
 
-#### Option 2: running PySpark from an IDE (e.g. PyCharm)
+#### Option 2: using Google Colab
+
+Open a new google colab notebook and run
+```bash
+!pip install pyspark py4j
+```
+on the first cell.
+
+!!!note
+    This is the most straightforward way to work with PySpark, but executions are rather slow.
+
+#### Option 3: running PySpark from an IDE (e.g. PyCharm)
 
 1. Install docker following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 2. Pull the docker image following the instructions [here](https://hub.docker.com/r/apache/spark-py).
+3. Configure Pycharm to work with a remote [docker interpreter](https://www.jetbrains.com/help/pycharm/using-docker-as-a-remote-interpreter.html#config-docker)
+4. 
 
 ## Overview
 
@@ -114,7 +127,7 @@ pandas DataFrame, and then an RDD consisting of such a list.
 
 When the schema is omitted, PySpark infers the corresponding schema by taking a sample from the data.
 
-Firstly, we can create a PySpark DataFrame from a list of rows
+We can create a PySpark DataFrame from a list of rows:
 
 ```python
 from datetime import datetime, date
@@ -132,9 +145,9 @@ print(df)
 DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
 ```
 
-Other options to create a PySpark DataFrame:
+But we have other options to create a PySpark DataFrame, and sometimes they are more convenient:
 
-* Create a PySpark DataFrame with an explicit schema.
+* Create a PySpark DataFrame with an explicit schema
 
 ```python
 df = spark.createDataFrame([
@@ -150,22 +163,22 @@ DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
 
 * Create a PySpark DataFrame from a pandas DataFrame
 
-```python
-pandas_df = pd.DataFrame({
-    'a': [1, 2, 3],
-    'b': [2., 3., 4.],
-    'c': ['string1', 'string2', 'string3'],
-    'd': [date(2000, 1, 1), date(2000, 2, 1), date(2000, 3, 1)],
-    'e': [datetime(2000, 1, 1, 12, 0), datetime(2000, 1, 2, 12, 0), datetime(2000, 1, 3, 12, 0)]
-})
-df = spark.createDataFrame(pandas_df)
-print(df)
+    ```python
+    pandas_df = pd.DataFrame({
+        'a': [1, 2, 3],
+        'b': [2., 3., 4.],
+        'c': ['string1', 'string2', 'string3'],
+        'd': [date(2000, 1, 1), date(2000, 2, 1), date(2000, 3, 1)],
+        'e': [datetime(2000, 1, 1, 12, 0), datetime(2000, 1, 2, 12, 0), datetime(2000, 1, 3, 12, 0)]
+    })
+    df = spark.createDataFrame(pandas_df)
+    print(df)
 
-# Output
-DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
-```
+    # Output
+    DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
+    ```
 
-The DataFrames created above all have the same results and schema.
+All the DataFrames created above have the same content and schema.
 
 ```python
 # All DataFrames above result same.
@@ -208,7 +221,7 @@ df.show(1)
 +---+---+-------+----------+-------------------+
 ```
 
-only showing top 1 row. You can see the DataFrame’s schema and column names as follows:
+only showing the first row. You can see the DataFrame’s schema and column names as follows:
 
 ```python
 df.columns
@@ -267,9 +280,8 @@ df.take(1)
 [Row(a=1, b=2.0, c='string1', d=datetime.date(2000, 1, 1), e=datetime.datetime(2000, 1, 1, 12, 0))]
 ```
 
-PySpark DataFrame also provides the conversion back to a pandas DataFrame to leverage pandas API. 
-Note that `toPandas` also collects all data into the driver side that can easily cause an 
-out-of-memory-error when the data is too large to fit into the driver side.
+PySpark DataFrame also provides the conversion back to a pandas DataFrame. 
+
 
 ```python
 df.toPandas()
@@ -282,7 +294,11 @@ print(df)
 2 	3 	4.0 	string3 	2000-03-01 	2000-01-03 12:00:00
 ```
 
-### Selecting and Accessing Data
+!!!note 
+    `toPandas` also collects all data into the driver side, and that can easily cause an 
+    out-of-memory-error if the data is too large to fit into the driver side.
+
+### Selecting and accessing data
 
 PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger the computation but 
 it returns a Column instance.
@@ -319,7 +335,7 @@ df.select(df.c).show()
 |string3|
 +-------+
 ```
-To select seval columns, we would write either `df.select("col_1","col_2").show()` or
+To select several columns, we would write either `df.select("col_1","col_2").show()` or
 `df.select(df.col_1,df.col_2).show()` (they are equivalent).
 
 * To assign a new column instance:
@@ -348,13 +364,17 @@ df.filter(df.a == 1).show()
 +---+---+-------+----------+-------------------+
 |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
 +---+---+-------+----------+-------------------+
+
+# Filter multiple condition
+df.filter((df.state  == "OH") & (df.gender  == "M")).show()  
+
+...
 ```
 
 ### Applying a Function
 
 PySpark supports various user defined functions (UDFs) and APIs to allow users to execute Python native functions. 
-See also the latest Pandas UDFs and Pandas Function APIs. For instance, the example below allows users to 
-directly use the APIs in a pandas Series within Python native function.
+For instance, the example below allows users to directly use the APIs in a pandas Series within a Python native function.
 
 ```python
 import pandas as pd
@@ -377,98 +397,70 @@ df.select(pandas_plus_one(df.a)).show()
 +------------------+
 ```
 
-Another example is `DataFrame.mapInPandas` which allows users to directly use the APIs in a pandas DataFrame 
-without any restrictions such as the result length.
-
-```python
-def pandas_filter_func(iterator):
-    for pandas_df in iterator:
-        yield pandas_df[pandas_df.a == 1]
-
-df.mapInPandas(pandas_filter_func, schema=df.schema).show()
-
-# Output
-+---+---+-------+----------+-------------------+
-|  a|  b|      c|         d|                  e|
-+---+---+-------+----------+-------------------+
-|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
-+---+---+-------+----------+-------------------+
-```
 
 ### Grouping Data
 
-PySpark DataFrame also provides a way of handling grouped data. It groups the data by a certain 
+The DataFrame also provides a way of handling grouped data. It groups the data by a certain 
 condition, applies a function to each group and then combines them back to the DataFrame.
 
 ```python
-df = spark.createDataFrame([
-    ['red', 'banana', 1, 10], ['blue', 'banana', 2, 20], ['red', 'carrot', 3, 30],
-    ['blue', 'grape', 4, 40], ['red', 'carrot', 5, 50], ['black', 'carrot', 6, 60],
-    ['red', 'banana', 7, 70], ['red', 'grape', 8, 80]], schema=['color', 'fruit', 'v1', 'v2'])
-df.show()
+simpleData = [("James","Sales","NY",90000,34,10000),
+    ("Michael","Sales","NY",86000,56,20000),
+    ("Robert","Sales","CA",81000,30,23000),
+    ("Maria","Finance","CA",90000,24,23000),
+    ("Raman","Finance","CA",99000,40,24000),
+    ("Scott","Finance","NY",83000,36,19000),
+    ("Jen","Finance","NY",79000,53,15000),
+    ("Jeff","Marketing","CA",80000,25,18000),
+    ("Kumar","Marketing","NY",91000,50,21000)
+  ]
+
+schema = ["employee_name","department","state","salary","age","bonus"]
+df = spark.createDataFrame(data=simpleData, schema = schema)
+
+df.show(truncate=False)
+
 
 # Output
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana|  1| 10|
-| blue|banana|  2| 20|
-|  red|carrot|  3| 30|
-| blue| grape|  4| 40|
-|  red|carrot|  5| 50|
-|black|carrot|  6| 60|
-|  red|banana|  7| 70|
-|  red| grape|  8| 80|
-+-----+------+---+---+
++-------------+----------+-----+------+---+-----+
+|employee_name|department|state|salary|age|bonus|
++-------------+----------+-----+------+---+-----+
+|        James|     Sales|   NY| 90000| 34|10000|
+|      Michael|     Sales|   NY| 86000| 56|20000|
+|       Robert|     Sales|   CA| 81000| 30|23000|
+|        Maria|   Finance|   CA| 90000| 24|23000|
+|        Raman|   Finance|   CA| 99000| 40|24000|
+|        Scott|   Finance|   NY| 83000| 36|19000|
+|          Jen|   Finance|   NY| 79000| 53|15000|
+|         Jeff| Marketing|   CA| 80000| 25|18000|
+|        Kumar| Marketing|   NY| 91000| 50|21000|
++-------------+----------+-----+------+---+-----+
 ```
 
 Grouping and then applying the `avg()` function to the resulting groups.
 
 ```python
-df.groupby('color').avg().show()
+df.groupBy("department","state").sum("salary","bonus").show()
 
 # Output
-+-----+-------+-------+
-|color|avg(v1)|avg(v2)|
-+-----+-------+-------+
-|  red|    4.8|   48.0|
-|black|    6.0|   60.0|
-| blue|    3.0|   30.0|
-+-----+-------+-------+
-```
-
-You can also apply a Python native function against each group by using pandas API.
-
-```python
-def plus_mean(pandas_df):
-    return pandas_df.assign(v1=pandas_df.v1 - pandas_df.v1.mean())
-
-df.groupby('color').applyInPandas(plus_mean, schema=df.schema).show()
-
-# Output
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana| -3| 10|
-|  red|carrot| -1| 30|
-|  red|carrot|  0| 50|
-|  red|banana|  2| 70|
-|  red| grape|  3| 80|
-|black|carrot|  0| 60|
-| blue|banana| -1| 20|
-| blue| grape|  1| 40|
-+-----+------+---+---+
++----------+-----+-----------+----------+
+|department|state|sum(salary)|sum(bonus)|
++----------+-----+-----------+----------+
+|Finance   |NY   |162000     |34000     |
+|Marketing |NY   |91000      |21000     |
+|Sales     |CA   |81000      |23000     |
+|Marketing |CA   |80000      |18000     |
+|Finance   |CA   |189000     |47000     |
+|Sales     |NY   |176000     |30000     |
++----------+-----+-----------+----------+
 ```
 
 ### Getting data In/Out
 
-CSV files are straightforward and easy to use. Parquet, in contrast, is an efficient and compact file format
-to read and write faster.
-
-* CSV
+* CSV files:
 ```python
-df.write.csv('foo.csv', header=True)
-spark.read.csv('foo.csv', header=True).show()
+df.write.csv('fruits.csv', header=True)
+spark.read.csv('fruits.csv', header=True).show()
 
 # Output
 +-----+------+---+---+
@@ -485,11 +477,11 @@ spark.read.csv('foo.csv', header=True).show()
 +-----+------+---+---+
 ```
 
-* Parquet
+* Parquet is an efficient and compact file format to read and write faster.
 
 ```python
-df.write.parquet('bar.parquet')
-spark.read.parquet('bar.parquet').show()
+df.write.parquet('fruits.parquet')
+spark.read.parquet('fruits.parquet').show()
 
 # Output
 +-----+------+---+---+
@@ -505,7 +497,6 @@ spark.read.parquet('bar.parquet').show()
 |  red| grape|  8| 80|
 +-----+------+---+---+
 ```
-
 
 ### Working with SQL
 
