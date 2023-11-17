@@ -205,6 +205,53 @@ root
 !!!note
     To print a dataframe in table format, you can use `df.show()`.
 
+
+### Getting data In/Out
+
+Other common options to put data in/out of a DataFrame are to get data from a file.
+
+* CSV files:
+```python
+df.write.csv('fruits.csv', header=True)
+spark.read.csv('fruits.csv', header=True).show()
+
+# Output
++-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+
+```
+
+* Parquet is an efficient and compact file format to read and write faster.
+
+```python
+df.write.parquet('fruits.parquet')
+spark.read.parquet('fruits.parquet').show()
+
+# Output
++-----+------+---+---+
+|color| fruit| v1| v2|
++-----+------+---+---+
+|  red|banana|  1| 10|
+| blue|banana|  2| 20|
+|  red|carrot|  3| 30|
+| blue| grape|  4| 40|
+|  red|carrot|  5| 50|
+|black|carrot|  6| 60|
+|  red|banana|  7| 70|
+|  red| grape|  8| 80|
++-----+------+---+---+
+```
+
+
 ### Viewing Data
 
 The top rows of a DataFrame can be displayed using `DataFrame.show(n)` (where `n` is the number of
@@ -300,8 +347,8 @@ print(df)
 
 ### Selecting and accessing data
 
-PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger the computation but 
-it returns a Column instance.
+PySpark DataFrame is lazily evaluated and simply selecting a column does not trigger a computation.
+Instead, it returns a Column instance.
 
 ```python
 df.a
@@ -320,8 +367,7 @@ type(df.c) == type(upper(df.c)) == type(df.c.isNull())
 True
 ```
 
-These Columns can be used to select the columns from a DataFrame. For example, `DataFrame.select()` 
-takes the Column instances that returns another DataFrame.
+These column objects can be used to get new DataFrames that are subsets of the original one.
 
 ```python
 df.select(df.c).show()
@@ -455,50 +501,63 @@ df.groupBy("department","state").sum("salary","bonus").show()
 +----------+-----+-----------+----------+
 ```
 
-### Getting data In/Out
+### Joins
 
-* CSV files:
-```python
-df.write.csv('fruits.csv', header=True)
-spark.read.csv('fruits.csv', header=True).show()
-
-# Output
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana|  1| 10|
-| blue|banana|  2| 20|
-|  red|carrot|  3| 30|
-| blue| grape|  4| 40|
-|  red|carrot|  5| 50|
-|black|carrot|  6| 60|
-|  red|banana|  7| 70|
-|  red| grape|  8| 80|
-+-----+------+---+---+
-```
-
-* Parquet is an efficient and compact file format to read and write faster.
+The PySpark Join is used to combine two DataFrames from the values of two of their columns. 
+It supports all basic join type operations available in traditional SQL:
 
 ```python
-df.write.parquet('fruits.parquet')
-spark.read.parquet('fruits.parquet').show()
+empDF.show()
 
 # Output
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana|  1| 10|
-| blue|banana|  2| 20|
-|  red|carrot|  3| 30|
-| blue| grape|  4| 40|
-|  red|carrot|  5| 50|
-|black|carrot|  6| 60|
-|  red|banana|  7| 70|
-|  red| grape|  8| 80|
-+-----+------+---+---+
++------+--------+---------------+-----------+-----------+------+------+
+|emp_id|name    |superior_emp_id|year_joined|emp_dept_id|gender|salary|
++------+--------+---------------+-----------+-----------+------+------+
+|1     |Smith   |-1             |2018       |10         |M     |3000  |
+|2     |Rose    |1              |2010       |20         |M     |4000  |
+|3     |Williams|1              |2010       |10         |M     |1000  |
+|4     |Jones   |2              |2005       |10         |F     |2000  |
+|5     |Brown   |2              |2010       |40         |      |-1    |
+|6     |Brown   |2              |2010       |50         |      |-1    |
++------+--------+---------------+-----------+-----------+------+------+
+
+deptDF.show()
+
+# Output
++---------+-------+
+|dept_name|dept_id|
++---------+-------+
+|Finance  |10     |
+|Marketing|20     |
+|Sales    |30     |
+|IT       |40     |
++---------+-------+
+
+
+# Inner join
+empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner").show()
+
+# Output
+# Output
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
+|emp_id|name    |superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
+|1     |Smith   |-1             |2018       |10         |M     |3000  |Finance  |10     |
+|2     |Rose    |1              |2010       |20         |M     |4000  |Marketing|20     |
+|3     |Williams|1              |2010       |10         |M     |1000  |Finance  |10     |
+|4     |Jones   |2              |2005       |10         |F     |2000  |Finance  |10     |
+|5     |Brown   |2              |2010       |40         |      |-1    |IT       |40     |
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
 ```
 
-### Working with SQL
+In this last example we used `inner`, but we can also use:
+
+* `inner`
+* `left`
+* `outer`
+
+
+## Working with SQL
 
 An incredibly powerful option of PySpark DataFrames is that they can be queried with SQL.
 For example, you can register a DataFrame as a table and run a SQL query on it easily as below:
