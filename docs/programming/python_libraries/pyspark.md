@@ -538,7 +538,6 @@ deptDF.show()
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner").show()
 
 # Output
-# Output
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
 |emp_id|name    |superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
