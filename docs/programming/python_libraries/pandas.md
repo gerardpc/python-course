@@ -94,10 +94,10 @@ In a Series object, the axis labels are collectively referred to as the **index*
 to create a Series is to call:
 
 ```python
-s = pd.Series(data, index=index)
+s = pd.Series(data, index=index_name)
 ```
 
-Here, data can be many different things, for example:
+Here, data can be many different things, but they need to be **1D**. For example:
 
 * A Python dict or list
 * A scalar value
@@ -130,6 +130,19 @@ Out[6]:
 4   -2.104569
 dtype: float64
 ```
+
+!!!note
+    The index of a Series is used to label and identify each element of the underlying data.
+    We can access the index of a Series with the `.index` attribute:
+    ```python
+    cities = ['Kolkata', 'Chicago', 'Toronto', 'Lisbon']
+    populations = [14.85, 2.71, 2.93, 0.51]
+    city_series = pd.Series(populations, index=cities)
+    print(city_series.index)
+
+    # Output:
+    Index(['Kolkata', 'Chicago', 'Toronto', 'Lisbon'], dtype='object')
+    ```
 
 ### Dataframe creation
 
