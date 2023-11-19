@@ -108,7 +108,9 @@ example, or we can use the hexadecimal code of the color:
 ax.plot(x, y, color='#eeefff')
 ```
 
-## Creating a scatter plot
+## Other types of plots
+
+## Scatter plots
 
 To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
 
@@ -123,7 +125,7 @@ ax.scatter(x, y, color='green'')
   <figcaption>A scatter plot example.</figcaption>
 </figure>
 
-## Creating a histogram
+## Histograms
 
 To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
 
@@ -140,6 +142,33 @@ axs[1].hist(dist2, bins=n_bins)
   ![Image title](https://matplotlib.org/stable/_images/sphx_glr_hist_001.png){ width="500" }
   <figcaption>A double histogram example.</figcaption>
 </figure>
+
+### Bar plots
+
+To create a bar plot, we can use the `bar` method:
+
+```python
+fig, ax = plt.subplots(1, 1)
+
+# Defines X-axis labels and Y-axis values
+fruits = ['apple', 'blueberry', 'cherry', 'orange']
+counts = [40, 100, 30, 55]
+bar_labels = ['red', 'blue', '_red', 'orange']
+bar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']
+
+ax.bar(fruits, counts, label=bar_labels, color=bar_colors)
+```
+
+<figure markdown>
+  ![Image title](https://matplotlib.org/stable/_images/sphx_glr_bar_colors_001.png){ width="500" }
+  <figcaption>A bar plot example.</figcaption>
+</figure>
+
+
+### More types of plots
+
+You can find a list of all the different types of plots that can be created with Matplotlib in the
+[Matplotlib gallery](https://matplotlib.org/3.8.1/plot_types/index.html).
 
 
 ## Show figure
@@ -257,9 +286,3 @@ ax.grid()
   ![Image title](https://matplotlib.org/stable/_images/sphx_glr_simple_plot_001.png){ width="500" }
   <figcaption>Sample figure with a grid.</figcaption>
 </figure>
-
-
-## Other types of plots
-
-You can find a list of all the different types of plots that can be created with Matplotlib in the
-[Matplotlib gallery](https://matplotlib.org/3.8.1/plot_types/index.html).
