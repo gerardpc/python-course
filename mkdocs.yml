@@ -61,7 +61,14 @@ nav:
     - 'programming/python/io_files.md'
     - 'programming/python/exceptions.md'
     - 'programming/python/classes.md'
-    - 'programming/python/python_packages.md'
+    - 'Other topics':
+      - 'programming/python/comprehensions.md'
+#      - 'programming/python/builtin_functions.md'
+#      - 'programming/python/dataclasses.md'
+#      - 'programming/python/decorators.md'
+#      - 'programming/python/regular_expressions.md'
+#      - 'programming/python/generators.md'
+      - 'programming/python/python_packages.md'
   - 'Data science libraries':
     - 'programming/python_libraries/numpy.md'
     - 'programming/python_libraries/matplotlib.md'
