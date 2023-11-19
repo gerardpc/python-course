@@ -387,8 +387,28 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sets-and-tuples" class="md-nav__link">
-    Sets and tuples
+  <a href="#sets" class="md-nav__link">
+    Sets
+  </a>
+  
+    <nav class="md-nav" aria-label="Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-methods" class="md-nav__link">
+    Set methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuples" class="md-nav__link">
+    Tuples
   </a>
   
 </li>
@@ -851,8 +871,28 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sets-and-tuples" class="md-nav__link">
-    Sets and tuples
+  <a href="#sets" class="md-nav__link">
+    Sets
+  </a>
+  
+    <nav class="md-nav" aria-label="Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-methods" class="md-nav__link">
+    Set methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuples" class="md-nav__link">
+    Tuples
   </a>
   
 </li>
@@ -1040,9 +1080,8 @@ the dict like so:</p>
 <li><code>update()</code>    Updates the dictionary with the specified key-value pairs</li>
 <li><code>values()</code>    Returns a list of all the values in the dictionary</li>
 </ul>
-<h3 id="sets-and-tuples">Sets and tuples<a class="headerlink" href="#sets-and-tuples" title="Permanent link">&para;</a></h3>
-<p><strong>Sets</strong> and <strong>tuples</strong> are the last of Python main data structures. </p>
-<p>In Python, we create <strong>sets</strong> by placing all the elements inside curly braces {}, separated by comma.</p>
+<h3 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h3>
+<p>In Python, we create <strong>sets</strong> by placing all the elements inside curly braces <code>{}</code>, separated by commas.</p>
 <p>A set can have any number of items and they may be of different types (integer, float, tuple, string etc.). 
 But a set cannot have mutable elements like lists, sets or dictionaries as its elements.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># create a set of integer type</span>
@@ -1069,6 +1108,21 @@ But a set cannot have mutable elements like lists, sets or dictionaries as its e
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Output</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
 </code></pre></div></p>
+<h4 id="set-methods">Set methods<a class="headerlink" href="#set-methods" title="Permanent link">&para;</a></h4>
+<p>Some of the important methods of Python sets are listed below:</p>
+<ul>
+<li><code>add()</code>: Adds an element to the set</li>
+<li><code>clear()</code>: Removes all the elements from the set</li>
+<li><code>copy()</code>: Returns a copy of the set</li>
+</ul>
+<p>Typical mathematical operations on sets:</p>
+<ul>
+<li><code>difference()</code>: Returns a set containing the difference between two or more sets</li>
+<li><code>intersection()</code>: Returns a set, that is the intersection of two other sets</li>
+<li><code>union()</code>: Return a set containing the union of sets. Can also be used with the <code>|</code> operator between sets</li>
+<li><code>symmetric_difference()</code>: Returns a set with the symmetric differences of two sets.</li>
+</ul>
+<h3 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h3>
 <p>A tuple is created by placing all the items (elements) inside parentheses (), separated by commas. 
 A tuple can have any number of items and they may be of different types (integer, float, list, string, etc.).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Different types of tuples</span>
@@ -1098,10 +1152,23 @@ A tuple can have any number of items and they may be of different types (integer
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When defining a tuple, parentheses are optional (although it is good practice to use them)</p>
+<p>When defining a tuple, parentheses are optional (although it is good practice to use them). 
+A tuple containing a single value must be defined with a comma, otherwise Python will not
+recognize it as a tuple.</p>
 </div>
-<p>Like lists, tuples allow slicing and indexing. However, unlike lists, tuples are <strong>immutable</strong>: once 
-defined, they cannot be changed.</p>
+<p>Like lists, tuples allow slicing and indexing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Output: &#39;p&#39;</span>
+</code></pre></div>
+<p>However, unlike lists, tuples are <strong>immutable</strong>: once defined, they cannot be changed. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">my_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Output</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</code></pre></div>
 
 
 
