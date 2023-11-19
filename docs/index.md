@@ -5,14 +5,14 @@
 This site contains notes for the following courses:
 
 * **PROGRAMMING FOR DATA MANAGEMENT & ANALYSIS**, sections:
-    * All Python sections (except for "Python packages" and JSON files)
+    * All Python sections (except for sections in "Other topics" and JSON files)
     * Pandas
     * Matplotlib
     * SQL (except for "Window functions")
     * PySpark
   
 * **PYTHON FOR DATA ANALYSIS 1**, sections:
-    * All Python sections (except for "Python packages")
+    * All Python sections (except for sections in "Other topics")
     * NumPy
     * Pandas
     * Matplotlib
