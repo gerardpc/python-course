@@ -110,7 +110,7 @@ ax.plot(x, y, color='#eeefff')
 
 ## Other types of plots
 
-## Scatter plots
+### Scatter plots
 
 To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
 
@@ -125,7 +125,7 @@ ax.scatter(x, y, color='green'')
   <figcaption>A scatter plot example.</figcaption>
 </figure>
 
-## Histograms
+### Histograms
 
 To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
 
