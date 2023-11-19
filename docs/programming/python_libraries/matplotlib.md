@@ -29,7 +29,16 @@ as a canvas that contains all the plots that we want to create, while the `Axes`
 sheet you can plot and hold your data), and is synonymous with the term _subplot_ (because each `axes` can have
 several subplots).
 
-After we have called `subplots`, we can use the `plot` method of the `Axes` object to plot some data.
+!!!note
+    To specify the number of subplots that we want to create, we can pass the `nrows` and `ncols` arguments to the
+    `subplots` function. For example, to create a figure with 2 rows and 2 columns, we can do:
+
+    ```python  
+    fig, ax = plt.subplots(2, 2)
+    ```
+
+After we have called `subplots`, we can use the `plot` method of the `Axes` object to plot some data with a **line**
+connecting the different data points.
 The input to the `plot` method is typically two arrays, one for the x-axis and one for the y-axis. For example, 
 if we have time-series data, we can plot the time on the x-axis and the values on the y-axis:
 
@@ -76,7 +85,20 @@ The `.plot()` method has a lot of parameters that can be used to customize the p
 color, width and the line style of the plot:
 
 ```python
-ax.plot(x, y, color='green', linewidth=3, linestyle='--', label='dashed')
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+N = 50
+x = np.random.rand(N)
+y = np.random.rand(N)
+colors = np.random.rand(N)
+area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
+
+fig, axs = plt.subplots(1, 1)
+ax.scatter(x, y, s=area, c=colors, alpha=0.5)
 ```
 
 The color can be specified in different ways. For example, we can use the name of the color, as in the previous
@@ -85,6 +107,21 @@ example, or we can use the hexadecimal code of the color:
 ```python
 ax.plot(x, y, color='#eeefff')
 ```
+
+## Creating a scatter plot
+
+To create a histogram of the distribution of the data for a single 1D array, we can use the `hist` method:
+
+```python
+fig, axs = plt.subplots(1, 1)
+
+ax.scatter(x, y, color='green'')
+```
+
+<figure markdown>
+  ![Image title](https://matplotlib.org/stable/_images/sphx_glr_scatter_001.png){ width="500" }
+  <figcaption>A scatter plot example.</figcaption>
+</figure>
 
 ## Creating a histogram
 

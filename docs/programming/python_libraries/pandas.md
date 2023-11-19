@@ -775,7 +775,8 @@ There is also a helpful `.describe()` method that gives you several of these at 
 
 #### Applying custom functions
 
-The pandas DataFrame `apply()` function is used to apply a function along an axis of the DataFrame.
+The pandas DataFrame `apply()` function is used to apply a function along an axis of a DataFrame 
+(it also works with Pandas Series).
 This function that we apply can be an external or a custom defined function. It works like this:
 
 ```python
