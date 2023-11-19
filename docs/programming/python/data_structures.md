@@ -198,11 +198,9 @@ pet -> dog
 - `update()`	Updates the dictionary with the specified key-value pairs
 - `values()`	Returns a list of all the values in the dictionary
 
-### Sets and tuples
+### Sets 
 
-**Sets** and **tuples** are the last of Python main data structures. 
-
-In Python, we create **sets** by placing all the elements inside curly braces {}, separated by comma.
+In Python, we create **sets** by placing all the elements inside curly braces `{}`, separated by commas.
 
 A set can have any number of items and they may be of different types (integer, float, tuple, string etc.). 
 But a set cannot have mutable elements like lists, sets or dictionaries as its elements.
@@ -235,6 +233,24 @@ print(numbers)
 {8, 2, 4, 6}
 ```
 
+#### Set methods
+
+Some of the important methods of Python sets are listed below:
+
+* `add()`: Adds an element to the set
+* `clear()`: Removes all the elements from the set
+* `copy()`:	Returns a copy of the set
+
+Typical mathematical operations on sets:
+
+* `difference()`: Returns a set containing the difference between two or more sets
+* `intersection()`: Returns a set, that is the intersection of two other sets
+* `union()`: Return a set containing the union of sets. Can also be used with the `|` operator between sets
+* `symmetric_difference()`: Returns a set with the symmetric differences of two sets.
+
+
+### Tuples
+
 A tuple is created by placing all the items (elements) inside parentheses (), separated by commas. 
 A tuple can have any number of items and they may be of different types (integer, float, list, string, etc.).
 
@@ -266,7 +282,25 @@ print(my_tuple)
 ```
 
 !!!note
-    When defining a tuple, parentheses are optional (although it is good practice to use them)
+    When defining a tuple, parentheses are optional (although it is good practice to use them). 
+    A tuple containing a single value must be defined with a comma, otherwise Python will not
+    recognize it as a tuple.
 
-Like lists, tuples allow slicing and indexing. However, unlike lists, tuples are **immutable**: once 
-defined, they cannot be changed.
+Like lists, tuples allow slicing and indexing:
+
+```python  
+my_tuple = ('p','e','r','m','i','t')
+
+print(my_tuple[0])
+# Output: 'p'
+```
+
+However, unlike lists, tuples are **immutable**: once defined, they cannot be changed. For example:
+
+```python
+my_tuple = (1, 2, 3)
+my_tuple[0] = 4
+
+# Output
+TypeError: 'tuple' object does not support item assignment
+```
