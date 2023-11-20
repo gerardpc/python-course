@@ -58,7 +58,6 @@ on the first cell.
 1. Install docker following the instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 2. Pull the docker image following the instructions [here](https://hub.docker.com/r/apache/spark-py).
 3. Configure Pycharm to work with a remote [docker interpreter](https://www.jetbrains.com/help/pycharm/using-docker-as-a-remote-interpreter.html#config-docker)
-4. 
 
 ## Overview
 
@@ -483,7 +482,7 @@ df.show(truncate=False)
 +-------------+----------+-----+------+---+-----+
 ```
 
-Grouping and then applying the `avg()` function to the resulting groups.
+Grouping and then applying the `sum()` function to the resulting groups.
 
 ```python
 df.groupBy("department","state").sum("salary","bonus").show()
@@ -535,7 +534,7 @@ deptDF.show()
 
 
 # Inner join
-empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner").show()
+empDF.join(deptDF,empDF.emp_dept_id == deptDF.dept_id,"inner").show()
 
 # Output
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
