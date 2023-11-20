@@ -19,7 +19,8 @@ without having to learn Scala or Java.
 ## Setting up Spark
 
 Setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
-We should only use Spark when our data is too big to work with on a single machine. If that is not the case,
+We should only use Spark when our data is too big to work with on a single machine, or when we need to
+parallelize our computations for other reasons (e.g. to speed up the computations). If that is not the case,
 we should use Pandas instead (or a Pandas alternative, like Polars).
 
 ### Windows and Mac
