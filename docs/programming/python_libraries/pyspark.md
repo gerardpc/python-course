@@ -149,17 +149,17 @@ But we have other options to create a PySpark DataFrame, and sometimes they are 
 
 * Create a PySpark DataFrame with an explicit schema
 
-```python
-df = spark.createDataFrame([
-    (1, 2., 'string1', date(2000, 1, 1), datetime(2000, 1, 1, 12, 0)),
-    (2, 3., 'string2', date(2000, 2, 1), datetime(2000, 1, 2, 12, 0)),
-    (3, 4., 'string3', date(2000, 3, 1), datetime(2000, 1, 3, 12, 0))
-], schema='a long, b double, c string, d date, e timestamp')
-print(df)
-
-# Output
-DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
-```
+    ```python
+    df = spark.createDataFrame([
+        (1, 2., 'string1', date(2000, 1, 1), datetime(2000, 1, 1, 12, 0)),
+        (2, 3., 'string2', date(2000, 2, 1), datetime(2000, 1, 2, 12, 0)),
+        (3, 4., 'string3', date(2000, 3, 1), datetime(2000, 1, 3, 12, 0))
+    ], schema='a long, b double, c string, d date, e timestamp')
+    print(df)
+    
+    # Output
+    DataFrame[a: bigint, b: double, c: string, d: date, e: timestamp]
+    ```
 
 * Create a PySpark DataFrame from a pandas DataFrame
 
@@ -232,24 +232,24 @@ spark.read.csv('fruits.csv', header=True).show()
 
 * Parquet is an efficient and compact file format to read and write faster.
 
-```python
-df.write.parquet('fruits.parquet')
-spark.read.parquet('fruits.parquet').show()
-
-# Output
-+-----+------+---+---+
-|color| fruit| v1| v2|
-+-----+------+---+---+
-|  red|banana|  1| 10|
-| blue|banana|  2| 20|
-|  red|carrot|  3| 30|
-| blue| grape|  4| 40|
-|  red|carrot|  5| 50|
-|black|carrot|  6| 60|
-|  red|banana|  7| 70|
-|  red| grape|  8| 80|
-+-----+------+---+---+
-```
+    ```python
+    df.write.parquet('fruits.parquet')
+    spark.read.parquet('fruits.parquet').show()
+    
+    # Output
+    +-----+------+---+---+
+    |color| fruit| v1| v2|
+    +-----+------+---+---+
+    |  red|banana|  1| 10|
+    | blue|banana|  2| 20|
+    |  red|carrot|  3| 30|
+    | blue| grape|  4| 40|
+    |  red|carrot|  5| 50|
+    |black|carrot|  6| 60|
+    |  red|banana|  7| 70|
+    |  red| grape|  8| 80|
+    +-----+------+---+---+
+    ```
 
 
 ### Viewing Data
@@ -386,36 +386,36 @@ To select several columns, we would write either `df.select("col_1","col_2").sho
 
 * To assign a new column instance:
 
-```python
-df.withColumn('upper_c', upper(df.c)).show()
-
-# Output
-+---+---+-------+----------+-------------------+-------+
-|  a|  b|      c|         d|                  e|upper_c|
-+---+---+-------+----------+-------------------+-------+
-|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|STRING1|
-|  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
-|  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
-+---+---+-------+----------+-------------------+-------+
-```
+    ```python
+    df.withColumn('upper_c', upper(df.c)).show()
+    
+    # Output
+    +---+---+-------+----------+-------------------+-------+
+    |  a|  b|      c|         d|                  e|upper_c|
+    +---+---+-------+----------+-------------------+-------+
+    |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|STRING1|
+    |  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
+    |  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
+    +---+---+-------+----------+-------------------+-------+
+    ```
 
 * To select a subset of rows, we use the filter method `DataFrame.filter()`.
 
-```python
-df.filter(df.a == 1).show()
-
-# Output
-+---+---+-------+----------+-------------------+
-|  a|  b|      c|         d|                  e|
-+---+---+-------+----------+-------------------+
-|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
-+---+---+-------+----------+-------------------+
-
-# Filter multiple condition
-df.filter((df.state  == "OH") & (df.gender  == "M")).show()  
-
-...
-```
+    ```python
+    df.filter(df.a == 1).show()
+    
+    # Output
+    +---+---+-------+----------+-------------------+
+    |  a|  b|      c|         d|                  e|
+    +---+---+-------+----------+-------------------+
+    |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|
+    +---+---+-------+----------+-------------------+
+    
+    # Filter multiple condition
+    df.filter((df.state  == "OH") & (df.gender  == "M")).show()  
+    
+    ...
+    ```
 
 ### Applying a Function
 
