@@ -1059,7 +1059,8 @@ using Python means that we can use Python to write code that will run on Spark c
 without having to learn Scala or Java.</p>
 <h2 id="setting-up-spark">Setting up Spark<a class="headerlink" href="#setting-up-spark" title="Permanent link">&para;</a></h2>
 <p>Setting up Spark is considerably more complicated than using Pandas, and it requires additional software. 
-We should only use Spark when our data is too big to work with on a single machine. If that is not the case,
+We should only use Spark when our data is too big to work with on a single machine, or when we need to
+parallelize our computations for other reasons (e.g. to speed up the computations). If that is not the case,
 we should use Pandas instead (or a Pandas alternative, like Polars).</p>
 <h3 id="windows-and-mac">Windows and Mac<a class="headerlink" href="#windows-and-mac" title="Permanent link">&para;</a></h3>
 <p>Follow the course slides to set up PySpark on your computer</p>
