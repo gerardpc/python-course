@@ -387,21 +387,6 @@ To select several columns, we would write either `df.select("col_1","col_2").sho
 !!!note 
     To return the distinct values in a column, we can use `df.select(df.col_1).distinct().show()`.
 
-* To assign a new column instance:
-
-    ```python
-    df.withColumn('upper_c', upper(df.c)).show()
-    
-    # Output
-    +---+---+-------+----------+-------------------+-------+
-    |  a|  b|      c|         d|                  e|upper_c|
-    +---+---+-------+----------+-------------------+-------+
-    |  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|STRING1|
-    |  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
-    |  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
-    +---+---+-------+----------+-------------------+-------+
-    ```
-
 * To select a subset of rows, we use the filter method `DataFrame.filter()`.
 
     ```python
@@ -420,10 +405,16 @@ To select several columns, we would write either `df.select("col_1","col_2").sho
     ...
     ```
 
-### withColumn 
+### Creating new columns 
 
-`withColumn` is a DataFrame function that is used to add a new column to DataFrame, change the value of an existing column, 
-convert the datatype of a column and change the column name.
+`withColumn` is a DataFrame function that can be used for several different (but related things):
+* Add a new column to DataFrame
+* Change the value of an existing column
+* Convert the datatype of a column
+* Change the column name
+* Apply a function to a column
+
+For example, to create a new column that transforms the values of an existing column:
 
 ```python
 df.withColumn('upper_c', upper(df.c)).show()
