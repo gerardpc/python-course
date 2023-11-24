@@ -384,6 +384,9 @@ df.select(df.c).show()
 To select several columns, we would write either `df.select("col_1","col_2").show()` or
 `df.select(df.col_1,df.col_2).show()` (they are equivalent).
 
+!!!note 
+    To return the distinct values in a column, we can use `df.select(df.col_1).distinct().show()`.
+
 * To assign a new column instance:
 
     ```python
