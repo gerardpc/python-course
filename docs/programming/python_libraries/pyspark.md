@@ -417,6 +417,25 @@ To select several columns, we would write either `df.select("col_1","col_2").sho
     ...
     ```
 
+### withColumn 
+
+`withColumn` is a DataFrame function that is used to add a new column to DataFrame, change the value of an existing column, 
+convert the datatype of a column and change the column name.
+
+```python
+df.withColumn('upper_c', upper(df.c)).show()
+
+# Output
++---+---+-------+----------+-------------------+-------+
+|  a|  b|      c|         d|                  e|upper_c|
++---+---+-------+----------+-------------------+-------+
+|  1|2.0|string1|2000-01-01|2000-01-01 12:00:00|STRING1|
+|  2|3.0|string2|2000-02-01|2000-01-02 12:00:00|STRING2|
+|  3|4.0|string3|2000-03-01|2000-01-03 12:00:00|STRING3|
++---+---+-------+----------+-------------------+-------+
+```
+
+
 ### Applying a Function
 
 PySpark supports various user defined functions (UDFs) and APIs to allow users to execute Python native functions. 
@@ -443,6 +462,13 @@ df.select(pandas_plus_one(df.a)).show()
 +------------------+
 ```
 
+### Fill NA/NaN values
+
+We can use `DataFrame.na.fill()` to replace NA/NaN values with a specified value.
+
+```python
+df.na.fill(50).collect()
+```
 
 ### Grouping Data
 
