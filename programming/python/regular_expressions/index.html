@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../comprehensions/">
+        <link rel="prev" href="../classes/">
       
       
-        <link rel="next" href="../python_packages/">
+        <link rel="next" href="../comprehensions/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
@@ -395,20 +395,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../comprehensions/" class="md-nav__link">
-        Comprehensions
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -499,10 +485,31 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-regular-expressions-in-pandas" class="md-nav__link">
+    Using regular expressions in Pandas
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comprehensions/" class="md-nav__link">
+        Comprehensions
+      </a>
     </li>
   
 
@@ -822,6 +829,13 @@
         <li class="md-nav__item">
   <a href="#the-split-function" class="md-nav__link">
     The split function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-regular-expressions-in-pandas" class="md-nav__link">
+    Using regular expressions in Pandas
   </a>
   
 </li>
@@ -1198,6 +1212,66 @@ two arguments: a regular expression pattern and a string to split. It returns a 
 </code></pre></div>
 <p>This method is similar to the <code>str.split()</code> method, but it allows you to split the string using a regular
 expression instead of a fixed string.</p>
+<h2 id="using-regular-expressions-in-pandas">Using regular expressions in Pandas<a class="headerlink" href="#using-regular-expressions-in-pandas" title="Permanent link">&para;</a></h2>
+<p>Pandas has several functions that allow you to use regular expressions to search and replace text in a DataFrame.
+These functions are:</p>
+<ul>
+<li><code>str.contains()</code>: Returns a boolean Series indicating whether each string contains a match of a regular expression.</li>
+<li><code>str.findall()</code>: Returns a Series containing lists of all matches of a regular expression.</li>
+<li><code>str.replace()</code>: Replaces all matches of a regular expression with some other string.</li>
+</ul>
+<p>These functions are similar to the described functions in the <code>re</code> module, but they are designed to work with Pandas
+Series and DataFrames. For example, the following code searches for all rows in the DataFrame <code>df</code> where the
+column <code>name</code> contains the string "John":</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Smith&#39;</span><span class="p">]})</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">matches</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># Output:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="mi">0</span>     <span class="kc">True</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="mi">1</span>    <span class="kc">False</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="mi">2</span>     <span class="kc">True</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="mi">3</span>    <span class="kc">False</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">Name</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">bool</span>
+</code></pre></div>
+<p>The <code>contains</code> and <code>findall</code> functions are typically used to create boolean masks, which can be used to filter
+the DataFrame. For example, the following code creates a boolean mask that is <code>True</code> for all rows where the
+column <code>name</code> contains the string "John":</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Smith&#39;</span><span class="p">]})</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">df_john</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">),</span> <span class="p">:]</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">df_john</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Output:</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>         <span class="n">name</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="mi">0</span>    <span class="n">John</span> <span class="n">Doe</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="mi">2</span>  <span class="n">John</span> <span class="n">Smith</span>
+</code></pre></div>
+<p>The <code>replace</code> function is typically used to replace text in a DataFrame. For example, the following code
+replaces all occurrences of the string "John" with the string "Jane" in the column <code>name</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;John Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane Smith&#39;</span><span class="p">]})</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">replacement</span> <span class="o">=</span> <span class="s1">&#39;Jane&#39;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Output:</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>         <span class="n">name</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="mi">0</span>    <span class="n">Jane</span> <span class="n">Doe</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="mi">1</span>    <span class="n">Jane</span> <span class="n">Doe</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="mi">2</span>  <span class="n">Jane</span> <span class="n">Smith</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="mi">3</span>  <span class="n">Jane</span> <span class="n">Smith</span>
+</code></pre></div>
 
 
 
