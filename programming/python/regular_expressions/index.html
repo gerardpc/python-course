@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../regular_expressions/">
+        <link rel="prev" href="../comprehensions/">
       
       
-        <link rel="next" href="../../python_libraries/numpy/">
+        <link rel="next" href="../python_packages/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
     
     
       
-        <title>Python packages - Python and data science</title>
+        <title>Regular expressions - Python and data science</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#python-packages" class="md-skip">
+        <a href="#regular-expressions" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Python packages
+              Regular expressions
             
           </span>
         </div>
@@ -409,20 +409,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../regular_expressions/" class="md-nav__link">
-        Regular expressions
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -435,12 +421,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Python packages
+          Regular expressions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Python packages
+        Regular expressions
       </a>
       
         
@@ -459,8 +445,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#package-distribution" class="md-nav__link">
-    Package distribution
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-re-module" class="md-nav__link">
+    Python re module
+  </a>
+  
+    <nav class="md-nav" aria-label="Python re module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-expression-syntax" class="md-nav__link">
+    Regular expression syntax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-matching-with-search" class="md-nav__link">
+    Basic matching with search
   </a>
   
 </li>
@@ -469,6 +482,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_packages/" class="md-nav__link">
+        Python packages
+      </a>
     </li>
   
 
@@ -724,8 +751,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#package-distribution" class="md-nav__link">
-    Package distribution
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-re-module" class="md-nav__link">
+    Python re module
+  </a>
+  
+    <nav class="md-nav" aria-label="Python re module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regular-expression-syntax" class="md-nav__link">
+    Regular expression syntax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-matching-with-search" class="md-nav__link">
+    Basic matching with search
   </a>
   
 </li>
@@ -746,23 +800,298 @@
 
 
 
-<h1 id="python-packages">Python packages<a class="headerlink" href="#python-packages" title="Permanent link">&para;</a></h1>
-<h2 id="package-distribution">Package distribution<a class="headerlink" href="#package-distribution" title="Permanent link">&para;</a></h2>
-<p>A <code>.whl</code> (<strong>wheel</strong>) file is a distribution package file saved in Python’s wheel format. It is a standard format 
-installation of Python distributions and contains all the files and metadata required for installation. 
-The WHL file also contains information about the Python versions and platforms supported by this wheel file. 
-WHL file format is a ready-to-install format that allows running the installation package without building the 
-source distribution.</p>
+<h1 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Regular expressions are a powerful tool for matching patterns in text. They are used in many contexts, including 
+search engines, text editors, and programming languages. For example, if we wanted to find all the lines in a
+file that began with the word "From:", we could use the following regular expression:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;^From:&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+<p>In this example, the <code>^</code> character matches the beginning of the line. This means that the pattern will only match
+lines that begin with the word "From:". </p>
+<p>Usage of such special characters is the main advantage of regular expressions. They allow you to create strings
+that match specific patterns of characters, such as digits, words, or whitespace. There are several different
+types of special characters, but they can be learned relatively quickly. For example, the following code
+matches any line that contains a word that begins with "F" and ends with "m":</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">string_var</span> <span class="o">=</span> <span class="s1">&#39;Farmland&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;F.*m&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string_var</span><span class="p">):</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found a match!&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Output:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s2">&quot;Found a match!&quot;</span>
+</code></pre></div>
+<p>The use of these characters can be confusing at first, but once you've learned the basics, you'll be able to
+to use them to perform powerful text manipulation with just a few lines of code. This section will teach you 
+the basics of regular expressions in Python, and how to use them to search text.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<ul>
-<li>All else being equal, wheels are typically smaller in size than source distributions.</li>
-<li>Installing from wheels directly avoids the intermediate step of building packages off of 
-the source distribution.</li>
-</ul>
+<p>To check if a string matches a regular expression without using Python, 
+you can use this website: https://regex101.com/</p>
 </div>
-<p>A <code>.whl</code> file is essentially a zip archive with a specially crafted filename that tells installers what 
-Python versions and platforms the wheel will support.</p>
+<h2 id="python-re-module">Python re module<a class="headerlink" href="#python-re-module" title="Permanent link">&para;</a></h2>
+<p>Python has a built-in module called <code>re</code>, which can be used to work with regular expressions. The <code>re</code> module
+provides several functions that make it a powerful tool for working with regular expressions.</p>
+<p>The most important functions in the <code>re</code> module are:</p>
+<ul>
+<li><code>re.search()</code>: find a match with the pattern anywhere in the string and return a match object.
+If nothing is found, it returns <code>None</code>.</li>
+<li><code>re.findall()</code>: Returns a list of all matches in the text.</li>
+<li><code>re.sub()</code>: Replaces one or more matches with a string.</li>
+<li><code>re.split()</code>: Splits the text into a list, splitting it wherever the pattern matches.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>re</code> module also contains the <code>re.match()</code> function, which is similar to <code>re.search()</code>, but it only
+matches the pattern if it occurs at the beginning of the string. However, using <code>re.search()</code> is usually
+preferred, because it is more flexible and can be used to match patterns anywhere in the string.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Perhaps you come across the <code>re.compile()</code> function, which compiles a string into a regular expression object.
+However, this function is rarely used in practice, because the <code>re</code> module automatically compiles the string
+into a regular expression object when you use it (so typically the gains in performance are minimal).</p>
+</div>
+<h3 id="regular-expression-syntax">Regular expression syntax<a class="headerlink" href="#regular-expression-syntax" title="Permanent link">&para;</a></h3>
+<p>Regular expressions are used to match patterns in text. They are made up of a combination of regular characters
+and special characters. Regular characters are characters that match themselves, such as the letter "a" or the
+digit "1". Special characters are characters that have a special meaning in regular expressions. For example,
+the special character <code>.</code> matches <em>any character</em>, while the special character <code>*</code> matches zero or more occurrences
+of the previous character.</p>
+<p>You can find a list of all the special characters in the [Python documentation]
+(https://docs.python.org/3/library/re.html#regular-expression-syntax).</p>
+<p>The following tables gives a summary of the most important special characters and groups:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Matches any character except a newline.</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Matches the start of the string.</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Matches the end of the string.</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Matches zero or more occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Matches one or more occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Matches zero or one occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Matches exactly <code>n</code> occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>Matches <code>n</code> or more occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Matches between <code>n</code> and <code>m</code> occurrences of the previous character.</td>
+</tr>
+<tr>
+<td><code>[...]</code></td>
+<td>Matches any character (replace the <code>...</code>) inside the brackets.</td>
+</tr>
+<tr>
+<td><code>[^...]</code></td>
+<td>Matches any character (replace the <code>...</code>) not inside the brackets.</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>Matches either the expression before or after the <code>|</code>.</td>
+</tr>
+<tr>
+<td><code>(...)</code></td>
+<td>Matches the expression inside the parentheses and groups it. Parentheses can be used to group expressions and to define the precedence of operators, like in math.</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>Escapes a special character (used to match, for example, the <code>.</code>).</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>Matches any digit character.</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Matches any non-digit character.</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Matches any alphanumeric character.</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Matches any non-alphanumeric character.</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Matches any whitespace character.</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Matches any non-whitespace character.</td>
+</tr>
+<tr>
+<td><code>(?:...)</code></td>
+<td>Matches the expression inside the parentheses, but does not add it to the match.</td>
+</tr>
+<tr>
+<td><code>(?=...)</code></td>
+<td>Matches if ... matches next, but doesn’t consume any of the string. This is called a <em>lookahead assertion</em></td>
+</tr>
+<tr>
+<td><code>(?!...)</code></td>
+<td>Matches if ... doesn’t match next. This is a <em>negative lookahead assertion</em>.</td>
+</tr>
+<tr>
+<td><code>(?&lt;=...)</code></td>
+<td>Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a <em>lookbehind assertion</em>.</td>
+</tr>
+<tr>
+<td><code>(?&lt;!...)</code></td>
+<td>Matches if the current position in the string is not preceded by a match for ... that ends at the current position. This is a <em>negative lookbehind assertion</em>.</td>
+</tr>
+<tr>
+<td><code>(?...)</code></td>
+<td>Matches the expression inside the parentheses, but does not add it to the match. This is called a <em>non-capturing group</em>.</td>
+</tr>
+</tbody>
+</table>
+<p>The following table shows some examples of regular expressions and the strings that they match:</p>
+<table>
+<thead>
+<tr>
+<th>Regular expression</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code></td>
+<td>The letter "a"</td>
+</tr>
+<tr>
+<td><code>abc</code></td>
+<td>The string "abc"</td>
+</tr>
+<tr>
+<td><code>a.c</code></td>
+<td>The string "abc", "axc", "a1c", etc.</td>
+</tr>
+<tr>
+<td><code>a.*c</code></td>
+<td>The string "ac", "abc", "abbc", "abbbc", etc.</td>
+</tr>
+<tr>
+<td><code>a+c</code></td>
+<td>The string "ac", "aac", "aaac", etc.</td>
+</tr>
+<tr>
+<td>\d{2}-\d{3}</td>
+<td>A string of the form "12-345"</td>
+</tr>
+<tr>
+<td>(.<em>)(\d{8}-[A-Z]{3})(.</em>)</td>
+<td>e.g. "John Doe 12345678-ABC"</td>
+</tr>
+<tr>
+<td><code>a| b</code></td>
+<td>The string "a" or the string "b"</td>
+</tr>
+<tr>
+<td><code>\W(a| b)\W</code></td>
+<td>The string " a ", " b ", etc.</td>
+</tr>
+<tr>
+<td><code>^a</code></td>
+<td>The string "a" at the beginning of the string</td>
+</tr>
+<tr>
+<td><code>a$</code></td>
+<td>The string "a" at the end of the string</td>
+</tr>
+<tr>
+<td><code>^a.*c$</code></td>
+<td>The string "ac", "abc", "abbc", "abbbc", etc.</td>
+</tr>
+<tr>
+<td><code>(?&lt;=a)b</code></td>
+<td>The string "b" if it is preceded by the string "a"</td>
+</tr>
+<tr>
+<td><code>(?&lt;!a)b</code></td>
+<td>The string "b" if it is not preceded by the string "a"</td>
+</tr>
+<tr>
+<td><code>b(?=a)</code></td>
+<td>The string "b" if it is followed by the string "a"</td>
+</tr>
+<tr>
+<td><code>b(?!a)</code></td>
+<td>The string "b" if it is not followed by the string "a"</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When defining a regular expression in Python, it is recommended to always use raw strings, which are
+strings that are prefixed with an <code>r</code>. This is because regular expressions often contain backslashes,
+which are special characters in Python strings. For example, the string literal <code>r"\n"</code> consists of 
+two characters: a backslash and a lowercase <code>n</code>, in contrast to the string <code>"\n"</code>, which Python would
+interpret as a single newline character.    </p>
+</div>
+<h2 id="basic-matching-with-search">Basic matching with <code>search</code><a class="headerlink" href="#basic-matching-with-search" title="Permanent link">&para;</a></h2>
+<p>The <code>re.search()</code> function takes two arguments: a regular expression pattern and a string. It searches the string
+for the pattern and returns a match object if it finds a match. If it doesn't find a match, it returns <code>None</code>.</p>
+<p>For example, the following code searches for the pattern <code>abc</code> in the string <code>abcdef</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;abcdef&#39;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># Output:</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="o">&lt;</span><span class="n">re</span><span class="o">.</span><span class="n">Match</span> <span class="nb">object</span><span class="p">;</span> <span class="n">span</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>The <code>match</code> object contains information about the match, including the start and end position of the match,
+and the string that was matched:</p>
+<ul>
+<li><code>match.group()</code>: returns the string that was matched (in the last example, this would be <code>'abc'</code>).</li>
+<li><code>match.start()</code>: returns the start position of the match.</li>
+<li><code>match.end()</code>: returns the end position of the match.</li>
+<li><code>match.span()</code>: returns a tuple containing the start and end positions of the match.</li>
+<li><code>match.string</code>: returns the whole string that was searched (in the last example, this would be <code>'abcdef'</code>).</li>
+<li><code>match.re</code>: returns the regular expression object that was used to create the match object.</li>
+</ul>
 
 
 
