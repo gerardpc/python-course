@@ -470,10 +470,20 @@ c  Charlie
     df.loc[(df["a"] > 0) & (df["b"] == df["d"]), ["a", "c", "g"]
     ```
 
+To filter rows by the contents of a string column, we can use the `.str` accessor:
+
+```python
+df.loc[df["a"].str.contains("hello"), :]
+```
+
 #### Accessing data from its location on the DataFrame
 
 The `.iloc[]` operator works the same as `.loc[]`, but on integer location of rows and also columns. 
 The syntax is the same, `my_dataframe[row_selector, column_selector]` and you can use `:` to indicate all rows or columns.
+
+!!!note
+    `iloc` does not use the index labels to select rows and columns, but their integer location. Hence,
+    `my_dataframe.iloc[0, :]` will always return the first row of the DataFrame, regardless of the index.
 
 ##### Column selectors
 
