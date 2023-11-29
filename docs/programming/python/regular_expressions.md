@@ -247,3 +247,74 @@ print(new_string)
 This method is similar to the `str.split()` method, but it allows you to split the string using a regular
 expression instead of a fixed string.
 
+
+## Using regular expressions in Pandas
+
+Pandas has several functions that allow you to use regular expressions to search and replace text in a DataFrame.
+These functions are:
+
+* `str.contains()`: Returns a boolean Series indicating whether each string contains a match of a regular expression.
+* `str.findall()`: Returns a Series containing lists of all matches of a regular expression.
+* `str.replace()`: Replaces all matches of a regular expression with some other string.
+
+These functions are similar to the described functions in the `re` module, but they are designed to work with Pandas
+Series and DataFrames. For example, the following code searches for all rows in the DataFrame `df` where the
+column `name` contains the string "John":
+
+```python
+import pandas as pd
+
+
+df = pd.DataFrame({'name': ['John Doe', 'Jane Doe', 'John Smith', 'Jane Smith']})
+pattern = 'John'
+matches = df['name'].str.contains(pattern)
+print(matches)
+
+# Output:
+0     True
+1    False
+2     True
+3    False
+Name: name, dtype: bool
+```
+
+The `contains` and `findall` functions are typically used to create boolean masks, which can be used to filter
+the DataFrame. For example, the following code creates a boolean mask that is `True` for all rows where the
+column `name` contains the string "John":
+
+```python
+import pandas as pd
+
+
+df = pd.DataFrame({'name': ['John Doe', 'Jane Doe', 'John Smith', 'Jane Smith']})
+pattern = 'John'
+df_john = df.loc[df['name'].str.contains(pattern), :]
+print(df_john)
+
+# Output:
+         name
+0    John Doe
+2  John Smith
+```
+
+The `replace` function is typically used to replace text in a DataFrame. For example, the following code
+replaces all occurrences of the string "John" with the string "Jane" in the column `name`:
+
+```python
+import pandas as pd
+
+
+df = pd.DataFrame({'name': ['John Doe', 'Jane Doe', 'John Smith', 'Jane Smith']})
+pattern = 'John'
+replacement = 'Jane'
+df['name'] = df['name'].str.replace(pattern, replacement)
+print(df)
+
+# Output:
+         name
+0    Jane Doe
+1    Jane Doe
+2  Jane Smith
+3  Jane Smith
+```
+
