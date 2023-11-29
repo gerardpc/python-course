@@ -472,8 +472,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-matching-with-search" class="md-nav__link">
-    Basic matching with search
+  <a href="#pattern-matching-with-search" class="md-nav__link">
+    Pattern matching with search
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-findall-function" class="md-nav__link">
+    The findall function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-sub-function" class="md-nav__link">
+    The sub function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-split-function" class="md-nav__link">
+    The split function
   </a>
   
 </li>
@@ -778,8 +799,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-matching-with-search" class="md-nav__link">
-    Basic matching with search
+  <a href="#pattern-matching-with-search" class="md-nav__link">
+    Pattern matching with search
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-findall-function" class="md-nav__link">
+    The findall function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-sub-function" class="md-nav__link">
+    The sub function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-split-function" class="md-nav__link">
+    The split function
   </a>
   
 </li>
@@ -836,16 +878,21 @@ the basics of regular expressions in Python, and how to use them to search text.
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To check if a string matches a regular expression without using Python, 
-you can use this website: https://regex101.com/</p>
+you can use this website: <a href="https://regex101.com/"></a></p>
 </div>
 <h2 id="python-re-module">Python re module<a class="headerlink" href="#python-re-module" title="Permanent link">&para;</a></h2>
 <p>Python has a built-in module called <code>re</code>, which can be used to work with regular expressions. The <code>re</code> module
 provides several functions that make it a powerful tool for working with regular expressions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>re</code> module is part of the Python standard library, which means that it is installed by default when
+you install Python. This means that you don't need to install any additional packages to use regular
+expressions in Python. Doing <code>import re</code> is enough to use the <code>re</code> module.</p>
+</div>
 <p>The most important functions in the <code>re</code> module are:</p>
 <ul>
-<li><code>re.search()</code>: find a match with the pattern anywhere in the string and return a match object.
-If nothing is found, it returns <code>None</code>.</li>
-<li><code>re.findall()</code>: Returns a list of all matches in the text.</li>
+<li><code>re.search()</code>: try to find a match with the pattern anywhere in the string.</li>
+<li><code>re.findall()</code>: Return a list of all matches in the text.</li>
 <li><code>re.sub()</code>: Replaces one or more matches with a string.</li>
 <li><code>re.split()</code>: Splits the text into a list, splitting it wherever the pattern matches.</li>
 </ul>
@@ -866,7 +913,12 @@ into a regular expression object when you use it (so typically the gains in perf
 and special characters. Regular characters are characters that match themselves, such as the letter "a" or the
 digit "1". Special characters are characters that have a special meaning in regular expressions. For example,
 the special character <code>.</code> matches <em>any character</em>, while the special character <code>*</code> matches zero or more occurrences
-of the previous character.</p>
+of the previous character (or group of characters, if they are grouped for example with parentheses).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regular expressions are case-sensitive, which means that uppercase and lowercase letters are treated as
+different characters. For example, the regular expression <code>a</code> will match the letter "a", but not the letter "A".</p>
+</div>
 <p>You can find a list of all the special characters in the [Python documentation]
 (https://docs.python.org/3/library/re.html#regular-expression-syntax).</p>
 <p>The following tables gives a summary of the most important special characters and groups:</p>
@@ -1014,11 +1066,11 @@ of the previous character.</p>
 <td>The string "ac", "aac", "aaac", etc.</td>
 </tr>
 <tr>
-<td>\d{2}-\d{3}</td>
+<td><code>\d{2}-\d{3}</code></td>
 <td>A string of the form "12-345"</td>
 </tr>
 <tr>
-<td>(.<em>)(\d{8}-[A-Z]{3})(.</em>)</td>
+<td><code>(.*)(\d{8}-[A-Z]{3})(.*)</code></td>
 <td>e.g. "John Doe 12345678-ABC"</td>
 </tr>
 <tr>
@@ -1067,7 +1119,7 @@ which are special characters in Python strings. For example, the string literal 
 two characters: a backslash and a lowercase <code>n</code>, in contrast to the string <code>"\n"</code>, which Python would
 interpret as a single newline character.    </p>
 </div>
-<h2 id="basic-matching-with-search">Basic matching with <code>search</code><a class="headerlink" href="#basic-matching-with-search" title="Permanent link">&para;</a></h2>
+<h2 id="pattern-matching-with-search">Pattern matching with <code>search</code><a class="headerlink" href="#pattern-matching-with-search" title="Permanent link">&para;</a></h2>
 <p>The <code>re.search()</code> function takes two arguments: a regular expression pattern and a string. It searches the string
 for the pattern and returns a match object if it finds a match. If it doesn't find a match, it returns <code>None</code>.</p>
 <p>For example, the following code searches for the pattern <code>abc</code> in the string <code>abcdef</code>:</p>
@@ -1092,6 +1144,60 @@ and the string that was matched:</p>
 <li><code>match.string</code>: returns the whole string that was searched (in the last example, this would be <code>'abcdef'</code>).</li>
 <li><code>match.re</code>: returns the regular expression object that was used to create the match object.</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The search function only returns the first match. If you want to find all matches, you can use the
+<code>re.findall()</code> function, which returns a list of all matches.</p>
+</div>
+<h2 id="the-findall-function">The <code>findall</code> function<a class="headerlink" href="#the-findall-function" title="Permanent link">&para;</a></h2>
+<p>The <code>re.findall()</code> function returns a list of all matches in the string. For example, the following code
+searches for all occurrences of the pattern <code>abc</code> in the string <code>abcdefgeabc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;abcdefgeabc&#39;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Output:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p>If there are no matches, <code>findall</code> will return an empty list.</p>
+<h2 id="the-sub-function">The <code>sub</code> function<a class="headerlink" href="#the-sub-function" title="Permanent link">&para;</a></h2>
+<p>The <code>re.sub()</code> function replaces one or more matches with a string. It takes three arguments: a regular expression
+pattern, a replacement string, and a string to search. It returns a new string with the matches replaced.</p>
+<p>For example, the following code replaces all occurrences of the pattern <code>abc</code> with the string <code>xyz</code> in the string
+<code>abcdefgeabc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">replacement</span> <span class="o">=</span> <span class="s1">&#39;xyz&#39;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;abcdefgeabc&#39;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_string</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Output:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="s1">&#39;xyzdefgexyz&#39;</span>
+</code></pre></div>
+<h2 id="the-split-function">The <code>split</code> function<a class="headerlink" href="#the-split-function" title="Permanent link">&para;</a></h2>
+<p>The <code>re.split()</code> function splits the string into a list, splitting it wherever the pattern matches. It takes
+two arguments: a regular expression pattern and a string to split. It returns a list of strings.</p>
+<p>For example, the following code splits the string <code>abc,def,ghi</code> into a list of strings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;abc,def,ghi&#39;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">new_string</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># Output:</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;ghi&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p>This method is similar to the <code>str.split()</code> method, but it allows you to split the string using a regular
+expression instead of a fixed string.</p>
 
 
 
