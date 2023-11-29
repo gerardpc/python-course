@@ -66,7 +66,7 @@ nav:
 #      - 'programming/python/builtin_functions.md'
 #      - 'programming/python/dataclasses.md'
 #      - 'programming/python/decorators.md'
-#      - 'programming/python/regular_expressions.md'
+      - 'programming/python/regular_expressions.md'
 #      - 'programming/python/generators.md'
       - 'programming/python/python_packages.md'
   - 'Data science libraries':
