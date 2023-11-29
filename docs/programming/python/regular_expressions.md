@@ -43,18 +43,22 @@ the basics of regular expressions in Python, and how to use them to search text.
 
 !!!note
     To check if a string matches a regular expression without using Python, 
-    you can use this website: https://regex101.com/
+    you can use this website: [](https://regex101.com/)
 
 ## Python re module
 
 Python has a built-in module called `re`, which can be used to work with regular expressions. The `re` module
 provides several functions that make it a powerful tool for working with regular expressions.
 
+!!!note
+    The `re` module is part of the Python standard library, which means that it is installed by default when
+    you install Python. This means that you don't need to install any additional packages to use regular
+    expressions in Python. Doing `import re` is enough to use the `re` module.
+
 The most important functions in the `re` module are:
 
-* `re.search()`: find a match with the pattern anywhere in the string and return a match object.
-If nothing is found, it returns `None`.
-* `re.findall()`: Returns a list of all matches in the text.
+* `re.search()`: try to find a match with the pattern anywhere in the string.
+* `re.findall()`: Return a list of all matches in the text.
 * `re.sub()`: Replaces one or more matches with a string.
 * `re.split()`: Splits the text into a list, splitting it wherever the pattern matches.
 
@@ -74,7 +78,11 @@ Regular expressions are used to match patterns in text. They are made up of a co
 and special characters. Regular characters are characters that match themselves, such as the letter "a" or the
 digit "1". Special characters are characters that have a special meaning in regular expressions. For example,
 the special character `.` matches _any character_, while the special character `*` matches zero or more occurrences
-of the previous character.
+of the previous character (or group of characters, if they are grouped for example with parentheses).
+
+!!!note
+    Regular expressions are case-sensitive, which means that uppercase and lowercase letters are treated as
+    different characters. For example, the regular expression `a` will match the letter "a", but not the letter "A".
 
 You can find a list of all the special characters in the [Python documentation]
 (https://docs.python.org/3/library/re.html#regular-expression-syntax).
@@ -120,8 +128,8 @@ The following table shows some examples of regular expressions and the strings t
 | `a.c`              | The string "abc", "axc", "a1c", etc.               |
 | `a.*c`             | The string "ac", "abc", "abbc", "abbbc", etc.      |
 | `a+c`              | The string "ac", "aac", "aaac", etc.               |
-| \d{2}-\d{3}        | A string of the form "12-345"                      |
-| (.*)(\d{8}-[A-Z]{3})(.*) | e.g. "John Doe 12345678-ABC"                       |
+| `\d{2}-\d{3}`        | A string of the form "12-345"                      |
+| `(.*)(\d{8}-[A-Z]{3})(.*)` | e.g. "John Doe 12345678-ABC"                       |
 | `a| b`                                                 | The string "a" or the string "b" |
 | `\W(a| b)\W`                                              | The string " a ", " b ", etc. |
 | `^a`               | The string "a" at the beginning of the string      |
@@ -133,8 +141,6 @@ The following table shows some examples of regular expressions and the strings t
 | `b(?!a)`           | The string "b" if it is not followed by the string "a" |
 
 
-
-
 !!!note
     When defining a regular expression in Python, it is recommended to always use raw strings, which are
     strings that are prefixed with an `r`. This is because regular expressions often contain backslashes,
@@ -142,7 +148,7 @@ The following table shows some examples of regular expressions and the strings t
     two characters: a backslash and a lowercase `n`, in contrast to the string `"\n"`, which Python would
     interpret as a single newline character.    
 
-## Basic matching with `search`
+## Pattern matching with `search`
 
 The `re.search()` function takes two arguments: a regular expression pattern and a string. It searches the string
 for the pattern and returns a match object if it finds a match. If it doesn't find a match, it returns `None`.
@@ -172,6 +178,72 @@ and the string that was matched:
 * `match.string`: returns the whole string that was searched (in the last example, this would be `'abcdef'`).
 * `match.re`: returns the regular expression object that was used to create the match object.
 
+!!!note
+    The search function only returns the first match. If you want to find all matches, you can use the
+    `re.findall()` function, which returns a list of all matches.
+
+## The `findall` function
+
+The `re.findall()` function returns a list of all matches in the string. For example, the following code
+searches for all occurrences of the pattern `abc` in the string `abcdefgeabc`:
+
+```python
+import re
 
 
+pattern = 'abc'
+string = 'abcdefgeabc'
+matches = re.findall(pattern, string)
+print(matches)
+
+# Output:
+['abc', 'abc']
+```
+
+If there are no matches, `findall` will return an empty list.
+
+## The `sub` function
+
+The `re.sub()` function replaces one or more matches with a string. It takes three arguments: a regular expression
+pattern, a replacement string, and a string to search. It returns a new string with the matches replaced.
+
+For example, the following code replaces all occurrences of the pattern `abc` with the string `xyz` in the string
+`abcdefgeabc`:
+
+```python
+import re
+
+
+pattern = 'abc'
+replacement = 'xyz'
+string = 'abcdefgeabc'
+new_string = re.sub(pattern, replacement, string)
+print(new_string)
+
+# Output:
+'xyzdefgexyz'
+```
+
+## The `split` function
+
+The `re.split()` function splits the string into a list, splitting it wherever the pattern matches. It takes
+two arguments: a regular expression pattern and a string to split. It returns a list of strings.
+
+For example, the following code splits the string `abc,def,ghi` into a list of strings:
+
+```python
+import re
+
+
+pattern = ','
+string = 'abc,def,ghi'
+new_string = re.split(pattern, string)
+print(new_string)
+
+# Output:
+['abc', 'def', 'ghi']
+```
+
+This method is similar to the `str.split()` method, but it allows you to split the string using a regular
+expression instead of a fixed string.
 
