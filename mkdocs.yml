@@ -63,7 +63,7 @@ nav:
     - sections/python/classes.md
     - Other topics:
       - sections/python/regular_expressions.md
-#      - sections/python/datetime.md
+      - sections/python/datetime.md
 #      - sections/python/builtin_functions.md
 #      - sections/python/dataclasses.md
 #      - sections/python/decorators.md
