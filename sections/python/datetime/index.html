@@ -668,6 +668,110 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#importing-the-datetime-module" class="md-nav__link">
+    Importing the datetime module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-date-and-time-objects" class="md-nav__link">
+    Creating date and time objects
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating date and time objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-date-objects" class="md-nav__link">
+    Creating date objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-time-objects" class="md-nav__link">
+    Creating time objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-datetime-objects" class="md-nav__link">
+    Creating datetime objects
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-date-and-time-objects" class="md-nav__link">
+    Working with date and time objects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parsing-date-and-time-strings" class="md-nav__link">
+    Parsing date and time strings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#difference-between-two-dates-or-times" class="md-nav__link">
+    Difference between two dates or times
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-time-zones" class="md-nav__link">
+    Working with time zones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-dates-and-times-in-pandas" class="md-nav__link">
+    Working with dates and times in pandas
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with dates and times in pandas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-timestamp-class" class="md-nav__link">
+    The Timestamp class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-datetimeindex-class" class="md-nav__link">
+    The DatetimeIndex class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -683,6 +787,253 @@
 
 
 <h1 id="dates-and-times">Dates and times<a class="headerlink" href="#dates-and-times" title="Permanent link">&para;</a></h1>
+<p>Python provides a number of modules for working with dates and times, but the most
+commonly used is the <code>datetime</code> module, which is part of the standard library.</p>
+<p>The <code>datetime</code> module provides three classes for working with dates and times:</p>
+<ul>
+<li><code>datetime.date</code> - for working with dates in isolation (which look like <code>YYYY-MM-DD</code>)</li>
+<li><code>datetime.time</code> - for working with times in isolation (which look like <code>HH:MM:SS</code>)</li>
+<li><code>datetime.datetime</code> - for working with dates and times together (which look like <code>YYYY-MM-DD HH:MM:SS</code>)</li>
+</ul>
+<p>The <code>datetime</code> module also provides a <code>datetime.timedelta</code> class for representing
+durations of time.</p>
+<h2 id="importing-the-datetime-module">Importing the datetime module<a class="headerlink" href="#importing-the-datetime-module" title="Permanent link">&para;</a></h2>
+<p>We can import the <code>datetime</code> module with the following statement:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
+</code></pre></div>
+<p>The datetime module name and the class names are the same (that's unfortunate), so we can't import the
+classes directly. We can import the classes we need into our namespace using the <code>from ... import ...</code> syntax:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+</code></pre></div>
+<h2 id="creating-date-and-time-objects">Creating date and time objects<a class="headerlink" href="#creating-date-and-time-objects" title="Permanent link">&para;</a></h2>
+<p>We can create <code>date</code>, <code>time</code> and <code>datetime</code> objects using the <code>date()</code>, <code>time()</code> and <code>datetime()</code> constructors
+respectively. Each of these constructors takes a number of arguments, which are used to initialise the object.</p>
+<h3 id="creating-date-objects">Creating date objects<a class="headerlink" href="#creating-date-objects" title="Permanent link">&para;</a></h3>
+<p>The <code>date()</code> constructor takes three arguments:</p>
+<ul>
+<li><code>year</code> - the year as an integer</li>
+<li><code>month</code> - the month as an integer (1-12)</li>
+<li><code>day</code> - the day as an integer (1-31)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">d</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Output: 2018-01-01</span>
+</code></pre></div>
+<h3 id="creating-time-objects">Creating time objects<a class="headerlink" href="#creating-time-objects" title="Permanent link">&para;</a></h3>
+<p>The <code>time()</code> constructor takes four arguments:</p>
+<ul>
+<li><code>hour</code> - the hour as an integer (0-23)</li>
+<li><code>minute</code> - the minute as an integer (0-59)</li>
+<li><code>second</code> - the second as an integer (0-59)</li>
+<li><code>microsecond</code> - the microsecond as an integer (0-999999)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Output: 12:30:00</span>
+</code></pre></div>
+<h3 id="creating-datetime-objects">Creating datetime objects<a class="headerlink" href="#creating-datetime-objects" title="Permanent link">&para;</a></h3>
+<p>The <code>datetime()</code> constructor takes seven arguments:</p>
+<ul>
+<li><code>year</code> - the year as an integer</li>
+<li><code>month</code> - the month as an integer (1-12)</li>
+<li><code>day</code> - the day as an integer (1-31)</li>
+<li><code>hour</code> - the hour as an integer (0-23)</li>
+<li><code>minute</code> - the minute as an integer (0-59)</li>
+<li><code>second</code> - the second as an integer (0-59)</li>
+<li><code>microsecond</code> - the microsecond as an integer (0-999999)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the <code>year</code>, <code>month</code> and <code>day</code> arguments are required. The other arguments default to <code>0</code>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Output: 2018-01-01 12:30:00</span>
+</code></pre></div>
+<p>The <code>datetime()</code> constructor also takes a <code>tzinfo</code> argument, which is used to specify the time zone
+of the <code>datetime</code> object. This parameter is also optional, but if you don't specify a <code>tzinfo</code>
+argument (known as naive time), then the <code>datetime</code> object will be created in the local time zone. This
+is usually a bad idea that can lead to many problems</p>
+<p>We will discuss time zones in more detail in the time zones section.</p>
+<h2 id="working-with-date-and-time-objects">Working with date and time objects<a class="headerlink" href="#working-with-date-and-time-objects" title="Permanent link">&para;</a></h2>
+<p>Once we have created a <code>date</code>, <code>time</code> or <code>datetime</code> object, we can access the individual components
+of the object using the following attributes:</p>
+<ul>
+<li><code>year</code> - the year as an integer</li>
+<li><code>month</code> - the month as an integer (1-12)</li>
+<li><code>day</code> - the day as an integer (1-31)</li>
+<li><code>hour</code> - the hour as an integer (0-23)</li>
+<li><code>minute</code> - the minute as an integer (0-59)</li>
+<li><code>second</code> - the second as an integer (0-59)</li>
+<li><code>microsecond</code> - the microsecond as an integer (0-999999)</li>
+<li><code>tzinfo</code> - the time zone as a <code>tzinfo</code> object</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">d</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Output:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># 2018</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># 1</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># 1</span>
+</code></pre></div>
+<p>We can also use the <code>strftime()</code> method to format a <code>date</code>, <code>time</code> or <code>datetime</code> object as a string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">d</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Output: 2018-01-01</span>
+</code></pre></div>
+<h2 id="parsing-date-and-time-strings">Parsing date and time strings<a class="headerlink" href="#parsing-date-and-time-strings" title="Permanent link">&para;</a></h2>
+<p>To do the opposite, and parse a string into a <code>date</code>, <code>time</code> or <code>datetime</code> object, we can use the <code>strptime()</code> function.
+The <code>strptime()</code> function takes two arguments:</p>
+<ul>
+<li><code>date_string</code> - the string to parse</li>
+<li><code>format</code> - the format of the string to parse</li>
+</ul>
+<p>The <code>format</code> argument is a string that specifies the format of the string to parse. The format string
+uses the same directives as the <code>strftime()</code> method.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">str_date</span> <span class="o">=</span> <span class="s1">&#39;2018-01-01 12:30:00&#39;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">str_date</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># Output: 2018-01-01 12:30:00</span>
+</code></pre></div>
+<h2 id="difference-between-two-dates-or-times">Difference between two dates or times<a class="headerlink" href="#difference-between-two-dates-or-times" title="Permanent link">&para;</a></h2>
+<p>To calculate the difference between two <code>date</code>, <code>time</code> or <code>datetime</code> objects, we can use the <code>-</code> operator.
+The result of this operation is a <code>timedelta</code> object, which represents the time difference between the two objects.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">d1</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">d2</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">d2</span> <span class="o">-</span> <span class="n">d1</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Output: 1 day, 0:00:00</span>
+</code></pre></div>
+<p>Timedeltas can be added to or subtracted from <code>date</code>, <code>time</code> or <code>datetime</code> objects using the <code>+</code> and <code>-</code> operators.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">d</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># Output: 2018-01-02</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>However, we can't sum two different <code>date</code>, <code>time</code> or <code>datetime</code> objects together. The sum only works
+when adding a <code>timedelta</code> to a <code>date</code>, <code>time</code> or <code>datetime</code> object.</p>
+</div>
+<h2 id="working-with-time-zones">Working with time zones<a class="headerlink" href="#working-with-time-zones" title="Permanent link">&para;</a></h2>
+<p>The <code>datetime</code> module provides a <code>tzinfo</code> class for representing time zones. However, this class
+is an abstract base class (i.e., its methods are empty), and to use it we would need to implement
+it. The <code>pytz</code> module (a module that needs to be installed, since it doesn't come with Python) 
+provides a concrete implementation of the <code>tzinfo</code> class, which we can use to represent time zones. 
+For example, to define a <code>datetime</code> object in the UTC time zone and convert it to european summer time, 
+we can do the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span> <span class="nn">pytz</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">dt_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">dt_2</span> <span class="o">=</span> <span class="n">dt_1</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Europe/Paris&#39;</span><span class="p">))</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt_1</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">dt_2</span><span class="p">)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># Output:</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1"># 2018-01-01 12:30:00+00:00</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># 2018-01-01 13:30:00+01:00</span>
+</code></pre></div>
+<p>In this example, the <code>astimezone()</code> method converts a <code>datetime</code> object from one time zone to another.</p>
+<h2 id="working-with-dates-and-times-in-pandas">Working with dates and times in pandas<a class="headerlink" href="#working-with-dates-and-times-in-pandas" title="Permanent link">&para;</a></h2>
+<p>The pandas library provides a number of data structures for working with dates and times. The most
+commonly used are the <code>Timestamp</code> and <code>DatetimeIndex</code> classes.</p>
+<h3 id="the-timestamp-class">The Timestamp class<a class="headerlink" href="#the-timestamp-class" title="Permanent link">&para;</a></h3>
+<p>The <code>Timestamp</code> class represents a single date and time, and is very similar to the <code>datetime</code> class.
+To create a <code>Timestamp</code> object, we can use the <code>to_datetime()</code> function, which takes a string or
+a number of arguments, which are used to initialise the object.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2018-01-01 12:30:00&#39;</span><span class="p">]})</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># Output: datetime64[ns]</span>
+</code></pre></div>
+<p>This class provides a number of methods for working with dates and times. For example, we can use the
+<code>strftime()</code> method to format a <code>Timestamp</code> object as a string (like the <code>datetime</code> class), or we can
+use the <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, <code>minute</code>, <code>second</code> and <code>microsecond</code> attributes to access the
+individual components of the object.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2018-01-01 12:30:00&#39;</span><span class="p">]})</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday_name</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Output: 0    Monday</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># Name: date, dtype: object</span>
+</code></pre></div>
+<h3 id="the-datetimeindex-class">The DatetimeIndex class<a class="headerlink" href="#the-datetimeindex-class" title="Permanent link">&para;</a></h3>
+<p>When we have a date or datetime column in a pandas DataFrame, we can set is as the index of the DataFrame
+using the <code>set_index()</code> method. This will create a <code>DatetimeIndex</code> object, which is used to index the
+DataFrame.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using the dates as index is only possible if the dates are unique, and is only useful if we want to
+select rows by date. Otherwise, we can just leave the dates as a normal column in the DataFrame.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2018-01-01 12:30:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-01-02 12:30:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-01-03 12:30:00&#39;</span><span class="p">]})</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># Output</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1"># DatetimeIndex([&#39;2018-01-01 12:30:00&#39;, &#39;2018-01-02 12:30:00&#39;,</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1">#                &#39;2018-01-03 12:30:00&#39;],</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1">#               dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, freq=None)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting the index of a DataFrame to a <code>DatetimeIndex</code> object is a very common operation, so pandas
+provides a <code>parse_dates</code> argument for the <code>read_csv()</code> function, which can be used to automatically
+parse date and time columns into a <code>DatetimeIndex</code> object.</p>
+</div>
+<p>We can also create a <code>DatetimeIndex</code> with the <code>pd.date_range()</code> function. This function takes a number
+of arguments, which are used to create a range of dates. For example, to create a <code>DatetimeIndex</code> with
+the dates from 2018-01-01 to 2018-01-10, we can do the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2018-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-01-20&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Output:</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1"># DatetimeIndex([&#39;2018-01-07&#39;, &#39;2018-01-14&#39;], dtype=&#39;datetime64[ns]&#39;, freq=&#39;W-SUN&#39;)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>freq</code> argument specifies the frequency of the dates. In this example, we have used <code>W</code> to
+specify weekly frequency, and <code>W-SUN</code> to specify weekly frequency with the week ending on Sunday.</p>
+</div>
 
 
 
