@@ -6,7 +6,7 @@ function but, unlike regular aggregate functions, use of a window function does 
 become grouped into a single output row; the rows retain their separate identities. 
 
 <figure markdown>
-  ![Image title](https://assets.toptal.io/images?url=https%3A%2F%2Fbs-uploads.toptal.io%2Fblackfish-uploads%2Fuploaded_file%2Ffile%2F22142%2Fimage-1561028553443-05eed70976f64c363db78d603cba17d6.png){ width="700" }
+  ![Image title](/images/window_functions.png){ width="700" }
   <figcaption>Group by vs. Window functions.</figcaption>
 </figure>
 
