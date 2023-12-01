@@ -12,7 +12,7 @@
         <link rel="prev" href="../regular_expressions/">
       
       
-        <link rel="next" href="../comprehensions/">
+        <link rel="next" href="../typer/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
@@ -555,6 +555,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../typer/" class="md-nav__link">
+        Typer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../comprehensions/" class="md-nav__link">
         Comprehensions
       </a>
@@ -939,8 +953,9 @@
 
 
 <h1 id="dates-and-times">Dates and times<a class="headerlink" href="#dates-and-times" title="Permanent link">&para;</a></h1>
-<p>Python provides a number of modules for working with dates and times, but the most
-commonly used is the <code>datetime</code> module, which is part of the standard library.</p>
+<p>The <code>datetime</code> module, which is part of the standard library, is used for working with dates and times
+in Python. This module provides a number of classes and functions for working with dates and times, 
+and is the basis for the date and time functionality in pandas.</p>
 <p>The <code>datetime</code> module provides three classes for working with dates and times:</p>
 <ul>
 <li><code>datetime.date</code> - for working with dates in isolation (which look like <code>YYYY-MM-DD</code>)</li>
@@ -953,8 +968,9 @@ durations of time.</p>
 <p>We can import the <code>datetime</code> module with the following statement:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
 </code></pre></div>
-<p>The datetime module name and the class names are the same (that's unfortunate), so we can't import the
-classes directly. We can import the classes we need into our namespace using the <code>from ... import ...</code> syntax:</p>
+<p>The datetime module name and this class name are the same (that's unfortunate), so we can't import the
+class and module name directly without causing a name conflict. However, as always we can import only
+the classes and functions we need from the module:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 </code></pre></div>
 <h2 id="creating-date-and-time-objects">Creating date and time objects<a class="headerlink" href="#creating-date-and-time-objects" title="Permanent link">&para;</a></h2>
