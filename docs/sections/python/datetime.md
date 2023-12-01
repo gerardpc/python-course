@@ -1,7 +1,8 @@
 # Dates and times
 
-Python provides a number of modules for working with dates and times, but the most
-commonly used is the `datetime` module, which is part of the standard library.
+The `datetime` module, which is part of the standard library, is used for working with dates and times
+in Python. This module provides a number of classes and functions for working with dates and times, 
+and is the basis for the date and time functionality in pandas.
 
 The `datetime` module provides three classes for working with dates and times:
 
@@ -20,8 +21,9 @@ We can import the `datetime` module with the following statement:
 import datetime
 ```
 
-The datetime module name and the class names are the same (that's unfortunate), so we can't import the
-classes directly. We can import the classes we need into our namespace using the `from ... import ...` syntax:
+The datetime module name and this class name are the same (that's unfortunate), so we can't import the
+class and module name directly without causing a name conflict. However, as always we can import only
+the classes and functions we need from the module:
 
 ```python
 from datetime import date, time, datetime, timedelta
