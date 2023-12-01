@@ -72,7 +72,7 @@ axs[1, 1].set_title('Axis [1, 1]')
 ```
 
 <figure markdown>
-  ![Image title](/images/subplots.webp){ width="500" }
+  ![Image title](../../images/subplots.webp){ width="500" }
   <figcaption>4 subplots in a single figure.</figcaption>
 </figure>
 
@@ -121,7 +121,7 @@ ax.scatter(x, y, color='green'')
 ```
 
 <figure markdown>
-  ![Image title](/images/scatter.webp){ width="500" }
+  ![Image title](../../images/scatter.webp){ width="500" }
   <figcaption>A scatter plot example.</figcaption>
 </figure>
 
@@ -139,7 +139,7 @@ axs[1].hist(dist2, bins=n_bins)
 ```
 
 <figure markdown>
-  ![Image title](/images/hist.webp){ width="500" }
+  ![Image title](../../images/hist.webp){ width="500" }
   <figcaption>A double histogram example.</figcaption>
 </figure>
 
@@ -160,7 +160,7 @@ ax.bar(fruits, counts, label=bar_labels, color=bar_colors)
 ```
 
 <figure markdown>
-  ![Image title](/images/bar_plot.png){ width="500" }
+  ![Image title](../../images/bar_plot.png){ width="500" }
   <figcaption>A bar plot example.</figcaption>
 </figure>
 
@@ -283,6 +283,6 @@ ax.grid()
 ```
 
 <figure markdown>
-  ![Image title](/images/simple_plot.webp){ width="500" }
+  ![Image title](../../images/simple_plot.webp){ width="500" }
   <figcaption>Sample figure with a grid.</figcaption>
 </figure>

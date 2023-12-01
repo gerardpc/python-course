@@ -51,34 +51,34 @@ extra_css:
 
 # table of contents
 nav:
-  - 'index.md'
-  - 'Python':
-    - 'programming/python/python_introduction.md'
-    - 'programming/python/control_flow.md'
-    - 'programming/python/data_structures.md'
-    - 'programming/python/functions.md'
-    - 'programming/python/python_programs.md'
-    - 'programming/python/io_files.md'
-    - 'programming/python/exceptions.md'
-    - 'programming/python/classes.md'
-    - 'Other topics':
-      - 'programming/python/regular_expressions.md'
-#      - 'programming/python/datetime.md'
-#      - 'programming/python/builtin_functions.md'
-#      - 'programming/python/dataclasses.md'
-#      - 'programming/python/decorators.md'
-#      - 'programming/python/generators.md'
-      - 'programming/python/comprehensions.md'
-      - 'programming/python/python_packages.md'
-  - 'Data science libraries':
-    - 'programming/python_libraries/numpy.md'
-    - 'programming/python_libraries/matplotlib.md'
-    - 'programming/python_libraries/pandas.md'
-    - 'programming/python_libraries/pyspark.md'
-  - 'SQL':
-    - 'programming/sql/introduction.md'
-    - 'programming/sql/select_statements.md'
-    - 'programming/sql/window_functions.md'
-    - 'programming/sql/modification_statements.md'
-    - 'programming/sql/table_operations.md'
-    - 'programming/sql/sql_from_python.md'
+  - index.md
+  - Python:
+    - sections/python/python_introduction.md
+    - sections/python/control_flow.md
+    - sections/python/data_structures.md
+    - sections/python/functions.md
+    - sections/python/python_programs.md
+    - sections/python/io_files.md
+    - sections/python/exceptions.md
+    - sections/python/classes.md
+    - Other topics:
+      - sections/python/regular_expressions.md
+#      - sections/python/datetime.md
+#      - sections/python/builtin_functions.md
+#      - sections/python/dataclasses.md
+#      - sections/python/decorators.md
+#      - sections/python/generators.md
+      - sections/python/comprehensions.md
+      - sections/python/python_packages.md
+  - Data science libraries:
+    - sections/python_libraries/numpy.md
+    - sections/python_libraries/matplotlib.md
+    - sections/python_libraries/pandas.md
+    - sections/python_libraries/pyspark.md
+  - SQL:
+    - sections/sql/introduction.md
+    - sections/sql/select_statements.md
+    - sections/sql/window_functions.md
+    - sections/sql/modification_statements.md
+    - sections/sql/table_operations.md
+    - sections/sql/sql_from_python.md
