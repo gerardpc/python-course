@@ -248,10 +248,52 @@ This method is similar to the `str.split()` method, but it allows you to split t
 expression instead of a fixed string.
 
 
-## Using regular expressions in Pandas
+## String manipulation in Pandas
 
-Pandas has several functions that allow you to use regular expressions to search and replace text in a DataFrame.
-These functions are:
+### Standard string methods
+
+Pandas offers several methods and attributes that allow you to work with strings. These methods
+are similar to the string methods and attributes in Python, but they are designed to work with Pandas Series.
+
+These methods can be accessed using the `str` attribute of a Series. For example, the following code
+creates a Series containing the strings "John Doe" and "Jane Doe", and then uses the `str.upper()` method
+to convert the strings to uppercase:
+
+```python
+import pandas as pd
+
+
+df = pd.DataFrame({'name': ['John Doe', 'Jane Doe']})
+df['name'] = df['name'].str.upper()
+print(df)
+
+# Output:
+        name
+0   JOHN DOE
+1   JANE DOE
+```
+
+The following table gives an overview of the most important string methods in Pandas:
+
+| Method | Description |
+|--------|-------------|
+| `str.lower()` | Converts all characters to lowercase. |
+| `str.upper()` | Converts all characters to uppercase. |
+| `str.title()` | Converts the first character of each word to uppercase and the rest to lowercase. |
+| `str.capitalize()` | Converts the first character to uppercase and the rest to lowercase. |
+| `str.strip()` | Removes leading and trailing whitespace. |
+| `str.lstrip()` | Removes leading whitespace. |
+| `str.rstrip()` | Removes trailing whitespace. |
+| `str.replace()` | Replaces all occurrences of a string with another string. |
+| `str.split()` | Splits the string into a list of strings. |
+| `str.join()` | Joins the elements of a list into a string. |
+| `str.cat()` | Concatenates strings in a Series. |
+
+
+### Regular expressions in Pandas
+
+Pandas also offers several functions that allow you to use regular expressions to search and replace text in 
+a DataFrame. These functions are:
 
 * `str.contains()`: Returns a boolean Series indicating whether each string contains a match of a regular expression.
 * `str.findall()`: Returns a Series containing lists of all matches of a regular expression.
@@ -317,4 +359,4 @@ print(df)
 2  Jane Smith
 3  Jane Smith
 ```
-
+    
