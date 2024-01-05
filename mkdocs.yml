@@ -52,7 +52,7 @@ extra_css:
 # table of contents
 nav:
   - index.md
-  - Python:
+  - Python 1:
     - sections/python/python_introduction.md
     - sections/python/control_flow.md
     - sections/python/data_structures.md
@@ -61,18 +61,20 @@ nav:
     - sections/python/io_files.md
     - sections/python/exceptions.md
     - sections/python/classes.md
-    - Other topics:
-      - sections/python/regular_expressions.md
-      - sections/python/datetime.md
-#      - sections/python/project_setup.md
-      - sections/python/typer.md
-#      - sections/python/builtin_functions.md
-#      - sections/python/dataclasses.md
-#      - sections/python/decorators.md
-#      - sections/python/generators.md
-      - sections/python/comprehensions.md
-      - sections/python/python_packages.md
-  - Data science libraries:
+  - Python 2:
+    - sections/python/datetime.md
+    - sections/python/regular_expressions.md
+    - sections/other/git.md
+    - sections/python/python_projects.md
+    - sections/python_libraries/typer.md
+  - Other Python topics:
+#    - sections/python/builtin_functions.md
+#    - sections/python/dataclasses.md
+#    - sections/python/decorators.md
+#    - sections/python/generators.md
+    - sections/python/comprehensions.md
+
+  - Python data libraries:
     - sections/python_libraries/numpy.md
     - sections/python_libraries/matplotlib.md
     - sections/python_libraries/pandas.md

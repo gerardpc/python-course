@@ -19,5 +19,5 @@ pip install typer
 
 ## Usage
 
-It is recommended to use Typer in a Pythonh project with a clean directory structure. This makes it easier to
+It is recommended to use Typer in a Python project with a clean directory structure. This makes it easier to
 organize the code and to add new commands and arguments.

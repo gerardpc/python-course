@@ -5,19 +5,20 @@
 This site contains notes for the following courses:
 
 * **PROGRAMMING FOR DATA MANAGEMENT & ANALYSIS**, sections:
-    * All Python sections (except for sections in "Other topics" and JSON files)
+    * All Python 1 sections (except for JSON files)
     * Pandas
     * Matplotlib
     * SQL (except for "Window functions")
     * PySpark
   
 * **PYTHON FOR DATA ANALYSIS 1**, sections:
-    * All Python sections (except for sections in "Other topics")
+    * All Python 1 sections (except for sections in "Other topics")
     * NumPy
     * Pandas
     * Matplotlib
   
-* **PYTHON FOR DATA ANALYSIS 2** 
+* **PYTHON FOR DATA ANALYSIS 2**, sections: 
+    * All Python 2 sections
 
 taught by Gerard Conangla Planes.
 
