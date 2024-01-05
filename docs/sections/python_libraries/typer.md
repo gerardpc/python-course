@@ -17,7 +17,27 @@ Typer can be installed with `pip`:
 pip install typer
 ```
 
+Or, in a poetry project:
+
+```bash
+poetry add typer
+```
+
 ## Usage
 
 It is recommended to use Typer in a Python project with a clean directory structure. This makes it easier to
-organize the code and to add new commands and arguments.
+organize the code and to add new commands and arguments. In what follows, we will assume that the project
+directory structure looks like this:
+
+```bash
+.
+├── cli # The directory containing the CLI code
+│   ├── __init__.py
+│   ├── command1.py
+│   ├── command2.py
+│   └── command3.py
+├── __main__.py # T
+```
+
+where `cli` is a folder inside the `my_project` directory. In this last example, our CLI has three commands
+(`command1`, `command2`, and `command3`) and a `__main__.py` file that will be used to run the CLI.
