@@ -6,4 +6,4 @@ This site contains notes for courses that I teach at IE University:
 * **PYTHON FOR DATA ANALYSIS 1** (MBD, grad)
 * **PYTHON FOR DATA ANALYSIS 2** (MBD, grad)
 
-You can see a published version of the notes [here](https://gerardpc.github.io/python_course/).
+You can see a published version of the notes [here](https://gerardpc.github.io/python-course/).
