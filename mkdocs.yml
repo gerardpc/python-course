@@ -64,8 +64,8 @@ nav:
   - Python 2:
     - sections/python/datetime.md
     - sections/python/regular_expressions.md
-    - sections/other/git.md
     - sections/python/python_projects.md
+    - sections/other/git.md
     - sections/python_libraries/typer.md
   - Other Python topics:
 #    - sections/python/builtin_functions.md

@@ -70,21 +70,21 @@ To use it, we should first create a new project from an existing repository.
 Then, we can use the git menu on the bottom left of the IDE to check branches and perform other common git operations.
 
 <figure markdown>
-  ![Typer](../../images/git_menu.png){ width="600" }
+  ![git](../../images/git_menu.png){ width="600" }
   <figcaption>The git menu, displaying local and remote branches.</figcaption>
 </figure>
 
 When we want to commit changes, we can use the commit menu on the top left of the IDE:
 
 <figure markdown>
-  ![Typer](../../images/commit.png){ width="300" }
+  ![git](../../images/commit.png){ width="300" }
   <figcaption>The commit menu, displaying files that have changed.</figcaption>
 </figure>
 
 To create a new commit, we should first select the files that we want to commit, and then write a commit message:
 
 <figure markdown>
-  ![Typer](../../images/new_commit.png){ width="300" }
+  ![git](../../images/new_commit.png){ width="300" }
   <figcaption>Creating a new commit from the commit menu.</figcaption>
 </figure>
 
@@ -93,7 +93,7 @@ same place), then the commit will be created. Otherwise, we will have to solve t
 Pycharm will show us the conflicts and allow us to solve them:
 
 <figure markdown>
-  ![Typer](../../images/merge_conflict.png){ width="600" }
+  ![git](../../images/merge_conflict.png){ width="600" }
   <figcaption>Pycharm showing us the conflicts in a file.</figcaption>
 </figure>
 

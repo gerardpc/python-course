@@ -2,3 +2,5 @@ site/
 poetry.lock
 pyproject.toml
 .idea/
+.hypothesis/
+```
