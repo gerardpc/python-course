@@ -1,0 +1,1442 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../regular_expressions/">
+      
+      
+        <link rel="next" href="../../other/git/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Python projects - Python and data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-projects" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python and data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python projects
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python and data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Python 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_introduction/" class="md-nav__link">
+        Introduction to Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control_flow/" class="md-nav__link">
+        Control flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_structures/" class="md-nav__link">
+        Data structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_programs/" class="md-nav__link">
+        Python programs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../io_files/" class="md-nav__link">
+        Input, output and files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        Classes and objects
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          Python 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Python 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datetime/" class="md-nav__link">
+        Dates and times
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regular_expressions/" class="md-nav__link">
+        Regular expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python projects
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Python projects
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-our-project-with-poetry" class="md-nav__link">
+    Creating our project with Poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating our project with Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#poetry-introduction" class="md-nav__link">
+    Poetry introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-project" class="md-nav__link">
+    Creating the project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-dependencies-with-poetry" class="md-nav__link">
+    Adding dependencies with Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developing-our-project" class="md-nav__link">
+    Developing our project
+  </a>
+  
+    <nav class="md-nav" aria-label="Developing our project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#committing-our-changes-with-git" class="md-nav__link">
+    Committing our changes with Git
+  </a>
+  
+    <nav class="md-nav" aria-label="Committing our changes with Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formatting-our-code-with-ruff" class="md-nav__link">
+    Formatting our code with Ruff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#committing-with-pycharm" class="md-nav__link">
+    Committing with PyCharm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-to-a-remote-repository" class="md-nav__link">
+    Push to a remote repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-command-line-interface-cli" class="md-nav__link">
+    Creating a command line interface (CLI)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#converting-your-finished-repository-into-a-python-package" class="md-nav__link">
+    Converting your (finished) repository into a Python package
+  </a>
+  
+    <nav class="md-nav" aria-label="Converting your (finished) repository into a Python package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-packages-introduction" class="md-nav__link">
+    Python packages introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-wheel-with-poetry" class="md-nav__link">
+    Creating a wheel with Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/typer/" class="md-nav__link">
+        Typer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          Other Python topics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Other Python topics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Other Python topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comprehensions/" class="md-nav__link">
+        Comprehensions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Python data libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python data libraries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Python data libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/numpy/" class="md-nav__link">
+        Numpy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/matplotlib/" class="md-nav__link">
+        Matplotlib
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
+        Pandas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_libraries/pyspark/" class="md-nav__link">
+        PySpark
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/introduction/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/select_statements/" class="md-nav__link">
+        SELECT statement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/window_functions/" class="md-nav__link">
+        Window functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/modification_statements/" class="md-nav__link">
+        Data modification statements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/table_operations/" class="md-nav__link">
+        Table operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql_from_python/" class="md-nav__link">
+        SQL queries from Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    Project structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-our-project-with-poetry" class="md-nav__link">
+    Creating our project with Poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating our project with Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#poetry-introduction" class="md-nav__link">
+    Poetry introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-project" class="md-nav__link">
+    Creating the project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-dependencies-with-poetry" class="md-nav__link">
+    Adding dependencies with Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developing-our-project" class="md-nav__link">
+    Developing our project
+  </a>
+  
+    <nav class="md-nav" aria-label="Developing our project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#committing-our-changes-with-git" class="md-nav__link">
+    Committing our changes with Git
+  </a>
+  
+    <nav class="md-nav" aria-label="Committing our changes with Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formatting-our-code-with-ruff" class="md-nav__link">
+    Formatting our code with Ruff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#committing-with-pycharm" class="md-nav__link">
+    Committing with PyCharm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-to-a-remote-repository" class="md-nav__link">
+    Push to a remote repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-command-line-interface-cli" class="md-nav__link">
+    Creating a command line interface (CLI)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#converting-your-finished-repository-into-a-python-package" class="md-nav__link">
+    Converting your (finished) repository into a Python package
+  </a>
+  
+    <nav class="md-nav" aria-label="Converting your (finished) repository into a Python package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-packages-introduction" class="md-nav__link">
+    Python packages introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-wheel-with-poetry" class="md-nav__link">
+    Creating a wheel with Poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="python-projects">Python projects<a class="headerlink" href="#python-projects" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this section we will learn how to create a Python project from scratch. This project will be hosted in a
+remote repository, and we will learn how to create a Python package from it.</p>
+<p>We will use <a href="https://python-poetry.org/">Poetry</a> to manage our project dependencies (i.e., the libraries that
+our project uses), and the following extra tools to help us with the development process:</p>
+<ul>
+<li><strong>Git</strong>: the most popular version control system. This will allow us to keep track of the changes in our code
+between different versions of our project.</li>
+<li><strong>GitHub</strong>: a website to host our remote repository (although we could use other alternatives, such as 
+<a href="https://about.gitlab.com/">GitLab</a> or <a href="https://bitbucket.org/">Bitbucket</a>). This will allow us to share our code
+with other people and to collaborate with them.</li>
+<li><strong>Typer</strong>: a library to create command-line interfaces (CLIs) in Python. This will allow us to create a 
+program that uses our Python code and can be executed from the terminal.</li>
+<li><strong>Ruff</strong>: an (extremely fast) Python linter and code formatter. This will help us to keep our code clean and
+consistent, following a "standard" style of writing Python code.</li>
+</ul>
+<p>If we have more time, we can also add to our project:</p>
+<ul>
+<li><strong>Pytest</strong>: a library to create unit tests in Python.</li>
+<li><strong><a href="https://nicegui.io/">NiceGUI</a></strong>: a library to create quick graphical user interfaces (GUIs) in Python in web browsers (other alternatives
+are <a href="https://streamlit.io/">Streamlit</a> and <a href="https://plotly.com/dash/">Dash</a>).</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some basic nomeclature:
+* <strong>Python module</strong>: a file containing Python code. It can be imported by other Python modules.
+* <strong>Python package</strong>: a directory containing several Python modules or other Python packages. 
+It can be imported by other Python modules.</p>
+</div>
+<h2 id="project-structure">Project structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<p>A Python project should have a clean directory structure. This makes it easier to organize the code and to add new
+commands and arguments.</p>
+<p>The following is a possible directory structure for a Python machine learning project called <code>my_project</code> 
+(which is the name of the directory that contains the project):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>README.md
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──<span class="w"> </span>.gitignore
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├──<span class="w"> </span>pyproject.toml
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├──<span class="w"> </span>poetry.lock
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├──<span class="w"> </span>my_project
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│<span class="w">   </span>├──<span class="w"> </span>cli
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│<span class="w">   </span>├──<span class="w"> </span>data
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│<span class="w">   </span>├──<span class="w"> </span>models
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│<span class="w">   </span>└──<span class="w"> </span>config
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├──<span class="w"> </span>notebooks
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>└──<span class="w"> </span>data
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span>├──<span class="w"> </span>raw
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span>├──<span class="w"> </span>processed
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span>└──<span class="w"> </span>results<span class="w">    </span>
+</code></pre></div>
+<p>In the previous directory structure, we have the following files and directories:</p>
+<ul>
+<li><code>README.md</code>: a file containing a description of the project. This file is written in Markdown, a markup language</li>
+<li><code>.gitignore</code>: a file containing the names of the files and directories that we want to ignore when we commit. For
+more information, see <a href="../../other/git/">the git section</a>.</li>
+<li><code>pyproject.toml</code>: a file containing the configuration of our project. This file is automatically generated by
+Poetry and (in general) we should not modify it manually.</li>
+<li><code>poetry.lock</code>: a file containing the exact versions of the libraries that we are using in our project. This file
+is automatically generated by Poetry, using the information in <code>pyproject.toml</code>, and (in general) we should not
+modify it manually.</li>
+<li><code>my_project</code>: a directory containing the actual Python modules and packages that we have created for our project.
+The name of this directory should be the same as the name of our project. Inside this directory, we have the following:<ul>
+<li><code>cli</code>: a directory containing the code for our CLI. This directory typically contains a <code>main.py</code> file, 
+  which is the entry point of our CLI, and several other Python modules and packages that contain the code for
+  the different commands and arguments of our CLI. We will create this CLI with Typer 
+  (see the corresponding <a href="../../python_libraries/typer/">section</a>).</li>
+<li><code>data</code>: a directory containing Python modules and packages that contain the code for loading and saving data.</li>
+<li><code>models</code>: a directory containing Python modules and packages that contain the code for our machine learning models.</li>
+<li><code>config</code>: a directory containing code for loading and saving configuration files (configuration files typically
+  are <code>.json</code> or <code>.yaml</code> files, that contain the parameters of our models).</li>
+</ul>
+</li>
+<li><code>notebooks</code>: a directory containing Jupyter notebooks, or other python scripts for exploratory data analysis (EDA).
+These files are temporary, and once ready, anything important should be moved to the Python modules and packages in 
+<code>my_project</code>.</li>
+<li><code>data</code>: a directory containing the data for our project. This directory typically contains the following:<ul>
+<li><code>raw</code>: a directory containing the raw data for our project (i.e., the data that we have downloaded from the
+  internet or that we have received from other people).</li>
+<li><code>processed</code>: a directory containing the processed data for our project (i.e., the data that we have created
+  from the raw data).</li>
+<li><code>results</code>: a directory containing the results of our project (i.e., the data that we have created from the
+  processed data).</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Of course, this is just a project structure suggestion. You can adapt it to your own needs.</p>
+</div>
+<h2 id="creating-our-project-with-poetry">Creating our project with Poetry<a class="headerlink" href="#creating-our-project-with-poetry" title="Permanent link">&para;</a></h2>
+<h3 id="poetry-introduction">Poetry introduction<a class="headerlink" href="#poetry-introduction" title="Permanent link">&para;</a></h3>
+<p><a href="https://python-poetry.org/">Poetry</a> is a tool for dependency management and packaging in Python. It allows us to
+define the libraries that our project uses in a <code>pyproject.toml</code> file (which is a standard file in all proper
+Python projects). With all the constraints defined in this file, Poetry will automatically install the correct
+versions of the libraries that we need in our project (the versions that are compatible with each other), and save
+them in a <code>poetry.lock</code> file.</p>
+<p>Under the hood, Poetry uses <a href="https://pip.pypa.io/en/stable/">pip</a> to install the libraries. However, it is not
+recommended to use pip directly, since it does not have a way to lock the versions of the libraries that we are
+using.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Poetry is not the only tool for dependency management and packaging in Python. Other popular alternatives are
+<a href="https://pipenv.pypa.io/en/latest/">pipenv</a> and <a href="https://docs.conda.io/en/latest/">conda</a>.</p>
+</div>
+<h3 id="creating-the-project">Creating the project<a class="headerlink" href="#creating-the-project" title="Permanent link">&para;</a></h3>
+<p>To create a new project, we should follow these steps:</p>
+<ol>
+<li>Create a new directory for our project. It should be named the same as our project.</li>
+<li>Open a terminal and navigate to the directory that we have just created.</li>
+<li>
+<p>Run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>init
+</code></pre></div>
+<p>This will initialize a new git repository in our project.</p>
+</li>
+<li>
+<p>Manually create the files </p>
+<ul>
+<li><code>README.md</code></li>
+<li><code>.gitignore</code> (see <a href="../../other/git/">the git section</a>).
+   You can fill these files later.</li>
+</ul>
+</li>
+<li>
+<p>Create a new virtual environment for the project. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A virtual environment is a directory that contains a copy of the Python libraries, specific for your project.
+You should create a new virtual environment for each project that you create. This will allow you to have
+different versions of the same library in different projects, and to avoid conflicts between them.</p>
+</div>
+<p>If you are using PyCharm, click on the bottom right corner
+of the window, where it says "No interpreter", and select "Add new interpreter", and then "Add local environment".
+A pop-up window will appear:</p>
+<p><figure markdown>
+  <img alt="venv" src="../../../images/new_venv.png" width="600" />
+  <figcaption>Creating a new virtual environment for the project.</figcaption>
+</figure></p>
+<p>Select "Virtualenv Environment", and modify the name of your virtual environment folder: this is the name that 
+your virtual environment will take. Make sure to write the name of your virtual environment folder in the 
+<code>.gitignore</code> file, so that it is not committed to the repository. Then, select your Python interpreter. 
+Finally, click on "OK".</p>
+</li>
+<li>
+<p>Open a terminal and navigate to the directory that we have just created. If you open it from PyCharm, it will
+    automatically activate the virtual environment that we have just created. You will see that the name of the
+    virtual environment appears in the terminal, before the <code>$</code> symbol. For example, if you have named your virtual
+    environment <code>py10_my_project</code>, you will see something like this: </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">(</span>py10_my_project<span class="o">)</span><span class="w"> </span>gerardpc@my_pc:<span class="w"> </span>~/repositories/my_project$
+</code></pre></div>
+The <code>(py10_my_project)</code> part is the name of the virtual environment; if it is not there, it means that the virtual
+environment is not activated.</p>
+</li>
+<li>
+<p>From the terminal with the activated virtual environment, install poetry with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>poetry
+</code></pre></div>
+</li>
+<li>
+<p>Finally, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>poetry<span class="w"> </span>init
+</code></pre></div>
+<p>Poetry will then ask you several questions about your project. You can leave the default values for most of them.
+After answering all the questions, Poetry will ask you if you want to create a new virtual environment for your
+project. You should answer "no", since we have already created a virtual environment for our project.</p>
+<p>After the command is finished, you will see that Poetry has created a <code>pyproject.toml</code> file in your project.
+This file contains the configuration of our project, and is used to define the libraries that our 
+project uses. For example, it could look like this:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[tool.poetry]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;python-course&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;gerardpc &lt;gerard@ie.edu&gt;&quot;</span><span class="p">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;README.md&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;python_course&quot;</span><span class="p">}]</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">[tool.poetry.dependencies]</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&gt;=3.10,&lt;3.13&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">pandas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^2.1.1&quot;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">matplotlib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.8.0&quot;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">[build-system]</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry-core&quot;</span><span class="p">]</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span>
+</code></pre></div>
+The "dependencies" bit is the one that contains the libraries that our project uses. Of course, since we have
+just created the project, we have not added any dependencies yet.</p>
+</li>
+</ol>
+<p>With this, we have created our project. We can now start developing it.</p>
+<h3 id="adding-dependencies-with-poetry">Adding dependencies with Poetry<a class="headerlink" href="#adding-dependencies-with-poetry" title="Permanent link">&para;</a></h3>
+<p>Typically, we will want to add libraries to our project. In a common machine learning project, we will want to add
+libraries such as <code>pandas</code>, <code>numpy</code>, <code>scikit-learn</code>, <code>tensorflow</code>, etc. As stated before, we can add these libraries
+from a terminal with poetry, which will automatically install the correct versions of the libraries that we need and
+update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
+<p>The most common poetry commands that we will use are the following:</p>
+<ul>
+<li>
+<p><code>poetry add &lt;library_name&gt;</code>: adds a new library to our project. For example, if we want to add <code>pandas</code> to our
+project, we can run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>pandas
+</code></pre></div>
+<p>This will add <code>pandas</code> to our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.
+* <code>poetry remove &lt;library_name&gt;</code>: removes a library from our project. For example, if we want to remove <code>pandas</code> from
+our project, we can run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>poetry<span class="w"> </span>remove<span class="w"> </span>pandas
+</code></pre></div>
+<p>This will remove <code>pandas</code> from our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.
+* <code>poetry install</code>: installs all the libraries that are defined in the <code>pyproject.toml</code> file. We will typically use
+this command when we clone a repository from GitHub, to install all the libraries that the project uses (because when
+we are developing from scratch, we will use <code>poetry add</code> to add new libraries to our project).
+* <code>poetry show</code>: shows the libraries that are defined in the <code>pyproject.toml</code> file.
+* To update a specific package (already installed) to its latest version, we can run the following command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>poetry<span class="w"> </span>update<span class="w"> </span>&lt;library_name&gt;
+</code></pre></div>
+This will also update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
+</li>
+</ul>
+<h2 id="developing-our-project">Developing our project<a class="headerlink" href="#developing-our-project" title="Permanent link">&para;</a></h2>
+<h3 id="committing-our-changes-with-git">Committing our changes with Git<a class="headerlink" href="#committing-our-changes-with-git" title="Permanent link">&para;</a></h3>
+<p>Every time we make an important change in our project, we should commit it to our local repository. 
+This will allow us to keep track of the changes in our code between different versions of our project.
+In practice this means that in a day of work, we will be doing several commits. </p>
+<h4 id="formatting-our-code-with-ruff">Formatting our code with Ruff<a class="headerlink" href="#formatting-our-code-with-ruff" title="Permanent link">&para;</a></h4>
+<p>Before committing, we should try to use a code linter and formatter to make sure that our code is clean and consistent.
+We will use <a href="https://ruff.readthedocs.io/en/latest/">Ruff</a> for this. First, we need to install it in our virtual
+environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>ruff
+</code></pre></div>
+<p>To <strong>lint</strong> the code (i.e., checking for mistakes in coding, coding in ways that ‘may’ lead to incorrect results,
+etc.), we can use the following command from the terminal:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ruff<span class="w"> </span>.
+</code></pre></div>
+where the <code>.</code> means that we want to check the files in the current directory (we could also specify
+another file or directory). Ruff will then show us the changes that need to be made to the code: some can be fixed
+automatically by running</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ruff<span class="w"> </span>--fix<span class="w"> </span>.
+</code></pre></div>
+<p>Other errors will need to be fixed by hand (clicking to the link we will go automatically to the line in the code that
+needs to be fixed).</p>
+<p>To <strong>format</strong> teh code (i.e., making sure that the code is written in a consistent style and looks pretty), we 
+can use the following command from the terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ruff<span class="w"> </span>--format<span class="w"> </span>.
+</code></pre></div>
+<p>This will format the code in the current directory (we could also specify another file or directory).</p>
+<h4 id="committing-with-pycharm">Committing with PyCharm<a class="headerlink" href="#committing-with-pycharm" title="Permanent link">&para;</a></h4>
+<p>Once the code is linted and formatted, we can commit it to our local repository. If we are using PyCharm, we can
+do this from the commit menu on the top left of the IDE; check this <a href="../../other/git/">section</a> for more information.</p>
+<h4 id="push-to-a-remote-repository">Push to a remote repository<a class="headerlink" href="#push-to-a-remote-repository" title="Permanent link">&para;</a></h4>
+<p>To push the changes to a remote repository, the remote repository first needs to exist! We will see how to create
+a remote repository in GitHub:</p>
+<ol>
+<li>Log in to <a href="https://github.com">Github</a>. If you don't have an account, create one.</li>
+<li>
+<p>Click to "New repository". You will enter a page that should look like this:</p>
+<p><figure markdown>
+  <img alt="new_repo" src="../../../images/new_repo.png" width="600" />
+  <figcaption>Creating a new repository in GitHub.</figcaption>
+</figure></p>
+<p>The repository name should be the same as the name of your project. You can leave the other options as they are.
+Then, click on "Create repository".</p>
+</li>
+<li>
+<p>After creating the repository, you will see a page with the URL of the repository. Copy this URL. Then, go to your
+    terminal and run the following command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;url&gt;
+</code></pre></div>
+where <code>&lt;url&gt;</code> is the URL of your repository. This will add the remote repository to your local repository with the
+name <code>origin</code>.</p>
+</li>
+<li>
+<p>Finally, run the following command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
+</code></pre></div>
+This will push the changes in your local repository to the remote repository. Alternatively, you can do this from
+PyCharm, using the git menu on the bottom left of the IDE. Select the branch you want to push, and right click on
+it. Then, select "Push". If everything goes well, you will see a message saying that the push was successful, and 
+if you go to your repository in GitHub, you will see that the changes have been pushed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you chose to make your repository public, anyone will be able to see your code and push changes to it.</p>
+</div>
+</li>
+</ol>
+<h3 id="creating-a-command-line-interface-cli">Creating a command line interface (CLI)<a class="headerlink" href="#creating-a-command-line-interface-cli" title="Permanent link">&para;</a></h3>
+<p>The most important scripts in our project will be the ones that we use to run our code. For example, if we are
+developing a machine learning model, we will have a script to train the model, and another script to make predictions
+with it. We will typically want to run these scripts from the terminal, with different arguments. This will allow us
+to run the code in a remote server, or for other people to run it without having to know Python or be familiar with 
+Jupyter notebooks.</p>
+<p>At a very high level, i.e., before we start coding, we should think about the different commands and arguments that
+we want to have in our CLI. Once we have a clear idea of what we want, we can start coding. There are several libraries
+to create CLIs in Python; in our project we will use <a href="https://typer.tiangolo.com/">Typer</a>. See the corresponding
+<a href="../../python_libraries/typer/">section</a> for more information.</p>
+<h2 id="converting-your-finished-repository-into-a-python-package">Converting your (finished) repository into a Python package<a class="headerlink" href="#converting-your-finished-repository-into-a-python-package" title="Permanent link">&para;</a></h2>
+<h3 id="python-packages-introduction">Python packages introduction<a class="headerlink" href="#python-packages-introduction" title="Permanent link">&para;</a></h3>
+<p>A <code>.whl</code> (<strong>wheel</strong>) file is a distribution package file saved in Python’s wheel format. It is a standard format 
+installation of Python distributions and contains all the files and metadata required for installation. 
+The WHL file also contains information about the Python versions and platforms supported by this wheel file. 
+WHL file format is a ready-to-install format that allows running the installation package without building the 
+source distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>All else being equal, wheels are typically smaller in size than source distributions.</li>
+<li>Installing from wheels directly avoids the intermediate step of building packages off of 
+the source distribution.</li>
+</ul>
+</div>
+<p>A <code>.whl</code> file is essentially a zip archive with a specially crafted filename that tells installers what 
+Python versions and platforms the wheel will support.</p>
+<h3 id="creating-a-wheel-with-poetry">Creating a wheel with Poetry<a class="headerlink" href="#creating-a-wheel-with-poetry" title="Permanent link">&para;</a></h3>
+<p>We can create a wheel file for our project with Poetry quite easily. First, we need to use the <code>build</code> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>poetry<span class="w"> </span>build
+</code></pre></div>
+<p>That's it! Poetry will create a <code>dist</code> directory in our project, which will contain the wheel file. For example,
+if our project is called <code>my_project</code>, the wheel file will be called <code>my_project-0.1.0-py3-none-any.whl</code>.
+If we want to publish our package to <a href="https://pypi.org/">PyPI</a>, we can do it with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>poetry<span class="w"> </span>publish
+</code></pre></div>
+<p>This will make our package available to everyone in PyPI. However, we will not do this in this course: you
+should only publish packages that are ready to be used by other people, not as a homework submission!</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
