@@ -26,9 +26,13 @@ are [Streamlit](https://streamlit.io/) and [Dash](https://plotly.com/dash/)).
 
 !!!note
     Some basic nomeclature:
+
     * **Python module**: a file containing Python code. It can be imported by other Python modules.
-    * **Python package**: a directory containing several Python modules or other Python packages. 
-    It can be imported by other Python modules.
+    * **Python package**: a directory containing several Python modules or other Python packages. Very
+
+    often, a Python package will also contain a `__init__.py` file, which is a Python module that is executed
+    when the package is imported (but it is not necessary to have it). A Python package can be imported by 
+    other Python modules.
 
 ## Project structure
 
