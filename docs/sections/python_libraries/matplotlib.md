@@ -160,7 +160,7 @@ ax.bar(fruits, counts, label=bar_labels, color=bar_colors)
 ```
 
 <figure markdown>
-  ![Image title](../../images/bar_plot.png){ width="500" }
+  ![Image title](../../images/bar_plot.webp){ width="500" }
   <figcaption>A bar plot example.</figcaption>
 </figure>
 
