@@ -500,9 +500,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#creating-a-cli-with-typer" class="md-nav__link">
+    Creating a CLI with Typer
   </a>
+  
+    <nav class="md-nav" aria-label="Creating a CLI with Typer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-simple-cli" class="md-nav__link">
+    Writing a simple CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-say-command" class="md-nav__link">
+    The say command
+  </a>
+  
+    <nav class="md-nav" aria-label="The say command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-hello-command" class="md-nav__link">
+    The hello command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-goodbye-command" class="md-nav__link">
+    The goodbye command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-greet-command" class="md-nav__link">
+    The greet command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-operate-command" class="md-nav__link">
+    The operate command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-__init__py-file" class="md-nav__link">
+    The __init__.py file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-__main__py-file" class="md-nav__link">
+    The __main__.py file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-cli" class="md-nav__link">
+    Running the CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-rid-of-python-m" class="md-nav__link">
+    Get rid of python -m
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -814,9 +909,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#creating-a-cli-with-typer" class="md-nav__link">
+    Creating a CLI with Typer
   </a>
+  
+    <nav class="md-nav" aria-label="Creating a CLI with Typer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-simple-cli" class="md-nav__link">
+    Writing a simple CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-say-command" class="md-nav__link">
+    The say command
+  </a>
+  
+    <nav class="md-nav" aria-label="The say command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-hello-command" class="md-nav__link">
+    The hello command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-goodbye-command" class="md-nav__link">
+    The goodbye command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-greet-command" class="md-nav__link">
+    The greet command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-operate-command" class="md-nav__link">
+    The operate command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-__init__py-file" class="md-nav__link">
+    The __init__.py file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-__main__py-file" class="md-nav__link">
+    The __main__.py file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-cli" class="md-nav__link">
+    Running the CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-rid-of-python-m" class="md-nav__link">
+    Get rid of python -m
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -849,9 +1039,224 @@ to build complex CLI applications by providing a clean interface for defining co
 <p>Typer can be installed with <code>pip</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>typer
 </code></pre></div>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>Or, in a poetry project:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>typer
+</code></pre></div>
+<h2 id="creating-a-cli-with-typer">Creating a CLI with Typer<a class="headerlink" href="#creating-a-cli-with-typer" title="Permanent link">&para;</a></h2>
 <p>It is recommended to use Typer in a Python project with a clean directory structure. This makes it easier to
-organize the code and to add new commands and arguments.</p>
+organize the code and to add new commands and arguments. In what follows, we will assume that the project
+directory structure looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├──<span class="w"> </span>my_project<span class="w"> </span><span class="c1"># The directory containing the project code</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│<span class="w">   </span>├──<span class="w"> </span>__main__.py<span class="w"> </span><span class="c1"># The file that will be used to run the CLI</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│<span class="w">   </span>├──<span class="w"> </span>cli<span class="w"> </span><span class="c1"># The directory containing the CLI code</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py<span class="w"> </span><span class="c1"># A file that contains links to the commands</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>command_1.py
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>...<span class="w"> </span><span class="c1"># Other commands</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>command_n.py
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│<span class="w">   </span>└──<span class="w"> </span>...<span class="w"> </span><span class="c1"># Other project code, unrelated to the CLI</span>
+</code></pre></div>
+<p>where <code>cli</code> is a folder inside the <code>my_project</code> directory. In this last example, our CLI has several commands
+(<code>command1</code>, ...) and a <code>__main__.py</code> file, inside the <code>my_project</code> directory, that will be used to run the CLI.</p>
+<h3 id="writing-a-simple-cli">Writing a simple CLI<a class="headerlink" href="#writing-a-simple-cli" title="Permanent link">&para;</a></h3>
+<p>We will make a simple CLI that has two commands. The first is the command <code>say</code>, which has 3 subcommands:
+<code>hello</code>, <code>goodbye</code>, and <code>greet</code>: the <code>hello</code> command will print <code>"Hello, world!"</code>, the <code>goodbye</code> command 
+will print <code>"Goodbye, it is &lt;time&gt; and we should go to sleep"</code>, where <code>&lt;time&gt;</code> is the current time in the 
+format <code>HH:MM</code>, and the <code>greet</code> command will take a name as an argument and print "<code>Hello, &lt;name&gt;!"</code>.
+The second command is the <code>operate</code> command, which only has the subcommand <code>add</code>: it will take two numbers 
+as arguments and print their sum.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The commands are completely unrelated to each other. In a more realistic machine learning project, the
+commands would be related to each other and would be used to train, evaluate, etc. a machine learning model.</p>
+</div>
+<p>Let's start first by creating the code for the commands. After that, we will create the <code>__init__.py</code> and the
+<code>__main__.py</code> files.</p>
+<h3 id="the-say-command">The <code>say</code> command<a class="headerlink" href="#the-say-command" title="Permanent link">&para;</a></h3>
+<p>We will first create the <code>say</code> command, which has 3 subcommands, and then we will review them one by one.
+We should create a file called <code>say.py</code> inside the <code>cli</code> directory, containing the following code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Path: cli/say.py</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span> <span class="nn">typer</span> <span class="kn">import</span> <span class="n">Typer</span><span class="p">,</span> <span class="n">Option</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Typer</span><span class="p">()</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Prints &#39;Hello, world!&#39;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints &#39;Hello, world!&#39;.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">return</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;goodbye&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Prints &#39;Goodbye, it is &lt;time&gt; and we should go to sleep&#39;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">def</span> <span class="nf">goodbye</span><span class="p">():</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints &#39;Goodbye, it is &lt;time&gt; and we should go to sleep&#39;.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Goodbye, it is </span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">now</span><span class="o">.</span><span class="n">minute</span><span class="si">}</span><span class="s2"> and we should go to sleep&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="k">return</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Prints &#39;Hello, &lt;name&gt;!&#39;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Option</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="s2">&quot;--name&quot;</span><span class="p">,</span> <span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The name to greet&quot;</span><span class="p">)):</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints &#39;Hello, &lt;name&gt;!&#39;.&quot;&quot;&quot;</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="k">return</span>
+</code></pre></div>
+<h4 id="the-hello-command">The <code>hello</code> command<a class="headerlink" href="#the-hello-command" title="Permanent link">&para;</a></h4>
+<p>The <code>hello</code> command is the simplest of the three commands. It does not take any arguments and simply prints
+"Hello, world!" when it is called. </p>
+<p>The <code>hello</code> command is defined as a function with the <code>@app.command()</code> decorator. The <code>@app.command()</code> decorator
+tells Typer that this function is a command and should be added to the CLI. The <code>hello</code> command does not take
+any arguments, so it does not need to take any parameters. </p>
+<p>As we see in this example, creating a command is as simple as defining a function and decorating it with the
+<code>@app.command()</code> decorator.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>app</code> is a Typer app, the main object provided by Typer to create CLIs. It is created 
+with <code>app = typer.Typer()</code> </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Commands are defined in regular Python files. This means that any Python code, any imports, etc.
+can be used inside a command.</p>
+</div>
+<h4 id="the-goodbye-command">The <code>goodbye</code> command<a class="headerlink" href="#the-goodbye-command" title="Permanent link">&para;</a></h4>
+<p>The <code>goodbye</code> command is a bit more complex than the <code>hello</code> command. It prints
+"Goodbye, it is <time> and we should go to sleep", where <code>&lt;time&gt;</code> is the current time in the format <code>HH:MM</code>.
+It imports the <code>datetime</code> library to get the current time and then prints the message.</p>
+<p>The <code>goodbye</code> command is defined similarly to the <code>hello</code> command, with a function that is slightly more complex.</p>
+<h4 id="the-greet-command">The <code>greet</code> command<a class="headerlink" href="#the-greet-command" title="Permanent link">&para;</a></h4>
+<p>The <code>greet</code> command is a bit more complex because it takes a name as an argument (the previous commands had no 
+arguments/options).</p>
+<p>The Option <code>--name</code> (or <code>-n</code>), imported from the Typer library, is used to define the argument (in this case
+<code>name</code>) that the <code>greet</code> command takes. The <code>...</code> in <code>Option(..., help="The name to greet")</code>
+is used to tell Typer that the <code>name</code> argument is required. </p>
+<p>If we wanted to make the <code>name</code> argument optional, we could have used <code>None</code> instead of <code>...</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>help</code> argument is used to provide a description of the argument. This description will be shown
+when the <code>--help</code> option is used in a terminal.</p>
+</div>
+<h3 id="the-operate-command">The <code>operate</code> command<a class="headerlink" href="#the-operate-command" title="Permanent link">&para;</a></h3>
+<p>Since it is unrelated to the rest of the <code>say</code> commands, we have included <code>add</code> in a
+differentiated <code>operate</code> command file (but, of course, how to structure the code is up to you). The 
+<code>operate</code> command only has one subcommand: <code>add</code>, the arithmetic addition. It takes two numbers as arguments 
+and prints their sum.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Path: cli/operate.py</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span> <span class="nn">typer</span> <span class="kn">import</span> <span class="n">Typer</span><span class="p">,</span> <span class="n">Option</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Typer</span><span class="p">()</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Prints the sum of two numbers&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">number_1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Option</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="s2">&quot;--number_1&quot;</span><span class="p">,</span> <span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The first number&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">number_2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Option</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="s2">&quot;--number_2&quot;</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The second number&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">):</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints the sum of two numbers.&quot;&quot;&quot;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">number_1</span> <span class="o">+</span> <span class="n">number_2</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>--</code> and <code>-</code> in <code>Option(..., "--number_1", "-n", help="The first number")</code> are used to define the long and short
+versions of the option. For example, the <code>--number_1</code> option can be used as <code>--number_1 1</code> or <code>-n 1</code>.</p>
+</div>
+<h3 id="the-__init__py-file">The <code>__init__.py</code> file<a class="headerlink" href="#the-__init__py-file" title="Permanent link">&para;</a></h3>
+<p>We now need to group the commands together and create a single Typer app. This is done in the <code>__init__.py</code> file
+(which, again, is a regular Python file, even if it has a strange name). The code for this file is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Path: my_project/__init__.py</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd">&quot;&quot;&quot;**CLI access point**.</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="sd">With this module we enable the ``python -m my_project``</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="sd">functionality.</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="sd">The CLI should also be accessible through the command:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="sd">``my_project``.</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="kn">from</span> <span class="nn">typer</span> <span class="kn">import</span> <span class="n">Typer</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="kn">from</span> <span class="nn">my_project.cli.say</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">say</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="kn">from</span> <span class="nn">my_project.cli.operate</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">operate</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Typer</span><span class="p">()</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="n">app</span><span class="o">.</span><span class="n">add_typer</span><span class="p">(</span><span class="n">say</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;say&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="n">app</span><span class="o">.</span><span class="n">add_typer</span><span class="p">(</span><span class="n">operate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;operate&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="the-__main__py-file">The <code>__main__.py</code> file<a class="headerlink" href="#the-__main__py-file" title="Permanent link">&para;</a></h3>
+<p>The <code>__main__.py</code> file inside the <code>my_project</code> directory is what allows us to run the CLI with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_project<span class="w"> </span>&lt;command&gt;
+</code></pre></div>
+<p>The code for this file is as simple as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="sd">&quot;&quot;&quot;**CLI access point**.</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="sd">With this module we enable the ``python -m my_project``</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="sd">functionality.</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="sd">The CLI should also be accessible through the command:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="sd">``my_project``.</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="kn">from</span> <span class="nn">my_project.cli</span> <span class="kn">import</span> <span class="n">app</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The chosen name for the CLI is <code>my_project</code>, but of course this can be changed to whatever you want.</p>
+</div>
+<h2 id="running-the-cli">Running the CLI<a class="headerlink" href="#running-the-cli" title="Permanent link">&para;</a></h2>
+<h3 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
+<p>After creating the CLI, we can run it from a terminal with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_project<span class="w"> </span>&lt;command&gt;
+</code></pre></div>
+<p>where <code>&lt;command&gt;</code> is one of the commands defined in the <code>__init__.py</code> file. For example, we can run the
+<code>hello</code> command with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_project<span class="w"> </span>say<span class="w"> </span>hello
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Output:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Hello,<span class="w"> </span>world!
+</code></pre></div>
+<p>If we need help with the CLI, we can use the <code>--help</code> option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_project<span class="w"> </span>--help
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># Output:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Usage:<span class="w"> </span>example_cli<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Options:
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>--install-completion<span class="w">  </span>Install<span class="w"> </span>completion<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>shell.
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span>--show-completion<span class="w">     </span>Show<span class="w"> </span>completion<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>shell,<span class="w"> </span>to<span class="w"> </span>copy<span class="w"> </span>it<span class="w"> </span>or
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">                        </span>customize<span class="w"> </span>the<span class="w"> </span>installation.
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span>--help<span class="w">                </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Commands:
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">  </span>operate
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">  </span>say
+</code></pre></div>
+<h3 id="get-rid-of-python-m">Get rid of <code>python -m</code><a class="headerlink" href="#get-rid-of-python-m" title="Permanent link">&para;</a></h3>
+<p>We can get rid of the <code>python -m</code> part by adding the following code to the <code>pyproject.toml</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">[tool.poetry.scripts]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">my_project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;my_project.__main__:app&quot;</span>
+</code></pre></div>
+<p>After that, we can install the CLI with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>poetry<span class="w"> </span>install
+</code></pre></div>
+<p>We should see something like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Installing<span class="w"> </span>dependencies<span class="w"> </span>from<span class="w"> </span>lock<span class="w"> </span>file
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>No<span class="w"> </span>dependencies<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>or<span class="w"> </span>update
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Installing<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>project:<span class="w"> </span>example-cli<span class="w"> </span><span class="o">(</span><span class="m">0</span>.1.0<span class="o">)</span>
+</code></pre></div>
+<p>Now, we can run the CLI with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>my_project<span class="w"> </span>&lt;command&gt;
+</code></pre></div>
 
 
 
