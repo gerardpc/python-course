@@ -116,8 +116,6 @@ The following tables gives a summary of the most important special characters an
 | `(?!...)`  | Matches if ... doesn’t match next. This is a _negative lookahead assertion_.                                                                                      |
 | `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a _lookbehind assertion_.          |
 | `(?<!...)` | Matches if the current position in the string is not preceded by a match for ... that ends at the current position. This is a _negative lookbehind assertion_.    |
-| `(?...)`   | Matches the expression inside the parentheses, but does not add it to the match. This is called a _non-capturing group_.                                          |
-
 
 The following table shows some examples of regular expressions and the strings that they match:
 
