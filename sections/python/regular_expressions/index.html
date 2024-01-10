@@ -473,8 +473,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pattern-matching-with-search" class="md-nav__link">
-    Pattern matching with search
+  <a href="#re-functions" class="md-nav__link">
+    re functions
+  </a>
+  
+    <nav class="md-nav" aria-label="re functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-search-function" class="md-nav__link">
+    The search function
   </a>
   
 </li>
@@ -497,6 +505,11 @@
   <a href="#the-split-function" class="md-nav__link">
     The split function
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -897,8 +910,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pattern-matching-with-search" class="md-nav__link">
-    Pattern matching with search
+  <a href="#re-functions" class="md-nav__link">
+    re functions
+  </a>
+  
+    <nav class="md-nav" aria-label="re functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-search-function" class="md-nav__link">
+    The search function
   </a>
   
 </li>
@@ -921,6 +942,11 @@
   <a href="#the-split-function" class="md-nav__link">
     The split function
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1049,8 +1075,7 @@ of the previous character (or group of characters, if they are grouped for examp
 <p>Regular expressions are case-sensitive, which means that uppercase and lowercase letters are treated as
 different characters. For example, the regular expression <code>a</code> will match the letter "a", but not the letter "A".</p>
 </div>
-<p>You can find a list of all the special characters in the [Python documentation]
-(https://docs.python.org/3/library/re.html#regular-expression-syntax).</p>
+<p>You can find a list of all the special characters in the <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax">Python documentation</a>.</p>
 <p>The following tables gives a summary of the most important special characters and groups:</p>
 <table>
 <thead>
@@ -1245,7 +1270,8 @@ which are special characters in Python strings. For example, the string literal 
 two characters: a backslash and a lowercase <code>n</code>, in contrast to the string <code>"\n"</code>, which Python would
 interpret as a single newline character.    </p>
 </div>
-<h3 id="pattern-matching-with-search">Pattern matching with <code>search</code><a class="headerlink" href="#pattern-matching-with-search" title="Permanent link">&para;</a></h3>
+<h3 id="re-functions"><code>re</code> functions<a class="headerlink" href="#re-functions" title="Permanent link">&para;</a></h3>
+<h4 id="the-search-function">The <code>search</code> function<a class="headerlink" href="#the-search-function" title="Permanent link">&para;</a></h4>
 <p>The <code>re.search()</code> function takes two arguments: a regular expression pattern and a string. It searches the string
 for the pattern and returns a match object if it finds a match. If it doesn't find a match, it returns <code>None</code>.</p>
 <p>For example, the following code searches for the pattern <code>abc</code> in the string <code>abcdef</code>:</p>
@@ -1275,7 +1301,7 @@ and the string that was matched:</p>
 <p>The search function only returns the first match. If you want to find all matches, you can use the
 <code>re.findall()</code> function, which returns a list of all matches.</p>
 </div>
-<h3 id="the-findall-function">The <code>findall</code> function<a class="headerlink" href="#the-findall-function" title="Permanent link">&para;</a></h3>
+<h4 id="the-findall-function">The <code>findall</code> function<a class="headerlink" href="#the-findall-function" title="Permanent link">&para;</a></h4>
 <p>The <code>re.findall()</code> function returns a list of all matches in the string. For example, the following code
 searches for all occurrences of the pattern <code>abc</code> in the string <code>abcdefgeabc</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">re</span>
@@ -1290,7 +1316,7 @@ searches for all occurrences of the pattern <code>abc</code> in the string <code
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">]</span>
 </code></pre></div>
 <p>If there are no matches, <code>findall</code> will return an empty list.</p>
-<h3 id="the-sub-function">The <code>sub</code> function<a class="headerlink" href="#the-sub-function" title="Permanent link">&para;</a></h3>
+<h4 id="the-sub-function">The <code>sub</code> function<a class="headerlink" href="#the-sub-function" title="Permanent link">&para;</a></h4>
 <p>The <code>re.sub()</code> function replaces one or more matches with a string. It takes three arguments: a regular expression
 pattern, a replacement string, and a string to search. It returns a new string with the matches replaced.</p>
 <p>For example, the following code replaces all occurrences of the pattern <code>abc</code> with the string <code>xyz</code> in the string
@@ -1307,7 +1333,7 @@ pattern, a replacement string, and a string to search. It returns a new string w
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Output:</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="s1">&#39;xyzdefgexyz&#39;</span>
 </code></pre></div>
-<h3 id="the-split-function">The <code>split</code> function<a class="headerlink" href="#the-split-function" title="Permanent link">&para;</a></h3>
+<h4 id="the-split-function">The <code>split</code> function<a class="headerlink" href="#the-split-function" title="Permanent link">&para;</a></h4>
 <p>The <code>re.split()</code> function splits the string into a list, splitting it wherever the pattern matches. It takes
 two arguments: a regular expression pattern and a string to split. It returns a list of strings.</p>
 <p>For example, the following code splits the string <code>abc,def,ghi</code> into a list of strings:</p>
