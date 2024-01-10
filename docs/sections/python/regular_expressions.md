@@ -146,7 +146,7 @@ The following table shows some examples of regular expressions and the strings t
     two characters: a backslash and a lowercase `n`, in contrast to the string `"\n"`, which Python would
     interpret as a single newline character.    
 
-## Pattern matching with `search`
+### Pattern matching with `search`
 
 The `re.search()` function takes two arguments: a regular expression pattern and a string. It searches the string
 for the pattern and returns a match object if it finds a match. If it doesn't find a match, it returns `None`.
@@ -180,7 +180,7 @@ and the string that was matched:
     The search function only returns the first match. If you want to find all matches, you can use the
     `re.findall()` function, which returns a list of all matches.
 
-## The `findall` function
+### The `findall` function
 
 The `re.findall()` function returns a list of all matches in the string. For example, the following code
 searches for all occurrences of the pattern `abc` in the string `abcdefgeabc`:
@@ -200,7 +200,7 @@ print(matches)
 
 If there are no matches, `findall` will return an empty list.
 
-## The `sub` function
+### The `sub` function
 
 The `re.sub()` function replaces one or more matches with a string. It takes three arguments: a regular expression
 pattern, a replacement string, and a string to search. It returns a new string with the matches replaced.
@@ -222,7 +222,7 @@ print(new_string)
 'xyzdefgexyz'
 ```
 
-## The `split` function
+### The `split` function
 
 The `re.split()` function splits the string into a list, splitting it wherever the pattern matches. It takes
 two arguments: a regular expression pattern and a string to split. It returns a list of strings.
