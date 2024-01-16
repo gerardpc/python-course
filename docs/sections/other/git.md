@@ -145,5 +145,5 @@ Fetching is what you do when you want to see what everybody else has been workin
 
 ## Other useful tricks
 
-By default, github will ask you for your username and password every time you push changes to a repository. To avoid
-this, you can use ssh keys. To do so, follow the instructions [here](https://kamarada.github.io/en/2019/07/14/using-git-with-ssh-keys/).
+By default, github will ask you for your username and password every time you push changes to a repository. An
+alternative is the use of ssh keys, see the instructions [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
