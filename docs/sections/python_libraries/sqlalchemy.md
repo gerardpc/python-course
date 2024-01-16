@@ -66,7 +66,7 @@ with SessionLocal() as session:
     from database_session import SessionLocal
     ```    
 
-## Reading/insert to a SQL database with Pandas
+## Reading/inserting into a SQL database with Pandas
 
 Now that we have a session object, we can use it to read and write to the database.
 
