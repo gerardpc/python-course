@@ -226,6 +226,7 @@ project, we can run the following command:
     ```
     
     This will add `pandas` to our project, and update the `pyproject.toml` and `poetry.lock` files.
+
 * `poetry remove <library_name>`: removes a library from our project. For example, if we want to remove `pandas` from
 our project, we can run the following command:
 
@@ -234,10 +235,13 @@ our project, we can run the following command:
     ```
     
     This will remove `pandas` from our project, and update the `pyproject.toml` and `poetry.lock` files.
+
 * `poetry install`: installs all the libraries that are defined in the `pyproject.toml` file. We will typically use
 this command when we clone a repository from GitHub, to install all the libraries that the project uses (because when
 we are developing from scratch, we will use `poetry add` to add new libraries to our project).
+
 * `poetry show`: shows the libraries that are defined in the `pyproject.toml` file.
+
 * To update a specific package (already installed) to its latest version, we can run the following command:
 
     ```bash
@@ -253,7 +257,7 @@ Every time we make an important change in our project, we should commit it to ou
 This will allow us to keep track of the changes in our code between different versions of our project.
 In practice this means that in a day of work, we will be doing several commits. 
 
-#### Formatting our code with Ruff
+#### Linting and formatting before committing
 
 Before committing, we should try to use a code linter and formatter to make sure that our code is clean and consistent.
 We will use [Ruff](https://ruff.readthedocs.io/en/latest/) for this. First, we need to install it in our virtual
@@ -263,31 +267,42 @@ environment:
 poetry add ruff
 ```
 
-To **lint** the code (i.e., checking for mistakes in coding, coding in ways that ‘may’ lead to incorrect results,
+To **lint** the code (i.e., checking for mistakes in coding or for "bad practices" that may lead to incorrect results,
 etc.), we can use the following command from the terminal:
 
 ```bash
-ruff .
+ruff check .
 ```
 where the `.` means that we want to check the files in the current directory (we could also specify
 another file or directory). Ruff will then show us the changes that need to be made to the code: some can be fixed
 automatically by running
 
 ```bash
-ruff --fix .
+ruff check --fix .
 ```
 
 Other errors will need to be fixed by hand (clicking to the link we will go automatically to the line in the code that
 needs to be fixed).
 
-To **format** teh code (i.e., making sure that the code is written in a consistent style and looks pretty), we 
-can use the following command from the terminal:
+To **format** the code (i.e., making sure that the code is written in a consistent style, with lines that are not
+too long, with nice looking indentations, etc.), we can use the following command from the terminal:
 
 ```bash
 ruff --format .
 ```
 
 This will format the code in the current directory (we could also specify another file or directory).
+
+!!!note
+    We can change the default configuration of Ruff by adding a section to the `pyproject.toml` file. For example,
+    we could add the following section to the `pyproject.toml` file:
+
+    ```toml
+    [tool.ruff]
+    max_line_length = 88
+    ```
+
+    For more information, see the [Ruff documentation](https://ruff.readthedocs.io/en/latest/).
 
 #### Committing with PyCharm
 
@@ -379,5 +394,5 @@ If we want to publish our package to [PyPI](https://pypi.org/), we can do it wit
 poetry publish
 ```
 
-This will make our package available to everyone in PyPI. However, we will not do this in this course: you
-should only publish packages that are ready to be used by other people, not as a homework submission!
+This will make our package available to everyone in PyPI. However, be careful: PyPI is a public repository, and
+you should only publish packages that are ready to be used by other people, not as a homework submission!
