@@ -88,33 +88,34 @@ You can find a list of all the special characters in the [Python documentation](
 
 The following tables gives a summary of the most important special characters and groups:
 
-| Character  | Description                                                                                                                                                       |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `.`        | Matches any character except a newline.                                                                                                                           |
-| `^`        | Matches the start of the string.                                                                                                                                  |
-| `$`        | Matches the end of the string.                                                                                                                                    |
-| `*`        | Matches zero or more occurrences of the previous character.                                                                                                       |
-| `+`        | Matches one or more occurrences of the previous character.                                                                                                        |
-| `?`        | Matches zero or one occurrences of the previous character.                                                                                                        |
-| `{n}`      | Matches exactly `n` occurrences of the previous character.                                                                                                        |
-| `{n,}`     | Matches `n` or more occurrences of the previous character.                                                                                                        |
-| `{n,m}`    | Matches between `n` and `m` occurrences of the previous character.                                                                                                |
-| `[...]`    | Matches any character (replace the `...`) inside the brackets.                                                                                                    |
-| `[^...]`   | Matches any character (replace the `...`) not inside the brackets.                                                                                                |
-| `|`       | Matches either the expression before or after the `|`.                                                         |
+| Character  | Description                                                                                                                                                        |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `.`        | Matches any character except a newline.                                                                                                                            |
+| `^`        | Matches the start of the string.                                                                                                                                   |
+| `$`        | Matches the end of the string.                                                                                                                                     |
+| `*`        | Matches zero or more occurrences of the previous character.                                                                                                        |
+| `+`        | Matches one or more occurrences of the previous character.                                                                                                         |
+| `?`        | Matches zero or one occurrences of the previous character.                                                                                                         |
+| `{n}`      | Matches exactly `n` occurrences of the previous character.                                                                                                         |
+| `{n,}`     | Matches `n` or more occurrences of the previous character.                                                                                                         |
+| `{n,m}`    | Matches between `n` and `m` occurrences of the previous character.                                                                                                 |
+| `[...]`    | Matches any character (replace the `...`) inside the brackets.                                                                                                     |
+| `[^...]`   | Matches any character (replace the `...`) not inside the brackets.                                                                                                 |
+| `| `                                                                                                                                                                  | Matches either the expression before or after the `|`.                                                         |
 | `(...)`    | Matches the expression inside the parentheses and groups it. Parentheses can be used to group expressions and to define the precedence of operators, like in math. |
-| `\`        | Escapes a special character (used to match, for example, the `.`).                                                                                                |
-| `\d`       | Matches any digit character.                                                                                                                                      |
-| `\D`       | Matches any non-digit character.                                                                                                                                  |
-| `\w`       | Matches any alphanumeric character.                                                                                                                               |
-| `\W`       | Matches any non-alphanumeric character.                                                                                                                           |
-| `\s`       | Matches any whitespace character.                                                                                                                                 |
-| `\S`       | Matches any non-whitespace character.                                                                                                                             |
-| `(?:...)`  | Matches the expression inside the parentheses, but does not add it to the match.                                                                                  |
-| `(?=...)`  | Matches if ... matches next, but doesn’t consume any of the string. This is called a _lookahead assertion_                                                        |
-| `(?!...)`  | Matches if ... doesn’t match next. This is a _negative lookahead assertion_.                                                                                      |
-| `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a _lookbehind assertion_.          |
-| `(?<!...)` | Matches if the current position in the string is not preceded by a match for ... that ends at the current position. This is a _negative lookbehind assertion_.    |
+| `\`        | Escapes a special character (used to match, for example, the `.`).                                                                                                 |
+| `\d`       | Matches any digit character.                                                                                                                                       |
+| `\D`       | Matches any non-digit character.                                                                                                                                   |
+| `\w`       | Matches any alphanumeric character.                                                                                                                                |
+| `\W`       | Matches any non-alphanumeric character.                                                                                                                            |
+| `\s`       | Matches any whitespace character.                                                                                                                                  |
+| `\S`       | Matches any non-whitespace character.                                                                                                                              |
+| `\b`       | Matches the empty string, but only at the beginning or end of a word. It is used to match whole words.                                                              |
+| `(?:...)`  | Matches the expression inside the parentheses, but does not add it to the match.                                                                                   |
+| `(?=...)`  | Matches if ... matches next, but doesn’t consume any of the string. This is called a _lookahead assertion_                                                         |
+| `(?!...)`  | Matches if ... doesn’t match next. This is a _negative lookahead assertion_.                                                                                       |
+| `(?<=...)` | Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a _lookbehind assertion_.           |
+| `(?<!...)` | Matches if the current position in the string is not preceded by a match for ... that ends at the current position. This is a _negative lookbehind assertion_.     |
 
 The following table shows some examples of regular expressions and the strings that they match:
 
