@@ -529,8 +529,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#formatting-our-code-with-ruff" class="md-nav__link">
-    Formatting our code with Ruff
+  <a href="#linting-and-formatting-before-committing" class="md-nav__link">
+    Linting and formatting before committing
   </a>
   
 </li>
@@ -986,8 +986,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#formatting-our-code-with-ruff" class="md-nav__link">
-    Formatting our code with Ruff
+  <a href="#linting-and-formatting-before-committing" class="md-nav__link">
+    Linting and formatting before committing
   </a>
   
 </li>
@@ -1276,17 +1276,25 @@ update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
 project, we can run the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>pandas
 </code></pre></div>
-<p>This will add <code>pandas</code> to our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.
-* <code>poetry remove &lt;library_name&gt;</code>: removes a library from our project. For example, if we want to remove <code>pandas</code> from
+<p>This will add <code>pandas</code> to our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
+</li>
+<li>
+<p><code>poetry remove &lt;library_name&gt;</code>: removes a library from our project. For example, if we want to remove <code>pandas</code> from
 our project, we can run the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>poetry<span class="w"> </span>remove<span class="w"> </span>pandas
 </code></pre></div>
-<p>This will remove <code>pandas</code> from our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.
-* <code>poetry install</code>: installs all the libraries that are defined in the <code>pyproject.toml</code> file. We will typically use
+<p>This will remove <code>pandas</code> from our project, and update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
+</li>
+<li>
+<p><code>poetry install</code>: installs all the libraries that are defined in the <code>pyproject.toml</code> file. We will typically use
 this command when we clone a repository from GitHub, to install all the libraries that the project uses (because when
-we are developing from scratch, we will use <code>poetry add</code> to add new libraries to our project).
-* <code>poetry show</code>: shows the libraries that are defined in the <code>pyproject.toml</code> file.
-* To update a specific package (already installed) to its latest version, we can run the following command:</p>
+we are developing from scratch, we will use <code>poetry add</code> to add new libraries to our project).</p>
+</li>
+<li>
+<p><code>poetry show</code>: shows the libraries that are defined in the <code>pyproject.toml</code> file.</p>
+</li>
+<li>
+<p>To update a specific package (already installed) to its latest version, we can run the following command:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>poetry<span class="w"> </span>update<span class="w"> </span>&lt;library_name&gt;
 </code></pre></div>
 This will also update the <code>pyproject.toml</code> and <code>poetry.lock</code> files.</p>
@@ -1297,28 +1305,37 @@ This will also update the <code>pyproject.toml</code> and <code>poetry.lock</cod
 <p>Every time we make an important change in our project, we should commit it to our local repository. 
 This will allow us to keep track of the changes in our code between different versions of our project.
 In practice this means that in a day of work, we will be doing several commits. </p>
-<h4 id="formatting-our-code-with-ruff">Formatting our code with Ruff<a class="headerlink" href="#formatting-our-code-with-ruff" title="Permanent link">&para;</a></h4>
+<h4 id="linting-and-formatting-before-committing">Linting and formatting before committing<a class="headerlink" href="#linting-and-formatting-before-committing" title="Permanent link">&para;</a></h4>
 <p>Before committing, we should try to use a code linter and formatter to make sure that our code is clean and consistent.
 We will use <a href="https://ruff.readthedocs.io/en/latest/">Ruff</a> for this. First, we need to install it in our virtual
 environment:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>ruff
 </code></pre></div>
-<p>To <strong>lint</strong> the code (i.e., checking for mistakes in coding, coding in ways that ‘may’ lead to incorrect results,
+<p>To <strong>lint</strong> the code (i.e., checking for mistakes in coding or for "bad practices" that may lead to incorrect results,
 etc.), we can use the following command from the terminal:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ruff<span class="w"> </span>.
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>.
 </code></pre></div>
 where the <code>.</code> means that we want to check the files in the current directory (we could also specify
 another file or directory). Ruff will then show us the changes that need to be made to the code: some can be fixed
 automatically by running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ruff<span class="w"> </span>--fix<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w"> </span>.
 </code></pre></div>
 <p>Other errors will need to be fixed by hand (clicking to the link we will go automatically to the line in the code that
 needs to be fixed).</p>
-<p>To <strong>format</strong> teh code (i.e., making sure that the code is written in a consistent style and looks pretty), we 
-can use the following command from the terminal:</p>
+<p>To <strong>format</strong> the code (i.e., making sure that the code is written in a consistent style, with lines that are not
+too long, with nice looking indentations, etc.), we can use the following command from the terminal:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ruff<span class="w"> </span>--format<span class="w"> </span>.
 </code></pre></div>
 <p>This will format the code in the current directory (we could also specify another file or directory).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can change the default configuration of Ruff by adding a section to the <code>pyproject.toml</code> file. For example,
+we could add the following section to the <code>pyproject.toml</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[tool.ruff]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">max_line_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
+</code></pre></div>
+<p>For more information, see the <a href="https://ruff.readthedocs.io/en/latest/">Ruff documentation</a>.</p>
+</div>
 <h4 id="committing-with-pycharm">Committing with PyCharm<a class="headerlink" href="#committing-with-pycharm" title="Permanent link">&para;</a></h4>
 <p>Once the code is linted and formatted, we can commit it to our local repository. If we are using PyCharm, we can
 do this from the commit menu on the top left of the IDE; check this <a href="../../other/git/">section</a> for more information.</p>
@@ -1339,14 +1356,14 @@ Then, click on "Create repository".</p>
 <li>
 <p>After creating the repository, you will see a page with the URL of the repository. Copy this URL. Then, go to your
     terminal and run the following command:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;url&gt;
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>&lt;url&gt;
 </code></pre></div>
 where <code>&lt;url&gt;</code> is the URL of your repository. This will add the remote repository to your local repository with the
 name <code>origin</code>.</p>
 </li>
 <li>
 <p>Finally, run the following command:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
 </code></pre></div>
 This will push the changes in your local repository to the remote repository. Alternatively, you can do this from
 PyCharm, using the git menu on the bottom left of the IDE. Select the branch you want to push, and right click on
@@ -1387,15 +1404,15 @@ the source distribution.</li>
 Python versions and platforms the wheel will support.</p>
 <h3 id="creating-a-wheel-with-poetry">Creating a wheel with Poetry<a class="headerlink" href="#creating-a-wheel-with-poetry" title="Permanent link">&para;</a></h3>
 <p>We can create a wheel file for our project with Poetry quite easily. First, we need to use the <code>build</code> command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>poetry<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>poetry<span class="w"> </span>build
 </code></pre></div>
 <p>That's it! Poetry will create a <code>dist</code> directory in our project, which will contain the wheel file. For example,
 if our project is called <code>my_project</code>, the wheel file will be called <code>my_project-0.1.0-py3-none-any.whl</code>.
 If we want to publish our package to <a href="https://pypi.org/">PyPI</a>, we can do it with the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>poetry<span class="w"> </span>publish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>poetry<span class="w"> </span>publish
 </code></pre></div>
-<p>This will make our package available to everyone in PyPI. However, we will not do this in this course: you
-should only publish packages that are ready to be used by other people, not as a homework submission!</p>
+<p>This will make our package available to everyone in PyPI. However, be careful: PyPI is a public repository, and
+you should only publish packages that are ready to be used by other people, not as a homework submission!</p>
 
 
 
