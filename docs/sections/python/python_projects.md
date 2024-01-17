@@ -288,7 +288,7 @@ To **format** the code (i.e., making sure that the code is written in a consiste
 too long, with nice looking indentations, etc.), we can use the following command from the terminal:
 
 ```bash
-ruff --format .
+ruff format .
 ```
 
 This will format the code in the current directory (we could also specify another file or directory).
