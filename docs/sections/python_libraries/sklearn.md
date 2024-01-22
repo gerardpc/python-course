@@ -426,10 +426,133 @@ Some of the most common regression metrics are:
     0 and 1, where 1 means that the model is perfect and 0 means that the model is useless. The $R^2$ score is implemented
     by all regressors in Scikit Learn, and can be often computed using the `score` method.
 
+## Model validation
+
+Learning the parameters of a prediction function and testing it on the same data is a methodological mistake: a model 
+that would just repeat the labels of the samples that it has just seen would have a perfect (or almost perfect) score 
+but would fail to predict anything useful on yet-unseen data. 
+
+!!!note
+    This situation is called **overfitting**. This happens when the model learns the training data "too well". Since 
+    all datasets contain some noise, eventually the model will fit to the noise as well, which will cause it to perform
+    worse on new data.
+
+### Holdout sets with `train_test_split`
+
+To avoid this situation, it is common practice when performing a (supervised) machine learning experiment to hold out 
+part of the available data. 
+
+In scikit-learn a random split into training and test sets can be quickly computed with the `train_test_split` 
+helper function. Let's use it to hold out 25% of the data for testing, in the following example:
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+
+
+model = KNeighborsClassifier(n_neighbors=1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+# fit the model on one set of data
+model.fit(X_train, y_train)
+
+# evaluate the model on the second set of data
+y2_model = model.predict(X_test)
+accuracy_score(y_test, y2_model)
+```
+
+### Cross-validation
+
+One disadvantage of using a holdout set for model validation is that we have lost a portion of our data to the 
+model training. In the above case, half the dataset does not contribute to the training of the model! This is 
+not optimal, and can cause problems – especially if the initial set of training data is small.
+
+One way to address this is to use cross-validation; that is, to do a sequence of fits where each subset of 
+the data is used both as a training set and as a validation set. Visually, it might look something like this:
+
+<figure markdown>
+  ![cv](../../images/cross_validation.png){ width="500" }
+  <figcaption>Sketch of the cross-validation procedure.</figcaption>
+</figure>
+
+Here we split the data into five groups, and use each of them in turn to evaluate the model fit on the other 
+4/5 of the data. This would be rather tedious to do by hand, and so we can use Scikit-Learn's `cross_val_score` 
+convenience routine to do it succinctly:
+
+```python
+from sklearn.model_selection import cross_val_score
+
+cross_val_score(model, X, y, cv=5)
+
+# Output:
+array([0.96666667, 0.96666667, 0.93333333, 0.96666667, 1.])
+```
+
+Repeating the validation across different subsets of the data gives us a better idea of the performance 
+of the algorithm. What comes out are $n$ accuracy scores, which we could combine (for example, by taking the
+median or the mean). 
+
+## Model hyperparameters
+
+A model **hyperparameter** is a configuration that is external to the model and whose value cannot be estimated
+from data. They represent the "knobs" of a model: the type of function used to fit the model, the number of parameters,
+the regularization parameter, the network architecture (in the case of neural networks), etc.
+
+!!!note
+    Hyperparameters are different from parameters. Parameters are values that are estimated from data, such as the
+    coefficients of a linear regression model, or the weights of a neural network. Hyperparameters are _everything else_.
+
+Of core importance is the following question: if our estimator is underperforming, how should we move forward? 
+There are several possible answers:
+
+* Use a more complicated/more flexible model
+* Use a less complicated/less flexible model
+* Gather more training samples
+* Gather more data to add features to each sample
+
+The answer to this question is often counter-intuitive. In particular, sometimes using a more complicated 
+model will give worse results, and adding more training samples may not improve your results!
+
+### Cross-validation including hyperparameter tuning
+
+In the previous example, we used cross-validation to evaluate the performance of a fixed model. 
+However, oftentimes we will want to also determine the best hyperparameters of the model, and not only its
+performance. 
+
+Scikit Learn provides a number of tools to perform model selection, including cross-validation and grid search.
+The most common way to do this is to use the `GridSearchCV` class, which implements a grid search with cross-validation.
+This class takes as input an estimator, a dictionary of hyperparameters, and a cross-validation strategy, and returns
+the best hyperparameters for the estimator. For example, to find the best number of neighbors for a KNN classifier,
+we can do the following:
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.neighbors import KNeighborsClassifier
+
+X_train = ...
+y_train = ...
+
+model = KNeighborsClassifier()
+
+param_grid = {'n_neighbors': [1, 3, 5, 7, 9]}
+grid = GridSearchCV(model, param_grid, cv=5)
+grid.fit(X_train, y_train)
+
+print(grid.best_params_)
+print(grid.best_score_)
+```
+
+!!!note
+    The `cv` argument is the number of folds in the cross-validation. The default value is 5, but it can be changed
+    to any integer.
+
+
 ## Machine learning algorithms
 
 Scikit Learn provides implementations of a large number of machine learning algorithms. These algorithms are
-implemented as estimators, and can be used to solve a wide range of machine learning problems.
+implemented as the already discussed estimator objects, and can be used to solve a wide range of machine 
+learning problems.
 
 ### Regression models
 
@@ -438,8 +561,6 @@ regression task, or predicting the height of a person. Scikit Learn provides a n
 can be used to solve regression problems.
 
 #### Common regression models
-
-Some of the most common regression models are:
 
 * **Linear regression**: Linear regression is a linear model that assumes a linear relationship between the
   dependent variable and the independent variables. It is implemented by the `LinearRegression` class in the
@@ -454,6 +575,20 @@ Some of the most common regression models are:
     model = LinearRegression()
     model.fit(X_train, y_train)
     ```
+  
+* **Random forest regression**: Random forest regression is an ensemble model that fits a number of decision tree
+  classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control
+  over-fitting. It is implemented by the `RandomForestRegressor` class in the `ensemble` module.
+
+    ```python
+    from sklearn.ensemble import RandomForestRegressor
+
+    X_train = ...
+    y_train = ...
+
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    ```
 
 #### Regression examples
 
@@ -461,7 +596,59 @@ https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-lea
 
 ### Classification
 
+Classification is the task of predicting a class from a set of classes. For example, predicting whether an email is
+spam or not is a classification task, or predicting whether a person has a disease or not. Scikit Learn provides a
+number of classification models that can be used to solve classification problems.
+
 #### Common classification models
+
+* **Logistic regression**: Logistic regression is a linear model that assumes a linear relationship between the
+  log-odds of the dependent variable and the independent variables. It is implemented by the `LogisticRegression`
+  class in the `linear_model` module.
+
+    ```python
+    from sklearn.linear_model import LogisticRegression
+
+    X_train = ...
+    y_train = ...
+
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+    ```
+    
+    !!!note
+        Despite its name, logistic regression is a classification algorithm, not a regression algorithm. The name
+        comes from the fact that it is a regression algorithm that uses logistic functions to model the relationship
+        between the dependent and independent variables. It can be used for binary classification problems or
+        multi-class classification problems (i.e., problems with more than two classes).
+
+* **K-Nearest Neighbors**: K-Nearest Neighbors is a non-parametric method used for classification and regression. 
+  It is a lazy learning algorithm that does not fit a model to the data. It is implemented by the `KNeighborsClassifier`
+  class in the `neighbors` module.
+
+    ```python
+    from sklearn.neighbors import KNeighborsClassifier
+
+    X_train = ...
+    y_train = ...
+
+    model = KNeighborsClassifier()
+    model.fit(X_train, y_train)
+    ```
+
+* **Random forest classification**: Random forest classification is an ensemble model that fits a number of decision
+    tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and
+    control over-fitting. It is implemented by the `RandomForestClassifier` class in the `ensemble` module.
+    
+        ```python
+        from sklearn.ensemble import RandomForestClassifier
+    
+        X_train = ...
+        y_train = ...
+    
+        model = RandomForestClassifier()
+        model.fit(X_train, y_train)
+        ```
 
 #### Examples
 
@@ -478,9 +665,9 @@ https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-lea
 
 ### Feature Engineering
 
-### Common pitfalls
+## Annex: common pitfalls in ML
 
-#### Curse of dimensionality
+### Curse of dimensionality
 
 The curse of dimensionality refers to various phenomena that arise when analyzing and organizing data in 
 high-dimensional spaces that do not occur in low-dimensional settings such as the three-dimensional physical 
@@ -491,10 +678,34 @@ machine learning algorithms degrades as the number of features increases. This i
 increases, the number of observations required to obtain a good model increases exponentially with the number of
 features.
 
-#### Overfitting
+### Overfitting
 
-#### Data leakage
+Overfitting is a modeling error that occurs when a function is too closely fit to a limited set of data points.
+Overfitting the model generally takes the form of making an overly complex model to explain idiosyncrasies in the data
+under study. In reality, the data being studied often has some degree of error or random noise within it. Thus,
+attempting to make the model conform too closely to slightly inaccurate data can infect the model with substantial
+errors and reduce its predictive power.
 
+### Underfitting
+
+Underfitting occurs when a statistical model or machine learning algorithm cannot capture the underlying trend of the
+data. Intuitively, underfitting occurs when the model or the algorithm does not fit the data well enough. More 
+specifically, underfitting occurs if the model or algorithm shows low variance but high bias. 
+Underfitting is often a result of an excessively simple model.
+
+### Data leakage
+
+Data leakage is a problem that occurs when information about the target variable is inadvertently introduced into the
+training data. This can cause the model to perform unrealistically well during training, but perform poorly during
+testing.
+
+### Class imbalance
+
+Class imbalance is a problem that occurs when the number of observations in each class is not equal. This can cause
+problems when training a model, since the model will tend to predict the most common class. For example, if we have
+a dataset with 99% of the observations belonging to class A and 1% belonging to class B, a classifier that always
+predicts class A will have an accuracy of 99%, even though it is a useless classifier. In this case, a better
+metric would be the AUROC.
 
 ## Other
 
