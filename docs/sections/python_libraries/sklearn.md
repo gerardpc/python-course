@@ -666,6 +666,77 @@ problem and turning it into numbers that you can use to build your feature matri
     a dataset with a column containing the date of birth of a person, we can create a new column containing the age of
     the person by subtracting the date of birth from the current date.
 
+!!!note
+    Proper data cleaning is also an important part of feature engineering. Some common data cleaning tasks include:
+
+    * **Missing values**: Most machine learning algorithms cannot handle missing values. There are several ways to deal
+      with missing values, including removing the observations with missing values, imputing the missing values with the
+      mean or median, or using a machine learning algorithm that can handle missing values.
+    * **Outliers**: Outliers are observations that are far away from the rest of the observations. Outliers can have a
+      significant effect on the model, so it is important to detect and (if it is justified to do so) remove them. 
+
+### Types of features
+
+The following sections describe a few general tricks of feature engineering.
+
+#### Categorical features
+
+One common type of non-numerical data is categorical data. 
+To use this data in a machine learning model, we need to convert this categorical feature to a numerical feature.
+
+If the categorical feature has no natural ordering, we can use one-hot encoding to convert it to a numerical
+feature. If the categorical feature has a natural ordering, we can use ordinal encoding to convert it to a regular
+number.
+
+#### Text features
+
+Another common type of non-numerical data is text data. To use this data in a machine learning
+model, we need to convert this text feature to a numerical feature. This can be done using several NLP techniques. 
+Check **bag-of-words**, **TF-IDF**, and **word embeddings** for more information.
+
+#### Date features
+
+Another common type of non-numerical data is date data. To use this data in a machine learning
+model, we need to convert this date feature to a numerical feature. This can be done by extracting the year, month,
+day, etc. from the date and using them as numerical features. 
+
+Date features are very important in time series, which naturally has seasonality and trends. For this, 
+sometimes it is a good idea to use extra dummy variables to be able to
+express all dates that are close to each other (e.g., the day of the week, the number of the week, etc.). These extra
+variables should be the same as the regular ones, but with a different origin. 
+
+For example, if we only have the week
+number as a feature, we might not be able to express that week 52 and week 1 are close to each other. However, if we
+*also* add a new feature that is the week number plus 26, the model might be able to understand that weeks
+"live" in a circle instead of a line.
+
+#### Image features
+
+Another common type of data are images. Although they might look like non-numerical data, images are actually
+matrices of numbers. To use this data in a machine learning, the easiest way is to flatten the image and use the
+pixels as numerical features (often even deleting the color channels).
+
+#### Derived features
+
+Sometimes, we can create new features from existing features. For example, if we have a dataset with a column
+containing the date of birth of a person, we can create a new column containing the age of the person by subtracting
+the date of birth from the current date. 
+
+For numerical data, we can often apply mathematical transformations to create new features that have a better
+behavior for the model, or that change the data distribution to one that is more suitable. This needs to be done
+on a case-by-case basis, and requires some domain knowledge.
+
+### Feature selection
+
+In some cases, we might have too many features, which makes the model too complex and costly to maintain. In such cases
+we might want to select only the most important ones. This can be achieved in several ways:
+
+* With dimensionality reduction techniques, such as **PCA**.
+* With feature importance techniques, such as the **SHAP values** (and simpler alternatives). A good rule of thumb to
+know if a feature is important is to add noise to it and see if the model performance decreases. If it does, the
+feature is probably important. Another, similar, option is to add random noise features and scrap all features
+that perform worse than the random noise features.
+
 ## Machine learning algorithms in SKLearn
 
 Scikit Learn provides implementations of a large number of machine learning algorithms. These algorithms are
@@ -774,12 +845,65 @@ https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-lea
 
 ### Clustering
 
+Clustering is the task of grouping data points into clusters. For example, grouping customers into clusters based on
+their purchase history is a clustering task. Scikit Learn provides a number of clustering algorithms that can be used
+to solve clustering problems.
+
+#### Common clustering models
+
+* **K-Means**: K-Means is a clustering algorithm that partitions the data into K clusters. It is implemented by the
+  `KMeans` class in the `cluster` module.
+
+    ```python
+    from sklearn.cluster import KMeans
+
+    X_train = ...
+
+    model = KMeans(n_clusters=3)
+    model.fit(X_train)
+    ```
+  
+* **HD-BSCAN**: HD-BSCAN is a clustering algorithm that partitions the data into clusters. It is implemented by the
+  `HDBSCAN` class in the `cluster` module.
+
+    ```python
+    from sklearn.cluster import HDBSCAN
+
+    X_train = ...
+
+    model = HDBSCAN()
+    model.fit(X_train)
+    ```
+
 #### Examples 
 
 https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-learn.html#Unsupervised-learning:-Iris-clustering
 
 
 ### Dimensionality reduction
+
+Dimensionality reduction is the task of reducing the number of features in a dataset. For example, reducing the number
+of features in an image to the most important ones is a dimensionality reduction task. Scikit Learn provides a number
+of dimensionality reduction algorithms that can be used to solve dimensionality reduction problems.
+
+#### Common dimensionality reduction models
+
+* **Principal Component Analysis**: Principal Component Analysis (PCA) is a dimensionality reduction algorithm that
+  transforms the data into a lower-dimensional space. It is implemented by the `PCA` class in the `decomposition` module.
+
+    ```python
+    from sklearn.decomposition import PCA
+
+    X_train = ...
+
+    model = PCA(n_components=2)
+    model.fit(X_train)
+    ```
+
+!!!note
+    Not all dimensionality reduction algorithms can be found in SKLearn. UMAP, for example, is a very popular
+    dimensionality reduction algorithm that is not implemented.
+
 
 #### Examples
 
