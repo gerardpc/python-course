@@ -602,6 +602,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../python_libraries/sklearn/" class="md-nav__link">
+        Scikit Learn
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../python_libraries/typer/" class="md-nav__link">
         Typer
       </a>
@@ -1148,10 +1162,6 @@ different characters. For example, the regular expression <code>a</code> will ma
 <td>Matches either the expression before or after the <code>|</code>.</td>
 </tr>
 <tr>
-<td><code>(...)</code></td>
-<td>Matches the expression inside the parentheses and groups it. Parentheses can be used to group expressions and to define the precedence of operators, like in math.</td>
-</tr>
-<tr>
 <td><code>\</code></td>
 <td>Escapes a special character (used to match, for example, the <code>.</code>).</td>
 </tr>
@@ -1188,20 +1198,20 @@ different characters. For example, the regular expression <code>a</code> will ma
 <td>Matches the expression inside the parentheses, but does not add it to the match.</td>
 </tr>
 <tr>
-<td><code>(?=...)</code></td>
-<td>Matches if ... matches next, but doesn’t consume any of the string. This is called a <em>lookahead assertion</em></td>
-</tr>
-<tr>
-<td><code>(?!...)</code></td>
-<td>Matches if ... doesn’t match next. This is a <em>negative lookahead assertion</em>.</td>
-</tr>
-<tr>
 <td><code>(?&lt;=...)</code></td>
 <td>Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a <em>lookbehind assertion</em>.</td>
 </tr>
 <tr>
 <td><code>(?&lt;!...)</code></td>
 <td>Matches if the current position in the string is not preceded by a match for ... that ends at the current position. This is a <em>negative lookbehind assertion</em>.</td>
+</tr>
+<tr>
+<td><code>(?=...)</code></td>
+<td>Matches if ... matches next, but doesn’t consume any of the string. This is called a <em>lookahead assertion</em></td>
+</tr>
+<tr>
+<td><code>(?!...)</code></td>
+<td>Matches if ... doesn’t match next. This is a <em>negative lookahead assertion</em>.</td>
 </tr>
 </tbody>
 </table>
