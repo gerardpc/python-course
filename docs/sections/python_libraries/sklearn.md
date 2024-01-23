@@ -3,7 +3,7 @@
 ## Overview
 
 There are several Python libraries which provide implementations of a range of machine learning algorithms. 
-One of the best known is Scikit-Learn, a package that provides efficient versions of a large number of common 
+One of the best known is **Scikit-Learn**, a package that provides efficient versions of a large number of common 
 algorithms. Scikit-Learn is characterized by a clean, uniform, and streamlined API, as well as by very 
 useful and complete online documentation. A benefit of this uniformity is that once you understand the basic 
 use and syntax of Scikit-Learn for one type of model, switching to a new model or algorithm is very straightforward.
@@ -493,6 +493,12 @@ Repeating the validation across different subsets of the data gives us a better 
 of the algorithm. What comes out are $n$ accuracy scores, which we could combine (for example, by taking the
 median or the mean). 
 
+!!!note
+    When working with time series data, it is important to use cross-validation in a way that respects the time
+    dependence between observations. In this case, we can use the `TimeSeriesSplit` class instead to
+    perform cross-validation.
+
+
 ## Model hyperparameters
 
 A model **hyperparameter** is a configuration that is external to the model and whose value cannot be estimated
@@ -511,17 +517,106 @@ There are several possible answers:
 * Gather more training samples
 * Gather more data to add features to each sample
 
-The answer to this question is often counter-intuitive. In particular, sometimes using a more complicated 
+The answer to this question is often counter-intuitive. Sometimes using a more complicated 
 model will give worse results, and adding more training samples may not improve your results!
+
+### Bias-variance trade-off
+
+Fundamentally, the question of "the best model" is about finding a sweet spot in the tradeoff between bias and 
+variance. Consider the following figure, which presents two regression fits to the same dataset:
+
+<figure markdown>
+  ![bias_variance](../../images/bias_variance.png){ width="700" }
+  <figcaption>Two regression fits to the same dataset. Left: a high-bias, low-variance model; 
+    Right: a low-bias, high-variance model.</figcaption>
+</figure>
+
+In general, as we increase the number of tunable parameters in a model, it becomes more flexible, 
+and can better fit a training data set. It is said to have lower error, or **bias**. However, for more 
+flexible models, there will tend to be greater **variance** to the model fit each time we take a set of samples 
+to create a new training data set.
+
+!!!note
+    The **bias–variance trade-off** is the conflict in trying to simultaneously minimize these two sources of error.
+
+From the previous figure, we see that (and the observation generally holds):
+
+* For **high-bias** models, the performance of the model on the validation set is similar to the performance 
+  on the training set.
+* For **high-variance** models, the performance of the model on the validation set is far worse than the 
+  performance on the training set.
+
+### Validation curves
+
+If we imagine that we have some ability to tune the model complexity, we would expect the training score 
+and validation score to behave as illustrated in the following figure:
+
+<figure markdown>
+  ![validation_curve](../../images/validation_curve.png){ width="500" }
+  <figcaption>A **validation curve**.
+    The X axis represents the model complexity (e.g., the number of neighbors in a KNN classifier, or a polynomial
+    degree in a linear regression model). The Y axis represents the score (a higher score means better model 
+    performance / lower error).</figcaption>
+</figcaption>
+</figure>
+
+The diagram above is a **validation curve**, and we see the following essential features:
+
+* The training score is (almost) always better than the validation score. This is generally the case: 
+    the model will be a better fit to data it has seen than to data it has not seen.
+* For very low model complexity (a high-bias model), the training data is **under-fit**, which means that 
+  the model is a poor predictor both for the training data and for any previously unseen data.
+* For very high model complexity (a high-variance model), the training data is **over-fit**, which means 
+that the model predicts the training data very well, but fails for any previously unseen data.
+* For some intermediate value, the validation curve has a maximum. This is the optimal scenario, and the parameter
+  value set at the maximum is the best model.
+
+### Learning curves
+
+One important aspect of model complexity is that the optimal model will generally depend on the size of your
+training data. A **learning Curve** is a plot of the training and cross-validation error as a function of the
+number of training samples. The general behavior we would expect from a learning curve is this:
+
+* A model of a given complexity will overfit a small dataset: this means the training score will be relatively 
+high, while the validation score will be relatively low.
+* A model of a given complexity will underfit a large dataset: this means that the training score will decrease, 
+but the validation score will increase.
+* A model will never, except by chance, give a better score to the validation set than the training set: 
+this means the curves should keep getting closer together but never cross.
+
+The following figure shows a typical learning curve for a supervised learning problem:
+
+<figure markdown>
+  ![validation_curve](../../images/learning_curve.png){ width="500" }
+  <figcaption>A _typical_ learning curve.</figcaption>
+</figcaption>
+</figure>
+
+!!!note
+    Another common type of curve are **Loss vs. epoch graphs**, where in the Y axis we have a loss function 
+    to minimize (an "error") and on the X axis we have the number of epochs (iterations) of the training algorithm
+    (sort of like the time axis). These curves are used to monitor the training process of a model over time,
+    and to determine when to stop training. The following figure shows a loss vs. epoch graph for a neural network:
+
+    <figure markdown>
+      ![validation_curve](../../images/loss_epoch.png){ width="500" }
+      <figcaption>A **loss vs. epoch graph** example.</figcaption>
+    </figure>
+
 
 ### Cross-validation including hyperparameter tuning
 
-In the previous example, we used cross-validation to evaluate the performance of a fixed model. 
-However, oftentimes we will want to also determine the best hyperparameters of the model, and not only its
-performance. 
+The preceding discussion of the validation and learning curves 
+is meant to give you some intuition into the trade-off between bias and variance,
+and its dependence on model complexity and training set size. In practice, models generally have more 
+than one knob to turn, and thus plots of validation and learning curves change from lines to 
+multi-dimensional surfaces. In these cases, such visualizations are difficult and we would rather 
+simply find the particular model that maximizes the validation score.
 
-Scikit Learn provides a number of tools to perform model selection, including cross-validation and grid search.
-The most common way to do this is to use the `GridSearchCV` class, which implements a grid search with cross-validation.
+Scikit Learn provides a number of tools to perform model selection, including cross-validation and grid search
+on hyperparameters. A common way to do this is to use the `GridSearchCV` class, which implements a grid search 
+with cross-validation. 
+
 This class takes as input an estimator, a dictionary of hyperparameters, and a cross-validation strategy, and returns
 the best hyperparameters for the estimator. For example, to find the best number of neighbors for a KNN classifier,
 we can do the following:
@@ -547,8 +642,31 @@ print(grid.best_score_)
     The `cv` argument is the number of folds in the cross-validation. The default value is 5, but it can be changed
     to any integer.
 
+Now that this is fit, we can ask for the best parameters as follows:
 
-## Machine learning algorithms
+```python
+grid.best_params_
+
+# Output:
+{'n_neighbors': 3}
+```
+
+The grid search provides other options, including the ability to specify a custom scoring function, 
+to parallelize the computations, to do randomized searches, and more.
+
+## Feature Engineering
+
+All of the examples so far assume that you have numerical data in a tidy, `[n_samples, n_features]` format. 
+In the real world, data rarely comes in such a form. Hence, one of the more important steps in using machine 
+learning in practice is **feature engineering**: that is, taking whatever information you have about your 
+problem and turning it into numbers that you can use to build your feature matrix.
+
+!!!note
+    Feature engineering is a fancy term for "creating new variables from existing variables". For example, if we have
+    a dataset with a column containing the date of birth of a person, we can create a new column containing the age of
+    the person by subtracting the date of birth from the current date.
+
+## Machine learning algorithms in SKLearn
 
 Scikit Learn provides implementations of a large number of machine learning algorithms. These algorithms are
 implemented as the already discussed estimator objects, and can be used to solve a wide range of machine 
@@ -656,14 +774,17 @@ https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-lea
 
 ### Clustering
 
+#### Examples 
+
 https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-learn.html#Unsupervised-learning:-Iris-clustering
 
 
 ### Dimensionality reduction
 
+#### Examples
+
 https://jakevdp.github.io/PythonDataScienceHandbook/05.02-introducing-scikit-learn.html#Unsupervised-learning-example:-Iris-dimensionality
 
-### Feature Engineering
 
 ## Annex: common pitfalls in ML
 
@@ -699,6 +820,10 @@ Data leakage is a problem that occurs when information about the target variable
 training data. This can cause the model to perform unrealistically well during training, but perform poorly during
 testing.
 
+!!!note
+    If we are not careful with time series data when splitting the data into training and test sets, we can introduce 
+    data leakage by using information from the future to predict the past!    
+
 ### Class imbalance
 
 Class imbalance is a problem that occurs when the number of observations in each class is not equal. This can cause
@@ -709,27 +834,8 @@ metric would be the AUROC.
 
 ## Other
 
-- **Pipeline**: A pipeline is a sequence of transformers and predictors. Pipelines are very useful to encapsulate
-  the preprocessing and modeling steps in a machine learning workflow.
-- **Model selection**: Model selection is the process of choosing the best model for a given dataset. Scikit Learn
-  provides a number of tools to perform model selection, including cross-validation and grid search.
-- **Hyperparameter**: A hyperparameter is a parameter that is not learned by the model, but that is set before
-  training. For example, the number of neighbors in a KNN classifier is a hyperparameter.
-- **Grid search**: Grid search is a technique to find the best hyperparameters for a given model. It consists of
-  trying all possible combinations of hyperparameters and choosing the one that performs best.
-- **Cross-validation**: Cross-validation is a technique to evaluate a model. It consists of splitting the data into
-  training and test sets, training the model on the training set, and evaluating it on the test set. This process is
-  repeated several times, and the results are averaged to obtain a more robust evaluation.
-- **Metrics**: Metrics are functions that measure the performance of a model. For example, the accuracy is a metric
-  that measures the proportion of correct predictions made by a classifier.
-- **Classification**: Classification is the task of predicting a class from a set of classes. For example, predicting
-  whether an email is spam or not is a classification task.
-- **Regression**: Regression is the task of predicting a continuous value. For example, predicting the price of a
-  house is a regression task.
 - **Clustering**: Clustering is the task of grouping data points into clusters. For example, grouping customers into
   clusters based on their purchase history is a clustering task.
 - **Dimensionality reduction**: Dimensionality reduction is the task of reducing the number of features in a dataset.
   For example, reducing the number of features in an image to the most important ones is a dimensionality reduction
   task.
-- **Ensemble**: An ensemble is a model that combines the predictions of several models. For example, a random forest
-  is an ensemble of decision trees.
