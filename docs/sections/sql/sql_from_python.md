@@ -108,7 +108,7 @@ from database_session import SessionLocal
 
 
 with SessionLocal() as session:
-    df.to_sql("users", session.connection(), if_exists="append", index=False)
+    df.to_sql("users", session.get_bind(), if_exists="append", index=False)
 ```
 
 !!!note
