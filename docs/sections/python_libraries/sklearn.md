@@ -155,7 +155,7 @@ In practice, these principles make Scikit-Learn very easy to use, once the basic
 
 ## Estimators' API
 
-**Estimator** are classes from the library that implement machine learning algorithms (i.e., objects that "learn"
+**Estimators** are classes from the library that implement machine learning algorithms (i.e., objects that "learn"
 from data). In the context of Supervised Learning, an estimator is a Python object that implements (at least) the 
 following methods:
 
@@ -204,7 +204,7 @@ y_pred = knn.predict(X_test)
 ## Transformers
 
 SciKit learn also provides classes known as **transformers**, which are estimators (i.e., they inherit from a
-base class called `BaseEstimator`) that can transform data. 
+base class called `BaseEstimator`) that can transform data instead of making predictions. 
 
 !!!note
     These transformers have nothing to do with the transformers in deep learning. 
@@ -214,9 +214,10 @@ in the following sections, but bear in mind that many of these transformations c
 in Pandas, before going into Scikit Learn.
 
 !!!note
-    Transformers are estimators, so they also have `fit` and `predict` methods. However, the `fit` method is used to
-    learn the parameters of the transformer, and the `predict` method is used to transform the data. Hence, these
-    methods are not used in the same way as in estimators, which represent machine learning algorithms.
+    Transformers are estimators, so they also have the `fit` method. However, this method is used to
+    learn the parameters of the transformer (e.g., the mean of the data in a `StandardScaler`), not to train a model.
+    They also don't have the `predict` method, since they don't make predictions. Instead, they have the
+    `transform` method, which is used to transform the data.
 
 ### Standard scaler
 
