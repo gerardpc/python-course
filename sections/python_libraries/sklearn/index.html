@@ -1880,7 +1880,7 @@ since we don't have a target variable. </p>
 </ul>
 <p>In practice, these principles make Scikit-Learn very easy to use, once the basic principles are understood.   </p>
 <h2 id="estimators-api">Estimators' API<a class="headerlink" href="#estimators-api" title="Permanent link">&para;</a></h2>
-<p><strong>Estimator</strong> are classes from the library that implement machine learning algorithms (i.e., objects that "learn"
+<p><strong>Estimators</strong> are classes from the library that implement machine learning algorithms (i.e., objects that "learn"
 from data). In the context of Supervised Learning, an estimator is a Python object that implements (at least) the 
 following methods:</p>
 <ul>
@@ -1920,7 +1920,7 @@ For example, to predict the labels of a test set, we can do the following:</p>
 </code></pre></div>
 <h2 id="transformers">Transformers<a class="headerlink" href="#transformers" title="Permanent link">&para;</a></h2>
 <p>SciKit learn also provides classes known as <strong>transformers</strong>, which are estimators (i.e., they inherit from a
-base class called <code>BaseEstimator</code>) that can transform data. </p>
+base class called <code>BaseEstimator</code>) that can transform data instead of making predictions. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These transformers have nothing to do with the transformers in deep learning. </p>
@@ -1930,9 +1930,10 @@ in the following sections, but bear in mind that many of these transformations c
 in Pandas, before going into Scikit Learn.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Transformers are estimators, so they also have <code>fit</code> and <code>predict</code> methods. However, the <code>fit</code> method is used to
-learn the parameters of the transformer, and the <code>predict</code> method is used to transform the data. Hence, these
-methods are not used in the same way as in estimators, which represent machine learning algorithms.</p>
+<p>Transformers are estimators, so they also have the <code>fit</code> method. However, this method is used to
+learn the parameters of the transformer (e.g., the mean of the data in a <code>StandardScaler</code>), not to train a model.
+They also don't have the <code>predict</code> method, since they don't make predictions. Instead, they have the
+<code>transform</code> method, which is used to transform the data.</p>
 </div>
 <h3 id="standard-scaler">Standard scaler<a class="headerlink" href="#standard-scaler" title="Permanent link">&para;</a></h3>
 <p>The <code>StandardScaler</code> is a transformer used to standardize the data before training a model. 
