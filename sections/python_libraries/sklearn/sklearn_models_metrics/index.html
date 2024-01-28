@@ -1,0 +1,1523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../sklearn_estimators/">
+      
+      
+        <link rel="next" href="../sklearn_features/">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+    
+    
+      
+        <title>Metrics and validation - Python and data science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6b71719e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metrics-and-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python and data science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Metrics and validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Python and data science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Python 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/python_introduction/" class="md-nav__link">
+        Introduction to Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/control_flow/" class="md-nav__link">
+        Control flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/data_structures/" class="md-nav__link">
+        Data structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/python_programs/" class="md-nav__link">
+        Python programs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/io_files/" class="md-nav__link">
+        Input, output and files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/exceptions/" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/classes/" class="md-nav__link">
+        Classes and objects
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          Python 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Python 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/datetime/" class="md-nav__link">
+        Dates and times
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/regular_expressions/" class="md-nav__link">
+        Regular expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlalchemy/" class="md-nav__link">
+        Connecting SQL to Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/python_projects/" class="md-nav__link">
+        Python projects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6" tabindex="0" aria-expanded="true">
+          Scikit Learn
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Scikit Learn" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Scikit Learn
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sklearn_introduction/" class="md-nav__link">
+        Introduction to Scikit Learn
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sklearn_estimators/" class="md-nav__link">
+        Estimators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Metrics and validation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Metrics and validation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    Metrics
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classification-metrics" class="md-nav__link">
+    Classification metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regression-metrics" class="md-nav__link">
+    Regression metrics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regularization" class="md-nav__link">
+    Regularization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-optimization-and-training" class="md-nav__link">
+    Model optimization and training
+  </a>
+  
+    <nav class="md-nav" aria-label="Model optimization and training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-and-testing-a-model" class="md-nav__link">
+    Training and testing a model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation" class="md-nav__link">
+    Cross-validation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation-including-hyperparameter-tuning" class="md-nav__link">
+    Cross-validation including hyperparameter tuning
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-validation including hyperparameter tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grid-search" class="md-nav__link">
+    Grid search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#randomized-search" class="md-nav__link">
+    Randomized search
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sklearn_features/" class="md-nav__link">
+        Feature Engineering
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sklearn_annex/" class="md-nav__link">
+        Annex
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../typer/" class="md-nav__link">
+        Typer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          Other Python topics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Other Python topics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Other Python topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/comprehensions/" class="md-nav__link">
+        Comprehensions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Python data libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python data libraries" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Python data libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numpy/" class="md-nav__link">
+        Numpy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../matplotlib/" class="md-nav__link">
+        Matplotlib
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pandas/" class="md-nav__link">
+        Pandas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pyspark/" class="md-nav__link">
+        PySpark
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/introduction/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/select_statements/" class="md-nav__link">
+        SELECT statement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/window_functions/" class="md-nav__link">
+        Window functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/modification_statements/" class="md-nav__link">
+        Data modification statements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/table_operations/" class="md-nav__link">
+        Table operations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sql/sql_from_python/" class="md-nav__link">
+        Connecting SQL to Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    Metrics
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classification-metrics" class="md-nav__link">
+    Classification metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regression-metrics" class="md-nav__link">
+    Regression metrics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regularization" class="md-nav__link">
+    Regularization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-optimization-and-training" class="md-nav__link">
+    Model optimization and training
+  </a>
+  
+    <nav class="md-nav" aria-label="Model optimization and training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-and-testing-a-model" class="md-nav__link">
+    Training and testing a model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation" class="md-nav__link">
+    Cross-validation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation-including-hyperparameter-tuning" class="md-nav__link">
+    Cross-validation including hyperparameter tuning
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-validation including hyperparameter tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grid-search" class="md-nav__link">
+    Grid search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#randomized-search" class="md-nav__link">
+    Randomized search
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="metrics-and-validation">Metrics and validation<a class="headerlink" href="#metrics-and-validation" title="Permanent link">&para;</a></h1>
+<p>This section describes a series of related concepts that are important when choosing the best model for a given
+problem. In particular, we'll see:</p>
+<ul>
+<li>What are metrics and how to use them to evaluate the performance of a model.</li>
+<li>What is model validation and how to use it to choose the best model for a given problem.</li>
+<li>What are model hyperparameters and how to use cross-validation to find the best hyperparameters for a given model.</li>
+<li>What is feature engineering and selection, and how to use it to improve the performance of a model.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A model <strong>hyperparameter</strong> is a configuration that is not a <em>parameter</em> (for example the
+coefficients of a linear regression model, or the weights of a neural network), and hence their value cannot 
+be estimated from input data. They represent the "knobs" of a model: the number of parameters,
+the regularization parameter, the network architecture (in the case of neural networks), etc. </p>
+</div>
+<h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h2>
+<p>A <strong>metric</strong> is a function that measures the performance of a model. For example, the accuracy is a metric 
+that measures the proportion of correct predictions made by a classifier, and the mean squared error (MSE) 
+is a metric that measures the average squared difference between the predicted values and the true values 
+of a regression model.</p>
+<p>Scikit Learn provides a number of metrics that can be used to evaluate the performance of a model. These metrics,
+or modified versions of it, are used as the loss function <span class="arithmatex">\(\mathcal{L}(\ldots)\)</span> 
+in the optimization problems that the models are trying to solve during training 
+(i.e., when you call the <code>fit</code> method).</p>
+<p>The Scikit learn API provides two ways to use metrics:</p>
+<ul>
+<li>
+<p><strong>The <code>score</code> method</strong>: The <code>score</code> method is a method that is implemented by all estimators. It takes as input
+  the data and the target, and returns a score that measures the performance of the model. The score is usually
+  a number between 0 and 1, where 1 means that the model is perfect and 0 means that the model is useless. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default score method depends on the type of estimator. For example, the default score method for
+classifiers is the accuracy, and the default score method for regressors is the <span class="arithmatex">\(R^2\)</span> score. </p>
+</div>
+</li>
+<li>
+<p><strong>The <code>metrics</code> module</strong>: The <code>metrics</code> module contains a number of functions that can be used to evaluate the
+  performance of a model. These functions take as input the true values and the predicted values, and return a score
+  that measures the performance of the model. The score is usually a number between 0 and 1, where 1 means that the
+  model is perfect and 0 means that the model is useless. </p>
+</li>
+</ul>
+<h3 id="classification-metrics">Classification metrics<a class="headerlink" href="#classification-metrics" title="Permanent link">&para;</a></h3>
+<p>Some of the most common classification metrics are:</p>
+<ul>
+<li>
+<p><strong>Accuracy</strong>: The accuracy is the proportion of correct predictions made by a classifier. It is defined as:
+  $$
+  \text{accuracy} = \frac{\text{number of correct predictions}}{\text{total number of predictions}}
+  $$
+  The accuracy is a number between 0 and 1, where 1 means that the model is perfect and 0 means that the model is
+  useless. The accuracy is implemented by all classifiers in Scikit Learn, and can be often computed using the <code>score</code>
+  method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The accuracy is a very common metric, but it is not always the best metric to use. For example, if we have a
+  dataset with 99% of the observations belonging to class A and 1% belonging to class B, a classifier that always
+  predicts class A will have an accuracy of 99%, even though it is a useless classifier. In this case, a better
+  metric would be the precision or the recall.</p>
+</div>
+</li>
+<li>
+<p><strong>Confusion matrix</strong>: The confusion matrix is a table that shows the number of correct and incorrect predictions
+   made by a classifier. It is defined as:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Predicted: 0</th>
+<th>Predicted: 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actual: 0</td>
+<td>True negatives</td>
+<td>False positives</td>
+</tr>
+<tr>
+<td>Actual: 1</td>
+<td>False negatives</td>
+<td>True positives</td>
+</tr>
+</tbody>
+</table>
+<p>The confusion matrix is implemented by all classifiers in Scikit Learn, and can be computed using the <code>confusion_matrix</code>
+function in the <code>metrics</code> module.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Output:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">[[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]]</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The accuracy, precision, recall, etc. can all be computed from the confusion matrix.</p>
+</div>
+</li>
+<li>
+<p><strong>AUROC</strong>: The AUROC (Area Under the Receiver Operating Characteristic) is a metric that measures the performance
+  of a classifier. It is defined as the area under the ROC curve, which is a curve that plots the true positive rate
+  (TPR) against the false positive rate (FPR) at various threshold settings. The AUROC is a number between 0 and 1,
+  where 1 means that the model is perfect and 0 means that the model is useless. The AUROC is implemented by all
+  classifiers in Scikit Learn, and can be computed using the <code>roc_auc_score</code> function in the <code>metrics</code> module.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Output:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="mf">0.5</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The AUROC is a more robust metric than the accuracy, since it is not affected by the class imbalance problem
+described above. </p>
+</div>
+</li>
+</ul>
+<h3 id="regression-metrics">Regression metrics<a class="headerlink" href="#regression-metrics" title="Permanent link">&para;</a></h3>
+<p>Some of the most common regression metrics are:</p>
+<ul>
+<li>
+<p><strong>Mean squared error</strong>: The mean squared error is the average squared difference between the predicted values and
+  the true values of a regression model. It is defined as:</p>
+<div class="arithmatex">\[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</div>
+<p>where <span class="arithmatex">\(y_i\)</span> is the true value of the <span class="arithmatex">\(i\)</span>-th observation, <span class="arithmatex">\(\hat{y}_i\)</span> is the predicted value of the <span class="arithmatex">\(i\)</span>-th observation,
+and <span class="arithmatex">\(n\)</span> is the number of observations. The MSE is implemented by all regressors in Scikit Learn, and can be often
+computed using the <code>score</code> method.</p>
+</li>
+<li>
+<p><strong>Mean absolute error</strong>: The mean absolute error is the average absolute difference between the predicted values and
+    the true values of a regression model. It is defined as:
+    $$
+    \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+    $$
+    where <span class="arithmatex">\(y_i\)</span> is the true value of the <span class="arithmatex">\(i\)</span>-th observation, <span class="arithmatex">\(\hat{y}_i\)</span> is the predicted value of the <span class="arithmatex">\(i\)</span>-th observation,
+    and <span class="arithmatex">\(n\)</span> is the number of observations. The MAE is implemented by all regressors in Scikit Learn, and can be often
+    computed using the <code>score</code> method.</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(R^2\)</span> score</strong>: The <span class="arithmatex">\(R^2\)</span> score is a metric that measures the proportion of variance in the dependent variable
+    that is predictable from the independent variables. It is defined as:</p>
+<p>$$
+R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y} _i)^2} 
+{\sum_{i=1}^{n} (y_i - \bar{y})^2}
+$$
+where <span class="arithmatex">\(y_i\)</span> is the true value of the <span class="arithmatex">\(i\)</span>-th observation, <span class="arithmatex">\(\hat{y}_i\)</span> is the predicted value of the <span class="arithmatex">\(i\)</span>-th observation,
+<span class="arithmatex">\(\bar{y}\)</span> is the mean of the true values, and <span class="arithmatex">\(n\)</span> is the number of observations. The <span class="arithmatex">\(R^2\)</span> score is a number between
+0 and 1, where 1 means that the model is perfect and 0 means that the model is useless. The <span class="arithmatex">\(R^2\)</span> score is implemented
+by all regressors in Scikit Learn, and can be often computed using the <code>score</code> method.</p>
+</li>
+</ul>
+<h2 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">&para;</a></h2>
+<p>When training a model, we are trying to find the parameters that minimize a certain loss function <span class="arithmatex">\(\mathcal{L}(\ldots)\)</span>.
+For example, in a linear regression model, we are trying to find the coefficients that minimize the MSE.</p>
+<p>However, in some cases, we might want to add a penalty to the loss function to <strong>prevent the model from overfitting</strong>,
+leading to a new loss function </p>
+<div class="arithmatex">\[\mathcal{L}(\ldots) + \lambda \mathcal{R}(\ldots),\]</div>
+<p>where <span class="arithmatex">\(\mathcal{R}(\ldots)\)</span> is the <strong>regularization term</strong> and <span class="arithmatex">\(\lambda\)</span> is the regularization parameter. Intuitively,
+this term penalizes the model for being too complex, with the goal of reducing the generalization error of the model
+to unseen data. </p>
+<p>Depending on the type of regularization term, we can have different types of regularization, the most common being:</p>
+<ul>
+<li><strong>L1 regularization</strong>: In L1 regularization, the regularization term is the sum of the absolute values of the
+  parameters: <span class="arithmatex">\(\mathcal{R}(\ldots) = \sum_{i=1}^{n} |w_i|\)</span>. This type of regularization is also known 
+  as <strong>Lasso regularization</strong>.</li>
+<li><strong>L2 regularization</strong>: In L2 regularization, the regularization term is the sum of the squared values of the
+  parameters, <span class="arithmatex">\(\mathcal{R}(\ldots) = \sum_{i=1}^{n} w_i^2\)</span>. 
+  This type of regularization is also known as <strong>Ridge regularization</strong> (and also as 
+  <strong>Tikhonov regularization</strong>). In practice, this type of regularization promotes sparsity of the coefficients.</li>
+<li><strong>Elastic Net regularization</strong>: a combination of L1 and L2 regularization. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both the L1 and L2 regularization terms encourage the coefficients to be small, since they effectively penalize
+large coefficients. However, they act in slightly different ways.
+L1 regularization tends to set the coefficients of the least important features to zero, sometimes 
+effectively performing feature selection. L2 regularization, on the other hand, tends to shrink the coefficients
+towards zero, but it's unlikely to set them to <em>exactly</em> to zero.    </p>
+</div>
+<p>In general, it is <strong>not possible</strong> to use a custom loss function in Scikit Learn. For example, if you want to use
+a different metric than vanilla mean squared error in a regression problem, you should take a look at <em>other</em>
+estimators that implement other loss functions, such as <code>Ridge</code> or <code>Lasso</code> (see the <a href="linear_models.md">linear models</a>.</p>
+<p>However, some estimators allow you to specify directly the regularization term and the regularization parameter, 
+without having to look for a different estimator. This is the case of the Logistic Regression classifier, for example,
+and really depends on the estimator in question. </p>
+<h2 id="model-optimization-and-training">Model optimization and training<a class="headerlink" href="#model-optimization-and-training" title="Permanent link">&para;</a></h2>
+<p>Getting the best possible model for a given problem is a complex process, but we can
+simplify it to two steps:</p>
+<ol>
+<li>First, we need to choose the best model for the problem. Assuming that we have a family of candidate models, 
+   differing in their hyperparameters, we need to choose the best hyperparameters for the problem.</li>
+<li>Second, once the final model is clear, we need to train the model on the data. </li>
+</ol>
+<p>The two steps are actually related, since the best hyperparameters for a model depend on the data, but 
+we can study them separately.</p>
+<h3 id="training-and-testing-a-model">Training and testing a model<a class="headerlink" href="#training-and-testing-a-model" title="Permanent link">&para;</a></h3>
+<p>Assume for now that we have chosen the best model for the problem. The next step is to fitthe model to the data.
+Learning the parameters of a model and making predictions on the same data used to fit the model 
+is a methodological mistake. In an extreme case, a model that would just repeat the labels of the samples that it has 
+just seen would have a perfect performance with seen data, but would fail to predict anything on yet-unseen data. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A model that works well on the training data but fails to generalize to new data is said to <strong>overfit</strong>.
+This happens when the model learns the training data "too well". Since all datasets contain some noise, 
+eventually the model will fit to the (random) noise as well, causing it to perform worse on new data.</p>
+</div>
+<p>To avoid this situation, when performing a (supervised) machine learning experiment we almost always 
+split the data into two sets: a <strong>training set</strong> and a <strong>testing set</strong>.</p>
+<ul>
+<li>The <strong>training set</strong> is used to fit the model (i.e., to learn the parameters of the model that minimize the loss
+  function).</li>
+<li>The <strong>testing set</strong> is used to evaluate the performance of the model on new data after the model has been trained.</li>
+</ul>
+<p>In scikit-learn a random split into training and test sets can be quickly computed with the <code>train_test_split</code> 
+helper function. Let's use it to keep 25% of the data for testing in the following example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># fit the model on one set of data</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># evaluate the model on the second set of data</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">y2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y2_model</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function makes a <em>random</em> split of the data. If you don't care about the split type, you can just slice the
+data manually. However, in some cases this will lead to the training
+data and the test data having different statistical properties, which is not ideal.</p>
+</div>
+<h3 id="cross-validation">Cross-validation<a class="headerlink" href="#cross-validation" title="Permanent link">&para;</a></h3>
+<p>Now let's go a step back and assume that we have a family of candidate models, differing in their hyperparameters.
+We would like to find the best hyperparameters for the model, but for this we would need to repeat the previous
+procedure: split the training data into a set for training each model (defined by certain hyperparameters)
+and another for testing the model with those hyperparameters. In the end, we would be training the model
+with only a fraction of the data, and furthermore, perhaps the hold-out set would not be representative of the
+entire dataset (for example, it could happen that the chosen models perform well on the hold-out set, but
+poorly on the rest of the data).</p>
+<p>One way to address this is to use cross-validation; that is, to do a sequence of fits where each subset of 
+the data is used both as a training set and as a validation set. Visually, it might look something like this:</p>
+<figure>
+<p><img alt="cv" src="../../../../images/cross_validation.png" width="500" />
+  </p>
+<figcaption>Sketch of the cross-validation procedure.</figcaption>
+</figure>
+<p>In the figure example, we split the data into five groups, and use each of them in turn to evaluate the model 
+fit on the other 4/5 of the data. Repeating the validation across different subsets of the data gives us a 
+better idea of the performance of the algorithm. What comes out are <span class="arithmatex">\(n\)</span> accuracy scores, which we can 
+combine to get one final measure of the model's performance (we can combine them for example by taking the mean). </p>
+<p>Scikit-Learn provides <code>cross_val_score</code> to do this process automatically:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Output:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">array</span><span class="p">([</span><span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">0.93333333</span><span class="p">,</span> <span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When working with time series data, it is important to use cross-validation in a way that respects the time
+dependence between observations. In this case, we can use the <code>TimeSeriesSplit</code> class instead to
+perform cross-validation.</p>
+</div>
+<h3 id="cross-validation-including-hyperparameter-tuning">Cross-validation including hyperparameter tuning<a class="headerlink" href="#cross-validation-including-hyperparameter-tuning" title="Permanent link">&para;</a></h3>
+<p>The following plot shows the <strong>validation curve</strong> for a hypothetical model. The validation curve is a plot of the
+validation score (i.e., the score on the validation set) and training score (i.e., the score on the training set)
+as a function of a hyperparameter:</p>
+<figure>
+<p><img alt="validation_curve" src="../../../../images/validation_curve.png" width="500" />
+  </p>
+<figcaption>A validation curve example.
+    The X axis represents the model complexity. The Y axis represents the score (a higher score means better model 
+    performance / lower error).</figcaption>
+</figcaption>
+</figure>
+<p>It's important to emphasize some aspects of this figure:
+* The left section of the plot shows an <strong>underfitting</strong> model: the training and validation scores are both low.
+* The middle section shows a good fit: the training and validation scores are both high, and the difference between
+  them is small. Most importantly, the validation score is at a maximum.
+* The right section shows an <strong>overfitting</strong> model: the training score is high, but the validation score is low.</p>
+<p>In practice, models generally have more than one "knob" (i.e. hyperparameter) to turn, and thus a validation plot
+becomes multi-dimensional. In such cases, visualizations are difficult and we would rather simply find the 
+particular model that maximizes the validation score.</p>
+<p>Scikit Learn provides a number of tools to perform model selection, including cross-validation and grid search
+on hyperparameters. The whole process might look something like this flow chart:</p>
+<figure>
+<p><img alt="cv" src="../../../../images/grid_search_workflow.png" width="400" />
+  </p>
+<figcaption>Sketch of the cross-validation procedure (grid search case).</figcaption>
+</figure>
+<h4 id="grid-search">Grid search<a class="headerlink" href="#grid-search" title="Permanent link">&para;</a></h4>
+<p>A common way to do this is to use the <code>GridSearchCV</code> class, which implements a grid search 
+with cross-validation. </p>
+<p>This class takes as input an estimator, a dictionary of hyperparameters, and a cross-validation strategy, and returns
+the best hyperparameters for the estimator. For example, to find the best number of neighbors for a KNN classifier,
+we can do the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">X_train</span> <span class="o">=</span> <span class="o">...</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">y_train</span> <span class="o">=</span> <span class="o">...</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>cv</code> argument is the number of folds in the cross-validation. The default value is 5, but it can be changed
+to any integer. In the extreme case where <code>cv</code> is equal to the number of observations, we have <em>leave-one-out</em>
+cross-validation, where we train the model on all but one observation, and test it on the remaining observation.</p>
+</div>
+<p>Now that we have fit the model, we can ask for the best parameters as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Output:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</code></pre></div>
+<p>The grid search provides other options, including the ability to specify a custom scoring function, 
+to parallelize the computations, to do randomized searches, and more.</p>
+<h4 id="randomized-search">Randomized search<a class="headerlink" href="#randomized-search" title="Permanent link">&para;</a></h4>
+<p>In some cases, the number of hyperparameters is too large to do an exhaustive search. In such cases, we can use
+a randomized search instead. This is done with the <code>RandomizedSearchCV</code> class, which is similar to the <code>GridSearchCV</code>
+class, but instead of trying all possible combinations of hyperparameters, it tries a random subset of them.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">X_train</span> <span class="o">=</span> <span class="o">...</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">y_train</span> <span class="o">=</span> <span class="o">...</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]}</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">grid</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c1"># Output:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="p">{</span><span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
