@@ -571,6 +571,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#other-methods" class="md-nav__link">
+    Other methods
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1054,6 +1061,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#other-methods" class="md-nav__link">
+    Other methods
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1216,6 +1230,12 @@ For example, to predict the labels of a test set, we can do the following:</p>
 <p>The previous examples serve as an illustration that in Scikit Learn, the order is always the same: 
 first we create the estimator, then we fit it to the data, then we use it to make predictions.</p>
 </div>
+<h3 id="other-methods">Other methods<a class="headerlink" href="#other-methods" title="Permanent link">&para;</a></h3>
+<p>In addition to the <code>fit</code> and <code>predict</code> methods, estimators can have other methods. 
+Most classifiers have a <code>predict_proba</code> method, which returns the probability of each class for each observation.</p>
+<p>Additionally, all built-in estimators have a <code>set_params</code> method, which sets the parameters of the estimator 
+(overriding previous parameter values passed to the constructor), and a <code>get_params</code> method, which takes no arguments 
+and returns a dict of the <strong>init</strong> parameters of the estimator.</p>
 <h2 id="common-ml-algorithms-in-sklearn">Common ML algorithms in SKLearn<a class="headerlink" href="#common-ml-algorithms-in-sklearn" title="Permanent link">&para;</a></h2>
 <p>Scikit Learn provides implementations of a large number of machine learning algorithms in the form of 
 the aforementioned <strong>estimators</strong>. </p>
