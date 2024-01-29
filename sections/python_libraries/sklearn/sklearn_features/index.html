@@ -578,6 +578,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#transformers" class="md-nav__link">
+    Transformers
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-scaler" class="md-nav__link">
+    Standard scaler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-encoder" class="md-nav__link">
+    Ordinal encoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoder" class="md-nav__link">
+    One-hot encoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tfidf-vectorizer" class="md-nav__link">
+    Tfidf vectorizer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#types-of-features" class="md-nav__link">
     Types of features
   </a>
@@ -968,6 +1009,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#transformers" class="md-nav__link">
+    Transformers
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-scaler" class="md-nav__link">
+    Standard scaler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-encoder" class="md-nav__link">
+    Ordinal encoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoder" class="md-nav__link">
+    One-hot encoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tfidf-vectorizer" class="md-nav__link">
+    Tfidf vectorizer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#types-of-features" class="md-nav__link">
     Types of features
   </a>
@@ -1062,9 +1144,153 @@ the person by subtracting the date of birth from the current date.</p>
   significant effect on the model, so it is important to detect and (if it is justified to do so) remove them. </li>
 </ul>
 </div>
-<h3 id="types-of-features">Types of features<a class="headerlink" href="#types-of-features" title="Permanent link">&para;</a></h3>
+<h2 id="transformers">Transformers<a class="headerlink" href="#transformers" title="Permanent link">&para;</a></h2>
+<p>Scikit learn provides classes known as <strong>transformers</strong>, which are estimators (i.e., they inherit from a
+base class called <code>BaseEstimator</code>) that can transform data instead of making predictions. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Transformers are estimators, so they also have the <code>fit</code> method. However, this method is used to
+learn the parameters of the transformer (e.g., the mean of the data in a <code>StandardScaler</code>), not to train a model.
+They also don't have the <code>predict</code> method, since they don't make predictions. Instead, they have the
+<code>transform</code> method, which is used to transform the data.</p>
+</div>
+<p>Transformers are typically used to preprocess the data <em>before</em> training the model, and hence
+they are an important part of feature engineering.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We'll discuss some examples belows, but bear in mind that it is not necessary to use transformers 
+or Scikit learn to preprocess the data. Many of these transformations can be done "by hand", for example
+in Pandas, before going into Scikit Learn.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These transformers have nothing to do with the transformers in deep learning. </p>
+</div>
+<h3 id="standard-scaler">Standard scaler<a class="headerlink" href="#standard-scaler" title="Permanent link">&para;</a></h3>
+<p>The <code>StandardScaler</code> is a transformer used to standardize the data before training a model. 
+It removes the mean of the data and scales it to unit variance, calculating the z-score of each sample in the dataset:
+$$
+z = \frac{x - u}{s}
+$$
+where <code>u</code> is the mean of the training samples (or zero if <code>with_mean=False</code>), and <code>s</code> is the standard deviation of 
+the training samples or one if <code>with_std=False</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>fit_transform</code> method is a combination of the <code>fit</code> and <code>transform</code> methods. It first fits the transformer
+to the data (which in this case, although confusing, means computing the mean and std), and then transforms the 
+data. This is equivalent to calling <code>fit</code> and then <code>transform</code> separately.</p>
+</div>
+<h3 id="ordinal-encoder">Ordinal encoder<a class="headerlink" href="#ordinal-encoder" title="Permanent link">&para;</a></h3>
+<p>The <code>OrdinalEncoder</code> is a transformer used to encode categorical features that have a natural ordering as a numeric
+array. For example, if we have a categorical feature with three possible values that have a meaningful order,
+e.g. <code>low</code>, <code>medium</code>, and <code>high</code>, the ordinal encoding would be:</p>
+<table>
+<thead>
+<tr>
+<th>low</th>
+<th>medium</th>
+<th>high</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]})</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">encoder</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">X_train_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">X_train_encoded</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Output:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">[[</span><span class="mf">0.</span><span class="p">]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a> <span class="p">[</span><span class="mf">1.</span><span class="p">]</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a> <span class="p">[</span><span class="mf">2.</span><span class="p">]]</span>
+</code></pre></div>
+<h3 id="one-hot-encoder">One-hot encoder<a class="headerlink" href="#one-hot-encoder" title="Permanent link">&para;</a></h3>
+<p>The <code>OneHotEncoder</code> is a transformer used to encode categorical features that do not have a natural ordering 
+as a one-hot numeric array (i.e., a binary array with a single 1 and many 0s). 
+For example, if we have a categorical feature with three possible values, <code>a</code>, <code>b</code>, and <code>c</code>, the one-hot encoding
+would be:</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]})</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">X_train_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">X_train_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Output:</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">[[</span><span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a> <span class="p">[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">0.</span><span class="p">]</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> <span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">1.</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="tfidf-vectorizer">Tfidf vectorizer<a class="headerlink" href="#tfidf-vectorizer" title="Permanent link">&para;</a></h3>
+<p>The <code>TfidfVectorizer</code> is a transformer used to convert text data into a numerical feature matrix.
+It is a combination of the <code>CountVectorizer</code> and <code>TfidfTransformer</code> transformers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">X_train</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;This is the first document.&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>           <span class="s1">&#39;This is the second second document.&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>           <span class="s1">&#39;And the third one.&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>           <span class="s1">&#39;Is this the first document?&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">X_train_encoded</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can read more about Tf-idf <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">here</a>.</p>
+</div>
+<p>To see the vocabulary that was learned by the vectorizer, we can use the <code>get_feature_names</code> method:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Output:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;document&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;third&#39;</span><span class="p">,</span> <span class="s1">&#39;this&#39;</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="types-of-features">Types of features<a class="headerlink" href="#types-of-features" title="Permanent link">&para;</a></h2>
 <p>The following sections describe a few general tricks of feature engineering.</p>
-<h4 id="categorical-features">Categorical features<a class="headerlink" href="#categorical-features" title="Permanent link">&para;</a></h4>
+<h3 id="categorical-features">Categorical features<a class="headerlink" href="#categorical-features" title="Permanent link">&para;</a></h3>
 <p>One common type of non-numerical data is categorical data. 
 To use this data in a machine learning model, we need to convert this categorical feature to a numerical feature.</p>
 <p>If the categorical feature has no natural ordering, we can use one-hot encoding to convert it to a numerical
@@ -1077,12 +1303,12 @@ feature. </p>
 </figure>
 <p>If the categorical feature has a natural ordering, we can use ordinal encoding to convert it to a regular
 number.</p>
-<h4 id="text-features">Text features<a class="headerlink" href="#text-features" title="Permanent link">&para;</a></h4>
+<h3 id="text-features">Text features<a class="headerlink" href="#text-features" title="Permanent link">&para;</a></h3>
 <p>Another common type of non-numerical data is text data. To use this data in a machine learning
 model, we need to convert this text feature to a numerical feature. This can be done using several NLP techniques. 
 Check <strong>bag-of-words</strong>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"><strong>TF-IDF</strong></a>, 
 and <strong>word embeddings</strong> for more information.</p>
-<h4 id="date-features">Date features<a class="headerlink" href="#date-features" title="Permanent link">&para;</a></h4>
+<h3 id="date-features">Date features<a class="headerlink" href="#date-features" title="Permanent link">&para;</a></h3>
 <p>Another common type of non-numerical data is date data. To use this data in a machine learning
 model, we need to convert this date feature to a numerical feature. This can be done by extracting the year, month,
 day, etc. from the date and using them as numerical features. </p>
@@ -1096,12 +1322,12 @@ week 52 and week 1 are actually close to one another. However, we could <em>also
 the week number plus 26, and then model might be able to understand that weeks "live" in a circle instead 
 of in a line.</p>
 </div>
-<h4 id="image-features">Image features<a class="headerlink" href="#image-features" title="Permanent link">&para;</a></h4>
+<h3 id="image-features">Image features<a class="headerlink" href="#image-features" title="Permanent link">&para;</a></h3>
 <p>Another common type of data are images. Although they might look like non-numerical data, images are actually
 matrices of numbers. To use this data in a machine learning, the easiest way is to flatten the image and use the
 pixels as numerical features (often even deleting the color channels).</p>
 <p>Then, we can "spaghettify" the image by flattening the image and converting it to a 1D vector. </p>
-<h4 id="derived-features">Derived features<a class="headerlink" href="#derived-features" title="Permanent link">&para;</a></h4>
+<h3 id="derived-features">Derived features<a class="headerlink" href="#derived-features" title="Permanent link">&para;</a></h3>
 <p>Sometimes, we can create new features from existing features. For example, if we have a dataset with a column
 containing the date of birth of a person, we can create a new column containing the age of the person by subtracting
 the date of birth from the current date. </p>
@@ -1114,7 +1340,7 @@ on a case-by-case basis, and requires some domain knowledge.</p>
 containing the logarithm of the price of the house. This (could) make the data distribution more suitable for
 the model by reducing the tail of the distribution.</p>
 </div>
-<h3 id="feature-selection">Feature selection<a class="headerlink" href="#feature-selection" title="Permanent link">&para;</a></h3>
+<h2 id="feature-selection">Feature selection<a class="headerlink" href="#feature-selection" title="Permanent link">&para;</a></h2>
 <p>In some cases, we might have too many features, which makes the model too complex and costly to maintain. In such cases
 we will need to select only the most important ones. This can be achieved in several ways:</p>
 <ul>
