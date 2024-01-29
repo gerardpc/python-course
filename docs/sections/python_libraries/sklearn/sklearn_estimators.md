@@ -54,6 +54,14 @@ y_pred = knn.predict(X_test)
     The previous examples serve as an illustration that in Scikit Learn, the order is always the same: 
     first we create the estimator, then we fit it to the data, then we use it to make predictions.
 
+### Other methods
+
+In addition to the `fit` and `predict` methods, estimators can have other methods. 
+Most classifiers have a `predict_proba` method, which returns the probability of each class for each observation.
+
+Additionally, all built-in estimators have a `set_params` method, which sets the parameters of the estimator 
+(overriding previous parameter values passed to the constructor), and a `get_params` method, which takes no arguments 
+and returns a dict of the __init__ parameters of the estimator.
 
 ## Common ML algorithms in SKLearn
 
