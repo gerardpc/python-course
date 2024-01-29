@@ -22,11 +22,141 @@ build your feature matrix.
     * **Outliers**: Outliers are observations that are far away from the rest of the observations. Outliers can have a
       significant effect on the model, so it is important to detect and (if it is justified to do so) remove them. 
 
-### Types of features
+## Transformers
+
+Scikit learn provides classes known as **transformers**, which are estimators (i.e., they inherit from a
+base class called `BaseEstimator`) that can transform data instead of making predictions. 
+
+!!!note
+    Transformers are estimators, so they also have the `fit` method. However, this method is used to
+    learn the parameters of the transformer (e.g., the mean of the data in a `StandardScaler`), not to train a model.
+    They also don't have the `predict` method, since they don't make predictions. Instead, they have the
+    `transform` method, which is used to transform the data.
+
+Transformers are typically used to preprocess the data _before_ training the model, and hence
+they are an important part of feature engineering.
+
+!!!note
+    We'll discuss some examples belows, but bear in mind that it is not necessary to use transformers 
+    or Scikit learn to preprocess the data. Many of these transformations can be done "by hand", for example
+    in Pandas, before going into Scikit Learn.
+
+!!!note
+    These transformers have nothing to do with the transformers in deep learning. 
+
+### Standard scaler
+
+The `StandardScaler` is a transformer used to standardize the data before training a model. 
+It removes the mean of the data and scales it to unit variance, calculating the z-score of each sample in the dataset:
+$$
+z = \frac{x - u}{s}
+$$
+where `u` is the mean of the training samples (or zero if `with_mean=False`), and `s` is the standard deviation of 
+the training samples or one if `with_std=False`:
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+```
+
+!!!note
+    The `fit_transform` method is a combination of the `fit` and `transform` methods. It first fits the transformer
+    to the data (which in this case, although confusing, means computing the mean and std), and then transforms the 
+    data. This is equivalent to calling `fit` and then `transform` separately.
+
+### Ordinal encoder
+
+The `OrdinalEncoder` is a transformer used to encode categorical features that have a natural ordering as a numeric
+array. For example, if we have a categorical feature with three possible values that have a meaningful order,
+e.g. `low`, `medium`, and `high`, the ordinal encoding would be:
+
+| low | medium | high |
+|-----|--------|------|
+| 0   | 1      | 2    |
+
+```python
+from sklearn.preprocessing import OrdinalEncoder
+
+X_train = pd.DataFrame({'feature': ['low', 'medium', 'high']})
+encoder = OrdinalEncoder()
+
+X_train_encoded = encoder.fit_transform(X_train)
+
+print(X_train_encoded)
+
+# Output:
+[[0.]
+ [1.]
+ [2.]]
+```
+
+### One-hot encoder
+
+The `OneHotEncoder` is a transformer used to encode categorical features that do not have a natural ordering 
+as a one-hot numeric array (i.e., a binary array with a single 1 and many 0s). 
+For example, if we have a categorical feature with three possible values, `a`, `b`, and `c`, the one-hot encoding
+would be:
+
+| a | b | c |
+|---|---|---|
+| 1 | 0 | 0 |
+| 0 | 1 | 0 |
+| 0 | 0 | 1 |
+
+```python
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
+X_train = pd.DataFrame({'feature': ['a', 'b', 'c']})
+encoder = OneHotEncoder()
+
+X_train_encoded = encoder.fit_transform(X_train)
+
+print(X_train_encoded.toarray())
+
+# Output:
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]
+```
+
+### Tfidf vectorizer
+
+The `TfidfVectorizer` is a transformer used to convert text data into a numerical feature matrix.
+It is a combination of the `CountVectorizer` and `TfidfTransformer` transformers.
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+X_train = ['This is the first document.',
+           'This is the second second document.',
+           'And the third one.',
+           'Is this the first document?']
+           
+vectorizer = TfidfVectorizer()
+X_train_encoded = vectorizer.fit_transform(X_train)
+```
+
+!!!note
+    You can read more about Tf-idf [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
+
+To see the vocabulary that was learned by the vectorizer, we can use the `get_feature_names` method:
+
+```python
+print(vectorizer.get_feature_names())
+
+# Output:
+['and', 'document', 'first', 'is', 'one', 'second', 'the', 'third', 'this']
+```
+
+
+## Types of features
 
 The following sections describe a few general tricks of feature engineering.
 
-#### Categorical features
+### Categorical features
 
 One common type of non-numerical data is categorical data. 
 To use this data in a machine learning model, we need to convert this categorical feature to a numerical feature.
@@ -43,14 +173,14 @@ feature.
 If the categorical feature has a natural ordering, we can use ordinal encoding to convert it to a regular
 number.
 
-#### Text features
+### Text features
 
 Another common type of non-numerical data is text data. To use this data in a machine learning
 model, we need to convert this text feature to a numerical feature. This can be done using several NLP techniques. 
 Check **bag-of-words**, [**TF-IDF**](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html), 
 and **word embeddings** for more information.
 
-#### Date features
+### Date features
 
 Another common type of non-numerical data is date data. To use this data in a machine learning
 model, we need to convert this date feature to a numerical feature. This can be done by extracting the year, month,
@@ -66,7 +196,7 @@ express all dates that are close to each other (e.g., the day of the week, the n
     the week number plus 26, and then model might be able to understand that weeks "live" in a circle instead 
     of in a line.
 
-#### Image features
+### Image features
 
 Another common type of data are images. Although they might look like non-numerical data, images are actually
 matrices of numbers. To use this data in a machine learning, the easiest way is to flatten the image and use the
@@ -74,7 +204,7 @@ pixels as numerical features (often even deleting the color channels).
 
 Then, we can "spaghettify" the image by flattening the image and converting it to a 1D vector. 
 
-#### Derived features
+### Derived features
 
 Sometimes, we can create new features from existing features. For example, if we have a dataset with a column
 containing the date of birth of a person, we can create a new column containing the age of the person by subtracting
@@ -89,7 +219,7 @@ on a case-by-case basis, and requires some domain knowledge.
     containing the logarithm of the price of the house. This (could) make the data distribution more suitable for
     the model by reducing the tail of the distribution.
 
-### Feature selection
+## Feature selection
 
 In some cases, we might have too many features, which makes the model too complex and costly to maintain. In such cases
 we will need to select only the most important ones. This can be achieved in several ways:
