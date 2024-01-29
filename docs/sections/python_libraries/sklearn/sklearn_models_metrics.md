@@ -36,10 +36,8 @@ The Scikit learn API provides two ways to use metrics:
         The default score method depends on the type of estimator. For example, the default score method for
         classifiers is the accuracy, and the default score method for regressors is the $R^2$ score. 
 
-* **The `metrics` module**: The `metrics` module contains a number of functions that can be used to evaluate the
-  performance of a model. These functions take as input the true values and the predicted values, and return a score
-  that measures the performance of the model. The score is usually a number between 0 and 1, where 1 means that the
-  model is perfect and 0 means that the model is useless. 
+* **The `metrics` module**: The `metrics` module contains many functions that can be used to evaluate the
+  performance of a model. If we don't want to use the default score method, we can use these functions instead.
 
 ### Classification metrics
 
