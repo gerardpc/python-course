@@ -1283,7 +1283,7 @@ to unseen data. </p>
 <li><strong>L2 regularization</strong>: In L2 regularization, the regularization term is the sum of the squared values of the
   parameters, <span class="arithmatex">\(\mathcal{R}(\ldots) = \sum_{i=1}^{n} w_i^2\)</span>. 
   This type of regularization is also known as <strong>Ridge regularization</strong> (and also as 
-  <strong>Tikhonov regularization</strong>). In practice, this type of regularization promotes sparsity of the coefficients.</li>
+  <strong>Tikhonov regularization</strong>). </li>
 <li><strong>Elastic Net regularization</strong>: a combination of L1 and L2 regularization. </li>
 </ul>
 <div class="admonition note">
@@ -1291,8 +1291,10 @@ to unseen data. </p>
 <p>Both the L1 and L2 regularization terms encourage the coefficients to be small, since they effectively penalize
 large coefficients. However, they act in slightly different ways.
 L1 regularization tends to set the coefficients of the least important features to zero, sometimes 
-effectively performing feature selection. L2 regularization, on the other hand, tends to shrink the coefficients
-towards zero, but it's unlikely to set them to <em>exactly</em> to zero.    </p>
+effectively performing feature selection (so, in a way, it sparsifies the coefficients).
+L2 regularization, on the other hand, tends to shrink the coefficients
+towards zero, but not <em>exactly</em> to zero (since it depends on the square of the coefficients, and when a
+coefficient is small, its square becomes negligible).</p>
 </div>
 <p>In general, it is <strong>not possible</strong> to use a custom loss function in Scikit Learn. For example, if you want to use
 a different metric than vanilla mean squared error in a regression problem, you should take a look at <em>other</em>
