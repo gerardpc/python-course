@@ -1313,7 +1313,7 @@ simplify it to two steps:</p>
 <p>The two steps are actually related, since the best hyperparameters for a model depend on the data, but 
 we can study them separately.</p>
 <h3 id="training-and-testing-a-model">Training and testing a model<a class="headerlink" href="#training-and-testing-a-model" title="Permanent link">&para;</a></h3>
-<p>Assume for now that we have chosen the best model for the problem. The next step is to fitthe model to the data.
+<p>Assume for now that we have chosen the best model for the problem. The next step is to fit the model to the data.
 Learning the parameters of a model and making predictions on the same data used to fit the model 
 is a methodological mistake. In an extreme case, a model that would just repeat the labels of the samples that it has 
 just seen would have a perfect performance with seen data, but would fail to predict anything on yet-unseen data. </p>
@@ -1398,11 +1398,13 @@ as a function of a hyperparameter:</p>
     performance / lower error).</figcaption>
 </figcaption>
 </figure>
-<p>It's important to emphasize some aspects of this figure:
-* The left section of the plot shows an <strong>underfitting</strong> model: the training and validation scores are both low.
-* The middle section shows a good fit: the training and validation scores are both high, and the difference between
-  them is small. Most importantly, the validation score is at a maximum.
-* The right section shows an <strong>overfitting</strong> model: the training score is high, but the validation score is low.</p>
+<p>It's important to emphasize some aspects of this figure:</p>
+<ul>
+<li>The left section of the plot shows an <strong>underfitting</strong> model: the training and validation scores are both low.</li>
+<li>The middle section shows a good fit: the training and validation scores are both high, and the difference between
+  them is small. Most importantly, the validation score is at a maximum.</li>
+<li>The right section shows an <strong>overfitting</strong> model: the training score is high, but the validation score is low.</li>
+</ul>
 <p>In practice, models generally have more than one "knob" (i.e. hyperparameter) to turn, and thus a validation plot
 becomes multi-dimensional. In such cases, visualizations are difficult and we would rather simply find the 
 particular model that maximizes the validation score.</p>
