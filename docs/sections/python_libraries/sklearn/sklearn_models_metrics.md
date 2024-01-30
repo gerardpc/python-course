@@ -164,15 +164,17 @@ Depending on the type of regularization term, we can have different types of reg
 * **L2 regularization**: In L2 regularization, the regularization term is the sum of the squared values of the
   parameters, $\mathcal{R}(\ldots) = \sum_{i=1}^{n} w_i^2$. 
   This type of regularization is also known as **Ridge regularization** (and also as 
-  **Tikhonov regularization**). In practice, this type of regularization promotes sparsity of the coefficients.
+  **Tikhonov regularization**). 
 * **Elastic Net regularization**: a combination of L1 and L2 regularization. 
   
 !!!note
     Both the L1 and L2 regularization terms encourage the coefficients to be small, since they effectively penalize
     large coefficients. However, they act in slightly different ways.
     L1 regularization tends to set the coefficients of the least important features to zero, sometimes 
-    effectively performing feature selection. L2 regularization, on the other hand, tends to shrink the coefficients
-    towards zero, but it's unlikely to set them to _exactly_ to zero.    
+    effectively performing feature selection (so, in a way, it sparsifies the coefficients).
+    L2 regularization, on the other hand, tends to shrink the coefficients
+    towards zero, but not _exactly_ to zero (since it depends on the square of the coefficients, and when a
+    coefficient is small, its square becomes negligible).
     
 
 In general, it is **not possible** to use a custom loss function in Scikit Learn. For example, if you want to use
