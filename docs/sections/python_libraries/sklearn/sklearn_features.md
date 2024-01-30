@@ -4,7 +4,7 @@ All of the examples so far assume that you have numerical data in a tidy, `[n_sa
 That may be the case when we load data from a SKLearn dataset, but it is not the case in the real world, where
 data rarely comes in such a form. 
 
-Hence, one of the more important steps in using machine learning in practice is **feature engineering**: that is, 
+Hence, one of the most important steps in using machine learning in practice is **feature engineering**: that is, 
 taking whatever information you have about your problem and turning it into numbers that you can use to 
 build your feature matrix.
 

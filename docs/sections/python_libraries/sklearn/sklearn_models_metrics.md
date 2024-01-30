@@ -199,7 +199,7 @@ we can study them separately.
 
 ### Training and testing a model
 
-Assume for now that we have chosen the best model for the problem. The next step is to fitthe model to the data.
+Assume for now that we have chosen the best model for the problem. The next step is to fit the model to the data.
 Learning the parameters of a model and making predictions on the same data used to fit the model 
 is a methodological mistake. In an extreme case, a model that would just repeat the labels of the samples that it has 
 just seen would have a perfect performance with seen data, but would fail to predict anything on yet-unseen data. 
@@ -295,6 +295,7 @@ as a function of a hyperparameter:
 </figure>
 
 It's important to emphasize some aspects of this figure:
+
 * The left section of the plot shows an **underfitting** model: the training and validation scores are both low.
 * The middle section shows a good fit: the training and validation scores are both high, and the difference between
   them is small. Most importantly, the validation score is at a maximum.
