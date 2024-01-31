@@ -275,6 +275,10 @@ cross_val_score(model, X, y, cv=5)
 array([0.96666667, 0.96666667, 0.93333333, 0.96666667, 1.])
 ```
 
+In the last example, `cv` is the number of folds in the cross-validation. The default value is 5, but it can be changed
+to a different integer, or even to a cross-validation splitter object. The default behavior of `cross_val_score` is to
+use `StratifiedKFold` for classification and `KFold` for regression.
+
 !!!note
     When working with time series data, it is important to use cross-validation in a way that respects the time
     dependence between observations. In this case, we can use the `TimeSeriesSplit` class instead to

@@ -72,6 +72,7 @@ nav:
       - sections/python_libraries/sklearn/sklearn_estimators.md
       - sections/python_libraries/sklearn/sklearn_models_metrics.md
       - sections/python_libraries/sklearn/sklearn_features.md
+      - sections/python_libraries/sklearn/sklearn_time_series.md
       - sections/python_libraries/sklearn/sklearn_annex.md
     - sections/python_libraries/typer.md
   - Other Python topics:
