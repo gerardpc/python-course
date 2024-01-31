@@ -680,6 +680,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../sklearn_time_series/" class="md-nav__link">
+        Time series forecasting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sklearn_annex/" class="md-nav__link">
         Annex
       </a>
@@ -1380,6 +1394,9 @@ combine to get one final measure of the model's performance (we can combine them
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Output:</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">array</span><span class="p">([</span><span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">0.93333333</span><span class="p">,</span> <span class="mf">0.96666667</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
 </code></pre></div>
+<p>In the last example, <code>cv</code> is the number of folds in the cross-validation. The default value is 5, but it can be changed
+to a different integer, or even to a cross-validation splitter object. The default behavior of <code>cross_val_score</code> is to
+use <code>StratifiedKFold</code> for classification and <code>KFold</code> for regression.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When working with time series data, it is important to use cross-validation in a way that respects the time
