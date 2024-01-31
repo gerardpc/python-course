@@ -103,6 +103,11 @@ tscv = TimeSeriesSplit(n_splits=5)
 cross_val_score(model, X, y, cv=tscv)
 ```
 
+!!!note
+    We can also use the `TimeSeriesSplit` with the `GridSearchCV` and `RandomizedSearchCV` functions in a similar
+    way.
+
+
 ### Models for time series forecasting
 
 As mentioned before, Scikit Learn does not contain any of the classical time series models, but
