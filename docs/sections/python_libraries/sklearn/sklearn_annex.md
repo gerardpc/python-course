@@ -1,5 +1,34 @@
 # Annex
 
+This annex contains disconnected information that is however useful to know when working with SciKit Learn.
+
+## Model persistence
+
+SciKit Learn provides utilities to save and load models, so that they can be reused between different Python sessions.
+This is how models are used in production: first, they are trained and saved to disk, then they are loaded and used
+to make predictions, and the prediction loop continues until they need to be retrained because the performance has
+degraded.
+
+The most common way to save and load models is using the `joblib` library, which is an especially efficient way to
+save and load objects that contain large numerical arrays. The `joblib` library is not part of the standard library,
+so it needs to be installed separately:
+
+```bash
+pip install joblib
+```
+
+Once `joblib` is installed, we can use the `dump` and `load` functions to save and load models, respectively:
+
+```python
+from joblib import dump, load
+
+# Save the model to disk
+dump(model, 'model.joblib')
+
+# Load the model from disk
+model = load('model.joblib')
+```
+
 ## Model evaluation intuition
 
 When we are working with machine learning models, we are interested in finding the best model for our problem.
