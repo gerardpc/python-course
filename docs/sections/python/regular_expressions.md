@@ -43,7 +43,7 @@ the basics of regular expressions in Python, and how to use them to search text.
 
 !!!note
     To check if a string matches a regular expression without using Python, 
-    you can use this website: [](https://regex101.com/)
+    you can use [this website](https://regex101.com/)
 
 ## Python re module
 
