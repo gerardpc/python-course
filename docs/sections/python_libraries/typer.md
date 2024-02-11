@@ -23,11 +23,51 @@ Or, in a poetry project:
 poetry add typer
 ```
 
-## Creating a CLI with Typer
+!!!note
+    If you want to have colored output for typer CLIs, you can install rich with:
 
-It is recommended to use Typer in a Python project with a clean directory structure. This makes it easier to
-organize the code and to add new commands and arguments. In what follows, we will assume that the project
-directory structure looks like this:
+    ```bash
+    pip install rich
+    ```
+
+    and equivalent for poetry.
+
+## Minimal example
+
+The following is a minimal example of a CLI built with Typer. It is a simple CLI that has only one command,
+`hello`, which prints "Hello, world!" when called.
+
+```python
+from typer import Typer
+
+app = Typer()
+
+@app.command("hello", help="Prints 'Hello, world!'")
+def hello():
+    """Prints 'Hello, world!'."""
+    print("Hello, world!")
+    return
+
+if __name__ == "__main__":
+    app()
+```
+
+!!!note
+    This snippet is a complete Python script. You can copy and paste it into a file, and it should run "as is".
+    For example, if we name the file `my_command.py`, we can run it with:
+
+    ```bash
+    python -m my_command hello
+    ```
+
+The `@app.command()` decorator is used to define a command. The `@app.command()` decorator tells Typer that this
+function is a command and should be added to the CLI. 
+
+## Creating a more complex CLI with Typer
+
+For more sophisticated CLIs, it is recommended to use Typer in a Python project with a clean directory structure. 
+This makes it easier to organize the code and to add new commands and arguments. In what follows, we will 
+assume that the project directory structure looks like this:
 
 ```bash
 .
