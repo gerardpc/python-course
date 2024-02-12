@@ -75,6 +75,7 @@ nav:
       - sections/python_libraries/sklearn/sklearn_time_series.md
       - sections/python_libraries/sklearn/sklearn_annex.md
     - sections/python_libraries/typer.md
+    - sections/python_libraries/streamlit.md
   - Other Python topics:
 #    - sections/python/builtin_functions.md
 #    - sections/python/dataclasses.md
