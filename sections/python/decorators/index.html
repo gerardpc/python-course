@@ -9,20 +9,24 @@
       
       
       
+        <link rel="prev" href="../comprehensions/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../../python_libraries/numpy/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
     
     
       
-        <title>Python and data science</title>
+        <title>Decorators - Python and data science</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.6b71719e.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6b71719e.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -38,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,6 +72,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#decorators" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +87,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
+    <a href="../../.." title="Python and data science" class="md-header__button md-logo" aria-label="Python and data science" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -97,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Decorators
             
           </span>
         </div>
@@ -184,7 +193,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
+    <a href="../../.." title="Python and data science" class="md-nav__button md-logo" aria-label="Python and data science" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -203,7 +212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -245,7 +254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/python_introduction/" class="md-nav__link">
+      <a href="../python_introduction/" class="md-nav__link">
         Introduction to Python
       </a>
     </li>
@@ -259,7 +268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/control_flow/" class="md-nav__link">
+      <a href="../control_flow/" class="md-nav__link">
         Control flow
       </a>
     </li>
@@ -273,7 +282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/data_structures/" class="md-nav__link">
+      <a href="../data_structures/" class="md-nav__link">
         Data structures
       </a>
     </li>
@@ -287,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/functions/" class="md-nav__link">
+      <a href="../functions/" class="md-nav__link">
         Functions
       </a>
     </li>
@@ -301,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/python_programs/" class="md-nav__link">
+      <a href="../python_programs/" class="md-nav__link">
         Python programs
       </a>
     </li>
@@ -315,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/io_files/" class="md-nav__link">
+      <a href="../io_files/" class="md-nav__link">
         Input, output and files
       </a>
     </li>
@@ -329,7 +338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/exceptions/" class="md-nav__link">
+      <a href="../exceptions/" class="md-nav__link">
         Exceptions
       </a>
     </li>
@@ -343,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/classes/" class="md-nav__link">
+      <a href="../classes/" class="md-nav__link">
         Classes and objects
       </a>
     </li>
@@ -392,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/datetime/" class="md-nav__link">
+      <a href="../datetime/" class="md-nav__link">
         Dates and times
       </a>
     </li>
@@ -406,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/regular_expressions/" class="md-nav__link">
+      <a href="../regular_expressions/" class="md-nav__link">
         Regular expressions
       </a>
     </li>
@@ -420,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sqlalchemy/" class="md-nav__link">
+      <a href="../../python_libraries/sqlalchemy/" class="md-nav__link">
         Connecting SQL to Python
       </a>
     </li>
@@ -434,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/python_projects/" class="md-nav__link">
+      <a href="../python_projects/" class="md-nav__link">
         Python projects
       </a>
     </li>
@@ -448,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/other/git/" class="md-nav__link">
+      <a href="../../other/git/" class="md-nav__link">
         Git
       </a>
     </li>
@@ -489,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_introduction/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_introduction/" class="md-nav__link">
         Introduction to Scikit Learn
       </a>
     </li>
@@ -503,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_estimators/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_estimators/" class="md-nav__link">
         Estimators
       </a>
     </li>
@@ -517,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_models_metrics/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_models_metrics/" class="md-nav__link">
         Metrics and validation
       </a>
     </li>
@@ -531,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_features/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_features/" class="md-nav__link">
         Feature Engineering
       </a>
     </li>
@@ -545,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_time_series/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_time_series/" class="md-nav__link">
         Time series forecasting
       </a>
     </li>
@@ -559,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/sklearn/sklearn_annex/" class="md-nav__link">
+      <a href="../../python_libraries/sklearn/sklearn_annex/" class="md-nav__link">
         Annex
       </a>
     </li>
@@ -580,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/typer/" class="md-nav__link">
+      <a href="../../python_libraries/typer/" class="md-nav__link">
         Typer
       </a>
     </li>
@@ -600,18 +609,20 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
-        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="true">
           Other Python topics
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -629,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python/comprehensions/" class="md-nav__link">
+      <a href="../comprehensions/" class="md-nav__link">
         Comprehensions
       </a>
     </li>
@@ -641,11 +652,66 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/sections/python/decorators/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Decorators
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Decorators
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorator-syntax" class="md-nav__link">
+    Decorator syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorator-example" class="md-nav__link">
+    Decorator example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -692,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/numpy/" class="md-nav__link">
+      <a href="../../python_libraries/numpy/" class="md-nav__link">
         Numpy
       </a>
     </li>
@@ -706,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/matplotlib/" class="md-nav__link">
+      <a href="../../python_libraries/matplotlib/" class="md-nav__link">
         Matplotlib
       </a>
     </li>
@@ -720,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/pandas/" class="md-nav__link">
+      <a href="../../python_libraries/pandas/" class="md-nav__link">
         Pandas
       </a>
     </li>
@@ -734,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/python_libraries/pyspark/" class="md-nav__link">
+      <a href="../../python_libraries/pyspark/" class="md-nav__link">
         PySpark
       </a>
     </li>
@@ -783,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/introduction/" class="md-nav__link">
+      <a href="../../sql/introduction/" class="md-nav__link">
         SQL
       </a>
     </li>
@@ -797,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/select_statements/" class="md-nav__link">
+      <a href="../../sql/select_statements/" class="md-nav__link">
         SELECT statement
       </a>
     </li>
@@ -811,7 +877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/window_functions/" class="md-nav__link">
+      <a href="../../sql/window_functions/" class="md-nav__link">
         Window functions
       </a>
     </li>
@@ -825,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/modification_statements/" class="md-nav__link">
+      <a href="../../sql/modification_statements/" class="md-nav__link">
         Data modification statements
       </a>
     </li>
@@ -839,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/table_operations/" class="md-nav__link">
+      <a href="../../sql/table_operations/" class="md-nav__link">
         Table operations
       </a>
     </li>
@@ -853,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/sections/sql/sql_from_python/" class="md-nav__link">
+      <a href="../../sql/sql_from_python/" class="md-nav__link">
         Connecting SQL to Python
       </a>
     </li>
@@ -884,6 +950,37 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorator-syntax" class="md-nav__link">
+    Decorator syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorator-example" class="md-nav__link">
+    Decorator example
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -895,8 +992,68 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Decorators are a way to modify or extend the behavior of functions or methods, without modifying the 
+original function or method. This sounds confusing, but it’ll make more sense after you’ve seen a few examples 
+of how decorators work. </p>
+<h2 id="decorator-syntax">Decorator syntax<a class="headerlink" href="#decorator-syntax" title="Permanent link">&para;</a></h2>
+<p>In Python, decorators are implemented using the <code>@</code> symbol, followed by the name of the decorator function. 
+They always come before the definition of a function, and are applied to the function below. The syntax looks 
+like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@some_decorator</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is the inside of some_function.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>but even though the syntax is a bit strange, it is just a shorthand (i.e., "syntactic sugar") for the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is the inside of some_function.&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">some_function</span> <span class="o">=</span> <span class="n">some_decorator</span><span class="p">(</span><span class="n">some_function</span><span class="p">)</span>
+</code></pre></div>
+<p>In other words, the <code>@some_decorator</code> syntax is just a function that takes another function as input, and returns
+a new function, modified, version of the input function.</p>
+<h2 id="decorator-example">Decorator example<a class="headerlink" href="#decorator-example" title="Permanent link">&para;</a></h2>
+<p>Python libraries are often full of decorators, and you’ve probably used them without even realizing it.
+Let's make a simple example of a decorator that prints the time it takes to run a function. We can use the
+<code>time</code> module to get the current time, and then subtract the start time from the end time to get the time it
+took to run the function. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">time</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># The timer function (which we will use as a decorator) takes a function as input, </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># and returns a new function (the &quot;wrapper&quot; function) that does what the previous function did,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># plus a little extra (in this case, it prints the time it took to run the function).</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elapsed time: </span><span class="si">{</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="k">return</span> <span class="n">result</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">return</span> <span class="n">wrapper</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Now we can use the `@timer` decorator to print the time it takes to run a function.</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nd">@timer</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is the inside of some_function.&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="n">some_function</span><span class="p">()</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="c1"># Output:</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">inside</span> <span class="n">of</span> <span class="n">some_function</span><span class="o">.</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="n">Elapsed</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.000000238418579</span> <span class="n">seconds</span>
+</code></pre></div>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -928,12 +1085,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.instant", "content.code.copy"], "search": "/assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.ba449ae6.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
