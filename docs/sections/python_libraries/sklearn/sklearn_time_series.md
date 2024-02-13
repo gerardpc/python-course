@@ -64,24 +64,11 @@ Unfortunately, Scikit Learn does not contain any of the classical time series mo
 However, it does contain some tools that can be useful for time series forecasting, such as the `TimeSeriesSplit`,
 and some *generalist* models that can be used for time series forecasting, such as the `RandomForestRegressor`.
 
-### TimeSeriesSplit
+### Train-test split
 
-The `TimeSeriesSplit` is a cross-validation strategy that is useful for time series data. It is similar to the
-`KFold` strategy, but it differs in that the training data in each fold always comes before the test data.
-
-<figure markdown>
-  ![kfold](../../../images/kfold.png){ width="400" }
-  <figcaption>Regular K-fold cross validation.</figcaption>
-</figcaption>
-</figure>
-
-<figure markdown>
-  ![kfold](../../../images/time_series_split.png){ width="400" }
-  <figcaption>Time series split cross validation.</figcaption>
-</figcaption>
-</figure>
-
-The reason to do this different split is that in time series forecasting we need to predict the future values of 
+When splitting time series data into training and test sets, we need to be careful to respect the time order of the
+data. We cannot shuffle the data before a split, as we would do with regular tabular data, because the time order 
+of the data is important. The reason is that in time series forecasting we need to predict the future values of 
 the time series using **only** the past values of the time series, since this is what we will have access to in
 practice. 
 
@@ -89,6 +76,59 @@ practice.
     This is easily seen with an example: predicting the price of an asset for next Monday, using information 
     from the previous Sunday and the Tuesday _after_ said Monday is much easier than predicting Monday's price 
     using only information from the past; also, in practice we will not have access to data from the future :) 
+
+In practice, we can split the data ourselves using the `iloc` (if we are working with pandas DataFrames), 
+or if we are using numpy arrays, we can just use the slicing operator `[]`:
+
+```python
+# Pandas DataFrame
+X_train = df.iloc[:n_train]
+X_test = df.iloc[n_train:]
+
+# Numpy array
+X_train = X[:n_train]
+X_test = X[n_train:]
+```
+
+That was only the time series features. What is the target? The target is the time series shifted one step 
+into the future. Assume that our time series is in the column `time_series` of the DataFrame `df`, and that
+`n_train` is the number of observations in the training set. Then, the target is:
+
+```python
+# Pandas DataFrame
+y_train = df['time_series'].iloc[1:n_train+1]
+y_test = df['time_series'].iloc[n_train+1:]
+
+# Numpy array
+y_train = y[1:n_train+1]
+y_test = y[n_train+1:]
+```
+
+The following figure shows how to create the training matrix from a pure time series:
+
+<figure markdown>
+  ![ex_variables](../../../images/transform_timeseries.gif){ width="500" }
+  <figcaption>Time series transformation into a matrix of 5 lags and a vector with the value of the series that follows each row of the matrix.</figcaption>
+</figcaption>
+</figure>
+
+### Cross-validation with time series data
+
+As just discussed, we need to be careful when splitting time series data into training and test sets. 
+`TimeSeriesSplit` is a Scikit Learn cross-validation strategy that is useful for time series data. It is similar to the
+`KFold` strategy, but it differs in that the training data in each fold always comes before the test data.
+
+<figure markdown>
+  ![kfold](../../../images/kfold.png){ width="500" }
+  <figcaption>Regular K-fold cross validation.</figcaption>
+</figcaption>
+</figure>
+
+<figure markdown>
+  ![kfold](../../../images/time_series_split.png){ width="500" }
+  <figcaption>Time series split cross validation.</figcaption>
+</figcaption>
+</figure>
 
 We can use the `TimeSeriesSplit` with the `cross_val_score` function to perform cross-validation on time series
 data:
@@ -103,10 +143,24 @@ tscv = TimeSeriesSplit(n_splits=5)
 cross_val_score(model, X, y, cv=tscv)
 ```
 
-!!!note
-    We can also use the `TimeSeriesSplit` with the `GridSearchCV` and `RandomizedSearchCV` functions in a similar
-    way.
+We can also use the `TimeSeriesSplit` with the `GridSearchCV` and `RandomizedSearchCV` functions in a similar
+way:
 
+```python
+from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
+from sklearn.ensemble import RandomForestRegressor
+
+param_grid = {
+    'n_estimators': [100, 200, 300],
+    'max_depth': [5, 10, 15]
+}
+
+tscv = TimeSeriesSplit(n_splits=5)
+rf_grid_search = GridSearchCV(estimator=RandomForestRegressor(), param_grid=param_grid, cv=tscv)
+rf_grid_search.fit(X, y)
+```
+
+And after we can use `rf_grid_search` to make predictions on the test set.
 
 ### Models for time series forecasting
 
@@ -135,11 +189,21 @@ for time series, we always have two options to choose from:
     </figcaption>
     </figure>
 
-!!!note
-    The `RandomForestRegressor` is a good choice for time series forecasting because it can handle time series
-    data, but can also handle other types of features to enrich the model.
 
-    Sometimes, ARIMA models can even be used to generate features for a `RandomForestRegressor` model. 
+The `RandomForestRegressor` is a good choice for time series forecasting because it can handle time series
+data, but can also handle other types of features to enrich the model. Sometimes, ARIMA models can even be 
+used to generate features for a `RandomForestRegressor` model. 
+
+<figure markdown>
+  ![ex_variables](../../../images/trans_exogenous_vars.png){ width="500" }
+  <figcaption>Time series transformation including an exogenous variable. The letter feature
+   represents a feature that is not a lag of the time series.
+</figcaption>
+</figure>
+
+!!!note
+    Other tree-based models such as XGBoost and CatBoost can also be used for time series forecasting with
+    extra ("exogenous") variables.
 
 !!!note
     Alternatives to the `RandomForestRegressor` for time series forecasting are the boosted trees from 
