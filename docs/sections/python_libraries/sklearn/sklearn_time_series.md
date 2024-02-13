@@ -156,7 +156,11 @@ param_grid = {
 }
 
 tscv = TimeSeriesSplit(n_splits=5)
-rf_grid_search = GridSearchCV(estimator=RandomForestRegressor(), param_grid=param_grid, cv=tscv)
+rf_grid_search = GridSearchCV(
+    estimator=RandomForestRegressor(), 
+    param_grid=param_grid, 
+    cv=tscv
+)
 rf_grid_search.fit(X, y)
 ```
 
