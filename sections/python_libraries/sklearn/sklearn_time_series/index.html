@@ -614,8 +614,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#timeseriessplit" class="md-nav__link">
-    TimeSeriesSplit
+  <a href="#train-test-split" class="md-nav__link">
+    Train-test split
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation-with-time-series-data" class="md-nav__link">
+    Cross-validation with time series data
   </a>
   
 </li>
@@ -1018,8 +1025,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#timeseriessplit" class="md-nav__link">
-    TimeSeriesSplit
+  <a href="#train-test-split" class="md-nav__link">
+    Train-test split
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-validation-with-time-series-data" class="md-nav__link">
+    Cross-validation with time series data
   </a>
   
 </li>
@@ -1109,22 +1123,10 @@ It can be used with the <code>mean()</code>, as in the example above, but also w
 <p>Unfortunately, Scikit Learn does not contain any of the classical time series models such as ARIMA, SARIMA, etc. 
 However, it does contain some tools that can be useful for time series forecasting, such as the <code>TimeSeriesSplit</code>,
 and some <em>generalist</em> models that can be used for time series forecasting, such as the <code>RandomForestRegressor</code>.</p>
-<h3 id="timeseriessplit">TimeSeriesSplit<a class="headerlink" href="#timeseriessplit" title="Permanent link">&para;</a></h3>
-<p>The <code>TimeSeriesSplit</code> is a cross-validation strategy that is useful for time series data. It is similar to the
-<code>KFold</code> strategy, but it differs in that the training data in each fold always comes before the test data.</p>
-<figure>
-<p><img alt="kfold" src="../../../../images/kfold.png" width="400" />
-  </p>
-<figcaption>Regular K-fold cross validation.</figcaption>
-</figcaption>
-</figure>
-<figure>
-<p><img alt="kfold" src="../../../../images/time_series_split.png" width="400" />
-  </p>
-<figcaption>Time series split cross validation.</figcaption>
-</figcaption>
-</figure>
-<p>The reason to do this different split is that in time series forecasting we need to predict the future values of 
+<h3 id="train-test-split">Train-test split<a class="headerlink" href="#train-test-split" title="Permanent link">&para;</a></h3>
+<p>When splitting time series data into training and test sets, we need to be careful to respect the time order of the
+data. We cannot shuffle the data before a split, as we would do with regular tabular data, because the time order 
+of the data is important. The reason is that in time series forecasting we need to predict the future values of 
 the time series using <strong>only</strong> the past values of the time series, since this is what we will have access to in
 practice. </p>
 <div class="admonition note">
@@ -1133,21 +1135,79 @@ practice. </p>
 from the previous Sunday and the Tuesday <em>after</em> said Monday is much easier than predicting Monday's price 
 using only information from the past; also, in practice we will not have access to data from the future :) </p>
 </div>
+<p>In practice, we can split the data ourselves using the <code>iloc</code> (if we are working with pandas DataFrames), 
+or if we are using numpy arrays, we can just use the slicing operator <code>[]</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Pandas DataFrame</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Numpy array</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+</code></pre></div>
+<p>That was only the time series features. What is the target? The target is the time series shifted one step 
+into the future. Assume that our time series is in the column <code>time_series</code> of the DataFrame <code>df</code>, and that
+<code>n_train</code> is the number of observations in the training set. Then, the target is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Pandas DataFrame</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_series&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n_train</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_series&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">n_train</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Numpy array</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n_train</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n_train</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div>
+<p>The following figure shows how to create the training matrix from a pure time series:</p>
+<figure>
+<p><img alt="ex_variables" src="../../../../images/transform_timeseries.gif" width="500" />
+  </p>
+<figcaption>Time series transformation into a matrix of 5 lags and a vector with the value of the series that follows each row of the matrix.</figcaption>
+</figcaption>
+</figure>
+<h3 id="cross-validation-with-time-series-data">Cross-validation with time series data<a class="headerlink" href="#cross-validation-with-time-series-data" title="Permanent link">&para;</a></h3>
+<p>As just discussed, we need to be careful when splitting time series data into training and test sets. 
+<code>TimeSeriesSplit</code> is a Scikit Learn cross-validation strategy that is useful for time series data. It is similar to the
+<code>KFold</code> strategy, but it differs in that the training data in each fold always comes before the test data.</p>
+<figure>
+<p><img alt="kfold" src="../../../../images/kfold.png" width="500" />
+  </p>
+<figcaption>Regular K-fold cross validation.</figcaption>
+</figcaption>
+</figure>
+<figure>
+<p><img alt="kfold" src="../../../../images/time_series_split.png" width="500" />
+  </p>
+<figcaption>Time series split cross validation.</figcaption>
+</figcaption>
+</figure>
 <p>We can use the <code>TimeSeriesSplit</code> with the <code>cross_val_score</code> function to perform cross-validation on time series
 data:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">TimeSeriesSplit</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">X</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Features, that include the time series from the past</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">y</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Target, that is the time series shifted one step into the future</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">tscv</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">TimeSeriesSplit</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">X</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Features, that include the time series from the past</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">y</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Target, that is the time series shifted one step into the future</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">tscv</span><span class="p">)</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
 <p>We can also use the <code>TimeSeriesSplit</code> with the <code>GridSearchCV</code> and <code>RandomizedSearchCV</code> functions in a similar
-way.</p>
-</div>
+way:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">TimeSeriesSplit</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">rf_grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">estimator</span><span class="o">=</span><span class="n">RandomForestRegressor</span><span class="p">(),</span> 
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> 
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="n">cv</span><span class="o">=</span><span class="n">tscv</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="n">rf_grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+<p>And after we can use <code>rf_grid_search</code> to make predictions on the test set.</p>
 <h3 id="models-for-time-series-forecasting">Models for time series forecasting<a class="headerlink" href="#models-for-time-series-forecasting" title="Permanent link">&para;</a></h3>
 <p>As mentioned before, Scikit Learn does not contain any of the classical time series models, but
 we can nonetheless use a <code>RandomForestRegressor</code> to perform time series forecasting. When training models
@@ -1175,11 +1235,20 @@ for time series, we always have two options to choose from:</p>
 </figure></p>
 </li>
 </ul>
+<p>The <code>RandomForestRegressor</code> is a good choice for time series forecasting because it can handle time series
+data, but can also handle other types of features to enrich the model. Sometimes, ARIMA models can even be 
+used to generate features for a <code>RandomForestRegressor</code> model. </p>
+<figure>
+<p><img alt="ex_variables" src="../../../../images/trans_exogenous_vars.png" width="500" />
+  </p>
+<figcaption>Time series transformation including an exogenous variable. The letter feature
+   represents a feature that is not a lag of the time series.
+</figcaption>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>RandomForestRegressor</code> is a good choice for time series forecasting because it can handle time series
-data, but can also handle other types of features to enrich the model.</p>
-<p>Sometimes, ARIMA models can even be used to generate features for a <code>RandomForestRegressor</code> model. </p>
+<p>Other tree-based models such as XGBoost and CatBoost can also be used for time series forecasting with
+extra ("exogenous") variables.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
