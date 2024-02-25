@@ -83,6 +83,7 @@ nav:
 #    - sections/python/generators.md
     - sections/python/comprehensions.md
     - sections/python/decorators.md
+    - sections/other/web_scraping.md
 
   - Python data libraries:
     - sections/python_libraries/numpy.md

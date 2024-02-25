@@ -6,7 +6,7 @@ function but, unlike regular aggregate functions, use of a window function does 
 become grouped into a single output row; the rows retain their separate identities. 
 
 <figure markdown>
-  ![Image title](../../images/window_functions.png){ width="700" }
+  ![Window functions](../../images/window_functions.png){ width="700" }
   <figcaption>Group by vs. Window functions.</figcaption>
 </figure>
 
