@@ -195,6 +195,14 @@ for headline in headlines:
     print(headline.get_text())
 ```
 
+In the previous example, we know that this is the class of the headlines because we inspected the HTML content
+of the page using the Developer Tools of our browser and found this:
+
+<figure markdown>
+  ![headline class](../../images/web_structure.png){ width="500" }
+  <figcaption>Inspecting the HTML content of a page.</figcaption>
+</figure>
+
 !!!note
     The examples provided are very simple, but already show the power of web scraping. In practice, we will often need
     to use more complex criteria to extract the data we need (e.g., regular expressions, string parsing, etc.).
